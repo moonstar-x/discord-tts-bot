@@ -96,9 +96,5 @@ Here's a list of all the supported languages:
 | cmn           | Chinese       |
 | ja            | Japanese      |
 
-## To Do:
-
-* Make the bot so that it can join multiple servers.
-
 ## Author:
 This bot was made by [moonstar-x](https://github.com/moonstar-x).
