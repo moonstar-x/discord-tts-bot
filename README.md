@@ -8,7 +8,7 @@ To self-host this bot you'll need the following:
 * [node.js](https://nodejs.org/en/)
 * ffmpeg
 
-**ffmpeg** should be installed by default on Linux and MacOS, for Windows users, head over to [ffmpeg's official website](https://www.ffmpeg.org/download.html#build-windows) to download the binary which will need to be added to your **\$PATH**. If you don't know how to add folders to your **\$PATH**, check out this [guide](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/).
+**ffmpeg** should be installed by default on Linux and MacOS, in case it isn't, install it with your package manager. For Windows users, head over to [ffmpeg's official website](https://www.ffmpeg.org/download.html#build-windows) to download the binary which will need to be added to your **\$PATH**. If you don't know how to add folders to your **\$PATH**, check out this [guide](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/).
 
 ## Installation:
 In order to self-host this bot, first you'll need to clone this repository.

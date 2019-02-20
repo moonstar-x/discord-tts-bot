@@ -1,9 +1,3 @@
-/*
-TODO:
-Make bot so it can join multiple servers.
-Remember that ffmpeg seems to be required
-*/
-
 const Discord = require('discord.js');
 const Opus = require('node-opus');
 const googleTTS = require('google-tts-api');
@@ -27,22 +21,22 @@ client.on('message', message => {
   const args = message.content.slice(config.prefix.length).split(/ +/);
   const command = args.shift().toLowerCase();
 
-  const { voiceChannel } = message.member;
+  const { channel } = message.member.voice;
 
   if (command === 'say') {
-    if (voiceChannel) {
-      if (voiceChannel.joinable) {
-        if (voiceChannel.connection) {
+    if (channel) {
+      if (channel.joinable) {
+        if (channel.connection) {
           if (args.length > 0) {
-            playTTS(args.join(' '), language, speed, voiceChannel.connection, message);
+            playTTS(args.join(' '), language, speed, channel.connection, message);
           } else {
             message.reply('you need to specify a message.');
           }
         } else {
-          voiceChannel.join()
+          channel.join()
           .then(connection => {
-            console.log(`Joined ${voiceChannel.name} voice channel.`);
-            message.channel.send(`Joined ${voiceChannel}.`);
+            console.log(`Joined ${channel.name} voice channel.`);
+            message.channel.send(`Joined ${channel}.`);
             if (args.length > 0) {
               playTTS(args.join(' '), language, speed, connection, message);
             }
@@ -85,7 +79,7 @@ client.on('message', message => {
     You can send TTS messages in the following languages:
       :flag_us: English - '**${config.prefix}lang en**'
       :flag_es: Spanish - '**${config.prefix}lang es**'
-      :flag_br: Portuguese - '$**{config.prefix}lang pt**'
+      :flag_br: Portuguese - '$**${config.prefix}lang pt**'
       :flag_fr: French - '**${config.prefix}lang fr**'
       :flag_de: German - '**${config.prefix}lang de**'
       :flag_ru: Russian - '**${config.prefix}lang ru**'
@@ -123,7 +117,7 @@ function playTTS(phrase, lang, spd, conn, msg) {
   googleTTS(phrase, lang, spd)
     .then(function (url) {
         console.log(`Received TTS for '${phrase}' with language code '${lang}' and ${spd} speed.`);
-        const dispatcher = conn.playArbitraryInput(url);
+        const dispatcher = conn.play(url);
         dispatcher.on('end', () => {
           console.log('TTS dispatch ended successfully.');
         });
@@ -141,10 +135,10 @@ function playTTS(phrase, lang, spd, conn, msg) {
 
 function updatePresence(lang) {
   client.user.setPresence({
-    game: {
+    activity: {
       name: `in ${languages[lang]}!`,
       type: 'PLAYING'
     }
-  });
-  console.log(`Presence changed to: ${languages[lang]}.`);
+  }).then(console.log(`Presence changed to: ${languages[lang]}.`))
+  .catch(console.error);
 }

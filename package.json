@@ -9,14 +9,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moonstar-x/dicord-tts-bot/"
+    "url": "git+https://github.com/moonstar-x/dicord-tts-bot.git"
   },
   "author": "moonstar-x",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^11.4.2",
+    "discord.js": "github:discordjs/discord.js",
     "fs": "0.0.1-security",
     "google-tts-api": "0.0.4",
     "node-opus": "^0.3.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/moonstar-x/dicord-tts-bot/issues"
+  },
+  "homepage": "https://github.com/moonstar-x/dicord-tts-bot#readme"
 }
