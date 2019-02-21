@@ -1,9 +1,9 @@
-const Discord = require('discord.js');
+const { Client, MessageEmbed } = require('discord.js');
 const Opus = require('node-opus');
 const googleTTS = require('google-tts-api');
 const fs = require('fs');
 
-const client = new Discord.Client();
+const client = new Client();
 const config = require('./settings.json');
 const languages = require('./languages.json');
 
@@ -15,7 +15,7 @@ client.on('ready', () => {
   updatePresence(language);
 });
 
-client.on('message', message => {
+client.on('message', async message => {
   if (!message.guild || !message.content.startsWith(config.prefix) || message.author.bot) return;
 
   const args = message.content.slice(config.prefix.length).split(/ +/);
@@ -72,24 +72,10 @@ client.on('message', message => {
         message.reply(`invalid language. Type **${config.prefix}langs** for a list of available languages.`);
       }
     } else {
-      message.reply('you need to specify a language.');
+      sendLangs(message);
     } 
-  } else if (command === 'langs') {
-    message.channel.send(`
-    You can send TTS messages in the following languages:
-      :flag_us: English - '**${config.prefix}lang en**'
-      :flag_es: Spanish - '**${config.prefix}lang es**'
-      :flag_br: Portuguese - '$**${config.prefix}lang pt**'
-      :flag_fr: French - '**${config.prefix}lang fr**'
-      :flag_de: German - '**${config.prefix}lang de**'
-      :flag_ru: Russian - '**${config.prefix}lang ru**'
-      :flag_cn: Chinese - '**${config.prefix}lang cmn**'
-      :flag_kr: Korean - '**${config.prefix}lang ko**'
-      :flag_jp: Japanese - '**${config.prefix}lang ja**'
-    For other languages, visit the following link: https://github.com/moonstar-x/discord-tts-bot#language-support, 
-    use '**${config.prefix}say <lang_code>**' command to set it to your preference.
-    `);
-
+  } else if (command === 'langs'){
+    sendLangs(message);
   } else if (command === 'speed') {
     const spd = Number(args);
     if (!isNaN(spd) && spd > 0 && spd <= 100) {
@@ -100,14 +86,7 @@ client.on('message', message => {
       message.reply('invalid speed, must be between 1 and 100.');
     }
   } else if (command === 'help') {
-    message.channel.send(`
-    The commands you can use are the following:
-      :speaking_head: **${config.prefix}say <message>** - Send a TTS message in your voice channel (up to 200 characters).
-      :x: **${config.prefix}stop** - Stop the TTS bot and leave the channel.
-      :beginner: **${config.prefix}lang <lang_code>** - Change the TTS language.
-      :page_facing_up: **${config.prefix}langs** - Display a list of the supported languages.
-      :fast_forward: **${config.prefix}speed <number>** - Change the TTS spoken speed (must be between 1% and 100%).
-    `);
+    sendHelp(message);
   }
 });
 
@@ -141,4 +120,93 @@ function updatePresence(lang) {
     }
   }).then(console.log(`Presence changed to: ${languages[lang]}.`))
   .catch(console.error);
+}
+
+function sendLangs(msg) {
+  const embed = new MessageEmbed()
+    .setTitle('List of supported languages:')
+    .setColor("GREY")
+    .setDescription(`This is a full list of all the languages that are supported by this TTS bot. 
+
+    To change language, use **${config.prefix}lang <lang_code>**.`)
+    .setThumbnail("https://i.imgur.com/QbNXO4q.jpg")
+    .setURL("https://github.com/moonstar-x/discord-tts-bot#language-support")
+    .addField("Part 1:", 
+      `
+        :flag_za: Afrikaans - '**${config.prefix}lang af**'
+        :flag_am: Armenian - '**${config.prefix}lang hy**'
+        :flag_id: Indonesian - '**${config.prefix}lang id**'
+        :flag_bd: Bengali - '**${config.prefix}lang bn**'
+        :flag_es: Catalan - '**${config.prefix}lang ca**'
+        :flag_cz: Czech - '**${config.prefix}lang cs**'
+        :flag_dk: Danish - '**${config.prefix}lang da**'
+        :flag_de: German - '**${config.prefix}lang de**'
+        :flag_us: English - '**${config.prefix}lang en**'
+        :flag_es: Spanish - '**${config.prefix}lang es**'
+        :flag_ph: Filipino - '**${config.prefix}lang fil**'
+        :flag_fr: French - '**${config.prefix}lang fr**'
+        :flag_hr: Croatian - '**${config.prefix}lang hr**'
+        :flag_is: Icelandic - '**${config.prefix}lang is**'
+        :flag_it: Italian - '**${config.prefix}lang it**'
+        :flag_id: Javanese - '**${config.prefix}lang jv**'
+        :flag_kh: Khmer - '**${config.prefix}lang km**'
+      `
+    )
+    .addField("Part 2:", 
+      `
+        :flag_lv: Latvian - '**${config.prefix}lang lv**'
+        :flag_hu: Hungarian - '**${config.prefix}lang hu**'
+        :flag_my: Malayalam - '**${config.prefix}lang ml**'
+        :flag_in: Marathi - '**${config.prefix}lang mr**'
+        :flag_nl: Dutch - '**${config.prefix}lang nl**'
+        :flag_np: Nepali - '**${config.prefix}lang ne**'
+        :flag_no: Norwegian - '**${config.prefix}lang nb**'
+        :flag_pl: Polish - '**${config.prefix}lang pl**'
+        :flag_pt: Portuguese - '**${config.prefix}lang pt**'
+        :flag_ro: Romanian - '**${config.prefix}lang ro**'
+        :flag_lk: Sinhala - '**${config.prefix}lang si**'
+        :flag_sk: Slovak - '**${config.prefix}lang sk**'
+        :flag_id: Sundanese - '**${config.prefix}lang su**'
+        :flag_tz: Swahili - '**${config.prefix}lang sw**'
+        :flag_fi: Finnish - '**${config.prefix}lang fi**'
+        :flag_se: Swedish - '**${config.prefix}lang sv**'
+        :flag_id: Tamil - '**${config.prefix}lang ta**'
+      `
+    )
+    .addField("Part 3:", 
+      `
+        :flag_id: Telugu - '**${config.prefix}lang te**'
+        :flag_vn: Vietnamese - '**${config.prefix}lang vi**'
+        :flag_tr: Turkish - '**${config.prefix}lang tr**'
+        :flag_gr: Greek - '**${config.prefix}lang el**'
+        :flag_ru: Russian - '**${config.prefix}lang ru**'
+        :flag_rs: Serbian - '**${config.prefix}lang sr**'
+        :flag_ua: Ukranian - '**${config.prefix}lang uk**'
+        :flag_sa: Arabic - '**${config.prefix}lang ar**'
+        :flag_id: Hindi - '**${config.prefix}lang hi**'
+        :flag_th: Thai - '**${config.prefix}lang th**'
+        :flag_kr: Korean - '**${config.prefix}lang ko**'
+        :flag_cn: Chinese - '**${config.prefix}lang cmn**'
+        :flag_jp: Japanese - '**${config.prefix}lang ja**'
+      `
+    ); 
+  msg.channel.send(embed);
+}
+
+function sendHelp(msg) {
+  const embed = new MessageEmbed()
+    .setTitle("List of available commands:")
+    .setColor("GREY")
+    .setThumbnail("https://i.imgur.com/Tqnk48j.png")
+    .addField("You can use the following commands with this bot:",
+      `
+        :speaking_head: **${config.prefix}say <message>** - Send a TTS message in your voice channel (up to 200 characters).
+        :x: **${config.prefix}stop** - Stop the TTS bot and leave the channel.
+        :beginner: **${config.prefix}lang <lang_code>** - Change the TTS language.
+        :page_facing_up: **${config.prefix}langs** - Display a list of the supported languages.
+        :fast_forward: **${config.prefix}speed <number>** - Change the TTS spoken speed (must be between 1% and 100%).
+        :question: **${config.prefix}help** - Display this message.
+      `
+    );
+  msg.channel.send(embed);
 }
