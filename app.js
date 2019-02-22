@@ -1,5 +1,8 @@
 // Required dependencies:
-const { Client, MessageEmbed } = require('discord.js');
+const {
+  Client,
+  MessageEmbed
+} = require('discord.js');
 const Opus = require('node-opus');
 const googleTTS = require('google-tts-api');
 const fs = require('fs');
@@ -19,12 +22,12 @@ let queue = [];
 // Updates the presence of the bot to the language that has been changed.
 function updatePresence(lang) {
   client.user.setPresence({
-    activity: {
-      name: `in ${languages[lang]}!`,
-      type: 'PLAYING'
-    }
-  }).then(console.log('[' + new Date().toLocaleTimeString() + ']', `Presence changed to: ${languages[lang]}.`))
-  .catch(console.error);
+      activity: {
+        name: `in ${languages[lang]}!`,
+        type: 'PLAYING'
+      }
+    }).then(console.log('[' + new Date().toLocaleTimeString() + ']', `Presence changed to: ${languages[lang]}.`))
+    .catch(console.error);
 }
 
 // sendLangs(Message)
@@ -38,7 +41,7 @@ function sendLangs(msg) {
     To change language, use **${config.prefix}lang <lang_code>**.`)
     .setThumbnail("https://i.imgur.com/QbNXO4q.jpg")
     .setURL("https://github.com/moonstar-x/discord-tts-bot#language-support")
-    .addField("Part 1:", 
+    .addField("Part 1:",
       `
         :flag_za: Afrikaans - '**${config.prefix}lang af**'
         :flag_am: Armenian - '**${config.prefix}lang hy**'
@@ -59,7 +62,7 @@ function sendLangs(msg) {
         :flag_kh: Khmer - '**${config.prefix}lang km**'
       `
     )
-    .addField("Part 2:", 
+    .addField("Part 2:",
       `
         :flag_lv: Latvian - '**${config.prefix}lang lv**'
         :flag_hu: Hungarian - '**${config.prefix}lang hu**'
@@ -80,7 +83,7 @@ function sendLangs(msg) {
         :flag_id: Tamil - '**${config.prefix}lang ta**'
       `
     )
-    .addField("Part 3:", 
+    .addField("Part 3:",
       `
         :flag_id: Telugu - '**${config.prefix}lang te**'
         :flag_vn: Vietnamese - '**${config.prefix}lang vi**'
@@ -96,7 +99,7 @@ function sendLangs(msg) {
         :flag_cn: Chinese - '**${config.prefix}lang cmn**'
         :flag_jp: Japanese - '**${config.prefix}lang ja**'
       `
-    ); 
+    );
   msg.channel.send(embed);
 }
 
@@ -120,10 +123,11 @@ function sendHelp(msg) {
   msg.channel.send(embed);
 }
 
-// playTTS(String, Int, VoiceConnection, Message)
+// playTTS(String, Int, VoiceConnection)
 // Requests a TTS audio URL from the Google Translate API, once it receives it, stream it to the voice channel the bot is connected to.
-function playTTS(lang, spd, conn, msg) {
-  googleTTS(queue[0], lang, spd).then(async function (url) {
+function playTTS(lang, spd, conn) {
+  if (queue[0]) {
+    googleTTS(queue[0], lang, spd).then(async function (url) {
       console.log('[' + new Date().toLocaleTimeString() + ']', `Received TTS for '${queue[0]}' with language code '${lang}' and ${spd} speed.`);
       speaking = true;
       const dispatcher = await conn.play(url);
@@ -133,18 +137,50 @@ function playTTS(lang, spd, conn, msg) {
         speaking = false;
         console.log('[' + new Date().toLocaleTimeString() + ']', 'TTS dispatch ended successfully.');
         if (queue[0]) {
-          playTTS(lang, spd, conn, msg)
+          playTTS(lang, spd, conn)
         };
       });
       dispatcher.on('error', err => {
         console.error(err);
       })
-  }).catch(function (err) {
-    console.error(err.stack);
-    if (err.name === 'RangeError') {
-      msg.reply('your TTS message needs to be under 200 characters long.');
+    }).catch(function (err) {
+      console.error(err.stack);
+    });
+  }
+}
+
+// splitToPlayable([Str], Message)
+// Splits strings of over 200 characters in order to let TTS messages of over 200 characters in length to play.
+function splitToPlayable(msgArgs, msg) {
+  const msgAsString = msgArgs.join(' ');
+  let pushToQueue = "";
+  let wordToPush = undefined;
+  if (msgAsString.length <= 200) {
+    queue.push(msgAsString);
+  } else {
+    if (config.allow_more_than_200_chars === "yes") {
+      let pushed = false;
+      while (msgArgs.length > 0) {
+        if (!pushed) {
+          wordToPush = msgArgs.shift()
+          if (wordToPush.length > 200) {
+            msg.reply('one or more of your words has over 200 characters.');
+            break;
+          }
+        }
+        if (pushToQueue.length < 200 - wordToPush.length) {
+          pushToQueue = pushToQueue.concat(' ', wordToPush);
+          pushed = false;
+        } else {
+          pushed = true;
+          queue.push(pushToQueue);
+          pushToQueue = "";
+        }
+      }
+    } else {
+      msg.reply('your TTS message is longer than 200 characters.');
     }
-  });
+  }
 }
 
 client.on('ready', () => {
@@ -155,10 +191,12 @@ client.on('ready', () => {
 client.on('message', async message => {
   if (!message.guild || !message.content.startsWith(config.prefix) || message.author.bot) return;
 
-  const args = message.content.slice(config.prefix.length).split(/ +/);
+  const args = message.content.slice(config.prefix.length).trimEnd().split(/ +/)
   const command = args.shift().toLowerCase();
 
-  const { channel } = message.member.voice;
+  const {
+    channel
+  } = message.member.voice;
 
   switch (command) {
     case "say":
@@ -166,9 +204,9 @@ client.on('message', async message => {
         if (channel.joinable) {
           if (channel.connection) {
             if (args.length > 0) {
-              queue.push(args.join(' '));
+              splitToPlayable(args, message);
               if (!speaking) {
-                playTTS(language, speed, channel.connection, message);
+                playTTS(language, speed, channel.connection);
               }
             } else {
               message.reply('you need to specify a message.');
@@ -178,9 +216,9 @@ client.on('message', async message => {
               console.log('[' + new Date().toLocaleTimeString() + ']', `Joined the ${channel.name} voice channel.`);
               message.channel.send(`Joined ${channel}.`);
               if (args.length > 0) {
-                queue.push(args.join(' '));
+                splitToPlayable(args, message);
                 if (!speaking) {
-                  playTTS(language, speed, channel.connection, message);
+                  playTTS(language, speed, channel.connection);
                 }
               }
             });
@@ -210,7 +248,7 @@ client.on('message', async message => {
         } else if (languages.hasOwnProperty(args.toString())) {
           language = args.toString().toLowerCase();
           config.language = language;
-          fs.writeFile('./settings.json', JSON.stringify(config, null, 2), function(err) {
+          fs.writeFile('./settings.json', JSON.stringify(config, null, 2), function (err) {
             if (err) return console.log(err);
           });
           updatePresence(language);
@@ -220,7 +258,7 @@ client.on('message', async message => {
         }
       } else {
         sendLangs(message);
-      } 
+      }
       break;
     case "langs":
       sendLangs(message);
@@ -257,8 +295,3 @@ client.on("error", error => {
 });
 
 client.login(config.discord_token);
-
-
-
-
-

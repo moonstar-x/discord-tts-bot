@@ -1,5 +1,5 @@
 # Discord TTS Bot
-This is a simple TTS Bot that uses the Google Translate TTS API. With this bot you can send Text-to-Speech messages in multiple languages (with a limitation of 200 characters in length).
+This is a simple TTS Bot that uses the Google Translate TTS API. With this bot you can send Text-to-Speech messages in multiple languages.
 
 ## Requirements:
 To self-host this bot you'll need the following:
@@ -20,8 +20,11 @@ Then, rename the file *settings.json.example* to *settings.json* and edit the fi
     {
       "discord_token": "YOUR_DISCORD_TOKEN",
       "prefix": "$",
-      "language": "en"
+      "language": "en",
+      "allow_more_than_200_chars": "yes"
     }
+
+The `allow_more_than_200_chars` property lets you choose wether you want TTS messages longer than 200 characters to be played (default: `yes`).
 
 Install the dependencies:
 

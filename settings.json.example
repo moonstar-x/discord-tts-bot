@@ -1,5 +1,6 @@
 {
   "discord_token": "YOUR_DISCORD_TOKEN",
   "prefix": "$",
-  "language": "en"
+  "language": "en",
+  "allow_more_than_200_chars": "yes"
 }
