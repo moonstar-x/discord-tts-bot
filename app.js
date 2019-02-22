@@ -1,117 +1,22 @@
+// Required dependencies:
 const { Client, MessageEmbed } = require('discord.js');
 const Opus = require('node-opus');
 const googleTTS = require('google-tts-api');
 const fs = require('fs');
 
+// Required configs:
 const client = new Client();
 const config = require('./settings.json');
 const languages = require('./languages.json');
-
 let language = config.language;
 let speed = 1;
 
-client.on('ready', () => {
-  console.log('Ready!');
-  updatePresence(language);
-});
+// State and queue.
+let speaking = false;
+let queue = [];
 
-client.on('message', async message => {
-  if (!message.guild || !message.content.startsWith(config.prefix) || message.author.bot) return;
-
-  const args = message.content.slice(config.prefix.length).split(/ +/);
-  const command = args.shift().toLowerCase();
-
-  const { channel } = message.member.voice;
-
-  if (command === 'say') {
-    if (channel) {
-      if (channel.joinable) {
-        if (channel.connection) {
-          if (args.length > 0) {
-            playTTS(args.join(' '), language, speed, channel.connection, message);
-          } else {
-            message.reply('you need to specify a message.');
-          }
-        } else {
-          channel.join()
-          .then(connection => {
-            console.log(`Joined ${channel.name} voice channel.`);
-            message.channel.send(`Joined ${channel}.`);
-            if (args.length > 0) {
-              playTTS(args.join(' '), language, speed, connection, message);
-            }
-          });
-        }
-      } else {
-        message.reply('I cannot join your voice channel.');
-      }
-    } else {
-      message.reply('you need to be in a voice channel first.');
-    }
-  } else if (command === 'stop') {
-    if (message.guild.voiceConnection) {
-      message.guild.voiceConnection.channel.leave()
-      console.log('Successfully left the voice channel.');
-      message.channel.send('Successfully left the voice channel.');
-    } else {
-      message.reply('I need to be in a voice channel to do that.');
-    }
-  } else if (command === 'lang') {
-    if (args.length > 0) {
-      if (args.toString().toLowerCase() === language) {
-        message.reply(`Language is already set to ${languages[language]}.`);
-      } else if (languages.hasOwnProperty(args.toString())) {
-        language = args.toString().toLowerCase();
-        config.language = language;
-        fs.writeFile('./settings.json', JSON.stringify(config, null, 2), function(err) {
-          if (err) return console.log(err);
-        });
-        updatePresence(language);
-        message.channel.send(`Language has been changed to ${languages[language]}.`);
-      } else {
-        message.reply(`invalid language. Type **${config.prefix}langs** for a list of available languages.`);
-      }
-    } else {
-      sendLangs(message);
-    } 
-  } else if (command === 'langs'){
-    sendLangs(message);
-  } else if (command === 'speed') {
-    const spd = Number(args);
-    if (!isNaN(spd) && spd > 0 && spd <= 100) {
-      speed = spd / 100;
-      console.log(`Speaking speed has been set to: ${spd}%`);
-      message.channel.send(`Speaking speed has been set to: ${spd}%`);
-    } else {
-      message.reply('invalid speed, must be between 1 and 100.');
-    }
-  } else if (command === 'help') {
-    sendHelp(message);
-  }
-});
-
-client.login(config.discord_token);
-
-function playTTS(phrase, lang, spd, conn, msg) {
-  googleTTS(phrase, lang, spd)
-    .then(function (url) {
-        console.log(`Received TTS for '${phrase}' with language code '${lang}' and ${spd} speed.`);
-        const dispatcher = conn.play(url);
-        dispatcher.on('end', () => {
-          console.log('TTS dispatch ended successfully.');
-        });
-        dispatcher.on('error', err => {
-          console.error(err);
-        })
-    })
-    .catch(function (err) {
-      console.error(err.stack);
-      if (err.name === 'RangeError') {
-        msg.reply('your TTS message needs to be under 200 characters long.');
-      }
-    });
-}
-
+// updatePresence(String)
+// Updates the presence of the bot to the language that has been changed.
 function updatePresence(lang) {
   client.user.setPresence({
     activity: {
@@ -122,6 +27,8 @@ function updatePresence(lang) {
   .catch(console.error);
 }
 
+// sendLangs(Message)
+// Send the language list message as an embed.
 function sendLangs(msg) {
   const embed = new MessageEmbed()
     .setTitle('List of supported languages:')
@@ -193,6 +100,8 @@ function sendLangs(msg) {
   msg.channel.send(embed);
 }
 
+// sendHelp(Message)
+// Send the help message as an embed.
 function sendHelp(msg) {
   const embed = new MessageEmbed()
     .setTitle("List of available commands:")
@@ -210,3 +119,133 @@ function sendHelp(msg) {
     );
   msg.channel.send(embed);
 }
+
+// playTTS(String, Int, VoiceConnection, Message)
+// Requests a TTS audio URL from the Google Translate API, once it receives it, stream it to the voice channel the bot is connected to.
+function playTTS(lang, spd, conn, msg) {
+  googleTTS(queue[0], lang, spd).then(async function (url) {
+      console.log(`Received TTS for '${queue[0]}' with language code '${lang}' and ${spd} speed.`);
+      speaking = true;
+      const dispatcher = await conn.play(url);
+
+      dispatcher.on('end', () => {
+        queue.shift();
+        speaking = false;
+        console.log('TTS dispatch ended successfully.');
+        if (queue[0]) {
+          playTTS(lang, spd, conn, msg)
+        };
+      });
+      dispatcher.on('error', err => {
+        console.error(err);
+      })
+  }).catch(function (err) {
+    console.error(err.stack);
+    if (err.name === 'RangeError') {
+      msg.reply('your TTS message needs to be under 200 characters long.');
+    }
+  });
+}
+
+client.on('ready', () => {
+  console.log('Ready!');
+  updatePresence(language);
+});
+
+client.on('message', async message => {
+  if (!message.guild || !message.content.startsWith(config.prefix) || message.author.bot) return;
+
+  const args = message.content.slice(config.prefix.length).split(/ +/);
+  const command = args.shift().toLowerCase();
+
+  const { channel } = message.member.voice;
+
+  switch (command) {
+    case "say":
+      if (channel) {
+        if (channel.joinable) {
+          if (channel.connection) {
+            if (args.length > 0) {
+              queue.push(args.join(' '));
+              if (!speaking) {
+                playTTS(language, speed, channel.connection, message);
+              }
+            } else {
+              message.reply('you need to specify a message.');
+            }
+          } else {
+            channel.join().then(connection => {
+              console.log(`Joined ${channel.name} voice channel.`);
+              message.channel.send(`Joined ${channel}.`);
+              if (args.length > 0) {
+                queue.push(args.join(' '));
+                if (!speaking) {
+                  playTTS(language, speed, channel.connection, message);
+                }
+              }
+            });
+          }
+        } else {
+          message.reply('I cannot join your voice channel.');
+        }
+      } else {
+        message.reply('you need to be in a voice channel first.');
+      }
+      break;
+    case "stop":
+      if (message.guild.voiceConnection) {
+        speaking = false;
+        queue = [];
+        message.guild.voiceConnection.channel.leave();
+        console.log('Successfully left the voice channel.');
+        message.channel.send('Successfully left the voice channel.');
+      } else {
+        message.reply('I need to be in a voice channel to do that.')
+      }
+      break;
+    case "lang":
+      if (args.length > 0) {
+        if (args.toString().toLowerCase() === language) {
+          message.reply(`Language is already set to ${languages[language]}.`);
+        } else if (languages.hasOwnProperty(args.toString())) {
+          language = args.toString().toLowerCase();
+          config.language = language;
+          fs.writeFile('./settings.json', JSON.stringify(config, null, 2), function(err) {
+            if (err) return console.log(err);
+          });
+          updatePresence(language);
+          message.channel.send(`Language has been changed to ${languages[language]}.`);
+        } else {
+          message.reply(`invalid language. Type **${config.prefix}langs** for a list of available languages.`);
+        }
+      } else {
+        sendLangs(message);
+      } 
+      break;
+    case "langs":
+      sendLangs(message);
+      break;
+    case "speed":
+      const spd = Number(args);
+      if (!isNaN(spd) && spd > 0 && spd <= 100) {
+        speed = spd / 100;
+        console.log(`Speaking speed has been set to: ${spd}%`);
+        message.reply(`Speaking speed has been set to: ${spd}%`);
+      } else {
+        message.reply('invalid speed, must be between 1 and 100.');
+      }
+      break;
+    case "help":
+      sendHelp(message);
+      break;
+    default:
+      break;
+  }
+});
+
+client.login(config.discord_token);
+
+
+
+
+
