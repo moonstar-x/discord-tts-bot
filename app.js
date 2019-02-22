@@ -178,7 +178,8 @@ function splitToPlayable(msgArgs, msg) {
         }
       }
     } else {
-      msg.reply('your TTS message is longer than 200 characters.');
+      let charCount = msgAsString.length;
+      msg.reply(`your TTS message is longer than 200 characters. Your message is ${charCount} characters long, you need to remove ${charCount - 200} characters.`);
     }
   }
 }
