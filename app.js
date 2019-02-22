@@ -23,7 +23,7 @@ function updatePresence(lang) {
       name: `in ${languages[lang]}!`,
       type: 'PLAYING'
     }
-  }).then(console.log(`Presence changed to: ${languages[lang]}.`))
+  }).then(console.log('[' + new Date().toLocaleTimeString() + ']', `Presence changed to: ${languages[lang]}.`))
   .catch(console.error);
 }
 
@@ -124,14 +124,14 @@ function sendHelp(msg) {
 // Requests a TTS audio URL from the Google Translate API, once it receives it, stream it to the voice channel the bot is connected to.
 function playTTS(lang, spd, conn, msg) {
   googleTTS(queue[0], lang, spd).then(async function (url) {
-      console.log(`Received TTS for '${queue[0]}' with language code '${lang}' and ${spd} speed.`);
+      console.log('[' + new Date().toLocaleTimeString() + ']', `Received TTS for '${queue[0]}' with language code '${lang}' and ${spd} speed.`);
       speaking = true;
       const dispatcher = await conn.play(url);
 
       dispatcher.on('end', () => {
         queue.shift();
         speaking = false;
-        console.log('TTS dispatch ended successfully.');
+        console.log('[' + new Date().toLocaleTimeString() + ']', 'TTS dispatch ended successfully.');
         if (queue[0]) {
           playTTS(lang, spd, conn, msg)
         };
@@ -148,7 +148,7 @@ function playTTS(lang, spd, conn, msg) {
 }
 
 client.on('ready', () => {
-  console.log('Ready!');
+  console.log('[' + new Date().toLocaleTimeString() + ']', 'Ready!');
   updatePresence(language);
 });
 
@@ -175,7 +175,7 @@ client.on('message', async message => {
             }
           } else {
             channel.join().then(connection => {
-              console.log(`Joined ${channel.name} voice channel.`);
+              console.log('[' + new Date().toLocaleTimeString() + ']', `Joined the ${channel.name} voice channel.`);
               message.channel.send(`Joined ${channel}.`);
               if (args.length > 0) {
                 queue.push(args.join(' '));
@@ -197,7 +197,7 @@ client.on('message', async message => {
         speaking = false;
         queue = [];
         message.guild.voiceConnection.channel.leave();
-        console.log('Successfully left the voice channel.');
+        console.log('[' + new Date().toLocaleTimeString() + ']', 'Successfully left the voice channel.');
         message.channel.send('Successfully left the voice channel.');
       } else {
         message.reply('I need to be in a voice channel to do that.')
@@ -229,7 +229,7 @@ client.on('message', async message => {
       const spd = Number(args);
       if (!isNaN(spd) && spd > 0 && spd <= 100) {
         speed = spd / 100;
-        console.log(`Speaking speed has been set to: ${spd}%`);
+        console.log('[' + new Date().toLocaleTimeString() + ']', `Speaking speed has been set to: ${spd}%`);
         message.reply(`Speaking speed has been set to: ${spd}%`);
       } else {
         message.reply('invalid speed, must be between 1 and 100.');
@@ -241,6 +241,19 @@ client.on('message', async message => {
     default:
       break;
   }
+});
+
+client.on("reconnecting", () => {
+  console.log('[' + new Date().toLocaleTimeString() + ']', 'Trying to reconnect...');
+});
+
+client.on("disconnect", () => {
+  console.log('[' + new Date().toLocaleTimeString() + ']', 'Lost connection.');
+});
+
+client.on("error", error => {
+  console.log('[' + new Date().toLocaleTimeString() + ']', 'Something went wrong with the connection to the WebSocket.');
+  console.error(error);
 });
 
 client.login(config.discord_token);
