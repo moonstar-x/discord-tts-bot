@@ -168,7 +168,7 @@ function splitToPlayable(msgArgs, msg) {
             break;
           }
         }
-        if (pushToQueue.length <= 200 - wordToPush.length) {
+        if (pushToQueue.length < 200 - wordToPush.length) {
           pushToQueue = pushToQueue.concat(' ', wordToPush);
           toPush = false;
         } else {
