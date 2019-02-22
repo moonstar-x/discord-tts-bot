@@ -153,30 +153,31 @@ function playTTS(lang, spd, conn) {
 // Splits strings of over 200 characters in order to let TTS messages of over 200 characters in length to play.
 function splitToPlayable(msgArgs, msg) {
   const msgAsString = msgArgs.join(' ');
-  let pushToQueue = "";
-  let wordToPush = undefined;
   if (msgAsString.length <= 200) {
     queue.push(msgAsString);
   } else {
     if (config.allow_more_than_200_chars === "yes") {
-      let pushed = false;
+      let toPush = false;
+      let pushToQueue = "";
+      let wordToPush = undefined;
       while (msgArgs.length > 0) {
-        if (!pushed) {
+        if (!toPush) {
           wordToPush = msgArgs.shift()
           if (wordToPush.length > 200) {
             msg.reply('one or more of your words has over 200 characters.');
             break;
           }
         }
-        if (pushToQueue.length < 200 - wordToPush.length) {
+        if (pushToQueue.length <= 200 - wordToPush.length) {
           pushToQueue = pushToQueue.concat(' ', wordToPush);
-          pushed = false;
+          toPush = false;
         } else {
-          pushed = true;
+          toPush = true;
           queue.push(pushToQueue);
           pushToQueue = "";
         }
       }
+      queue.push(pushToQueue);
     } else {
       let charCount = msgAsString.length;
       msg.reply(`your TTS message is longer than 200 characters. Your message is ${charCount} characters long, you need to remove ${charCount - 200} characters.`);
@@ -192,7 +193,7 @@ client.on('ready', () => {
 client.on('message', async message => {
   if (!message.guild || !message.content.startsWith(config.prefix) || message.author.bot) return;
 
-  const args = message.content.slice(config.prefix.length).trimEnd().split(/ +/)
+  const args = message.content.slice(config.prefix.length).trim().replace(/\n/g, ' ').split(/ +/)
   const command = args.shift().toLowerCase();
 
   const {
