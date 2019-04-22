@@ -1,9 +1,5 @@
-# Node
+# Node Modules
 node_modules/
-package-lock.json
 
 # Personal Config
 config/settings.json
-
-# Old Project
-src/app.js.old
