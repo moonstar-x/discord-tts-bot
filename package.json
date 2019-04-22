@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node ./src/app.js"
   },
   "repository": {
     "type": "git",
@@ -15,8 +15,10 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "github:discordjs/discord.js",
+    "events": "^3.0.0",
     "fs": "0.0.1-security",
     "google-tts-api": "0.0.4",
+    "logger": "github:moonstar-x/logger",
     "node-opus": "^0.3.1"
   },
   "bugs": {

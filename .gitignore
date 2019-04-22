@@ -1,5 +1,9 @@
+# Node
 node_modules/
 package-lock.json
-yarn.lock
-settings.json
-test.js
+
+# Personal Config
+config/settings.json
+
+# Old Project
+src/app.js.old
