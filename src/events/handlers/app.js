@@ -1,4 +1,5 @@
 const { Logger } = require('logger');
+const TTSPlayer = require('../../classes/TTSPlayer');
 const { prefix } = require('../../../config/settings.json');
 const { updatePresence, executeCommand } = require('../../common/utils');
 
@@ -14,18 +15,14 @@ const handleError = (error) => {
 
 const handleGuildCreate = (guild) => {
   logger.info(`Joined ${guild.name} guild!`);
+  updatePresence(client);
+  guild.ttsPlayer = new TTSPlayer(guild);
 };
 
 const handleGuildDelete = (guild) => {
   logger.info(`Left ${guild.name} guild!`);
-};
-
-const handleGuildMemberAdd = (member) => {
-  logger.info(`${member.displayName} joined ${member.guild.name}!`);
-};
-
-const handleGuildMemberRemove = (member) => {
-  logger.info(`${member.displayName} left ${member.guild.name}!`);
+  updatePresence(client);
+  guild.ttsPlayer = null;
 };
 
 const handleGuildUnavailable = (guild) => {
@@ -56,6 +53,10 @@ const handleMessage = (message, client) => {
 const handleReady = (client) => {
   logger.info('Connected to Discord! - Ready.');
   updatePresence(client);
+
+  client.guilds.each((guild) => {
+    guild.ttsPlayer = new TTSPlayer(guild);
+  });
 };
 
 const handleWarn = (info) => {

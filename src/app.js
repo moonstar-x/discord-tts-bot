@@ -1,9 +1,12 @@
-const { Client, Collection } = require('discord.js');
+const { Client, Collection, Structures } = require('discord.js');
 const fs = require('fs-extra');
 const path = require('path');
 const config = require('../config/settings.json');
 const appEvents = require('./events/appEvents');
 const appHandlers = require('./events/handlers/app');
+const { TTSGuild } = require('./classes/extensions');
+
+Structures.extend('Guild', TTSGuild);
 
 const client = new Client();
 
@@ -17,8 +20,6 @@ for (const file of commandFiles) {
 client.on(appEvents.error, (error) => appHandlers.handleError(error));
 client.on(appEvents.guildCreate, (guild) => appHandlers.handleGuildCreate(guild));
 client.on(appEvents.guildDelete, (guild) => appHandlers.handleGuildDelete(guild));
-client.on(appEvents.guildMemberAdd, (member) => appHandlers.handleGuildMemberAdd(member));
-client.on(appEvents.guildMemberRemove, (member) => appHandlers.handleGuildMemberRemove(member));
 client.on(appEvents.guildUnavailable, (guild) => appHandlers.handleGuildUnavailable(guild));
 client.on(appEvents.invalidated, appHandlers.handleInvalidated);
 client.on(appEvents.message, (message) => appHandlers.handleMessage(message, client));
