@@ -74,9 +74,16 @@ class TTSPlayer {
   }
 
   setSpeed(newSpeed) {
-    // validate newSpeed
-    this.speed = newSpeed / 100;
-    logger.info(`Guild ${this.guild.name} has changed its speed to ${this.speed}%.`);
+    return new Promise((resolve, reject) => {
+      if (isNaN(newSpeed) || newSpeed < 1 || newSpeed > 100) {
+        reject('invalid speed, it must be between 1 and 100.');
+        return;
+      }
+
+      this.speed = newSpeed / 100;
+      logger.info(`Guild ${this.guild.name} has changed its speed to ${newSpeed}%.`);
+      resolve(newSpeed);
+    });
   }
 }
 
