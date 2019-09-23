@@ -68,8 +68,6 @@ module.exports = {
   handleError,
   handleGuildCreate,
   handleGuildDelete,
-  handleGuildMemberAdd,
-  handleGuildMemberRemove,
   handleGuildUnavailable,
   handleInvalidated,
   handleMessage,
