@@ -16,7 +16,11 @@ class TTSPlayer {
     this.speed = 1;
   }
 
-  say() {
+  say(queue) {
+    logger.debug(JSON.stringify(queue));
+  }
+
+  playTTS() {
     const [firstInQueue] = this.queue[0];
 
     if (!firstInQueue) {

@@ -1,5 +1,7 @@
 const MAX_EMBED_FIELD_SIZE = 1024;
 
+const TTS_MAX_CHARS = 200;
+
 const MESSAGE_EMBED = {
   color: '#20B2AA',
   langThumbnail: 'https://i.imgur.com/QbNXO4q.jpg',
@@ -78,6 +80,7 @@ const NUMBER_EMOJI_UNICODE = [
 
 module.exports = {
   MAX_EMBED_FIELD_SIZE,
+  TTS_MAX_CHARS,
   MESSAGE_EMBED,
   PERMISSIONS,
   PRESENCE_STATUS,
