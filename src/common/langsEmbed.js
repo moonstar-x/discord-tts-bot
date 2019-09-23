@@ -1,14 +1,15 @@
 const { MessageEmbed } = require('discord.js');
+const { MESSAGE_EMBED } = require('./constants');
 const { prefix } = require('../../config/settings.json');
 
 const embed = new MessageEmbed()
   .setTitle('List of supported languages:')
-  .setColor("GREY")
+  .setColor(MESSAGE_EMBED.color)
   .setDescription(`This is a full list of all the languages that are supported by this TTS bot. 
 
   To change language, use **${prefix}lang <lang_code>**.`)
-  .setThumbnail("https://i.imgur.com/QbNXO4q.jpg")
-  .setURL("https://github.com/moonstar-x/discord-tts-bot#language-support")
+  .setThumbnail(MESSAGE_EMBED.langThumbnail)
+  .setURL(MESSAGE_EMBED.langURL)
   .addField("Part 1:",
     `
       :flag_za: Afrikaans - '**${prefix}lang af**'

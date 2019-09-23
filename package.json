@@ -14,10 +14,11 @@
   "author": "moonstar-x",
   "license": "MIT",
   "dependencies": {
+    "discord.js": "github:discordjs/discord.js",
+    "fs-extra": "^8.1.0",
     "google-tts-api": "0.0.4",
     "logger": "github:moonstar-x/logger",
-    "node-opus": "^0.3.2",
-    "discord.js": "github:discordjs/discord.js"
+    "node-opus": "^0.3.2"
   },
   "bugs": {
     "url": "https://github.com/moonstar-x/dicord-tts-bot/issues"

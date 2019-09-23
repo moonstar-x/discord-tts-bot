@@ -1,4 +1,4 @@
-const { embed } = require('../modules/langs_embed.js');
+const { embed } = require('../common/langsEmbed');
 
 module.exports = {
   name: 'langs',
