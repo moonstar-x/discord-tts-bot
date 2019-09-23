@@ -2,6 +2,7 @@ const googleTTS = require('google-tts-api');
 const { Logger } = require('logger');
 const dispatcherEvents = require('../events/dispatcherEvents');
 const languages = require('../../data/languages.json');
+const { prefix } = require('../../config/settings.json');
 
 const logger = new Logger();
 
@@ -51,19 +52,31 @@ class TTSPlayer {
     this.speaking = false;
     channel.leave();
 
-    logger.info(`Successfully left the voice channel ${channel.name} from guild ${guild.name}.`);
+    logger.info(`Successfully left the voice channel ${channel.name} from guild ${this.guild.name}.`);
   }
 
   setLang(newLang) {
-    // validate newLang
-    this.lang = newLang;
-    logger.info(`Guild ${this.guild.name} has changed its language to ${languages[lang]}.`)
+    return new Promise((resolve, reject) => {
+      if (!languages[newLang]) {
+        reject(`invalid language. Type **${prefix}langs** for a list of available languages.`);
+        return;
+      }
+
+      if (this.lang === newLang) {
+        reject(`language is already set to **${languages[newLang]}**.`);
+        return;
+      }
+
+      this.lang = newLang;
+      logger.info(`Guild ${this.guild.name} has changed its language to ${languages[this.lang]}.`);
+      resolve(languages[newLang]);
+    });
   }
 
   setSpeed(newSpeed) {
     // validate newSpeed
     this.speed = newSpeed / 100;
-    logger.info(`Guild ${this.guild.name} has changed its speed to ${speed}%.`);
+    logger.info(`Guild ${this.guild.name} has changed its speed to ${this.speed}%.`);
   }
 }
 
