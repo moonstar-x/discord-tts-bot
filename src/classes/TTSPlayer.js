@@ -46,13 +46,19 @@ class TTSPlayer {
   }
 
   stop() {
-    const { channel } = this.guild.voice;
-    
-    this.queue = [];
-    this.speaking = false;
-    channel.leave();
-
-    logger.info(`Successfully left the voice channel ${channel.name} from guild ${this.guild.name}.`);
+    return new Promise((resolve, reject) => {
+      const { channel } = this.guild.voice;
+      
+      this.queue = [];
+      this.speaking = false;
+      channel.leave()
+        .catch((error) => {
+          reject(error);
+        });
+  
+      logger.info(`Successfully left the voice channel ${channel.name} from guild ${this.guild.name}.`);
+      resolve();
+    });
   }
 
   setLang(newLang) {
