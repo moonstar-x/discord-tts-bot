@@ -1,6 +1,6 @@
 {
   "name": "discord-tts-bot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A TTS bot for Discord.",
   "main": "app.js",
   "scripts": {
@@ -14,12 +14,10 @@
   "author": "moonstar-x",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "github:discordjs/discord.js",
-    "events": "^3.0.0",
-    "fs": "0.0.1-security",
     "google-tts-api": "0.0.4",
     "logger": "github:moonstar-x/logger",
-    "node-opus": "^0.3.1"
+    "node-opus": "^0.3.2",
+    "discord.js": "github:discordjs/discord.js"
   },
   "bugs": {
     "url": "https://github.com/moonstar-x/dicord-tts-bot/issues"
