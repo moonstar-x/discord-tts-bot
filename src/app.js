@@ -18,8 +18,8 @@ for (const file of commandFiles) {
 }
 
 client.on(appEvents.error, (error) => appHandlers.handleError(error));
-client.on(appEvents.guildCreate, (guild) => appHandlers.handleGuildCreate(guild));
-client.on(appEvents.guildDelete, (guild) => appHandlers.handleGuildDelete(guild));
+client.on(appEvents.guildCreate, (guild) => appHandlers.handleGuildCreate(guild, client));
+client.on(appEvents.guildDelete, (guild) => appHandlers.handleGuildDelete(guild, client));
 client.on(appEvents.guildUnavailable, (guild) => appHandlers.handleGuildUnavailable(guild));
 client.on(appEvents.invalidated, appHandlers.handleInvalidated);
 client.on(appEvents.message, (message) => appHandlers.handleMessage(message, client));

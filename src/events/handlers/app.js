@@ -13,13 +13,13 @@ const handleError = (error) => {
   logger.error(error);
 };
 
-const handleGuildCreate = (guild) => {
+const handleGuildCreate = (guild, client) => {
   logger.info(`Joined ${guild.name} guild!`);
   updatePresence(client);
   guild.ttsPlayer = new TTSPlayer(guild);
 };
 
-const handleGuildDelete = (guild) => {
+const handleGuildDelete = (guild, client) => {
   logger.info(`Left ${guild.name} guild!`);
   updatePresence(client);
   guild.ttsPlayer = null;
