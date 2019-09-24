@@ -1,6 +1,6 @@
 const { Logger } = require('logger');
 const { ACTIVITY_TYPE, TTS_MAX_CHARS } = require('./constants');
-const { allow_more_than_200_chars: allowOver200 } = require('../../config/settings.json');
+const allowOver200 = process.env.ALLOW_OVER_200 || require('../../config/settings.json').allow_more_than_200_chars;
 
 const logger = new Logger();
 

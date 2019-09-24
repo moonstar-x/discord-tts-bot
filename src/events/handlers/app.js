@@ -1,6 +1,6 @@
 const { Logger } = require('logger');
 const TTSPlayer = require('../../classes/TTSPlayer');
-const { prefix } = require('../../../config/settings.json');
+const prefix = process.env.PREFIX || require('../../../config/settings.json').prefix;
 const { updatePresence, executeCommand } = require('../../common/utils');
 
 const logger = new Logger();
