@@ -17,7 +17,15 @@ class TTSPlayer {
   }
 
   say(queue) {
-    this.queue = [...this.queue, ...queue];
+    const parsedQueue = queue.map((phrase) => {
+      return {
+        phrase,
+        lang: this.lang,
+        speed: this.speed
+      };
+    });
+
+    this.queue = [...this.queue, ...parsedQueue];
     if (!this.speaking) {
       this.playTTS();
     }
@@ -30,9 +38,11 @@ class TTSPlayer {
       return;
     }
 
-    googleTTS(firstInQueue, this.lang, this.speed)
+    const { phrase, lang, speed } = firstInQueue;
+
+    googleTTS(phrase, lang, speed)
       .then(async (url) => {
-        logger.info(`(TTS): Received TTS for ${firstInQueue} with language '${this.lang} and speed ${this.speed} in guild ${this.guild.name}.'`);
+        logger.info(`(TTS): Received TTS for ${phrase} with language '${lang}' and speed ${speed} in guild ${this.guild.name}.'`);
         this.speaking = true;
         const { connection } = this.guild.voice;
         const dispatcher = await connection.play(url);
