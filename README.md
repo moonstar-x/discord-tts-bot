@@ -48,14 +48,15 @@ You can now go back to your app's *Overview*, make sure you disable the *web* dy
 
 Here's a list of all the commands for the bot:
 
-| Command           | Description                                                      |
-|-------------------|------------------------------------------------------------------|
-| $say <message>    | Send a TTS message in your voice channel (up to 200 characters). |
-| $stop             | Stop the TTS bot and leave the channel.                          |
-| $lang <lang_code> | Change the TTS language.                                         |
-| $langs            | Display a list of the supported languages.                       |
-| $speed <number>   | Change the TTS spoken speed (must be between 1% and 100%).       |
-| $help             | Display a list of the available commands.                        |
+| Command            | Description                                                                  |
+|--------------------|------------------------------------------------------------------------------|
+| $say \<message>    | Send a TTS message in your voice channel.                                    |
+| $aeiou \<message>  | Send an aeiou (similar to Moonbase Alpha) TTS message in your voice channel. |
+| $stop              | Stop the TTS bot and leave the channel.                                      |
+| $lang \<lang_code> | Change the TTS language.                                                     |
+| $langs             | Display a list of the supported languages.                                   |
+| $speed \<number>   | Change the TTS spoken speed (must be between 1% and 100%).                   |
+| $help              | Display a help message with all the available commands.                      |
 
 > Up until now, these settings are saved in memory, which means if the bot crashes/restarts, all of these settings will go back to default (`Language: English, Speed: 100%`).
 
