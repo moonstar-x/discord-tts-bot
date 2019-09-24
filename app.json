@@ -1,0 +1,22 @@
+{
+  "name": "Discord Text-to-Speech Bot",
+  "description": "A small Discord bot sends Text-to-Speech messages in various languages.",
+  "repository": "https://github.com/moonstar-x/discord-tts-bot",
+  "logo": "https://i.imgur.com/Tqnk48j.png",
+  "env": {
+    "PREFIX": {
+      "description": "Your bot's command prefix.",
+      "value": "$",
+      "required": true
+    },
+    "DISCORD_TOKEN": {
+      "description": "Your bot's bot token.",
+      "required": true
+    },
+    "ALLOW_OVER_200": {
+      "description": "Type 'yes' if you wish to send TTS messages of over 200 characters long.",
+      "required": true,
+      "value": "yes"
+    }
+  }
+}
