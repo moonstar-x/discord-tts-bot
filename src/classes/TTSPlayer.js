@@ -17,11 +17,14 @@ class TTSPlayer {
   }
 
   say(queue) {
-    logger.debug(JSON.stringify(queue));
+    this.queue = [...this.queue, ...queue];
+    if (!this.speaking) {
+      this.playTTS();
+    }
   }
 
   playTTS() {
-    const [firstInQueue] = this.queue[0];
+    const [firstInQueue] = this.queue;
 
     if (!firstInQueue) {
       return;
@@ -37,11 +40,14 @@ class TTSPlayer {
         dispatcher.on(dispatcherEvents.end, () => {
           this.queue.shift();
           this.speaking = false;
-          this.say();
+          this.playTTS();
         });
 
         dispatcher.on(dispatcherEvents.error, (error) => {
           logger.error(error);
+          this.queue.shift();
+          this.speaking = false;
+          this.playTTS();
         });
       })
       .catch((error) => {
