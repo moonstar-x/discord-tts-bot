@@ -28,16 +28,22 @@ const updatePresence = (client) => {
  * @param {Discord.Client} client The client instance of the bot.
  * @param {Discord.Message} message The message object that triggered this method.
  * @param {Object} options The object containing the data that the command may need.
- * @param {String} command The name of the command being run.
+ * @param {String} commandName The name of the command being run.
  * @returns {void}
  */
-const executeCommand = (client, message, options, command) => {
+const executeCommand = (client, message, options, commandName) => {
   const author = message.guild ? message.member.displayName : message.author.username;
   const origin = message.guild ? message.guild.name : `DM with ${author}`;
 
+  const command = client.commands.get(commandName);
+
+  if (!command) {
+    return;
+  }
+
   try {
-    logger.info(`User ${author} issued command ${command} in ${origin}.`);
-    client.commands.get(command).execute(message, options);
+    logger.info(`User ${author} issued command ${commandName} in ${origin}.`);
+    command.execute(message, options);
   } catch (err) {
     logger.error(err);
     message.reply("there's been a problem executing your command.");

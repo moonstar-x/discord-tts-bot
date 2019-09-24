@@ -9,7 +9,8 @@ module.exports = {
   emoji: ':speaking_head:',
   execute(message, options) {
     const { channel } = message.member.voice;
-    const { ttsPlayer, name: guildName, voice: { connection } } = message.guild;
+    const { ttsPlayer, name: guildName, voice } = message.guild;
+    const connection = voice ? voice.connection : null;
     const [atLeastOneWord] = options.args;
 
     if (!channel) {

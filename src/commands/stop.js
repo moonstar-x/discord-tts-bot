@@ -3,7 +3,9 @@ module.exports = {
   description: 'Stop the TTS bot and leave the channel.',
   emoji: ':x:',
   execute(message, options) {
-    const { ttsPlayer, voice: { connection, channel } } = message.guild;
+    const { ttsPlayer, voice } = message.guild;
+    const connection = voice ? voice.connection : null;
+    const channel = voice ? voice.channel : null;
 
     if (!connection) {
       message.reply("I'm not in a voice channel.");
