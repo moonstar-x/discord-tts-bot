@@ -2,7 +2,7 @@ const googleTTS = require('google-tts-api');
 const { Logger } = require('logger');
 const dispatcherEvents = require('../events/dispatcherEvents');
 const languages = require('../../data/languages.json');
-const { prefix } = require('../../config/settings.json');
+const prefix = process.env.PREFIX || require('../../config/settings.json').prefix;
 
 const logger = new Logger();
 

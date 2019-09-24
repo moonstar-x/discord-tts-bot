@@ -1,7 +1,7 @@
 const { Client, Collection, Structures } = require('discord.js');
 const fs = require('fs-extra');
 const path = require('path');
-const config = require('../config/settings.json');
+const discordToken = process.env.DISCORD_TOKEN || require('../config/settings.json').discord_token;
 const appEvents = require('./events/appEvents');
 const appHandlers = require('./events/handlers/app');
 const { TTSGuild } = require('./classes/extensions');
@@ -30,4 +30,4 @@ if (process.argv[2] === '--debug') {
   client.on(appEvents.debug, (info) => appHandlers.debug(info));
 }
 
-client.login(config.discord_token);
+client.login(discordToken);

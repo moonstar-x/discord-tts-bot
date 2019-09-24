@@ -1,0 +1,1 @@
+bot: npm start

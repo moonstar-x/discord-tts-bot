@@ -36,6 +36,14 @@ You can now run your bot:
 
     npm start
 
+### Deploying to Heroku
+
+To deploy to Heroku, you can click on the image below and login to your account.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/moonstar-x/discord-tts-bot)
+
+You can now go back to your app's *Overview*, make sure you disable the *web* dyno and enable the *bot* dyno. Your bot should now be up and running. Remember you can always check your bot's console if you access the *View Logs* in the *More* dropdown menu.
+
 ## Usage
 
 Here's a list of all the commands for the bot:
