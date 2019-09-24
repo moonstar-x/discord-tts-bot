@@ -8,7 +8,7 @@ module.exports = {
   emoji: ':question:',
   execute(message, options) {
     const { commands } = options;
-    const orderedCommands = ['say', 'stop', 'lang', 'langs', 'speed', 'help'];
+    const orderedCommands = ['say', 'aeiou', 'stop', 'lang', 'langs', 'speed', 'help'];
 
     const helpMessage = orderedCommands.reduce((commandsList, commandName) => {
       const command = commands.get(commandName);

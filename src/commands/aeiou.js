@@ -1,13 +1,11 @@
 const { Logger } = require('logger');
-const { splitToPlayable } = require('../common/utils');
-const allowOver200 = process.env.ALLOW_OVER_200 || require('../../config/settings.json').allow_more_than_200_chars;
 
 const logger = new Logger();
 
 module.exports = {
-  name: 'say',
-  description: `Send a TTS message in your voice channel${allowOver200 ? '.' : ' (Up to 200 characters).'}`,
-  emoji: ':speaking_head:',
+  name: 'aeiou',
+  description: 'Send an aeiou (similar to Moonbase Alpha) TTS message in your voice channel.',
+  emoji: ':robot:',
   execute(message, options) {
     const { channel } = message.member.voice;
     const { ttsPlayer, name: guildName, voice } = message.guild;
@@ -30,25 +28,13 @@ module.exports = {
     }
 
     if (connection) {
-      splitToPlayable(options.args)
-        .then((phrases) => {
-          ttsPlayer.say(phrases);
-        })
-        .catch((error) => {
-          message.reply(error);
-        });
+      ttsPlayer.aeiou(options.args);
     } else {
       channel.join()
         .then(() => {
           logger.info(`Joined ${channel.name} in ${guildName}.`);
           message.channel.send(`Joined ${channel}.`);
-          splitToPlayable(options.args)
-            .then((phrases) => {
-              ttsPlayer.say(phrases);
-            })
-            .catch((error) => {
-              message.reply(error);
-            });
+          ttsPlayer.aeiou(options.args);
         })
         .catch((error) => {
           throw error;
