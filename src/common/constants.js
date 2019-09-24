@@ -78,6 +78,13 @@ const NUMBER_EMOJI_UNICODE = [
   '\u0039\u20E3' // 9
 ];
 
+const TTS_ENGINES = {
+  google: 'google',
+  aeiou: 'aeiou'
+};
+
+const AEIOU_API_URL = 'http://tts.cyzon.us';
+
 module.exports = {
   MAX_EMBED_FIELD_SIZE,
   TTS_MAX_CHARS,
@@ -86,5 +93,7 @@ module.exports = {
   PRESENCE_STATUS,
   ACTIVITY_TYPE,
   CHANNEL_TYPE,
-  NUMBER_EMOJI_UNICODE
+  NUMBER_EMOJI_UNICODE,
+  TTS_ENGINES,
+  AEIOU_API_URL,
 };

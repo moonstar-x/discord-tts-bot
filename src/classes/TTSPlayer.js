@@ -1,7 +1,9 @@
 const googleTTS = require('google-tts-api');
+const axios = require('axios');
 const { Logger } = require('logger');
 const dispatcherEvents = require('../events/dispatcherEvents');
 const languages = require('../../data/languages.json');
+const { TTS_ENGINES, AEIOU_API_URL } = require('../common/constants');
 const prefix = process.env.PREFIX || require('../../config/settings.json').prefix;
 
 const logger = new Logger();
@@ -17,18 +19,33 @@ class TTSPlayer {
   }
 
   say(queue) {
+    this.addToQueue(queue, TTS_ENGINES.google);
+
+    if (!this.speaking) {
+      this.playTTS();
+    }
+  }
+
+  aeiou(messageContent) {
+    const message = messageContent.join(' ');
+    this.addToQueue([message], TTS_ENGINES.aeiou);
+
+    if (!this.speaking) {
+      this.playTTS();
+    }
+  }
+
+  addToQueue(queue, engine) {
     const parsedQueue = queue.map((phrase) => {
       return {
         phrase,
         lang: this.lang,
-        speed: this.speed
+        speed: this.speed,
+        engine
       };
     });
 
     this.queue = [...this.queue, ...parsedQueue];
-    if (!this.speaking) {
-      this.playTTS();
-    }
   }
 
   playTTS() {
@@ -38,11 +55,26 @@ class TTSPlayer {
       return;
     }
 
+    switch (firstInQueue.engine) {
+      case TTS_ENGINES.google:
+        this.playGoogle(firstInQueue);
+        break;
+      
+      case TTS_ENGINES.aeiou:
+        this.playAeiou(firstInQueue);
+        break;
+
+      default:
+        throw new Error('Invalid TTS engine!');
+    }
+  }
+
+  playGoogle(firstInQueue) {
     const { phrase, lang, speed } = firstInQueue;
 
     googleTTS(phrase, lang, speed)
       .then(async (url) => {
-        logger.info(`(TTS): Received TTS for ${phrase} with language '${lang}' and speed ${speed} in guild ${this.guild.name}.'`);
+        logger.info(`(TTS): Received googleTTS for ${phrase} with language '${lang}' and speed ${speed} in guild ${this.guild.name}.'`);
         this.speaking = true;
         const { connection } = this.guild.voice;
         const dispatcher = await connection.play(url);
@@ -62,6 +94,40 @@ class TTSPlayer {
       })
       .catch((error) => {
         logger.error(error);
+      });
+  }
+
+  playAeiou(firstInQueue) {
+    const { phrase } = firstInQueue;
+
+    axios.get(`${AEIOU_API_URL}/tts`, {
+      params: {
+        text: phrase
+      }
+    })
+      .then(async (response) => {
+        const url = `${AEIOU_API_URL}${response.request.path}`;
+
+        logger.info(`(TTS): Received aeiou for ${phrase} in guild ${this.guild.name}.`);
+        this.speaking = true;
+        const { connection } = this.guild.voice;
+        const dispatcher = await connection.play(url);
+
+        dispatcher.on(dispatcherEvents.end, () => {
+          this.queue.shift();
+          this.speaking = false;
+          this.playTTS();
+        });
+
+        dispatcher.on(dispatcherEvents.error, (error) => {
+          logger.error(error);
+          this.queue.shift();
+          this.speaking = false;
+          this.playTTS();
+        });
+      })
+      .catch((error) => {
+        logger.error(error.message);
       });
   }
 
