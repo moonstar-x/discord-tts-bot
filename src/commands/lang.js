@@ -1,3 +1,4 @@
+const { prefix } = require('../../config/settings.json');
 const languages = require('../../data/languages.json');
 
 module.exports = {
@@ -5,26 +6,24 @@ module.exports = {
   description: 'Change the TTS language.',
   emoji: ':map:',
   execute(message, options) {
-    if (!options.args[0]) {
-      message.reply(`to set-up the TTS language, run: **${options.prefix}lang <lang_code>**
-      To see a list of the available lang codes, run: **${options.prefix}langs**.
-      The current language is set to: **${languages[options.ttsData[message.guild.id].lang]}**.`);
+    let [newLang] = options.args;
+    const { ttsPlayer } = message.guild;
+
+    if (!newLang) {
+      message.reply(`to set-up the TTS language, run: **${prefix}lang <lang_code>**
+      To see a list of the available lang codes, run: **${prefix}langs**.
+      The current language is set to: **${languages[ttsPlayer.lang]}**.`);
       return;
     }
 
-    const newLang = options.args[0].toString().toLowerCase();
+    newLang = newLang.toString().toLowerCase();
 
-    if (!languages.hasOwnProperty(newLang)) {
-      message.reply(`invalid language. Type **${options.prefix}langs** for a list of available languages.`);
-      return;
-    }
-
-    if (options.ttsData[message.guild.id].lang == newLang) {
-      message.reply(`language is already set to **${languages[newLang]}**.`);
-      return;
-    }
-  
-    options.tts.emit('lang', message.guild, newLang);
-    message.reply(`language has been set to **${languages[newLang]}**.`);
+    ttsPlayer.setLang(newLang)
+      .then((setLang) => {
+        message.reply(`language has been set to **${setLang}**.`);
+      })
+      .catch((error) => {
+        message.reply(error);
+      });
   }
 }
