@@ -1,7 +1,7 @@
 {
   "name": "discord-tts-bot",
   "version": "1.1.0",
-  "description": "A TTS bot for Discord.",
+  "description": "A simple Discord TTS Bot that uses the Google Translate TTS API",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moonstar-x/dicord-tts-bot.git"
+    "url": "git+https://github.com/moonstar-x/discord-tts-bot.git"
   },
   "author": "moonstar-x",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "node-opus": "^0.3.2"
   },
   "bugs": {
-    "url": "https://github.com/moonstar-x/dicord-tts-bot/issues"
+    "url": "https://github.com/moonstar-x/discord-tts-bot/issues"
   },
-  "homepage": "https://github.com/moonstar-x/dicord-tts-bot#readme"
+  "homepage": "https://github.com/moonstar-x/discord-tts-bot#readme"
 }
