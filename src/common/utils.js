@@ -10,7 +10,7 @@ const logger = new Logger();
  * @returns {void}
  */
 const updatePresence = (client) => {
-  const presence = `${client.guilds.size} servers!`;
+  const presence = `${Array.from(client.guilds.cache.array()).length} servers!`;
   client.user.setPresence({
     activity: {
       name: presence,
@@ -79,20 +79,20 @@ const splitToPlayable = (words) => {
           splitPhrases.push(phrase.trimEnd());
           phrase = `${word} `;
         }
-  
+
         return phrase;
       }, '');
 
       if (remainingPhrase) {
         splitPhrases.push(remainingPhrase.trimEnd());
       }
-      
+
       resolve(splitPhrases);
     } catch (error) {
       reject(error);
     }
   });
-}
+};
 
 module.exports = {
   updatePresence,

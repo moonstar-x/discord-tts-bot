@@ -1,7 +1,7 @@
-const end = 'end';
+const speaking = 'speaking';
 const error = 'error';
 
 module.exports = {
-  end,
+  speaking,
   error
 };

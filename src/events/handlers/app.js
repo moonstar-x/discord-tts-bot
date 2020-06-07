@@ -35,7 +35,7 @@ const handleInvalidated = () => {
 };
 
 const handleMessage = (message, client) => {
-  if (!message.content.startsWith(prefix) || message.author.bot) {
+  if (!message.content.startsWith(prefix) || message.author.bot || !message.guild) {
     return;
   }
 
@@ -54,7 +54,7 @@ const handleReady = (client) => {
   logger.info('Connected to Discord! - Ready.');
   updatePresence(client);
 
-  client.guilds.each((guild) => {
+  client.guilds.cache.each((guild) => {
     guild.ttsPlayer = new TTSPlayer(guild);
   });
 };
