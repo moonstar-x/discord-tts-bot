@@ -7,7 +7,7 @@ This is a simple TTS Bot that uses the Google Translate TTS API. With this bot y
 To self-host this bot you'll need the following:
 
 * [git](https://git-scm.com/)
-* [node.js](https://nodejs.org/en/)
+* [node.js](https://nodejs.org/en/) (Version 12.0.0 or higher)
 * ffmpeg
 
 **ffmpeg** should be installed by default on Linux and MacOS, in case it isn't, install it with your package manager. For Windows users, head over to [ffmpeg's official website](https://www.ffmpeg.org/download.html#build-windows) to download the binary which will need to be added to your **\$PATH**. If you don't know how to add folders to your **\$PATH**, check out this [guide](https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/).
