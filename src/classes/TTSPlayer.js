@@ -59,7 +59,7 @@ class TTSPlayer {
       case TTS_ENGINES.google:
         this.playGoogle(firstInQueue);
         break;
-      
+
       case TTS_ENGINES.aeiou:
         this.playAeiou(firstInQueue);
         break;
@@ -74,15 +74,17 @@ class TTSPlayer {
 
     googleTTS(phrase, lang, speed)
       .then(async (url) => {
-        logger.info(`(TTS): Received googleTTS for ${phrase} with language '${lang}' and speed ${speed} in guild ${this.guild.name}.'`);
+        logger.info(`(TTS): Received googleTTS for ${phrase} with language '${lang}' and speed ${speed} in guild ${this.guild.name}.`);
         this.speaking = true;
         const { connection } = this.guild.voice;
         const dispatcher = await connection.play(url);
 
-        dispatcher.on(dispatcherEvents.end, () => {
-          this.queue.shift();
-          this.speaking = false;
-          this.playTTS();
+        dispatcher.on(dispatcherEvents.speaking, (speaking) => {
+          if (!speaking) {
+            this.queue.shift();
+            this.speaking = false;
+            this.playTTS();
+          }
         });
 
         dispatcher.on(dispatcherEvents.error, (error) => {
@@ -113,10 +115,12 @@ class TTSPlayer {
         const { connection } = this.guild.voice;
         const dispatcher = await connection.play(url);
 
-        dispatcher.on(dispatcherEvents.end, () => {
-          this.queue.shift();
-          this.speaking = false;
-          this.playTTS();
+        dispatcher.on(dispatcherEvents.speaking, (speaking) => {
+          if (!speaking) {
+            this.queue.shift();
+            this.speaking = false;
+            this.playTTS();
+          }
         });
 
         dispatcher.on(dispatcherEvents.error, (error) => {
@@ -135,11 +139,11 @@ class TTSPlayer {
     return new Promise((resolve, reject) => {
       try {
         const { channel } = this.guild.voice;
-      
+
         this.queue = [];
         this.speaking = false;
         channel.leave();
-    
+
         logger.info(`Successfully left the voice channel ${channel.name} from guild ${this.guild.name}.`);
         resolve();
       } catch (error) {
