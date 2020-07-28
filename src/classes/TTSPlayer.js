@@ -1,12 +1,10 @@
 const googleTTS = require('google-tts-api');
 const axios = require('axios');
-const { Logger } = require('logger');
+const logger = require('@greencoast/logger');
 const dispatcherEvents = require('../events/dispatcherEvents');
 const languages = require('../../data/languages.json');
 const { TTS_ENGINES, AEIOU_API_URL } = require('../common/constants');
 const prefix = process.env.PREFIX || require('../../config/settings.json').prefix;
-
-const logger = new Logger();
 
 class TTSPlayer {
   constructor(guild) {

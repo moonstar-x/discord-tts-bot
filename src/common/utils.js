@@ -1,8 +1,6 @@
-const { Logger } = require('logger');
+const logger = require('@greencoast/logger');
 const { ACTIVITY_TYPE, TTS_MAX_CHARS } = require('./constants');
 const allowOver200 = process.env.ALLOW_OVER_200 || require('../../config/settings.json').allow_more_than_200_chars;
-
-const logger = new Logger();
 
 /**
  * Updates the presence of the Discord bot.
