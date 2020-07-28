@@ -18,11 +18,11 @@
   "license": "MIT",
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
+    "@greencoast/logger": "^1.0.1",
     "axios": "^0.19.0",
     "discord.js": "^12.2.0",
     "fs-extra": "^8.1.0",
-    "google-tts-api": "0.0.4",
-    "logger": "github:moonstar-x/logger"
+    "google-tts-api": "0.0.4"
   },
   "bugs": {
     "url": "https://github.com/moonstar-x/discord-tts-bot/issues"

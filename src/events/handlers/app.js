@@ -1,9 +1,7 @@
-const { Logger } = require('logger');
+const logger = require('@greencoast/logger');
 const TTSPlayer = require('../../classes/TTSPlayer');
 const prefix = process.env.PREFIX || require('../../../config/settings.json').prefix;
 const { updatePresence, executeCommand } = require('../../common/utils');
-
-const logger = new Logger();
 
 const handleDebug = (info) => {
   logger.debug(info);

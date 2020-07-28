@@ -1,6 +1,4 @@
-const { Logger } = require('logger');
-
-const logger = new Logger();
+const logger = require('@greencoast/logger');
 
 module.exports = {
   name: 'aeiou',
