@@ -3,6 +3,14 @@
   "description": "A small Discord bot sends Text-to-Speech messages in various languages.",
   "repository": "https://github.com/moonstar-x/discord-tts-bot",
   "logo": "https://i.imgur.com/Tqnk48j.png",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+    }
+  ],
   "env": {
     "PREFIX": {
       "description": "Your bot's command prefix.",
