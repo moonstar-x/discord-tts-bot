@@ -26,4 +26,4 @@ module.exports = {
         message.reply(error);
       });
   }
-}
+};
