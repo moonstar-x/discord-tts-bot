@@ -19,13 +19,17 @@
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
     "@greencoast/logger": "^1.0.1",
-    "axios": "^0.21.0",
-    "discord.js": "^12.4.1",
-    "fs-extra": "^9.0.1",
-    "google-tts-api": "^0.0.6"
+    "axios": "^0.21.1",
+    "discord.js": "^12.5.1",
+    "google-tts-api": "^2.0.0"
   },
   "bugs": {
     "url": "https://github.com/moonstar-x/discord-tts-bot/issues"
   },
-  "homepage": "https://github.com/moonstar-x/discord-tts-bot#readme"
+  "homepage": "https://github.com/moonstar-x/discord-tts-bot#readme",
+  "devDependencies": {
+    "eslint": "^7.16.0",
+    "eslint-config-greencoast": "^0.0.2",
+    "nodemon": "^2.0.6"
+  }
 }
