@@ -94,7 +94,7 @@ Here's a list of all the commands for the bot:
 | $stop              | Stop the TTS bot and leave the channel.                                      |
 | $lang \<lang_code> | Change the TTS language.                                                     |
 | $langs             | Display a list of the supported languages.                                   |
-| $speed \<slow|normal>   | Change the TTS spoken speed (must be either **normal** for normal speed or **slow** for slow speed).                   |
+| $speed \<slow\|normal>   | Change the TTS spoken speed (must be either **normal** for normal speed or **slow** for slow speed).                   |
 | $help              | Display a help message with all the available commands.                      |
 
 > Up until now, these settings are saved in memory, which means if the bot crashes/restarts, all of these settings will go back to default (`Language: English, Speed: normal`).

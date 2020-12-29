@@ -2,7 +2,7 @@ const { prefix } = require('../common/settings');
 
 module.exports = {
   name: 'speed',
-  description: 'Change the TTS spoken speed (must be between 1% and 100%).',
+  description: 'Change the TTS spoken speed (must be either **normal** for normal speed or **slow** for slow speed).',
   emoji: ':fast_forward:',
   execute(message, options) {
     const [newSpeed] = options.args;
