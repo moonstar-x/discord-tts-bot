@@ -71,7 +71,7 @@ class TTSPlayer {
     const { phrase, lang, speed } = firstInQueue;
 
     googleTTS(phrase, lang, speed)
-      .then(async (url) => {
+      .then(async(url) => {
         logger.info(`(TTS): Received googleTTS for ${phrase} with language '${lang}' and speed ${speed} in guild ${this.guild.name}.`);
         this.speaking = true;
         const { connection } = this.guild.voice;
@@ -105,7 +105,7 @@ class TTSPlayer {
         text: phrase
       }
     })
-      .then(async (response) => {
+      .then(async(response) => {
         const url = `${AEIOU_API_URL}${response.request.path}`;
 
         logger.info(`(TTS): Received aeiou for ${phrase} in guild ${this.guild.name}.`);
