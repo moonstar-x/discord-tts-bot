@@ -1,4 +1,4 @@
-const prefix = process.env.PREFIX || require('../../config/settings.json').prefix;
+const { prefix } = require('../common/settings');
 
 module.exports = {
   name: 'speed',
