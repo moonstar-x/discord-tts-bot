@@ -1,11 +1,14 @@
 {
   "name": "discord-tts-bot",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "A simple Discord TTS Bot that uses the Google Translate TTS API",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/app.js"
+    "start": "node ./src/app.js",
+    "debug": "node ./src/app.js --debug",
+    "dev": "PREFIX=! nodemon --exec npm start",
+    "lint:errors-only": "node_modules/.bin/eslint src --quiet",
+    "lint": "node_modules/.bin/eslint src"
   },
   "engines": {
     "node": ">=12.0.0"
