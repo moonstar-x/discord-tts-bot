@@ -1,10 +1,9 @@
 const googleTTS = require('google-tts-api');
 const axios = require('axios');
 const logger = require('@greencoast/logger');
-const dispatcherEvents = require('../events/dispatcherEvents');
 const languages = require('../../data/languages.json');
 const { TTS_ENGINES, AEIOU_API_URL } = require('../common/constants');
-const prefix = process.env.PREFIX || require('../../config/settings.json').prefix;
+const { prefix } = require('../common/settings');
 
 class TTSPlayer {
   constructor(guild) {
@@ -13,37 +12,42 @@ class TTSPlayer {
     this.queue = [];
     this.speaking = false;
     this.lang = 'en';
-    this.speed = 1;
+    this.slow = false;
   }
 
-  say(queue) {
-    this.addToQueue(queue, TTS_ENGINES.google);
-
-    if (!this.speaking) {
-      this.playTTS();
-    }
-  }
-
-  aeiou(messageContent) {
-    const message = messageContent.join(' ');
-    this.addToQueue([message], TTS_ENGINES.aeiou);
-
-    if (!this.speaking) {
-      this.playTTS();
-    }
-  }
-
-  addToQueue(queue, engine) {
-    const parsedQueue = queue.map((phrase) => {
-      return {
-        phrase,
-        lang: this.lang,
-        speed: this.speed,
-        engine
-      };
+  say(phrase) {
+    const urls = googleTTS.getAllAudioUrls(phrase, {
+      lang: this.lang,
+      slow: this.slow
     });
 
-    this.queue = [...this.queue, ...parsedQueue];
+    urls.forEach(({ url, shortText }) => {
+      this.addToQueue(url, shortText, TTS_ENGINES.google);
+    });
+
+    if (!this.speaking) {
+      this.playTTS();
+    }
+  }
+
+  aeiou(phrase) {
+    this.addToQueue(phrase, phrase, TTS_ENGINES.aeiou);
+
+    if (!this.speaking) {
+      this.playTTS();
+    }
+  }
+
+  addToQueue(source, phrase, engine) {
+    const parsedEntry = {
+      source,
+      phrase,
+      lang: this.lang,
+      slow: this.slow,
+      engine
+    };
+
+    this.queue.push(parsedEntry);
   }
 
   playTTS() {
@@ -67,34 +71,28 @@ class TTSPlayer {
     }
   }
 
-  playGoogle(firstInQueue) {
-    const { phrase, lang, speed } = firstInQueue;
+  async playGoogle(firstInQueue) {
+    const { source, phrase, lang, slow } = firstInQueue;
 
-    googleTTS(phrase, lang, speed)
-      .then(async(url) => {
-        logger.info(`(TTS): Received googleTTS for ${phrase} with language '${lang}' and speed ${speed} in guild ${this.guild.name}.`);
-        this.speaking = true;
-        const { connection } = this.guild.voice;
-        const dispatcher = await connection.play(url);
+    logger.info(`(TTS): Received googleTTS for ${phrase} with language '${lang}' with ${slow ? 'slow' : 'normal'} speed in guild ${this.guild.name}.`);
+    this.speaking = true;
+    const { connection } = this.guild.voice;
+    const dispatcher = await connection.play(source);
 
-        dispatcher.on(dispatcherEvents.speaking, (speaking) => {
-          if (!speaking) {
-            this.queue.shift();
-            this.speaking = false;
-            this.playTTS();
-          }
-        });
+    dispatcher.on('speaking', (speaking) => {
+      if (!speaking) {
+        this.queue.shift();
+        this.speaking = false;
+        this.playTTS();
+      }
+    });
 
-        dispatcher.on(dispatcherEvents.error, (error) => {
-          logger.error(error);
-          this.queue.shift();
-          this.speaking = false;
-          this.playTTS();
-        });
-      })
-      .catch((error) => {
-        logger.error(error);
-      });
+    dispatcher.on('error', (error) => {
+      logger.error(error);
+      this.queue.shift();
+      this.speaking = false;
+      this.playTTS();
+    });
   }
 
   playAeiou(firstInQueue) {
@@ -113,7 +111,7 @@ class TTSPlayer {
         const { connection } = this.guild.voice;
         const dispatcher = await connection.play(url);
 
-        dispatcher.on(dispatcherEvents.speaking, (speaking) => {
+        dispatcher.on('speaking', (speaking) => {
           if (!speaking) {
             this.queue.shift();
             this.speaking = false;
@@ -121,7 +119,7 @@ class TTSPlayer {
           }
         });
 
-        dispatcher.on(dispatcherEvents.error, (error) => {
+        dispatcher.on('error', (error) => {
           logger.error(error);
           this.queue.shift();
           this.speaking = false;
@@ -168,16 +166,17 @@ class TTSPlayer {
     });
   }
 
-  setSpeed(newSpeed) {
+  setSpeed(value) {
     return new Promise((resolve, reject) => {
-      if (isNaN(newSpeed) || newSpeed < 1 || newSpeed > 100) {
-        reject('invalid speed, it must be between 1 and 100.');
+      if (value !== 'normal' && value !== 'slow') {
+        reject('invalid speed, it must be either *normal* or *slow*.');
         return;
       }
 
-      this.speed = newSpeed / 100;
-      logger.info(`Guild ${this.guild.name} has changed its speed to ${newSpeed}%.`);
-      resolve(newSpeed);
+      this.slow = value === 'slow';
+      const setSpeed = this.slow ? 'slow' : 'normal';
+      logger.info(`Guild ${this.guild.name} has changed its speed to ${setSpeed}.`);
+      resolve(setSpeed);
     });
   }
 }
