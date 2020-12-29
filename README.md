@@ -16,26 +16,59 @@ To self-host this bot you'll need the following:
 
 In order to self-host this bot, first you'll need to clone this repository.
 
-    git clone https://github.com/moonstar-x/discord-tts-bot.git
+```text
+git clone https://github.com/moonstar-x/discord-tts-bot.git
+```
 
-Then, inside the `config` folder, rename the file *settings.json.example* to *settings.json* and edit the file with your own Discord Token and the prefix you wish to use. If you don't have a discord token yet, you can see a guide on how to create it [here](https://github.com/moonstar-x/discord-downtime-notifier/wiki). Your file should look like this.
+Then, inside the `config` folder, rename the file *settings.json.example* to *settings.json* and edit the file with your own Discord Token and the prefix you wish to use. If you don't have a discord token yet, you can see a guide on how to create it [here](https://github.com/moonstar-x/discord-downtime-notifier/wiki). 
 
-    {
-      "discord_token": "YOUR_DISCORD_TOKEN",
-      "prefix": "$"
-    }
+Your file should look like this.
+
+```json
+{
+    "discord_token": "YOUR_DISCORD_TOKEN",
+    "prefix": "$"
+}
+```
 
 You may also configure these options with the respective environment variables: `DISCORD_TOKEN` and `PREFIX`. The settings set with the environment variables will take higher precedence than the ones in the config JSON file.
 
-Install the dependencies:
+Install the dependencies with:
 
-    npm install
+```text
+npm ci --only=prod
+```
+
+Or, if you want to also install the devDependencies:
+
+```text
+npm install
+```
 
 You can now run your bot:
 
-    npm start
+```text
+npm start
+```
 
-### Deploying to Heroku
+## Running on Docker
+
+You can start a container with the bot's image by running:
+
+```text
+docker run -it -e DISCORD_TOKEN="YOUR DISCORD TOKEN" moonstarx/discord-tts-bot:latest
+```
+
+The following environment variables can be used:
+
+* `DISCORD_TOKEN`: Your bot's Discord token. You can see how to get one on [this guide](https://github.com/moonstar-x/discord-downtime-notifier/wiki/Getting-a-Discord-Bot-Token).
+* `PREFIX`: The prefix that will be used for the commands. It defaults to `$`.
+
+The following volumes can be used:
+
+* `opt/app/config`: The config folder for the bot, here you can use the `settings.json` file to configure the bot if you don't want to use environment variables.
+
+## Deploying to Heroku
 
 To deploy to Heroku, you can click on the image below and login to your account.
 
@@ -54,10 +87,10 @@ Here's a list of all the commands for the bot:
 | $stop              | Stop the TTS bot and leave the channel.                                      |
 | $lang \<lang_code> | Change the TTS language.                                                     |
 | $langs             | Display a list of the supported languages.                                   |
-| $speed \<number>   | Change the TTS spoken speed (must be between 1% and 100%).                   |
+| $speed \<slow|normal>   | Change the TTS spoken speed (must be either **normal** for normal speed or **slow** for slow speed).                   |
 | $help              | Display a help message with all the available commands.                      |
 
-> Up until now, these settings are saved in memory, which means if the bot crashes/restarts, all of these settings will go back to default (`Language: English, Speed: 100%`).
+> Up until now, these settings are saved in memory, which means if the bot crashes/restarts, all of these settings will go back to default (`Language: English, Speed: normal`).
 
 ## Language Support
 
