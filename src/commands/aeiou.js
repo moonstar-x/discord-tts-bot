@@ -26,7 +26,7 @@ module.exports = {
     }
 
     if (connection) {
-      ttsPlayer.aeiou(options.args);
+      ttsPlayer.aeiou(options.args.join(' '));
     } else {
       channel.join()
         .then(() => {
@@ -39,4 +39,4 @@ module.exports = {
         });
     }
   }
-}
+};

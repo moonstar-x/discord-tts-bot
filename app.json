@@ -20,11 +20,6 @@
     "DISCORD_TOKEN": {
       "description": "Your bot's bot token.",
       "required": true
-    },
-    "ALLOW_OVER_200": {
-      "description": "Type 'yes' if you wish to send TTS messages of over 200 characters long.",
-      "required": true,
-      "value": "yes"
     }
   }
 }

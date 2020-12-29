@@ -1,4 +1,4 @@
-const prefix = process.env.PREFIX || require('../../config/settings.json').prefix;
+const { prefix } = require('../common/settings');
 const languages = require('../../data/languages.json');
 
 module.exports = {
@@ -26,4 +26,4 @@ module.exports = {
         message.reply(error);
       });
   }
-}
+};

@@ -22,11 +22,10 @@ Then, inside the `config` folder, rename the file *settings.json.example* to *se
 
     {
       "discord_token": "YOUR_DISCORD_TOKEN",
-      "prefix": "$",
-      "allow_more_than_200_chars": "yes"
+      "prefix": "$"
     }
 
-The `allow_more_than_200_chars` property lets you choose wether you want TTS messages longer than 200 characters to be played (default: `yes`).
+You may also configure these options with the respective environment variables: `DISCORD_TOKEN` and `PREFIX`. The settings set with the environment variables will take higher precedence than the ones in the config JSON file.
 
 Install the dependencies:
 

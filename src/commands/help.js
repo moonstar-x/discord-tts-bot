@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const { MESSAGE_EMBED } = require('../common/constants');
-const prefix = process.env.PREFIX || require('../../config/settings.json').prefix;
+const { prefix } = require('../common/settings');
 
 module.exports = {
   name: 'help',
@@ -12,8 +12,7 @@ module.exports = {
 
     const helpMessage = orderedCommands.reduce((commandsList, commandName) => {
       const command = commands.get(commandName);
-      commandsList += `${command.emoji} **${prefix}${command.name}** - ${command.description}\n`;
-      return commandsList;
+      return `${commandsList}${command.emoji} **${prefix}${command.name}** - ${command.description}\n`;
     }, '');
 
     const embed = new MessageEmbed()
@@ -25,4 +24,4 @@ module.exports = {
     
     message.channel.send(embed);
   }
-}
+};
