@@ -1,0 +1,8 @@
+node_modules
+npm-debug.log
+
+config/settings.json
+.github
+.git
+Procfile
+app.json
