@@ -5,7 +5,7 @@ const configFilePath = path.join(__dirname, '../../config/settings.json');
 const configFromFile = fs.existsSync(configFilePath) ? JSON.parse(fs.readFileSync(configFilePath)) : {};
 
 const discordToken = process.env.DISCORD_TOKEN || configFromFile.discord_token || null;
-const prefix = process.env.PREFIX || configFromFile.prefix || '$';
+const prefix = process.env.BOT_PREFIX || configFromFile.prefix || '$';
 
 module.exports = {
   discordToken,
