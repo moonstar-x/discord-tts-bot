@@ -1,12 +1,12 @@
 {
   "name": "discord-tts-bot",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A simple Discord TTS Bot that uses the Google Translate TTS API",
   "main": "src/app.js",
   "scripts": {
     "start": "node ./src/app.js",
     "debug": "node ./src/app.js --debug",
-    "dev": "PREFIX=! nodemon --exec npm start",
+    "dev": "nodemon --exec npm start",
     "lint:errors-only": "node_modules/.bin/eslint src --quiet",
     "lint": "node_modules/.bin/eslint src"
   },
