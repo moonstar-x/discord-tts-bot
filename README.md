@@ -69,7 +69,7 @@ docker run -it -e DISCORD_TOKEN="YOUR DISCORD TOKEN" moonstarx/discord-tts-bot:l
 The following environment variables can be used:
 
 * `DISCORD_TOKEN`: Your bot's Discord token. You can see how to get one on [this guide](https://github.com/moonstar-x/discord-downtime-notifier/wiki/Getting-a-Discord-Bot-Token).
-* `PREFIX`: The prefix that will be used for the commands. It defaults to `$`.
+* `BOT_PREFIX`: The prefix that will be used for the commands. It defaults to `$`.
 
 The following volumes can be used:
 

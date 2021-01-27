@@ -21,7 +21,7 @@ RUN npm ci --only=prod
 
 # These are added here as a way to define which env variables will be used.
 ENV DISCORD_TOKEN ""
-ENV PREFIX ""
+ENV BOT_PREFIX ""
 
 COPY . .
 

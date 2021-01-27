@@ -12,7 +12,7 @@
     }
   ],
   "env": {
-    "PREFIX": {
+    "BOT_PREFIX": {
       "description": "Your bot's command prefix.",
       "value": "$",
       "required": true

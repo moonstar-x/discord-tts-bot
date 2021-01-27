@@ -50,6 +50,7 @@ client.on('message', (message) => {
 
 client.on('ready', () => {
   logger.info('Connected to Discord! - Ready.');
+  logger.info(`Using prefix: ${prefix}`);
   client.updatePresence();
 });
 
