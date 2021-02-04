@@ -153,12 +153,4 @@ Here's a list of all the supported languages:
 | cmn           | Chinese       |
 | ja            | Japanese      |
 
-## Add this bot to your server
 
-You can add this bot to your server by clicking the image below:
-
-[![Invite this bot to your server](https://i.imgur.com/q4U9N1G.png)](https://discordapp.com/oauth2/authorize?client_id=519207945318170654&scope=bot&permissions=3148800)
-
-## Author
-
-This bot was made by [moonstar-x](https://github.com/moonstar-x).
