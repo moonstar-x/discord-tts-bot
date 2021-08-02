@@ -1,8 +1,18 @@
-module.exports = {
-  name: 'stop',
-  description: 'Stop the TTS bot and leave the channel.',
-  emoji: ':x:',
-  execute(message) {
+const { Command } = require('@greencoast/discord.js-extended');
+
+class StopCommand extends Command {
+  constructor(client) {
+    super(client, {
+      name: 'stop',
+      aliases: ['leave'],
+      description: 'Stop the TTS bot and leave the channel.',
+      emoji: ':x:',
+      group: 'all-tts',
+      guildOnly: true
+    });
+  }
+
+  run(message) {
     const { ttsPlayer, voice } = message.guild;
     const connection = voice ? voice.connection : null;
     const channel = voice ? voice.channel : null;
@@ -25,4 +35,6 @@ module.exports = {
         throw error;
       });
   }
-};
+}
+
+module.exports = StopCommand;
