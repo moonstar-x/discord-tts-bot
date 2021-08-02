@@ -1,67 +1,45 @@
+const path = require('path');
 const { Structures } = require('discord.js');
-const logger = require('@greencoast/logger');
-const { discordToken, prefix } = require('./common/settings');
-const { TTSGuild, ExtendedClient } = require('./classes/extensions');
+const { ExtendedClient, ConfigProvider } = require('@greencoast/discord.js-extended');
+const TTSGuild = require('./classes/extensions/TTSGuild');
 
 Structures.extend('Guild', TTSGuild);
 
-const client = new ExtendedClient();
-client.registerCommands();
-
-client.on('error', (error) => {
-  logger.error(error);
-});
-
-client.on('guildCreate', (guild) => {
-  logger.info(`Joined ${guild.name} guild!`);
-  client.updatePresence();
-});
-
-client.on('guildDelete', (guild) => {
-  logger.info(`Left ${guild.name} guild!`);
-  client.updatePresence();
-  guild.ttsPlayer = null;
-});
-
-client.on('guildUnavailable', (guild) => {
-  logger.warn(`Guild ${guild.name} is currently unavailable!`);
-});
-
-client.on('invalidated', () => {
-  logger.error('Client connection invalidated, terminating execution with code 1.');
-  process.exit(1);
-});
-
-client.on('message', (message) => {
-  if (!message.content.startsWith(prefix) || message.author.bot || !message.guild) {
-    return;
+const config = new ConfigProvider({
+  configPath: path.join(__dirname, '../config/settings.json'),
+  env: process.env,
+  default: {
+    PREFIX: '$',
+    OWNER_REPORTING: false,
+    PRESENCE_REFRESH_INTERVAL: 15 * 60 * 1000
   }
-
-  const args = message.content.slice(prefix.length).trim().split(/ +/);
-  const command = args.shift().toLowerCase();
-
-  const options = {
-    args,
-    commands: client.commands
-  };
-
-  client.executeCommand(message, options, command);
 });
+
+const client = new ExtendedClient({
+  config,
+  debug: process.argv.includes('--debug'),
+  errorOwnerReporting: config.get('OWNER_REPORTING'),
+  owner: config.get('OWNER_ID'),
+  prefix: config.get('PREFIX'),
+  presence: {
+    refreshInterval: config.get('PRESENCE_REFRESH_INTERVAL'),
+    templates: [
+      '{num_guilds} servers!',
+      '{prefix}help for help.',
+      '{num_members} users!',
+      'up for {uptime}.'
+    ]
+  }
+});
+
+client
+  .registerDefaultEvents()
+  .registerExtraDefaultEvents();
 
 client.on('ready', () => {
-  logger.info('Connected to Discord! - Ready.');
-  logger.info(`Using prefix: ${prefix}`);
-  client.updatePresence();
+  client.presenceManager.update('{num_guilds} servers!');
 });
 
-client.on('warn', (info) => {
-  logger.warn(info);
-});
+// TODO: Register commands and groups here.
 
-if (client.isDebugEnabled()) {
-  client.on('debug', (info) => {
-    logger.debug(info);
-  });
-}
-
-client.login(discordToken);
+client.login(config.get('TOKEN'));
