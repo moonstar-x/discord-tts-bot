@@ -36,10 +36,17 @@ client
   .registerDefaultEvents()
   .registerExtraDefaultEvents();
 
+client.registry
+  .registerGroups([
+    ['google-tts', 'Google TTS Commands'],
+    ['other-tts', 'Other TTS Commands'],
+    ['all-tts', 'All TTS Commands'],
+    ['misc', 'Miscellaneous Commands']
+  ])
+  .registerCommandsIn(path.join(__dirname, './commands'));
+
 client.on('ready', () => {
   client.presenceManager.update('{num_guilds} servers!');
 });
-
-// TODO: Register commands and groups here.
 
 client.login(config.get('TOKEN'));

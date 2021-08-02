@@ -3,7 +3,8 @@ const axios = require('axios');
 const logger = require('@greencoast/logger');
 const languages = require('../../data/languages.json');
 const { TTS_ENGINES, AEIOU_API_URL } = require('../common/constants');
-const { prefix } = require('../common/settings');
+
+const prefix = '$'; // TODO: Remove this.
 
 class TTSPlayer {
   constructor(guild) {
