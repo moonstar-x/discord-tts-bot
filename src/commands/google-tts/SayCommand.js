@@ -1,14 +1,24 @@
+/* eslint-disable max-statements */
+const { Command } = require('@greencoast/discord.js-extended');
 const logger = require('@greencoast/logger');
 
-module.exports = {
-  name: 'say',
-  description: `Send a TTS message in your voice channel.}`,
-  emoji: ':speaking_head:',
-  execute(message, options) {
+class SayCommand extends Command {
+  constructor(client) {
+    super(client, {
+      name: 'say',
+      aliases: ['tts', 's'],
+      description: 'Send a TTS message in your voice channel.',
+      emoji: ':speaking_head:',
+      group: 'google-tts',
+      guildOnly: true
+    });
+  }
+
+  run(message, args) {
     const { channel } = message.member.voice;
     const { ttsPlayer, name: guildName, voice } = message.guild;
     const connection = voice ? voice.connection : null;
-    const [atLeastOneWord] = options.args;
+    const [atLeastOneWord] = args;
 
     if (!channel) {
       message.reply('you need to be in a voice channel first.');
@@ -26,17 +36,19 @@ module.exports = {
     }
 
     if (connection) {
-      ttsPlayer.say(options.args.join(' '));
+      ttsPlayer.say(args.join(' '));
     } else {
       channel.join()
         .then(() => {
           logger.info(`Joined ${channel.name} in ${guildName}.`);
           message.channel.send(`Joined ${channel}.`);
-          ttsPlayer.say(options.args.join(' '));
+          ttsPlayer.say(args.join(' '));
         })
         .catch((error) => {
           throw error;
         });
     }
   }
-};
+}
+
+module.exports = SayCommand;
