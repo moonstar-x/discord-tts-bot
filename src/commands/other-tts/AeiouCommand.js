@@ -1,14 +1,24 @@
+/* eslint-disable max-statements */
+const { Command } = require('@greencoast/discord.js-extended');
 const logger = require('@greencoast/logger');
 
-module.exports = {
-  name: 'aeiou',
-  description: 'Send an aeiou (similar to Moonbase Alpha) TTS message in your voice channel.',
-  emoji: ':robot:',
-  execute(message, options) {
+class AeiouCommand extends Command {
+  constructor(client) {
+    super(client, {
+      name: 'aeiou',
+      aliases: ['moonbase'],
+      description: 'Send an aeiou (similar to Moonbase Alpha) TTS message in your voice channel.',
+      emoji: ':robot:',
+      group: 'other-tts',
+      guildOnly: true
+    });
+  }
+
+  run(message, args) {
     const { channel } = message.member.voice;
     const { ttsPlayer, name: guildName, voice } = message.guild;
     const connection = voice ? voice.connection : null;
-    const [atLeastOneWord] = options.args;
+    const [atLeastOneWord] = args;
 
     if (!channel) {
       message.reply('you need to be in a voice channel first.');
@@ -26,17 +36,19 @@ module.exports = {
     }
 
     if (connection) {
-      ttsPlayer.aeiou(options.args.join(' '));
+      ttsPlayer.aeiou(args.join(' '));
     } else {
       channel.join()
         .then(() => {
           logger.info(`Joined ${channel.name} in ${guildName}.`);
           message.channel.send(`Joined ${channel}.`);
-          ttsPlayer.aeiou(options.args);
+          ttsPlayer.aeiou(args);
         })
         .catch((error) => {
           throw error;
         });
     }
   }
-};
+}
+
+module.exports = AeiouCommand;
