@@ -4,6 +4,9 @@ const Payload = require('../Payload');
 const { GoogleProviderError } = require('../../../errors');
 const languages = require('../../../../data/languages.json');
 
+/**
+ * A concrete TTS provider for the Google Translate API TTS.
+ */
 class GoogleProvider extends AbstractProvider {
   constructor() {
     super();

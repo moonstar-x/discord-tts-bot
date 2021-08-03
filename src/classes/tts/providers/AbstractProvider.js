@@ -1,5 +1,8 @@
 /* eslint-disable no-unused-vars */
 
+/**
+ * This class represents an abstract TTS provider. Any TTS provider should create a concrete implementation of this class.
+ */
 class AbstractProvider {
   constructor() {
     if (new.target === AbstractProvider) {

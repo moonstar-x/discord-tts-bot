@@ -4,6 +4,9 @@ const Payload = require('../Payload');
 
 const API_URL = 'http://tts.cyzon.us';
 
+/**
+ * A concrete TTS provider for the Moonbase Alpha TTS.
+ */
 class AeiouProvider extends AbstractProvider {
   createPayload(sentence) {
     return axios.get(`${API_URL}/tts`, {
