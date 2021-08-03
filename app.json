@@ -12,14 +12,34 @@
     }
   ],
   "env": {
-    "BOT_PREFIX": {
+    "DISCORD_TOKEN": {
+      "description": "Your bot's bot token.",
+      "required": true
+    },
+    "DISCORD_PREFIX": {
       "description": "Your bot's command prefix.",
       "value": "$",
       "required": true
     },
-    "DISCORD_TOKEN": {
-      "description": "Your bot's bot token.",
-      "required": true
+    "DISCORD_OWNER_ID": {
+      "description": "Your bot's owner's ID.",
+      "value": "123123123",
+      "required": false
+    },
+    "DISCORD_OWNER_REPORTING": {
+      "description": "Whether the bot should send errors to the owner.",
+      "value": "false",
+      "required": false
+    },
+    "DISCORD_PRESENCE_REFRESH_INTERVAL": {
+      "description": "The interval it takes for the bot to refresh its presence (in ms).",
+      "value": "900000",
+      "required": false
+    },
+    "DISCORD_DISCONNECT_TIMEOUT": {
+      "description": "The time it takes for the bot to leave the channel if inactive (in ms). Can be set to null to disable automatic leaving.",
+      "value": "600000",
+      "required": false
     }
   }
 }
