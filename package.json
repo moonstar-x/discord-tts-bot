@@ -25,7 +25,7 @@
   "homepage": "https://github.com/moonstar-x/discord-tts-bot#readme",
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
-    "@greencoast/discord.js-extended": "^1.1.0",
+    "@greencoast/discord.js-extended": "^1.1.1",
     "@greencoast/logger": "^1.1.0",
     "axios": "^0.21.1",
     "discord.js": "^12.5.3",
