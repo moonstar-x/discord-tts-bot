@@ -11,7 +11,8 @@ const config = new ConfigProvider({
   default: {
     PREFIX: '$',
     OWNER_REPORTING: false,
-    PRESENCE_REFRESH_INTERVAL: 15 * 60 * 1000
+    PRESENCE_REFRESH_INTERVAL: 15 * 60 * 1000, // 15 Minutes
+    DISCONNECT_TIMEOUT: 5 * 60 * 1000 // 5 Minutes
   }
 });
 
