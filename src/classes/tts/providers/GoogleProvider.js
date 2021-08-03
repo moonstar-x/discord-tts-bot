@@ -49,11 +49,11 @@ class GoogleProvider extends AbstractProvider {
     }
 
     this.lang = newLang;
-    return languages[this.lang];
+    return languages[this.lang].name;
   }
 
   getLang() {
-    return languages[this.lang];
+    return languages[this.lang].name;
   }
 
   setSpeed(newSpeed) {

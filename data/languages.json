@@ -1,49 +1,190 @@
 {
-  "af": "Afrikaans",
-  "hy": "Armenian",
-  "id": "Indonesian",
-  "bn": "Bengali",
-  "ca": "Catalan",
-  "cs": "Czech",
-  "da": "Danish",
-  "de": "German",
-  "en": "English",
-  "es": "Spanish",
-  "fil": "Filipino",
-  "fr": "French",
-  "hr": "Croatian",
-  "is": "Icelandic",
-  "it": "Italian",
-  "jv": "Javanese",
-  "km": "Khmer",
-  "lv": "Latvian",
-  "hu": "Hungarian",
-  "ml": "Malayalam",
-  "mr": "Marathi",
-  "nl": "Dutch",
-  "ne": "Nepali",
-  "nb": "Norwegian",
-  "pl": "Polish",
-  "pt": "Portuguese",
-  "ro": "Romanian",
-  "si": "Sinhala",
-  "sk": "Slovak",
-  "su": "Sundanese",
-  "sw": "Swahili",
-  "fi": "Finnish",
-  "sv": "Swedish",
-  "ta": "Tamil",
-  "te": "Telugu",
-  "vi": "Vietnamese",
-  "tr": "Turkish",
-  "el": "Greek",
-  "ru": "Russian",
-  "sr": "Serbian",
-  "uk": "Ukranian",
-  "ar": "Arabic",
-  "hi": "Hindi",
-  "th": "Thai",
-  "ko": "Korean",
-  "cmn": "Chinese",
-  "ja": "Japanese"
+  "af": {
+    "name": "Afrikaans",
+    "emoji": ":flag_za:"
+  },
+  "hy": {
+    "name": "Armenian",
+    "emoji": ":flag_am:"
+  },
+  "id": {
+    "name": "Indonesian",
+    "emoji": ":flag_id:"
+  },
+  "bn": {
+    "name": "Bengali",
+    "emoji": ":flag_bd:"
+  },
+  "ca": {
+    "name": "Catalan",
+    "emoji": ":flag_es:"
+  },
+  "cs": {
+    "name": "Czech",
+    "emoji": ":flag_cz:"
+  },
+  "da": {
+    "name": "Danish",
+    "emoji": ":flag_dk:"
+  },
+  "de": {
+    "name": "German",
+    "emoji": ":flag_de:"
+  },
+  "en": {
+    "name": "English",
+    "emoji": ":flag_us:"
+  },
+  "es": {
+    "name": "Spanish",
+    "emoji": ":flag_es:"
+  },
+  "fil": {
+    "name": "Filipino",
+    "emoji": ":flag_ph:"
+  },
+  "fr": {
+    "name": "French",
+    "emoji": ":flag_fr:"
+  },
+  "hr": {
+    "name": "Croatian",
+    "emoji": ":flag_hr:"
+  },
+  "is": {
+    "name": "Icelandic",
+    "emoji": ":flag_is:"
+  },
+  "it": {
+    "name": "Italian",
+    "emoji": ":flag_it:"
+  },
+  "jv": {
+    "name": "Javanese",
+    "emoji": ":flag_id:"
+  },
+  "km": {
+    "name": "Khmer",
+    "emoji": ":flag_kh:"
+  },
+  "lv": {
+    "name": "Latvian",
+    "emoji": ":flag_lv:"
+  },
+  "hu": {
+    "name": "Hungarian",
+    "emoji": ":flag_hu:"
+  },
+  "ml": {
+    "name": "Malayalam",
+    "emoji": ":flag_my:"
+  },
+  "mr": {
+    "name": "Marathi",
+    "emoji": ":flag_in:"
+  },
+  "nl": {
+    "name": "Dutch",
+    "emoji": ":flag_nl:"
+  },
+  "ne": {
+    "name": "Nepali",
+    "emoji": ":flag_np:"
+  },
+  "nb": {
+    "name": "Norwegian",
+    "emoji": ":flag_no:"
+  },
+  "pl": {
+    "name": "Polish",
+    "emoji": ":flag_pl:"
+  },
+  "pt": {
+    "name": "Portuguese",
+    "emoji": ":flag_pt:"
+  },
+  "ro": {
+    "name": "Romanian",
+    "emoji": ":flag_ro:"
+  },
+  "si": {
+    "name": "Sinhala",
+    "emoji": ":flag_lk:"
+  },
+  "sk": {
+    "name": "Slovak",
+    "emoji": ":flag_sk:"
+  },
+  "su": {
+    "name": "Sundanese",
+    "emoji": ":flag_id:"
+  },
+  "sw": {
+    "name": "Swahili",
+    "emoji": ":flag_tz:"
+  },
+  "fi": {
+    "name": "Finnish",
+    "emoji": ":flag_fi:"
+  },
+  "sv": {
+    "name": "Swedish",
+    "emoji": ":flag_se:"
+  },
+  "ta": {
+    "name": "Tamil",
+    "emoji": ":flag_id:"
+  },
+  "te": {
+    "name": "Telugu",
+    "emoji": ":flag_id:"
+  },
+  "vi": {
+    "name": "Vietnamese",
+    "emoji": ":flag_vn:"
+  },
+  "tr": {
+    "name": "Turkish",
+    "emoji": ":flag_tr:"
+  },
+  "el": {
+    "name": "Greek",
+    "emoji": ":flag_gr:"
+  },
+  "ru": {
+    "name": "Russian",
+    "emoji": ":flag_ru:"
+  },
+  "sr": {
+    "name": "Serbian",
+    "emoji": ":flag_rs:"
+  },
+  "uk": {
+    "name": "Ukranian",
+    "emoji": ":flag_ua:"
+  },
+  "ar": {
+    "name": "Arabic",
+    "emoji": ":flag_sa:"
+  },
+  "hi": {
+    "name": "Hindi",
+    "emoji": ":flag_id:"
+  },
+  "th": {
+    "name": "Thai",
+    "emoji": ":flag_th:"
+  },
+  "ko": {
+    "name": "Korean",
+    "emoji": ":flag_kr:"
+  },
+  "cmn": {
+    "name": "Chinese",
+    "emoji": ":flag_cn:"
+  },
+  "ja": {
+    "name": "Japanese",
+    "emoji": ":flag_jp:"
+  }
 }
