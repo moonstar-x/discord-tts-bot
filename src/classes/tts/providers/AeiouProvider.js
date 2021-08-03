@@ -15,6 +15,12 @@ class AeiouProvider extends AbstractProvider {
         return new Payload(`${API_URL}${response.request.path}`, sentence, AeiouProvider.NAME);
       });
   }
+
+  getPlayLogMessage(payload, guild) {
+    const { sentence } = payload;
+    
+    return `(TTS): Playing aeiou for ${sentence} in guild ${guild.name}.`;
+  }
 }
 
 AeiouProvider.NAME = 'aeiou';

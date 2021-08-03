@@ -32,6 +32,13 @@ class GoogleProvider extends AbstractProvider {
     });
   }
 
+  getPlayLogMessage(payload, guild) {
+    const { sentence, extras: { lang, slow } } = payload;
+    const speed = slow ? 'slow' : 'normal';
+
+    return `(TTS): Playing googleTTS for ${sentence} with language ${lang} with ${speed} speed in guild ${guild.name}.`;
+  }
+
   setLang(newLang) {
     if (!languages[newLang]) {
       throw new GoogleProviderError('Invalid language!', GoogleProviderError.REASON.invalid);
