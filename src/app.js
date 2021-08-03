@@ -47,8 +47,4 @@ client.registry
   ])
   .registerCommandsIn(path.join(__dirname, './commands'));
 
-client.on('ready', () => {
-  client.presenceManager.update('{num_guilds} servers!');
-});
-
 client.login(config.get('TOKEN'));
