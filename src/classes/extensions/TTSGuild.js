@@ -1,4 +1,4 @@
-const TTSPlayer = require('../TTSPlayer');
+const TTSPlayer = require('../tts/TTSPlayer');
 
 const GuildExtension = (Guild) => {
   return class TTSGuild extends Guild {
