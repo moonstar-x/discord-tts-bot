@@ -39,6 +39,8 @@ class TTSPlayer {
       this.queue.enqueue(payload);
     }
 
+    this.startDisconnectScheduler();
+
     if (!this.speaking) {
       this.play();
     }
@@ -75,11 +77,35 @@ class TTSPlayer {
   stop() {
     const { channel } = this.guild.voice;
 
+    this.stopDisconnectScheduler();
+
     this.queue.clear();
     this.speaking = false;
     channel.leave();
 
     return channel;
+  }
+
+  startDisconnectScheduler() {
+    if (!this.guild.disconnectScheduler) {
+      return;
+    }
+    
+    if (this.guild.disconnectScheduler.isAlive()) {
+      this.guild.disconnectScheduler.refresh();
+    } else {
+      this.guild.disconnectScheduler.start(this.guild.voice.channel);
+    }
+  }
+
+  stopDisconnectScheduler() {
+    if (!this.guild.disconnectScheduler) {
+      return;
+    }
+    
+    if (this.guild.disconnectScheduler.isAlive()) {
+      this.guild.disconnectScheduler.stop();
+    }
   }
 }
 
