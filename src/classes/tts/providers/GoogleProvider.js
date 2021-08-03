@@ -52,6 +52,10 @@ class GoogleProvider extends AbstractProvider {
     return languages[this.lang];
   }
 
+  getLang() {
+    return languages[this.lang];
+  }
+
   setSpeed(newSpeed) {
     if (newSpeed !== 'normal' && newSpeed !== 'slow') {
       throw new GoogleProviderError('Invalid speed!', GoogleProviderError.REASON.invalid);

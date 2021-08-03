@@ -1,4 +1,5 @@
 const { Command } = require('@greencoast/discord.js-extended');
+const { GoogleProviderError } = require('../../errors');
 
 class SpeedCommand extends Command {
   constructor(client) {
@@ -13,20 +14,27 @@ class SpeedCommand extends Command {
 
   run(message, args) {
     const [newSpeed] = args;
-    const { ttsPlayer } = message.guild;
+    const { googleProvider } = message.guild.ttsPlayer;
 
     if (!newSpeed) {
       message.reply(`to set-up the TTS speed, type: **${this.client.prefix}speed <speed>** and replace *<speed>* with either *normal* or *slow*.`);
       return;
     }
 
-    ttsPlayer.setSpeed(newSpeed)
-      .then((setSpeed) => {
-        message.reply(`speaking speed has been set to: **${setSpeed}**`);
-      })
-      .catch((error) => {
-        message.reply(error);
-      });
+    try {
+      const setSpeed = googleProvider.setSpeed(newSpeed);
+      return message.reply(`speaking speed has been set to: **${setSpeed}**`);
+    } catch (error) {
+      if (error instanceof GoogleProviderError) {
+        if (error.reason === GoogleProviderError.REASON.invalid) {
+          return message.reply('invalid speed, it must be either *normal* or *slow*.');
+        }
+
+        throw error;
+      }
+
+      throw error;
+    }
   }
 }
 

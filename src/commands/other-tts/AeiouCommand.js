@@ -1,6 +1,7 @@
 /* eslint-disable max-statements */
-const { Command } = require('@greencoast/discord.js-extended');
 const logger = require('@greencoast/logger');
+const { Command } = require('@greencoast/discord.js-extended');
+const AeiouProvider = require('../../classes/tts/providers/AeiouProvider');
 
 class AeiouCommand extends Command {
   constructor(client) {
@@ -18,7 +19,6 @@ class AeiouCommand extends Command {
     const { channel } = message.member.voice;
     const { ttsPlayer, name: guildName, voice } = message.guild;
     const connection = voice ? voice.connection : null;
-    const [atLeastOneWord] = args;
 
     if (!channel) {
       message.reply('you need to be in a voice channel first.');
@@ -30,24 +30,21 @@ class AeiouCommand extends Command {
       return;
     }
 
-    if (!atLeastOneWord) {
+    if (args.length < 1) {
       message.reply('you need to specify a message.');
       return;
     }
 
     if (connection) {
-      ttsPlayer.aeiou(args.join(' '));
-    } else {
-      channel.join()
-        .then(() => {
-          logger.info(`Joined ${channel.name} in ${guildName}.`);
-          message.channel.send(`Joined ${channel}.`);
-          ttsPlayer.aeiou(args);
-        })
-        .catch((error) => {
-          throw error;
-        });
+      return ttsPlayer.say(args.join(' '), AeiouProvider.NAME);
     }
+
+    return channel.join()
+      .then(() => {
+        logger.info(`Joined ${channel.name} in ${guildName}.`);
+        message.channel.send(`Joined ${channel}.`);
+        return ttsPlayer.say(args.join(' '), AeiouProvider.NAME);
+      });
   }
 }
 
