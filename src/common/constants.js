@@ -6,6 +6,9 @@ const MESSAGE_EMBED = {
   helpURL: 'https://github.com/moonstar-x/discord-tts-bot/issues'
 };
 
+const EMBED_FIELD_MAX_SIZE = 1024;
+
 module.exports = {
-  MESSAGE_EMBED
+  MESSAGE_EMBED,
+  EMBED_FIELD_MAX_SIZE
 };
