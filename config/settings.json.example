@@ -1,4 +1,8 @@
 {
-  "discord_token": "YOUR_DISCORD_TOKEN",
-  "prefix": "$"
+  "token": "YOUR_DISCORD_TOKEN",
+  "prefix": "$",
+  "owner_id": "123123123",
+  "owner_reporting": false,
+  "presence_refresh_interval": 600000,
+  "disconnect_timeout": 300000
 }

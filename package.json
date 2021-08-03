@@ -1,8 +1,8 @@
 {
   "name": "discord-tts-bot",
-  "version": "2.0.1",
-  "description": "A simple Discord TTS Bot that uses the Google Translate TTS API",
-  "main": "src/app.js",
+  "version": "3.0.0",
+  "description": "A simple Discord TTS Bot that uses the Google Translate TTS API.",
+  "main": "./src/app.js",
   "scripts": {
     "start": "node ./src/app.js",
     "debug": "node ./src/app.js --debug",
@@ -19,20 +19,21 @@
   },
   "author": "moonstar-x",
   "license": "MIT",
-  "dependencies": {
-    "@discordjs/opus": "^0.3.3",
-    "@greencoast/logger": "^1.0.1",
-    "axios": "^0.21.1",
-    "discord.js": "^12.5.1",
-    "google-tts-api": "^2.0.0"
-  },
   "bugs": {
     "url": "https://github.com/moonstar-x/discord-tts-bot/issues"
   },
   "homepage": "https://github.com/moonstar-x/discord-tts-bot#readme",
+  "dependencies": {
+    "@discordjs/opus": "^0.5.3",
+    "@greencoast/discord.js-extended": "^1.1.1",
+    "@greencoast/logger": "^1.1.0",
+    "axios": "^0.21.1",
+    "discord.js": "^12.5.3",
+    "google-tts-api": "^2.0.2"
+  },
   "devDependencies": {
-    "eslint": "^7.16.0",
-    "eslint-config-greencoast": "^0.0.2",
-    "nodemon": "^2.0.6"
+    "eslint": "^7.32.0",
+    "eslint-config-greencoast": "0.0.2",
+    "nodemon": "^2.0.12"
   }
 }
