@@ -1,5 +1,4 @@
 [![discord](https://img.shields.io/discord/730998659008823296.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/mhj3Zsv)
-[![trello](https://img.shields.io/badge/Trello-discord--tts--bot-RGB(81%2C%20190%2C%20110))](https://trello.com/b/305ReJxK/discord-tts-bot)
 [![ci-build-status](https://img.shields.io/github/workflow/status/moonstar-x/discord-tts-bot/CI?logo=github)](https://github.com/moonstar-x/discord-tts-bot)
 [![open-issues-count](https://img.shields.io/github/issues-raw/moonstar-x/discord-tts-bot?logo=github)](https://github.com/moonstar-x/discord-tts-bot)
 [![docker-image-size](https://img.shields.io/docker/image-size/moonstarx/discord-tts-bot?logo=docker)](https://hub.docker.com/repository/docker/moonstarx/discord-tts-bot)
@@ -7,7 +6,7 @@
 
 # Discord TTS Bot
 
-This is a simple TTS Bot that uses the Google Translate TTS API. With this bot you can send Text-to-Speech messages in multiple languages.
+This is a simple TTS Bot that uses the Google Translate TTS API. With this bot you can send Text-to-Speech messages in multiple languages using Google Translate or other TTS engines.
 
 ## Requirements
 
@@ -27,36 +26,53 @@ In order to self-host this bot, first you'll need to clone this repository.
 git clone https://github.com/moonstar-x/discord-tts-bot.git
 ```
 
-Then, inside the `config` folder, rename the file *settings.json.example* to *settings.json* and edit the file with your own Discord Token and the prefix you wish to use. If you don't have a discord token yet, you can see a guide on how to create it [here](https://github.com/moonstar-x/discord-downtime-notifier/wiki). 
-
-Your file should look like this.
-
-```json
-{
-    "discord_token": "YOUR_DISCORD_TOKEN",
-    "prefix": "$"
-}
-```
-
-You may also configure these options with the respective environment variables: `DISCORD_TOKEN` and `PREFIX`. The settings set with the environment variables will take higher precedence than the ones in the config JSON file.
-
 Install the dependencies with:
 
 ```text
 npm ci --only=prod
 ```
 
-Or, if you want to also install the devDependencies:
+Or, if you want to also install the `devDependencies`:
 
 ```text
 npm install
 ```
 
-You can now run your bot:
+After you have [configured](#configuration) the bot, you can run it with:
 
 ```text
 npm start
 ```
+
+## Configuration
+
+Inside the `config` folder, rename the file *settings.json.example* to *settings.json* and edit the file with your own Discord Token and other settings. If you don't have a discord token yet, you can see a guide on how to create it [here](https://github.com/moonstar-x/discord-downtime-notifier/wiki).
+
+Your file should look like this.
+
+```json
+{
+  "token": "YOUR_DISCORD_TOKEN",
+  "prefix": "$",
+  "owner_id": "123123123",
+  "owner_reporting": false,
+  "presence_refresh_interval": 600000,
+  "disconnect_timeout": 300000
+}
+```
+
+You may also configure these options with environment variables. The settings set with the environment variables will take higher precedence than the ones in the config JSON file.
+
+This table contains all the configuration settings you may specify with both environment variables and the JSON config file.
+
+| Environment Variable              | JSON Property               | Required                    | Description                                                                           |
+|-----------------------------------|-----------------------------|-----------------------------|---------------------------------------------------------------------------------------|
+| DISCORD_TOKEN                     | `token`                     | Yes.                        | The bot's token.                                                                      |
+| DISCORD_PREFIX                    | `prefix`                    | No. (Defaults to: `$`)      | The bot's prefix.                                                                     |
+| DISCORD_OWNER_ID                  | `owner_id`                  | No. (Defaults to: `null`)   | The ID of the bot's owner.                                                            |
+| DISCORD_OWNER_REPORTING           | `owner_reporting`           | No. (Defaults to: `false`)  | Whether the bot should send error reports to the owner via DM when a command errors.  |
+| DISCORD_PRESENCE_REFRESH_INTERVAL | `presence_refresh_interval` | No. (Defaults to: `900000`) | The time interval in ms in which the bot updates its presence.                        |
+| DISCORD_DISCONNECT_TIMEOUT        | `disconnect_timeout`        | No. (Defaults to: `300000`) | The time it takes the bot to leave a voice channel when inactive.                     |
 
 ## Running on Docker
 
@@ -66,10 +82,7 @@ You can start a container with the bot's image by running:
 docker run -it -e DISCORD_TOKEN="YOUR DISCORD TOKEN" moonstarx/discord-tts-bot:latest
 ```
 
-The following environment variables can be used:
-
-* `DISCORD_TOKEN`: Your bot's Discord token. You can see how to get one on [this guide](https://github.com/moonstar-x/discord-downtime-notifier/wiki/Getting-a-Discord-Bot-Token).
-* `BOT_PREFIX`: The prefix that will be used for the commands. It defaults to `$`.
+Check [configuration](#configuration) to see which environment variables you can use.
 
 The following volumes can be used:
 
@@ -87,15 +100,15 @@ You can now go back to your app's *Overview*, make sure you disable the *web* dy
 
 Here's a list of all the commands for the bot:
 
-| Command            | Description                                                                  |
-|--------------------|------------------------------------------------------------------------------|
-| $say \<message>    | Send a TTS message in your voice channel.                                    |
-| $aeiou \<message>  | Send an aeiou (similar to Moonbase Alpha) TTS message in your voice channel. |
-| $stop              | Stop the TTS bot and leave the channel.                                      |
-| $lang \<lang_code> | Change the TTS language.                                                     |
-| $langs             | Display a list of the supported languages.                                   |
-| $speed \<slow\|normal>   | Change the TTS spoken speed (must be either **normal** for normal speed or **slow** for slow speed).                   |
-| $help              | Display a help message with all the available commands.                      |
+| Command                 | Alias      | Description                                                                                          |
+|-------------------------|------------|------------------------------------------------------------------------------------------------------|
+| $say \<message\>        | $s, $tts   | Send a TTS message in your voice channel.                                                            |
+| $aeiou \<message\>      | $moonbase  | Send an aeiou (similar to Moonbase Alpha) TTS message in your voice channel.                         |
+| $stop                   | $leave     | Stop the TTS bot and leave the channel.                                                              |
+| $lang \<lang_code\>     |            | Change the TTS language.                                                                             |
+| $langs                  |            | Display a list of the supported languages.                                                           |
+| $speed \<slow\|normal\> |            | Change the TTS spoken speed (must be either **normal** for normal speed or **slow** for slow speed). |
+| $help                   | $h         | Display a help message with all the available commands.                                              |
 
 > Up until now, these settings are saved in memory, which means if the bot crashes/restarts, all of these settings will go back to default (`Language: English, Speed: normal`).
 
