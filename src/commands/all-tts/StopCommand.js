@@ -1,4 +1,5 @@
 const { Command } = require('@greencoast/discord.js-extended');
+const logger = require('@greencoast/logger');
 
 class StopCommand extends Command {
   constructor(client) {
@@ -13,7 +14,7 @@ class StopCommand extends Command {
   }
 
   run(message) {
-    const { ttsPlayer, voice } = message.guild;
+    const { ttsPlayer, voice, name: guildName } = message.guild;
     const connection = voice ? voice.connection : null;
     const channel = voice ? voice.channel : null;
     const { channel: memberChannel } = message.member.voice;
@@ -23,12 +24,12 @@ class StopCommand extends Command {
     }
 
     if (!memberChannel || channel !== memberChannel) {
-      message.reply('you need to be in my voice channel to do that.');
-      return;
+      return message.reply('you need to be in my voice channel to do that.');
     }
 
     ttsPlayer.stop();
-    return message.channel.send(`Successfully left the voice channel ${voice.channel}.`);
+    logger.info(`Successfully left the voice channel ${channel.name} from guild ${guildName}`);
+    return message.channel.send(`Successfully left the voice channel ${channel}.`);
   }
 }
 

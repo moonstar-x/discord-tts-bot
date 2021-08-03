@@ -1,6 +1,5 @@
-/* eslint-disable max-statements */
-const logger = require('@greencoast/logger');
 const { Command } = require('@greencoast/discord.js-extended');
+const logger = require('@greencoast/logger');
 const GoogleProvider = require('../../classes/tts/providers/GoogleProvider');
 
 class SayCommand extends Command {

@@ -1,6 +1,5 @@
-/* eslint-disable max-statements */
-const logger = require('@greencoast/logger');
 const { Command } = require('@greencoast/discord.js-extended');
+const logger = require('@greencoast/logger');
 const AeiouProvider = require('../../classes/tts/providers/AeiouProvider');
 
 class AeiouCommand extends Command {
@@ -21,18 +20,15 @@ class AeiouCommand extends Command {
     const connection = voice ? voice.connection : null;
 
     if (!channel) {
-      message.reply('you need to be in a voice channel first.');
-      return;
+      return message.reply('you need to be in a voice channel first.');
     }
 
     if (!channel.joinable) {
-      message.reply('I cannot join your voice channel.');
-      return;
+      return message.reply('I cannot join your voice channel.');
     }
 
     if (args.length < 1) {
-      message.reply('you need to specify a message.');
-      return;
+      return message.reply('you need to specify a message.');
     }
 
     if (connection) {

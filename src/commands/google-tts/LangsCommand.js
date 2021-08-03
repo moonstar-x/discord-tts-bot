@@ -82,7 +82,7 @@ class LangsCommand extends Command {
   }
 
   run(message) {
-    message.channel.send(this.langsEmbed);
+    return message.channel.send(this.langsEmbed);
   }
 }
 

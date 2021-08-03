@@ -1,4 +1,5 @@
 const { Command } = require('@greencoast/discord.js-extended');
+const logger = require('@greencoast/logger');
 const { GoogleProviderError } = require('../../errors');
 
 class LangCommand extends Command {
@@ -17,16 +18,16 @@ class LangCommand extends Command {
     const { googleProvider } = message.guild.ttsPlayer;
 
     if (!newLang) {
-      message.reply(`to set-up the TTS language, run: **${this.client.prefix}lang <lang_code>**
+      return message.reply(`to set-up the TTS language, run: **${this.client.prefix}lang <lang_code>**
       To see a list of the available lang codes, run: **${this.client.prefix}langs**.
       The current language is set to: **${googleProvider.getLang()}**.`);
-      return;
     }
 
     newLang = newLang.toString().toLowerCase();
 
     try {
       const setLang = googleProvider.setLang(newLang);
+      logger.info(`Guild ${message.guild.name} has changed its language to ${googleProvider.getLang()}.`);
       return message.reply(`language has been set to **${setLang}**.`);
     } catch (error) {
       if (error instanceof GoogleProviderError) {
