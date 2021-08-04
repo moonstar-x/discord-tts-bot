@@ -16,6 +16,7 @@ const config = new ConfigProvider({
     DISCONNECT_TIMEOUT: 5 * 60 * 1000 // 5 Minutes
   },
   types: {
+    TOKEN: 'string',
     PREFIX: 'string',
     OWNER_ID: ['string', 'null'],
     OWNER_REPORTING: 'boolean',
