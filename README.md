@@ -65,14 +65,14 @@ You may also configure these options with environment variables. The settings se
 
 This table contains all the configuration settings you may specify with both environment variables and the JSON config file.
 
-| Environment Variable              | JSON Property               | Required                    | Description                                                                           |
-|-----------------------------------|-----------------------------|-----------------------------|---------------------------------------------------------------------------------------|
-| DISCORD_TOKEN                     | `token`                     | Yes.                        | The bot's token.                                                                      |
-| DISCORD_PREFIX                    | `prefix`                    | No. (Defaults to: `$`)      | The bot's prefix.                                                                     |
-| DISCORD_OWNER_ID                  | `owner_id`                  | No. (Defaults to: `null`)   | The ID of the bot's owner.                                                            |
-| DISCORD_OWNER_REPORTING           | `owner_reporting`           | No. (Defaults to: `false`)  | Whether the bot should send error reports to the owner via DM when a command errors.  |
-| DISCORD_PRESENCE_REFRESH_INTERVAL | `presence_refresh_interval` | No. (Defaults to: `900000`) | The time interval in ms in which the bot updates its presence.                        |
-| DISCORD_DISCONNECT_TIMEOUT        | `disconnect_timeout`        | No. (Defaults to: `300000`) | The time it takes the bot to leave a voice channel when inactive.                     |
+| Environment Variable              | JSON Property               | Required                    | Type               | Description                                                                                                                   |
+|-----------------------------------|-----------------------------|-----------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| DISCORD_TOKEN                     | `token`                     | Yes.                        | `string`           | The bot's token.                                                                                                              |
+| DISCORD_PREFIX                    | `prefix`                    | No. (Defaults to: `$`)      | `string`           | The bot's prefix.                                                                                                             |
+| DISCORD_OWNER_ID                  | `owner_id`                  | No. (Defaults to: `null`)   | `string` or `null` | The ID of the bot's owner.                                                                                                    |
+| DISCORD_OWNER_REPORTING           | `owner_reporting`           | No. (Defaults to: `false`)  | `boolean`          | Whether the bot should send error reports to the owner via DM when a command errors.                                          |
+| DISCORD_PRESENCE_REFRESH_INTERVAL | `presence_refresh_interval` | No. (Defaults to: `900000`) | `number` or `null` | The time interval in ms in which the bot updates its presence. If set to `null` the presence auto update will be disabled.    |
+| DISCORD_DISCONNECT_TIMEOUT        | `disconnect_timeout`        | No. (Defaults to: `300000`) | `number` or `null` | The time it takes the bot to leave a voice channel when inactive. If set to `null` the bot will not disconnect on inactivity. |
 
 ## Running on Docker
 
