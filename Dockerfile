@@ -19,14 +19,6 @@ COPY package*.json ./
 
 RUN npm ci --only=prod
 
-# These are added here as a way to define which env variables will be used.
-ENV DISCORD_TOKEN ""
-ENV DISCORD_PREFIX ""
-ENV DISCORD_OWNER_ID ""
-ENV DISCORD_OWNER_REPORTING ""
-ENV DISCORD_PRESENCE_REFRESH_INTERVAL ""
-ENV DISCORD_DISCONNECT_TIMEOUT ""
-
 COPY . .
 
 VOLUME /opt/app/config
