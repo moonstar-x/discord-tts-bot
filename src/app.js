@@ -14,6 +14,13 @@ const config = new ConfigProvider({
     OWNER_REPORTING: false,
     PRESENCE_REFRESH_INTERVAL: 15 * 60 * 1000, // 15 Minutes
     DISCONNECT_TIMEOUT: 5 * 60 * 1000 // 5 Minutes
+  },
+  types: {
+    PREFIX: 'string',
+    OWNER_ID: ['string', 'null'],
+    OWNER_REPORTING: 'boolean',
+    PRESENCE_REFRESH_INTERVAL: ['number', 'null'],
+    DISCONNECT_TIMEOUT: ['number', 'null']
   }
 });
 
