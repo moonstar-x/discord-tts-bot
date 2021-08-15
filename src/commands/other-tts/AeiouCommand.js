@@ -39,7 +39,7 @@ class AeiouCommand extends Command {
       return message.reply('Your voice channel is full.');
     }
 
-    if (connection && connection.channel !== channel) {
+    if (connection && voice.channel !== channel) {
       return message.reply('you need to be in the same voice channel as me.');
     }
 
