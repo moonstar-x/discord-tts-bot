@@ -23,8 +23,24 @@ class AeiouCommand extends Command {
       return message.reply('you need to be in a voice channel first.');
     }
 
+    if (!channel.viewable) {
+      return message.reply('I cannot view your voice channel.');
+    }
+
     if (!channel.joinable) {
       return message.reply('I cannot join your voice channel.');
+    }
+
+    if (!channel.speakable) {
+      return message.reply('I cannot speak in your voice channel.');
+    }
+
+    if (channel.full) {
+      return message.reply('Your voice channel is full.');
+    }
+
+    if (connection && connection.channel !== channel) {
+      return message.reply('you need to be in the same voice channel as me.');
     }
 
     if (args.length < 1) {
