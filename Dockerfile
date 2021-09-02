@@ -21,6 +21,4 @@ RUN npm ci --only=prod
 
 COPY . .
 
-VOLUME /opt/app/config
-
 CMD ["npm", "start"]

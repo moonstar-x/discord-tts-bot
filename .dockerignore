@@ -1,8 +1,34 @@
+# OS Generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Thrashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Node
 node_modules
 npm-debug.log
 
+# Development
 config/settings.json
+dev
+
+# Git
 .github
 .git
+
+# Heroku
 Procfile
 app.json
+
+# Root files
+.eslintignore
+.eslintrc
+.gitignore
+jest.config.js
