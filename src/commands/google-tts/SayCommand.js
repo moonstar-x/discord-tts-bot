@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 const { Command } = require('@greencoast/discord.js-extended');
 const logger = require('@greencoast/logger');
 const GoogleProvider = require('../../classes/tts/providers/GoogleProvider');
@@ -23,6 +24,18 @@ class SayCommand extends Command {
       return message.reply('you need to be in a voice channel first.');
     }
 
+    if (args.length < 1) {
+      return message.reply('you need to specify a message.');
+    }
+
+    if (connection) {
+      if (voice.channel !== channel) {
+        return message.reply('you need to be in the same voice channel as me.');
+      }
+
+      return ttsPlayer.say(args.join(' '), GoogleProvider.NAME);
+    }
+
     if (!channel.viewable) {
       return message.reply('I cannot view your voice channel.');
     }
@@ -37,18 +50,6 @@ class SayCommand extends Command {
 
     if (channel.full) {
       return message.reply('Your voice channel is full.');
-    }
-
-    if (connection && voice.channel !== channel) {
-      return message.reply('you need to be in the same voice channel as me.');
-    }
-
-    if (args.length < 1) {
-      return message.reply('you need to specify a message.');
-    }
-
-    if (connection) {
-      return ttsPlayer.say(args.join(' '), GoogleProvider.NAME);
     }
 
     return channel.join()
