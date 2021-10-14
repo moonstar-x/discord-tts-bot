@@ -27,7 +27,7 @@
     "@discordjs/opus": "^0.5.3",
     "@greencoast/discord.js-extended": "^1.2.0",
     "@greencoast/logger": "^1.1.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "discord.js": "^12.5.3",
     "google-tts-api": "^2.0.2"
   },
