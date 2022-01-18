@@ -28,9 +28,9 @@ class TTSClient extends ExtendedClient {
   initializeDisconnectSchedulers() {
     this.guilds.cache.each((guild) => {
       const scheduler = this.config.get('DISCONNECT_TIMEOUT') !== null ?
-        new Scheduler(this, this.config.get('DISCONNECT_TIMEOUT'), async(channel) => {
-          await channel.leave();
-          logger.warn(`Left ${channel.name} from ${this.name} due to inactivity.`);
+        new Scheduler(this, this.config.get('DISCONNECT_TIMEOUT'), (ttsPlayer) => {
+          const channel = ttsPlayer.stop();
+          logger.warn(`Left ${channel.name} from ${ttsPlayer.guild.name} due to inactivity.`);
         }) :
         null;
 
