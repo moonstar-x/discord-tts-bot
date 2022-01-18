@@ -46,9 +46,10 @@ client
 
 client.registry
   .registerGroups([
+    ['all-tts', 'All TTS Commands'],
+    ['config', 'Configuration Commands'],
     ['google-tts', 'Google TTS Commands'],
     ['other-tts', 'Other TTS Commands'],
-    ['all-tts', 'All TTS Commands'],
     ['misc', 'Miscellaneous Commands']
   ])
   .registerCommandsIn(path.join(__dirname, './commands'));
