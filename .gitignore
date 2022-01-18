@@ -6,6 +6,7 @@ config/settings.json
 
 # Old files
 *.old
+old/
 
 # Env files
 *.env
