@@ -17,7 +17,7 @@ npm-debug.log
 
 # Development
 config/settings.json
-dev
+dev/
 
 # Git
 .github

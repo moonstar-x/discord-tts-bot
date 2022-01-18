@@ -9,3 +9,6 @@ config/settings.json
 
 # Env files
 *.env
+
+# Development files
+dev/
