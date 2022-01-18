@@ -37,7 +37,7 @@ const client = new TTSClient({
       'up for {uptime}.'
     ]
   },
-  intents: ['GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILDS']
+  intents: ['GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILDS', 'GUILD_VOICE_STATES']
 });
 
 client

@@ -14,7 +14,8 @@ class StopCommand extends RegularCommand {
   }
 
   run(message) {
-    const { ttsPlayer, voice, name: guildName } = message.guild;
+    const { voice, name: guildName } = message.guild;
+    const ttsPlayer = this.client.getTTSPlayer(message.guild);
     const connection = voice ? voice.connection : null;
     const channel = voice ? voice.channel : null;
     const { channel: memberChannel } = message.member.voice;
@@ -29,7 +30,7 @@ class StopCommand extends RegularCommand {
 
     ttsPlayer.stop();
     logger.info(`Successfully left the voice channel ${channel.name} from guild ${guildName}`);
-    return message.channel.send(`Successfully left the voice channel ${channel}.`);
+    return message.reply(`Successfully left the voice channel ${channel}.`);
   }
 }
 

@@ -15,7 +15,7 @@ class SpeedCommand extends RegularCommand {
 
   run(message, args) {
     const [newSpeed] = args;
-    const { googleProvider } = message.guild.ttsPlayer;
+    const { googleProvider } = this.client.getTTSPlayer(message.guild);
 
     if (!newSpeed) {
       return message.reply(`to set-up the TTS speed, type: **${this.client.prefix}speed <speed>** and replace *<speed>* with either *normal* or *slow*.`);

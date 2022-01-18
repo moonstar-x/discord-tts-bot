@@ -1,5 +1,6 @@
 /* eslint-disable max-statements */
 const { RegularCommand } = require('@greencoast/discord.js-extended');
+const { joinVoiceChannel } = require('@discordjs/voice');
 const logger = require('@greencoast/logger');
 const GoogleProvider = require('../../classes/tts/providers/GoogleProvider');
 
@@ -17,7 +18,8 @@ class SayCommand extends RegularCommand {
 
   run(message, args) {
     const { channel } = message.member.voice;
-    const { ttsPlayer, name: guildName, voice } = message.guild;
+    const ttsPlayer = this.client.getTTSPlayer(message.guild);
+    const { name: guildName, voice } = message.guild;
     const connection = voice ? voice.connection : null;
 
     if (!channel) {
@@ -52,12 +54,15 @@ class SayCommand extends RegularCommand {
       return message.reply('Your voice channel is full.');
     }
 
-    return channel.join()
-      .then(() => {
-        logger.info(`Joined ${channel.name} in ${guildName}.`);
-        message.channel.send(`Joined ${channel}.`);
-        return ttsPlayer.say(args.join(' '), GoogleProvider.NAME);
-      });
+    joinVoiceChannel({
+      channelId: channel.id,
+      guildId: message.guild.id,
+      adapterCreator: message.guild.voiceAdapterCreator
+    });
+
+    logger.info(`Joined ${channel.name} in ${guildName}.`);
+    message.reply(`Joined ${channel}.`);
+    return ttsPlayer.say(args.join(' '), GoogleProvider.NAME);
   }
 }
 

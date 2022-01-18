@@ -37,6 +37,10 @@ class TTSClient extends ExtendedClient {
       this.disconnectSchedulers.set(guild.id, scheduler);
     });
   }
+
+  getTTSPlayer(guild) {
+    return this.ttsPlayers.get(guild.id);
+  }
 }
 
 module.exports = TTSClient;

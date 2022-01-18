@@ -17,7 +17,8 @@ class AeiouCommand extends RegularCommand {
 
   run(message, args) {
     const { channel } = message.member.voice;
-    const { ttsPlayer, name: guildName, voice } = message.guild;
+    const ttsPlayer = this.client.getTTSPlayer(message.guild);
+    const { name: guildName, voice } = message.guild;
     const connection = voice ? voice.connection : null;
 
     if (!channel) {
@@ -55,7 +56,7 @@ class AeiouCommand extends RegularCommand {
     return channel.join()
       .then(() => {
         logger.info(`Joined ${channel.name} in ${guildName}.`);
-        message.channel.send(`Joined ${channel}.`);
+        message.reply(`Joined ${channel}.`);
         return ttsPlayer.say(args.join(' '), AeiouProvider.NAME);
       });
   }

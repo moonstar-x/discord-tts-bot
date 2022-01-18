@@ -15,7 +15,7 @@ class LangCommand extends RegularCommand {
 
   run(message, args) {
     let [newLang] = args;
-    const { googleProvider } = message.guild.ttsPlayer;
+    const { googleProvider } = this.client.getTTSPlayer(message.guild);
 
     if (!newLang) {
       return message.reply(`to set-up the TTS language, run: **${this.client.prefix}lang <lang_code>**

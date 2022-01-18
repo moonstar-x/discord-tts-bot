@@ -47,7 +47,7 @@ class LangsCommand extends RegularCommand {
   }
 
   run(message) {
-    return message.channel.send(this.langsEmbed);
+    return message.reply(this.langsEmbed);
   }
 }
 
