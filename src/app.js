@@ -1,9 +1,6 @@
 const path = require('path');
-const { Structures } = require('discord.js');
-const { ExtendedClient, ConfigProvider } = require('@greencoast/discord.js-extended');
-const TTSGuild = require('./classes/extensions/TTSGuild');
-
-Structures.extend('Guild', TTSGuild);
+const { ConfigProvider } = require('@greencoast/discord.js-extended');
+const TTSClient = require('./classes/extensions/TTSClient');
 
 const config = new ConfigProvider({
   configPath: path.join(__dirname, '../config/settings.json'),
@@ -25,7 +22,7 @@ const config = new ConfigProvider({
   }
 });
 
-const client = new ExtendedClient({
+const client = new TTSClient({
   config,
   debug: process.argv.includes('--debug'),
   errorOwnerReporting: config.get('OWNER_REPORTING'),
@@ -39,7 +36,8 @@ const client = new ExtendedClient({
       '{num_members} users!',
       'up for {uptime}.'
     ]
-  }
+  },
+  intents: ['GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILDS']
 });
 
 client
@@ -54,5 +52,9 @@ client.registry
     ['misc', 'Miscellaneous Commands']
   ])
   .registerCommandsIn(path.join(__dirname, './commands'));
+
+client.on('ready', () => {
+  client.initializeDependencies();
+});
 
 client.login(config.get('TOKEN'));

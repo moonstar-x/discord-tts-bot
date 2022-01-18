@@ -1,0 +1,42 @@
+const { Collection } = require('discord.js');
+const { ExtendedClient } = require('@greencoast/discord.js-extended');
+const TTSPlayer = require('../tts/TTSPlayer');
+const Scheduler = require('../Scheduler');
+const logger = require('@greencoast/logger');
+
+class TTSClient extends ExtendedClient {
+  constructor(options) {
+    super(options);
+
+    this.ttsPlayers = new Collection();
+    this.disconnectSchedulers = new Collection();
+  }
+
+  initializeDependencies() {
+    this.initializeDisconnectSchedulers();
+    this.initializeTTSPlayers();
+  }
+
+  initializeTTSPlayers() {
+    this.guilds.cache.each((guild) => {
+      const scheduler = this.disconnectSchedulers.get(guild.id);
+
+      this.ttsPlayers.set(guild.id, new TTSPlayer(guild, scheduler));
+    });
+  }
+
+  initializeDisconnectSchedulers() {
+    this.guilds.cache.each((guild) => {
+      const scheduler = this.config.get('DISCONNECT_TIMEOUT') !== null ?
+        new Scheduler(this, this.config.get('DISCONNECT_TIMEOUT'), async(channel) => {
+          await channel.leave();
+          logger.warn(`Left ${channel.name} from ${this.name} due to inactivity.`);
+        }) :
+        null;
+
+      this.disconnectSchedulers.set(guild.id, scheduler);
+    });
+  }
+}
+
+module.exports = TTSClient;

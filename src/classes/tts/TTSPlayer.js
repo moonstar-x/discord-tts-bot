@@ -5,8 +5,9 @@ const Queue = require('../Queue');
 const { InvalidProviderError } = require('../../errors');
 
 class TTSPlayer {
-  constructor(guild) {
+  constructor(guild, disconnectScheduler) {
     this.guild = guild;
+    this.disconnectScheduler = disconnectScheduler;
 
     this.queue = new Queue();
     this.speaking = false;
@@ -19,7 +20,7 @@ class TTSPlayer {
     switch (providerName) {
       case GoogleProvider.NAME:
         return this.googleProvider;
-    
+
       case AeiouProvider.NAME:
         return this.aeiouProvider;
 
@@ -87,24 +88,24 @@ class TTSPlayer {
   }
 
   startDisconnectScheduler() {
-    if (!this.guild.disconnectScheduler) {
+    if (!this.disconnectScheduler) {
       return;
     }
-    
-    if (this.guild.disconnectScheduler.isAlive()) {
-      this.guild.disconnectScheduler.refresh();
+
+    if (this.disconnectScheduler.isAlive()) {
+      this.disconnectScheduler.refresh();
     } else {
-      this.guild.disconnectScheduler.start(this.guild.voice.channel);
+      this.disconnectScheduler.start(this.guild.voice.channel);
     }
   }
 
   stopDisconnectScheduler() {
-    if (!this.guild.disconnectScheduler) {
+    if (!this.disconnectScheduler) {
       return;
     }
-    
-    if (this.guild.disconnectScheduler.isAlive()) {
-      this.guild.disconnectScheduler.stop();
+
+    if (this.disconnectScheduler.isAlive()) {
+      this.disconnectScheduler.stop();
     }
   }
 }
