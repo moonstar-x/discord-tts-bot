@@ -1,8 +1,9 @@
 const logger = require('@greencoast/logger');
-const { getVoiceConnection } = require('@discordjs/voice');
+const { createAudioResource } = require('@discordjs/voice');
 const GoogleProvider = require('./providers/GoogleProvider');
 const AeiouProvider = require('./providers/AeiouProvider');
 const Queue = require('../Queue');
+const VoiceManager = require('../VoiceManager');
 const { InvalidProviderError } = require('../../errors');
 
 class TTSPlayer {
@@ -12,9 +13,27 @@ class TTSPlayer {
 
     this.queue = new Queue();
     this.speaking = false;
+    this.voice = new VoiceManager(guild);
+
+    this.initializePlayer();
 
     this.googleProvider = new GoogleProvider();
     this.aeiouProvider = new AeiouProvider();
+  }
+
+  initializePlayer() {
+    this.voice.player.on('error', (error) => {
+      logger.error(error);
+      this.speaking = false;
+      this.play();
+    });
+
+    this.voice.player.on('idle', () => {
+      if (this.speaking) {
+        this.speaking = false;
+        this.play();
+      }
+    });
   }
 
   getProvider(providerName) {
@@ -32,7 +51,6 @@ class TTSPlayer {
 
   async say(sentence, providerName) {
     const provider = this.getProvider(providerName);
-
     const payload = await provider.createPayload(sentence);
 
     if (Array.isArray(payload)) {
@@ -59,32 +77,21 @@ class TTSPlayer {
     logger.info(provider.getPlayLogMessage(payload, this.guild));
 
     this.speaking = true;
-    const connection = getVoiceConnection(this.guild.id);
-    const dispatcher = await connection.play(payload.resource);
-
-    dispatcher.on('speaking', (speaking) => {
-      if (!speaking) {
-        this.speaking = false;
-        this.play();
+    this.voice.play(createAudioResource(payload.resource, {
+      metadata: {
+        title: payload.sentence
       }
-    });
-
-    dispatcher.on('error', (error) => {
-      logger.error(error);
-      this.speaking = false;
-      this.play();
-    });
+    }));
   }
 
   stop() {
-    const { channel } = this.guild.voice;
-    const connection = getVoiceConnection(this.guild.id);
+    const { channel } = this.guild.me.voice;
 
     this.stopDisconnectScheduler();
 
     this.queue.clear();
     this.speaking = false;
-    connection.destroy();
+    this.voice.disconnect();
 
     return channel;
   }
@@ -97,7 +104,7 @@ class TTSPlayer {
     if (this.disconnectScheduler.isAlive()) {
       this.disconnectScheduler.refresh();
     } else {
-      this.disconnectScheduler.start(this.guild.voice.channel);
+      this.disconnectScheduler.start(this);
     }
   }
 

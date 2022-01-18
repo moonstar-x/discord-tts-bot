@@ -32,7 +32,8 @@
     "axios": "^0.25.0",
     "discord.js": "^13.6.0",
     "google-tts-api": "^2.0.2",
-    "redis": "^4.0.2"
+    "redis": "^4.0.2",
+    "tweetnacl": "^1.0.3"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
