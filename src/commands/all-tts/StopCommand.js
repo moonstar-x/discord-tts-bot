@@ -14,9 +14,9 @@ class StopCommand extends RegularCommand {
   }
 
   run(message) {
-    const { voice, name: guildName } = message.guild;
+    const { me: { voice }, name: guildName } = message.guild;
     const ttsPlayer = this.client.getTTSPlayer(message.guild);
-    const connection = voice ? voice.connection : null;
+    const connection = ttsPlayer.voice.getConnection();
     const channel = voice ? voice.channel : null;
     const { channel: memberChannel } = message.member.voice;
 
