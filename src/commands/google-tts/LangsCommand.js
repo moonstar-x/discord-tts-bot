@@ -1,10 +1,10 @@
-const { Command } = require('@greencoast/discord.js-extended');
+const { RegularCommand } = require('@greencoast/discord.js-extended');
 const { MessageEmbed } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../common/constants');
 const { splitContentForEmbedFields } = require('../../common/utils');
 const languages = require('../../../data/languages.json');
 
-class LangsCommand extends Command {
+class LangsCommand extends RegularCommand {
   constructor(client) {
     super(client, {
       name: 'langs',

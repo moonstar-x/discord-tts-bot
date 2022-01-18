@@ -1,9 +1,9 @@
 /* eslint-disable max-statements */
-const { Command } = require('@greencoast/discord.js-extended');
+const { RegularCommand } = require('@greencoast/discord.js-extended');
 const logger = require('@greencoast/logger');
 const AeiouProvider = require('../../classes/tts/providers/AeiouProvider');
 
-class AeiouCommand extends Command {
+class AeiouCommand extends RegularCommand {
   constructor(client) {
     super(client, {
       name: 'aeiou',

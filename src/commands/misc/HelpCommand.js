@@ -1,8 +1,8 @@
-const { Command } = require('@greencoast/discord.js-extended');
+const { RegularCommand } = require('@greencoast/discord.js-extended');
 const { MessageEmbed } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../common/constants');
 
-class HelpCommand extends Command {
+class HelpCommand extends RegularCommand {
   constructor(client) {
     super(client, {
       name: 'help',
@@ -38,7 +38,7 @@ class HelpCommand extends Command {
 
     embed.addField('Spotted a bug?', `This bot is far from perfect, so in case you found a bug, please report it in this bot's [**GitHub Issues Page**](${MESSAGE_EMBED.helpURL}).`);
 
-    return message.channel.send(embed);
+    return message.channel.send({ embeds: [embed] });
   }
 }
 

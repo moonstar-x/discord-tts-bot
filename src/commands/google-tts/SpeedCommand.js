@@ -1,8 +1,8 @@
-const { Command } = require('@greencoast/discord.js-extended');
+const { RegularCommand } = require('@greencoast/discord.js-extended');
 const logger = require('@greencoast/logger');
 const { GoogleProviderError } = require('../../errors');
 
-class SpeedCommand extends Command {
+class SpeedCommand extends RegularCommand {
   constructor(client) {
     super(client, {
       name: 'speed',

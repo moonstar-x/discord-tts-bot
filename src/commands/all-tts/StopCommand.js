@@ -1,7 +1,7 @@
-const { Command } = require('@greencoast/discord.js-extended');
+const { RegularCommand } = require('@greencoast/discord.js-extended');
 const logger = require('@greencoast/logger');
 
-class StopCommand extends Command {
+class StopCommand extends RegularCommand {
   constructor(client) {
     super(client, {
       name: 'stop',
