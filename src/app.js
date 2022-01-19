@@ -3,6 +3,7 @@ const { ConfigProvider } = require('@greencoast/discord.js-extended');
 const RedisDataProvider = require('@greencoast/discord.js-extended/dist/providers/RedisDataProvider').default;
 const LevelDataProvider = require('@greencoast/discord.js-extended/dist/providers/LevelDataProvider').default;
 const TTSClient = require('./classes/extensions/TTSClient');
+const { locales } = require('./locales');
 
 const SUPPORTED_PROVIDERS = ['level', 'redis'];
 
@@ -55,6 +56,10 @@ const client = new TTSClient({
     ]
   },
   testingGuildID: config.get('TESTING_GUILD_ID'),
+  localizer: {
+    defaultLocale: 'en',
+    localeStrings: locales
+  },
   intents: ['GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILDS', 'GUILD_VOICE_STATES']
 });
 
@@ -87,6 +92,7 @@ client.on('ready', async() => {
   client.initializeDependencies();
 
   await client.setDataProvider(createProvider(config.get('PROVIDER_TYPE')));
+  await client.localizer.init();
 
   if (config.get('TESTING_GUILD_ID')) {
     client.deployer.rest.setToken(config.get('TOKEN'));
