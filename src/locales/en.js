@@ -20,14 +20,18 @@ const COMMAND = {
   'command.settings.my.embed.description': "Keep in mind that if you haven't set a setting yet you will see the default ones here.",
   'command.settings.my.current.provider': 'Current provider',
 
-  'command.set.default.provider.success': `You have successfully changed the default provider to **{name}**.`,
+  'command.set.default.provider.success': 'You have successfully changed the default provider to **{name}**.',
 
-  'command.set.my.provider.success': `You have successfully changed your provider to **{name}**.`,
+  'command.set.my.provider.success': 'You have successfully changed your provider to **{name}**.',
 
   'command.say.no_channel': 'You need to be in a voice channel first.',
   'command.say.different_channel': 'You need to be in my same voice channel to say something.',
   'command.say.success': 'I will say that now.',
-  'command.say.joined': 'Joined {channel}.'
+  'command.say.joined': 'Joined {channel}.',
+
+  'command.stop.no_connection': "I'm not in a voice channel.",
+  'command.stop.different_channel': 'You need to be in my voice channel to stop me.',
+  'command.stop.success': 'Successfully left the voice channel {channel}.'
 };
 
 module.exports = {
