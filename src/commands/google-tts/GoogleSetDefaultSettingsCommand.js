@@ -4,11 +4,11 @@ const logger = require('@greencoast/logger');
 const GoogleProvider = require('../../classes/tts/providers/GoogleProvider');
 const languages = require('../../../provider-data/google_languages.json');
 
-class GoogleSetMySettingsCommand extends SlashCommand {
+class GoogleSetDefaultSettingsCommand extends SlashCommand {
   constructor(client) {
     super(client, {
-      name: 'google_set_my',
-      description: 'Sets the settings to be used by the say and google_say command for yourself.',
+      name: 'google_set_default',
+      description: 'Sets the settings to be used by the say and google_say command by default.',
       emoji: ':pencil2:',
       group: 'google-tts',
       guildOnly: true,
@@ -16,7 +16,7 @@ class GoogleSetMySettingsCommand extends SlashCommand {
         .addSubcommand((input) => {
           return input
             .setName('language')
-            .setDescription('Sets the language to be used by the say and google_say command for yourself.')
+            .setDescription('Sets the language to be used by the say and google_say command by default.')
             .addStringOption((input) => {
               return input
                 .setName('value')
@@ -27,7 +27,7 @@ class GoogleSetMySettingsCommand extends SlashCommand {
         .addSubcommand((input) => {
           return input
             .setName('speed')
-            .setDescription('Sets the speed to be used by the say and google_say command for yourself.')
+            .setDescription('Sets the speed to be used by the say and google_say command by default.')
             .addStringOption((input) => {
               return input
                 .setName('value')
@@ -43,19 +43,19 @@ class GoogleSetMySettingsCommand extends SlashCommand {
     const language = interaction.options.getString('value');
     const languageName = languages[language].name;
 
-    await this.client.ttsSettings.set(interaction.member, { extras: { language } });
+    await this.client.ttsSettings.set(interaction.guild, { extras: { language } });
 
-    logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their google language to ${language}.`);
-    return interaction.reply({ content: `You have successfully changed your language to **${languageName}**.`, ephemeral: true });
+    logger.info(`${interaction.guild.name} has changed its default google language to ${language}.`);
+    return interaction.reply({ content: `You have successfully changed the default language to **${languageName}**.` });
   }
 
   async handleSpeed(interaction) {
     const speed = interaction.options.getString('value');
 
-    await this.client.ttsSettings.set(interaction.member, { extras: { speed } });
+    await this.client.ttsSettings.set(interaction.guild, { extras: { speed } });
 
-    logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their google speed to ${speed}.`);
-    return interaction.reply({ content: `You have successfully changed your speed to **${speed}**.`, ephemeral: true });
+    logger.info(`${interaction.guild.name} has changed its default google google speed to ${speed}.`);
+    return interaction.reply({ content: `You have successfully changed the default speed to **${speed}**.` });
   }
 
   async run(interaction) {
@@ -67,9 +67,9 @@ class GoogleSetMySettingsCommand extends SlashCommand {
       case 'speed':
         return this.handleSpeed(interaction);
       default:
-        throw new Error(`Invalid subcommand ${subCommand} supplied to GoogleSetMySettingsCommand.`);
+        throw new Error(`Invalid subcommand ${subCommand} supplied to GoogleSetDefaultSettingsCommand.`);
     }
   }
 }
 
-module.exports = GoogleSetMySettingsCommand;
+module.exports = GoogleSetDefaultSettingsCommand;
