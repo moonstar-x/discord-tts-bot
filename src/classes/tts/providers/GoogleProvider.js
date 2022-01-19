@@ -2,7 +2,7 @@ const googleTTS = require('google-tts-api');
 const AbstractProvider = require('./AbstractProvider');
 const Payload = require('../Payload');
 const { GoogleProviderError } = require('../../../errors');
-const languages = require('../../../../data/languages.json');
+const languages = require('../../../../data/google_languages.json');
 
 /**
  * A concrete TTS provider for the Google Translate API TTS.
