@@ -40,7 +40,7 @@ const client = new TTSClient({
     ]
   },
   testingGuildID: config.get('TESTING_GUILD_ID'),
-  intents: ['GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILDS', 'GUILD_VOICE_STATES']
+  intents: ['GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILDS', 'GUILD_VOICE_STATES', 'GUILD_MESSAGES']
 });
 
 client
@@ -63,6 +63,21 @@ client.on('ready', async() => {
   if (config.get('TESTING_GUILD_ID')) {
     client.deployer.rest.setToken(config.get('TOKEN'));
     await client.deployer.deployToTestingGuild();
+  }
+});
+
+// This will be removed in a future update.
+client.on('messageCreate', (message) => {
+  if (message.author.bot || !message.guild || !message.content.startsWith(client.prefix)) {
+    return;
+  }
+
+  const args = message.content.slice(client.prefix.length).trim().split(/ +/);
+  const commandName = args.shift()?.toLowerCase();
+  const command = client.registry.resolveCommand(commandName);
+
+  if (command) {
+    return message.reply(`Commands have been turned into slash commands and you may not use them with the prefix anymore. You can run the command you tried to input by running: **/${commandName}**`);
   }
 });
 
