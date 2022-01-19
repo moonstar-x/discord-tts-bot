@@ -1,7 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const merge = require('deepmerge');
 const { MESSAGE_EMBED } = require('../../common/constants');
 const TTSPlayer = require('../../classes/tts/TTSPlayer');
 
@@ -37,11 +36,7 @@ class MySettingsCommand extends SlashCommand {
   }
 
   async run(interaction) {
-    const memberSettings = await this.client.ttsSettings.get(interaction.member);
-    const guildSettings = await this.client.ttsSettings.get(interaction.guild);
-
-    const currentSettings = merge.all([TTSPlayer.DEFAULT_SETTINGS, guildSettings, memberSettings]);
-    const { provider, ...restSettings } = currentSettings;
+    const { provider, ...restSettings } = await this.client.ttsSettings.getCurrent(interaction);
 
     const fields = this.prepareFields(restSettings);
     const embed = new MessageEmbed()

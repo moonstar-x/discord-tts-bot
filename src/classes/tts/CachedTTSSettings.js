@@ -1,5 +1,7 @@
 /* eslint-disable max-params */
 const { Collection, Guild, GuildMember, Channel } = require('discord.js');
+const TTSPlayer = require('./TTSPlayer');
+const merge = require('deepmerge');
 
 class CachedTTSSettings {
   constructor(client) {
@@ -38,6 +40,13 @@ class CachedTTSSettings {
     }
 
     throw new Error('Invalid entity instance passed to CachedTTSSettings.get');
+  }
+
+  async getCurrent(interaction) {
+    const memberSettings = await this.client.ttsSettings.get(interaction.member);
+    const guildSettings = await this.client.ttsSettings.get(interaction.guild);
+
+    return merge.all([TTSPlayer.DEFAULT_SETTINGS, guildSettings, memberSettings]);
   }
 
   async _set(key, settings, cache, guild) {
