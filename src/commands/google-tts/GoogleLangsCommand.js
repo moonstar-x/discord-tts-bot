@@ -16,18 +16,14 @@ class GoogleLangsCommand extends SlashCommand {
       dataBuilder: new SlashCommandBuilder()
     });
 
-    this.embed = this.createEmbed();
+    this.embed = null;
   }
 
-  createEmbed() {
+  createEmbed(localizer) {
     const embed = new MessageEmbed()
-      .setTitle('List of supported languages:')
+      .setTitle(localizer.t('command.google.langs.embed.title'))
       .setColor(MESSAGE_EMBED.color)
-      .setDescription(`This is a full list of all the languages that are supported by this TTS bot. 
-    
-      To change language for yourself, use **/google_set_my language <lang_code>**.
-      You may also use **/google_set_default language <lang_code>** to change the default language in case
-      someone else does not have one set.`)
+      .setDescription(localizer.t('command.google.langs.embed.description'))
       .setThumbnail(MESSAGE_EMBED.langThumbnail)
       .setURL(MESSAGE_EMBED.langURL);
 
@@ -38,7 +34,7 @@ class GoogleLangsCommand extends SlashCommand {
     const splitContent = splitContentForEmbedFields(content);
 
     splitContent.forEach((field, index) => {
-      embed.addField(`Page ${index + 1}:`, field);
+      embed.addField(localizer.t('command.google.langs.embed.page', { number: index + 1 }), field);
     });
 
     return embed;
@@ -51,6 +47,10 @@ class GoogleLangsCommand extends SlashCommand {
   }
 
   run(interaction) {
+    if (!this.embed) {
+      this.embed = this.createEmbed(this.client.localizer.getLocalizer(interaction.guild));
+    }
+
     return interaction.reply({ embeds: [this.embed] });
   }
 }

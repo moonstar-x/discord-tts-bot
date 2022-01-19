@@ -42,7 +42,15 @@ const COMMAND = {
 
   'command.google.settings.my.language.invalid': "That's not a valid language. Type **/google_langs** for a list of available languages.",
   'command.google.settings.my.language.success': 'You have successfully changed your language to **{language}**.',
-  'command.google.settings.my.speed.success': 'You have successfully changed your speed to **{speed}**.'
+  'command.google.settings.my.speed.success': 'You have successfully changed your speed to **{speed}**.',
+
+  'command.google.langs.embed.title': 'List of supported languages by the Google provider:',
+  'command.google.langs.embed.description': `This is a full list of all the languages that are supported by the Google Translate provider.
+    
+      To change language for yourself, use **/google_set_my language LANG_CODE**.
+      You may also use **/google_set_default language LANG_CODE** to change the default language in case
+      someone else does not have one set.`,
+  'command.google.langs.embed.page': 'Page {number}:'
 };
 
 module.exports = {
