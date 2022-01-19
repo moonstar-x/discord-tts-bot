@@ -40,7 +40,7 @@ class MySettingsCommand extends SlashCommand {
 
     const fields = this.prepareFields(restSettings);
     const embed = new MessageEmbed()
-      .setTitle(`Here's your current settings ${interaction.member.displayName}`)
+      .setTitle(`Here's your current settings for ${interaction.member.displayName}`)
       .setColor(MESSAGE_EMBED.color)
       .setDescription("Keep in mind that if you haven't set a setting yet you will see the default ones here.")
       .addField('Current Provider', TTSPlayer.PROVIDER_FRIENDLY_NAMES[provider]);
