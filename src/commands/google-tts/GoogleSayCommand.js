@@ -27,6 +27,9 @@ class GoogleSayCommand extends SlashCommand {
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);
     const connection = ttsPlayer.voice.getConnection();
 
+    const currentSettings = await this.client.ttsSettings.getCurrent(interaction);
+    const extras = currentSettings[GoogleProvider.NAME];
+
     const { me: { voice: myVoice }, name: guildName } = interaction.guild;
     const { channel: memberChannel } = interaction.member.voice;
     const myChannel = myVoice?.channel;
@@ -42,7 +45,7 @@ class GoogleSayCommand extends SlashCommand {
       }
 
       await interaction.reply({ content: 'I will say that now.', ephemeral: true });
-      return ttsPlayer.say(message, GoogleProvider.NAME);
+      return ttsPlayer.say(message, GoogleProvider.NAME, extras);
     }
 
     const cantConnectReason = getCantConnectToChannelReason(memberChannel);
@@ -53,7 +56,7 @@ class GoogleSayCommand extends SlashCommand {
     await ttsPlayer.voice.connect(memberChannel);
     logger.info(`Joined ${memberChannel.name} in ${guildName}.`);
     await interaction.reply({ content: `Joined ${memberChannel}.` });
-    return ttsPlayer.say(message, GoogleProvider.NAME);
+    return ttsPlayer.say(message, GoogleProvider.NAME, extras);
   }
 }
 
