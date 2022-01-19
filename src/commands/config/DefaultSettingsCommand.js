@@ -17,14 +17,14 @@ class DefaultSettingsCommand extends SlashCommand {
     });
   }
 
-  prepareFields(settings) {
+  prepareFields(settings, localizer) {
     return Object.keys(TTSPlayer.PROVIDER_FRIENDLY_NAMES).map((name) => {
       const friendlyName = TTSPlayer.PROVIDER_FRIENDLY_NAMES[name];
       const values = settings[name];
       const valueKeys = Object.keys(values);
 
       if (valueKeys.length < 1) {
-        return { title: friendlyName, text: 'No settings associated to this provider.' };
+        return { title: friendlyName, text: localizer.t('command.settings.default.no_settings') };
       }
 
       const text = valueKeys.reduce((text, key) => {
@@ -37,16 +37,17 @@ class DefaultSettingsCommand extends SlashCommand {
   }
 
   async run(interaction) {
+    const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const guildSettings = await this.client.ttsSettings.get(interaction.guild);
     const currentSettings = merge(TTSPlayer.DEFAULT_SETTINGS, guildSettings);
     const { provider, ...restSettings } = currentSettings;
 
-    const fields = this.prepareFields(restSettings);
+    const fields = this.prepareFields(restSettings, localizer);
     const embed = new MessageEmbed()
-      .setTitle("Here's the current default settings for this guild")
+      .setTitle(localizer.t('command.settings.default.embed.title'))
       .setColor(MESSAGE_EMBED.color)
-      .setDescription('Keep in mind that these settings do not reflect what your personal may be. These settings will be used if you have not set your own.')
-      .addField('Current Provider', TTSPlayer.PROVIDER_FRIENDLY_NAMES[provider]);
+      .setDescription(localizer.t('command.settings.default.embed.description'))
+      .addField(localizer.t('command.settings.default.current.provider'), TTSPlayer.PROVIDER_FRIENDLY_NAMES[provider]);
 
     for (const key in fields) {
       const field = fields[key];
