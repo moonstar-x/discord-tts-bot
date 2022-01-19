@@ -28,7 +28,7 @@ class SetDefaultProviderCommand extends SlashCommand {
     await this.client.ttsSettings.set(interaction.guild, { provider: providerName });
 
     logger.info(`Guild ${interaction.guild.name} has changed its default provider to ${providerName}.`);
-    return interaction.reply({ content: `You have successfully changed the default provider to ${providerName}.` });
+    return interaction.reply({ content: `You have successfully changed the default provider to **${providerName}**.` });
   }
 }
 
