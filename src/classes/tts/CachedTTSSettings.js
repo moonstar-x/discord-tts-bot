@@ -41,8 +41,11 @@ class CachedTTSSettings {
   }
 
   async _set(key, settings, cache, guild) {
-    await this.client.dataProvider.set(guild, key, settings);
-    cache.set(key, settings);
+    const stored = await this._get(key, cache, guild);
+    const newSettings = { ...stored, ...settings };
+
+    await this.client.dataProvider.set(guild, key, newSettings);
+    cache.set(key, newSettings);
   }
 
   async set(entity, settings) {
