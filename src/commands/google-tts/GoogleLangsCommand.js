@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../common/constants');
 const { splitContentForEmbedFields } = require('../../utils/embed');
-const languages = require('../../../data/google_languages.json');
+const languages = require('../../../provider-data/google_languages.json');
 
 class GoogleLangsCommand extends SlashCommand {
   constructor(client) {
