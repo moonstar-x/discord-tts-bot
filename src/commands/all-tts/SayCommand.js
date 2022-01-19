@@ -34,29 +34,30 @@ class SayCommand extends SlashCommand {
     const message = interaction.options.getString('message');
 
     if (!memberChannel) {
-      return interaction.reply('You need to be in a voice channel first.');
+      return interaction.reply({ content: 'You need to be in a voice channel first.', ephemeral: true });
     }
 
     if (!message) {
-      return interaction.reply('You need to specify a message.');
+      return interaction.reply({ content: 'You need to specify a message.', ephemeral: true });
     }
 
     if (connection) {
       if (myChannel !== memberChannel) {
-        return interaction.reply('You need to be in my same voice channel to say something.');
+        return interaction.reply({ content: 'You need to be in my same voice channel to say something.', ephemeral: true });
       }
 
+      await interaction.reply({ content: 'I will say that now.', ephemeral: true });
       return ttsPlayer.say(message, GoogleProvider.NAME);
     }
 
     const cantConnectReason = getCantConnectToChannelReason(memberChannel);
     if (cantConnectReason) {
-      return interaction.reply(cantConnectReason);
+      return interaction.reply({ content: cantConnectReason, ephemeral: true });
     }
 
     await ttsPlayer.voice.connect(memberChannel);
     logger.info(`Joined ${memberChannel.name} in ${guildName}.`);
-    await interaction.reply(`Joined ${memberChannel}.`);
+    await interaction.reply({ content: `Joined ${memberChannel}.` });
     return ttsPlayer.say(message, GoogleProvider.NAME);
   }
 }

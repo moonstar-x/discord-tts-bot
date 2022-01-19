@@ -24,16 +24,16 @@ class StopCommand extends SlashCommand {
     const { channel: memberChannel } = interaction.member.voice;
 
     if (!connection) {
-      return interaction.reply("I'm not in a voice channel.");
+      return interaction.reply({ content: "I'm not in a voice channel.", ephemeral: true });
     }
 
     if (!memberChannel || myChannel !== memberChannel) {
-      return interaction.reply('You need to be in my voice channel to stop me.');
+      return interaction.reply({ content: 'You need to be in my voice channel to stop me.', ephemeral: true });
     }
 
     ttsPlayer.stop();
     logger.info(`Successfully left the voice channel ${myChannel.name} from guild ${guildName}.`);
-    return interaction.reply(`Successfully left the voice channel ${myChannel}.`);
+    return interaction.reply({ content: `Successfully left the voice channel ${myChannel}.` });
   }
 }
 
