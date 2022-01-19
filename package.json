@@ -9,7 +9,8 @@
     "dev": "nodemon --exec npm start",
     "lint:errors-only": "node_modules/.bin/eslint src --quiet",
     "lint": "node_modules/.bin/eslint src",
-    "deploy": "node ./src/command-deployer.js"
+    "deploy": "node ./src/command-deployer.js",
+    "start-sharded": "node ./src/sharded-client.js"
   },
   "engines": {
     "node": ">=16.6"
