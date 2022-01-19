@@ -115,7 +115,8 @@ client.on('messageCreate', (message) => {
   const command = client.registry.resolveCommand(commandName);
 
   if (command) {
-    return message.reply(`Commands have been turned into slash commands and you may not use them with the prefix anymore. You can run the command you tried to input by running: **/${commandName}**`);
+    const localizer = client.localizer.getLocalizer(message.guild);
+    return message.reply(localizer.t('app.message.deprecated', { commandName }));
   }
 });
 
