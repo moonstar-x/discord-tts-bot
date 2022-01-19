@@ -2,7 +2,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const logger = require('@greencoast/logger');
-const GoogleProvider = require('../../classes/tts/providers/GoogleProvider');
 const { getCantConnectToChannelReason } = require('../../utils/channel');
 
 class SayCommand extends SlashCommand {
@@ -25,6 +24,7 @@ class SayCommand extends SlashCommand {
   }
 
   async run(interaction) {
+    const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);
     const connection = ttsPlayer.voice.getConnection();
 
@@ -37,26 +37,26 @@ class SayCommand extends SlashCommand {
     const message = interaction.options.getString('message');
 
     if (!memberChannel) {
-      return interaction.reply({ content: 'You need to be in a voice channel first.', ephemeral: true });
+      return interaction.reply({ content: localizer.t('command.say.no_channel'), ephemeral: true });
     }
 
     if (connection) {
       if (myChannel !== memberChannel) {
-        return interaction.reply({ content: 'You need to be in my same voice channel to say something.', ephemeral: true });
+        return interaction.reply({ content: localizer.t('command.say.different_channel'), ephemeral: true });
       }
 
-      await interaction.reply({ content: 'I will say that now.', ephemeral: true });
+      await interaction.reply({ content: localizer.t('command.say.success'), ephemeral: true });
       return ttsPlayer.say(message, currentSettings.provider, extras);
     }
 
     const cantConnectReason = getCantConnectToChannelReason(memberChannel);
     if (cantConnectReason) {
-      return interaction.reply({ content: cantConnectReason, ephemeral: true });
+      return interaction.reply({ content: localizer.t(cantConnectReason), ephemeral: true });
     }
 
     await ttsPlayer.voice.connect(memberChannel);
     logger.info(`Joined ${memberChannel.name} in ${guildName}.`);
-    await interaction.reply({ content: `Joined ${memberChannel}.` });
+    await interaction.reply({ content: localizer.t('command.say.joined', { channel: memberChannel.toString() }) });
     return ttsPlayer.say(message, currentSettings.provider, extras);
   }
 }
