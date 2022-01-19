@@ -22,7 +22,12 @@ const COMMAND = {
 
   'command.set.default.provider.success': `You have successfully changed the default provider to **{name}**.`,
 
-  'command.set.my.provider.success': `You have successfully changed your provider to **{name}**.`
+  'command.set.my.provider.success': `You have successfully changed your provider to **{name}**.`,
+
+  'command.say.no_channel': 'You need to be in a voice channel first.',
+  'command.say.different_channel': 'You need to be in my same voice channel to say something.',
+  'command.say.success': 'I will say that now.',
+  'command.say.joined': 'Joined {channel}.'
 };
 
 module.exports = {
