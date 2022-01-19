@@ -29,4 +29,7 @@ class AeiouProvider extends AbstractProvider {
 AeiouProvider.NAME = 'aeiou';
 AeiouProvider.FRIENDLY_NAME = 'Aeiou Provider';
 
+AeiouProvider.EXTRA_FIELDS = [];
+AeiouProvider.EXTRA_DEFAULTS = {};
+
 module.exports = AeiouProvider;

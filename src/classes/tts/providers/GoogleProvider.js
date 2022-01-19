@@ -10,8 +10,8 @@ const languages = require('../../../../provider-data/google_languages.json');
 class GoogleProvider extends AbstractProvider {
   constructor() {
     super();
-    this.lang = 'en';
-    this.speed = 'normal';
+    this.lang = GoogleProvider.EXTRA_DEFAULTS.lang;
+    this.speed = GoogleProvider.EXTRA_DEFAULTS.speed;
   }
 
   createPayload(sentence) {
@@ -72,6 +72,10 @@ GoogleProvider.NAME = 'Google';
 GoogleProvider.FRIENDLY_NAME = 'Google Translate Provider';
 
 GoogleProvider.EXTRA_FIELDS = ['lang', 'speed'];
+GoogleProvider.EXTRA_DEFAULTS = {
+  lang: 'en',
+  speed: 'normal'
+};
 
 GoogleProvider.getSupportedSpeedChoices = () => {
   return [
