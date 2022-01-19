@@ -23,7 +23,7 @@ class AbstractProvider {
    * Gets the message to log once a TTS message has been played.
    * @param {Payload} payload The payload for this TTS message.
    * @param {Discord.Guild} guild The guild where the TTS message was played.
-   * @returns The message to log once the TTS message has been played.
+   * @returns {string} The message to log once the TTS message has been played.
    */
   getPlayLogMessage(payload, guild) {
     throw new Error('Method not implemented!');
