@@ -43,9 +43,9 @@ class GoogleProvider extends AbstractProvider {
 GoogleProvider.NAME = 'Google';
 GoogleProvider.FRIENDLY_NAME = 'Google Translate Provider';
 
-GoogleProvider.EXTRA_FIELDS = ['lang', 'speed'];
+GoogleProvider.EXTRA_FIELDS = ['language', 'speed'];
 GoogleProvider.EXTRA_DEFAULTS = {
-  lang: 'en',
+  language: 'en',
   speed: 'normal'
 };
 
