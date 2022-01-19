@@ -41,12 +41,16 @@ class GoogleSetDefaultSettingsCommand extends SlashCommand {
 
   async handleLanguage(interaction) {
     const lang = interaction.options.getString('value');
-    const languageName = languages[lang].name;
+    const languageInfo = languages[lang];
+
+    if (!languageInfo) {
+      return interaction.reply({ content: "That's not a valid language. Type **/google_langs** for a list of available languages." });
+    }
 
     await this.client.ttsSettings.set(interaction.guild, { [GoogleProvider.NAME]: { lang } });
 
     logger.info(`${interaction.guild.name} has changed its default google language to ${lang}.`);
-    return interaction.reply({ content: `You have successfully changed the default language to **${languageName}**.` });
+    return interaction.reply({ content: `You have successfully changed the default language to **${languageInfo.name}**.` });
   }
 
   async handleSpeed(interaction) {
