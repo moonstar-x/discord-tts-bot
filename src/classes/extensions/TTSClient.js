@@ -21,7 +21,7 @@ class TTSClient extends ExtendedClient {
     this.guilds.cache.each((guild) => {
       const scheduler = this.disconnectSchedulers.get(guild.id);
 
-      this.ttsPlayers.set(guild.id, new TTSPlayer(guild, scheduler));
+      this.ttsPlayers.set(guild.id, new TTSPlayer(this, guild, scheduler));
     });
   }
 

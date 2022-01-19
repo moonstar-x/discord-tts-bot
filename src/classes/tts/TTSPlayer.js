@@ -7,7 +7,8 @@ const VoiceManager = require('../VoiceManager');
 const { InvalidProviderError } = require('../../errors');
 
 class TTSPlayer {
-  constructor(guild, disconnectScheduler) {
+  constructor(client, guild, disconnectScheduler) {
+    this.client = client;
     this.guild = guild;
     this.disconnectScheduler = disconnectScheduler;
 
