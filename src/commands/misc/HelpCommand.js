@@ -26,9 +26,10 @@ class HelpCommand extends SlashCommand {
   }
 
   run(interaction) {
+    const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const fields = this.prepareFields();
     const embed = new MessageEmbed()
-      .setTitle('Text-to-Speech Help Message')
+      .setTitle(localizer.t('command.help.embed.title'))
       .setColor(MESSAGE_EMBED.color)
       .setThumbnail(MESSAGE_EMBED.helpThumbnail);
 
@@ -42,7 +43,7 @@ class HelpCommand extends SlashCommand {
         new MessageButton()
           .setStyle('LINK')
           .setEmoji('🐛')
-          .setLabel('Spotted a bug? Report it!')
+          .setLabel(localizer.t('command.help.links.bug'))
           .setURL(MESSAGE_EMBED.helpURL)
       );
 

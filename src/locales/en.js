@@ -31,7 +31,10 @@ const COMMAND = {
 
   'command.stop.no_connection': "I'm not in a voice channel.",
   'command.stop.different_channel': 'You need to be in my voice channel to stop me.',
-  'command.stop.success': 'Successfully left the voice channel {channel}.'
+  'command.stop.success': 'Successfully left the voice channel {channel}.',
+
+  'command.help.embed.title': 'Text-to-Speech Help Message',
+  'command.help.links.bug': 'Spotted a bug? Report it!'
 };
 
 module.exports = {
