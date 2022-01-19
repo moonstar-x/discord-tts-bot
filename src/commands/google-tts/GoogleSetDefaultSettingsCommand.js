@@ -39,37 +39,38 @@ class GoogleSetDefaultSettingsCommand extends SlashCommand {
     });
   }
 
-  async handleLanguage(interaction) {
+  async handleLanguage(interaction, localizer) {
     const language = interaction.options.getString('value');
     const languageInfo = languages[language];
 
     if (!languageInfo) {
-      return interaction.reply({ content: "That's not a valid language. Type **/google_langs** for a list of available languages." });
+      return interaction.reply({ content: localizer.t('command.google.settings.default.language.invalid') });
     }
 
     await this.client.ttsSettings.set(interaction.guild, { [GoogleProvider.NAME]: { language } });
 
     logger.info(`${interaction.guild.name} has changed its default google language to ${language}.`);
-    return interaction.reply({ content: `You have successfully changed the default language to **${languageInfo.name}**.` });
+    return interaction.reply({ content: localizer.t('command.google.settings.default.language.success', { language: languageInfo.name }) });
   }
 
-  async handleSpeed(interaction) {
+  async handleSpeed(interaction, localizer) {
     const speed = interaction.options.getString('value');
 
     await this.client.ttsSettings.set(interaction.guild, { [GoogleProvider.NAME]: { speed } });
 
     logger.info(`${interaction.guild.name} has changed its default google google speed to ${speed}.`);
-    return interaction.reply({ content: `You have successfully changed the default speed to **${speed}**.` });
+    return interaction.reply({ content: localizer.t('command.google.settings.default.speed.success', { speed }) });
   }
 
   async run(interaction) {
+    const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const subCommand = interaction.options.getSubcommand();
 
     switch (subCommand) {
       case 'language':
-        return this.handleLanguage(interaction);
+        return this.handleLanguage(interaction, localizer);
       case 'speed':
-        return this.handleSpeed(interaction);
+        return this.handleSpeed(interaction, localizer);
       default:
         throw new Error(`Invalid subcommand ${subCommand} supplied to GoogleSetDefaultSettingsCommand.`);
     }
