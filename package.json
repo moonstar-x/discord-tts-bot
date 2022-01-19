@@ -30,6 +30,7 @@
     "@greencoast/discord.js-extended": "^2.2.0",
     "@greencoast/logger": "^1.1.0",
     "axios": "^0.25.0",
+    "deepmerge": "^4.2.2",
     "discord.js": "^13.6.0",
     "google-tts-api": "^2.0.2",
     "redis": "^4.0.2",
