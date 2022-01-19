@@ -51,7 +51,7 @@ class GoogleSayCommand extends SlashCommand {
 
     const cantConnectReason = getCantConnectToChannelReason(memberChannel);
     if (cantConnectReason) {
-      return interaction.reply({ content: cantConnectReason, ephemeral: true });
+      return interaction.reply({ content: localizer.t(cantConnectReason), ephemeral: true });
     }
 
     await ttsPlayer.voice.connect(memberChannel);
