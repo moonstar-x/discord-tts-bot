@@ -55,7 +55,7 @@ const client = new TTSClient({
     ]
   },
   testingGuildID: config.get('TESTING_GUILD_ID'),
-  intents: ['GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILDS', 'GUILD_VOICE_STATES', 'GUILD_MESSAGES']
+  intents: ['GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILDS', 'GUILD_VOICE_STATES']
 });
 
 client

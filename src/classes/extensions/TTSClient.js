@@ -1,6 +1,7 @@
 const { Collection } = require('discord.js');
 const { ExtendedClient } = require('@greencoast/discord.js-extended');
 const TTSPlayer = require('../tts/TTSPlayer');
+const CachedTTSSettings = require('../tts/CachedTTSSettings');
 const Scheduler = require('../Scheduler');
 const logger = require('@greencoast/logger');
 
@@ -10,6 +11,7 @@ class TTSClient extends ExtendedClient {
 
     this.ttsPlayers = new Collection();
     this.disconnectSchedulers = new Collection();
+    this.ttsSettings = new CachedTTSSettings(this);
   }
 
   initializeDependencies() {
