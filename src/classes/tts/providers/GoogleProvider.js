@@ -6,26 +6,17 @@ const Payload = require('../Payload');
  * A concrete TTS provider for the Google Translate API TTS.
  */
 class GoogleProvider extends AbstractProvider {
-  constructor() {
-    super();
-    this.lang = GoogleProvider.EXTRA_DEFAULTS.lang;
-    this.speed = GoogleProvider.EXTRA_DEFAULTS.speed;
-  }
-
-  createPayload(sentence) {
+  createPayload(sentence, extras) {
     return new Promise((resolve, reject) => {
       try {
         const data = googleTTS.getAllAudioUrls(sentence, {
-          lang: this.lang,
-          slow: this.speed === 'normal',
+          lang: extras.language,
+          slow: extras.speed === 'normal',
           splitPunct: ',.?!'
         });
 
         resolve(data.map(({ url, shortText }) => {
-          return new Payload(url, shortText, GoogleProvider.NAME, {
-            lang: this.lang,
-            speed: this.speed
-          });
+          return new Payload(url, shortText, GoogleProvider.NAME, extras);
         }));
       } catch (error) {
         reject(error);
@@ -34,9 +25,9 @@ class GoogleProvider extends AbstractProvider {
   }
 
   getPlayLogMessage(payload, guild) {
-    const { sentence, extras: { lang, speed } } = payload;
+    const { sentence, extras: { language, speed } } = payload;
 
-    return `(TTS): Playing googleTTS for ${sentence} with language ${lang} with ${speed} speed in guild ${guild.name}.`;
+    return `(TTS): Playing googleTTS for ${sentence} with language ${language} with ${speed} speed in guild ${guild.name}.`;
   }
 }
 

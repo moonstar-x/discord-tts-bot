@@ -4,7 +4,7 @@
  * This class represents the data that is used to run the TTSPlayer.
  */
 class Payload {
-  constructor(resource, sentence, providerName, extras = {}) {
+  constructor(resource, sentence, providerName, extras) {
     /**
      * The readable stream or URL that points to a readable stream of the TTS message to be played.
      * @type {string|ReadableStream}

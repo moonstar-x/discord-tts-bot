@@ -50,9 +50,9 @@ class TTSPlayer {
     }
   }
 
-  async say(sentence, providerName) {
+  async say(sentence, providerName, extras = {}) {
     const provider = this.getProvider(providerName);
-    const payload = await provider.createPayload(sentence);
+    const payload = await provider.createPayload(sentence, extras);
 
     if (Array.isArray(payload)) {
       payload.forEach((p) => this.queue.enqueue(p));

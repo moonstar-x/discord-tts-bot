@@ -13,9 +13,10 @@ class AbstractProvider {
   /**
    * Receives a sentence and returns a promise that resolves to the corresponding TTS payload (or array of payloads) for the TTSPlayer.
    * @param {string} sentence The sentence for the TTSPlayer.
+   * @param {Record<string, any>}  extras The extra data required for the provider.
    * @returns {Promise<Payload> | Promise<Payload[]>} A promise that resolves to the TTS payload.
    */
-  createPayload(sentence) {
+  createPayload(sentence, extras) {
     throw new Error('Method not implemented!');
   }
 
