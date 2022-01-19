@@ -50,13 +50,6 @@ class TTSPlayer {
     }
   }
 
-  static getSupportedProviderChoices() {
-    return [
-      ['Google Translate Provider', GoogleProvider.NAME],
-      ['Aeiou Provider', AeiouProvider.NAME]
-    ];
-  }
-
   async say(sentence, providerName) {
     const provider = this.getProvider(providerName);
     const payload = await provider.createPayload(sentence);
@@ -126,5 +119,12 @@ class TTSPlayer {
     }
   }
 }
+
+TTSPlayer.getSupportedProviderChoices = () => {
+  return [
+    ['Google Translate Provider', GoogleProvider.NAME],
+    ['Aeiou Provider', AeiouProvider.NAME]
+  ];
+};
 
 module.exports = TTSPlayer;

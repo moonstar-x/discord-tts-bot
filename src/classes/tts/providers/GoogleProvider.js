@@ -71,4 +71,11 @@ class GoogleProvider extends AbstractProvider {
 
 GoogleProvider.NAME = 'Google';
 
+GoogleProvider.getSupportedSpeedChoices = () => {
+  return [
+    ['Slow Speed', 'slow'],
+    ['Normal Speed', 'normal']
+  ];
+};
+
 module.exports = GoogleProvider;
