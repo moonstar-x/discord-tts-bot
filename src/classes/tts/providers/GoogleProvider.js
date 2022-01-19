@@ -11,7 +11,7 @@ class GoogleProvider extends AbstractProvider {
   constructor() {
     super();
     this.lang = 'en';
-    this.slow = false;
+    this.speed = 'normal';
   }
 
   createPayload(sentence) {
@@ -19,14 +19,14 @@ class GoogleProvider extends AbstractProvider {
       try {
         const data = googleTTS.getAllAudioUrls(sentence, {
           lang: this.lang,
-          slow: this.slow,
+          slow: this.speed === 'normal',
           splitPunct: ',.?!'
         });
 
         resolve(data.map(({ url, shortText }) => {
           return new Payload(url, shortText, GoogleProvider.NAME, {
             lang: this.lang,
-            slow: this.slow
+            speed: this.speed
           });
         }));
       } catch (error) {
@@ -36,8 +36,7 @@ class GoogleProvider extends AbstractProvider {
   }
 
   getPlayLogMessage(payload, guild) {
-    const { sentence, extras: { lang, slow } } = payload;
-    const speed = slow ? 'slow' : 'normal';
+    const { sentence, extras: { lang, speed } } = payload;
 
     return `(TTS): Playing googleTTS for ${sentence} with language ${lang} with ${speed} speed in guild ${guild.name}.`;
   }
@@ -64,13 +63,15 @@ class GoogleProvider extends AbstractProvider {
       throw new GoogleProviderError('Invalid speed!', GoogleProviderError.REASON.invalid);
     }
 
-    this.slow = newSpeed === 'slow';
+    this.speed = newSpeed;
     return newSpeed;
   }
 }
 
 GoogleProvider.NAME = 'Google';
 GoogleProvider.FRIENDLY_NAME = 'Google Translate Provider';
+
+GoogleProvider.EXTRA_FIELDS = ['lang', 'speed'];
 
 GoogleProvider.getSupportedSpeedChoices = () => {
   return [
