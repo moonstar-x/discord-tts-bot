@@ -38,7 +38,11 @@ const COMMAND = {
 
   'command.google.settings.default.language.invalid': "That's not a valid language. Type **/google_langs** for a list of available languages.",
   'command.google.settings.default.language.success': 'You have successfully changed the default language to **{language}**.',
-  'command.google.settings.default.speed.success': 'You have successfully changed the default speed to **{speed}**.'
+  'command.google.settings.default.speed.success': 'You have successfully changed the default speed to **{speed}**.',
+
+  'command.google.settings.my.language.invalid': "That's not a valid language. Type **/google_langs** for a list of available languages.",
+  'command.google.settings.my.language.success': 'You have successfully changed your language to **{language}**.',
+  'command.google.settings.my.speed.success': 'You have successfully changed your speed to **{speed}**.'
 };
 
 module.exports = {

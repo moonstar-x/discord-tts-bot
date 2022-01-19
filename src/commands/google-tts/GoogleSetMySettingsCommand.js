@@ -39,37 +39,38 @@ class GoogleSetMySettingsCommand extends SlashCommand {
     });
   }
 
-  async handleLanguage(interaction) {
+  async handleLanguage(interaction, localizer) {
     const language = interaction.options.getString('value');
     const languageInfo = languages[language];
 
     if (!languageInfo) {
-      return interaction.reply({ content: "That's not a valid language. Type **/google_langs** for a list of available languages.", ephemeral: true });
+      return interaction.reply({ content: localizer.t('command.google.settings.my.language.invalid'), ephemeral: true });
     }
 
     await this.client.ttsSettings.set(interaction.member, { [GoogleProvider.NAME]: { language } });
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their google language to ${language}.`);
-    return interaction.reply({ content: `You have successfully changed your language to **${languageInfo.name}**.`, ephemeral: true });
+    return interaction.reply({ content: localizer.t('command.google.settings.my.language.success', { language: languageInfo.name }), ephemeral: true });
   }
 
-  async handleSpeed(interaction) {
+  async handleSpeed(interaction, localizer) {
     const speed = interaction.options.getString('value');
 
     await this.client.ttsSettings.set(interaction.member, { [GoogleProvider.NAME]: { speed } });
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their google speed to ${speed}.`);
-    return interaction.reply({ content: `You have successfully changed your speed to **${speed}**.`, ephemeral: true });
+    return interaction.reply({ content: localizer.t('command.google.settings.my.speed.success', { speed }), ephemeral: true });
   }
 
   async run(interaction) {
+    const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const subCommand = interaction.options.getSubcommand();
 
     switch (subCommand) {
       case 'language':
-        return this.handleLanguage(interaction);
+        return this.handleLanguage(interaction, localizer);
       case 'speed':
-        return this.handleSpeed(interaction);
+        return this.handleSpeed(interaction, localizer);
       default:
         throw new Error(`Invalid subcommand ${subCommand} supplied to GoogleSetMySettingsCommand.`);
     }
