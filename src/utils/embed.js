@@ -1,4 +1,4 @@
-const { EMBED_FIELD_MAX_SIZE } = require('./constants');
+const { EMBED_FIELD_MAX_SIZE } = require('../common/constants');
 
 const splitContentForEmbedFields = (lines) => {
   return lines.reduce((fields, line) => {
