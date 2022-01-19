@@ -18,7 +18,9 @@ const COMMAND = {
   'command.settings.my.no_settings': 'No settings associated to this provider.',
   'command.settings.my.embed.title': "Here's your current settings for {name}",
   'command.settings.my.embed.description': "Keep in mind that if you haven't set a setting yet you will see the default ones here.",
-  'command.settings.my.current.provider': 'Current provider'
+  'command.settings.my.current.provider': 'Current provider',
+
+  'command.set.default.provider.success': `You have successfully changed the default provider to **{name}**.`
 };
 
 module.exports = {
