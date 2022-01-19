@@ -120,11 +120,12 @@ class TTSPlayer {
   }
 }
 
-TTSPlayer.getSupportedProviderChoices = () => {
-  return [
-    ['Google Translate Provider', GoogleProvider.NAME],
-    ['Aeiou Provider', AeiouProvider.NAME]
-  ];
-};
+TTSPlayer.SUPPORTED_PROVIDERS = [GoogleProvider, AeiouProvider];
+TTSPlayer.PROVIDER_FRIENDLY_NAMES = TTSPlayer.SUPPORTED_PROVIDERS.reduce((obj, Provider) => {
+  return {
+    ...obj,
+    [Provider.NAME]: Provider.FRIENDLY_NAME
+  };
+}, {});
 
 module.exports = TTSPlayer;

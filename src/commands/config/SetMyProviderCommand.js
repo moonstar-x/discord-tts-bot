@@ -17,18 +17,19 @@ class SetMyProviderCommand extends SlashCommand {
             .setName('provider')
             .setDescription('The provider to use from now on.')
             .setRequired(true)
-            .addChoices(TTSPlayer.getSupportedProviderChoices());
+            .addChoices(TTSPlayer.SUPPORTED_PROVIDERS.map((p) => [p.FRIENDLY_NAME, p.NAME]));
         })
     });
   }
 
   async run(interaction) {
     const providerName = interaction.options.getString('provider');
+    const providerFriendlyName = TTSPlayer.PROVIDER_FRIENDLY_NAMES[providerName];
 
     await this.client.ttsSettings.set(interaction.member, { provider: providerName });
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their provider to ${providerName}.`);
-    return interaction.reply({ content: `You have successfully changed your provider to **${providerName}**.`, ephemeral: true });
+    return interaction.reply({ content: `You have successfully changed your provider to **${providerFriendlyName}**.`, ephemeral: true });
   }
 }
 

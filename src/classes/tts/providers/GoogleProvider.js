@@ -70,6 +70,7 @@ class GoogleProvider extends AbstractProvider {
 }
 
 GoogleProvider.NAME = 'Google';
+GoogleProvider.FRIENDLY_NAME = 'Google Translate Provider';
 
 GoogleProvider.getSupportedSpeedChoices = () => {
   return [
