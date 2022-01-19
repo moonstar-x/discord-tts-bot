@@ -17,7 +17,7 @@ class CachedTTSSettings {
       return fromCache;
     }
 
-    const fromProvider = await this.client.dataProvider.get(guild, key);
+    const fromProvider = await this.client.dataProvider.get(guild, key, {});
     cache.set(key, fromProvider);
     return fromProvider;
   }
