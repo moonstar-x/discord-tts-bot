@@ -43,7 +43,7 @@ class GoogleSetMySettingsCommand extends SlashCommand {
     const language = interaction.options.getString('value');
     const languageName = languages[language].name;
 
-    await this.client.ttsSettings.set(interaction.member, { extras: { language } });
+    await this.client.ttsSettings.set(interaction.member, { [GoogleProvider.NAME]: { language } });
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their google language to ${language}.`);
     return interaction.reply({ content: `You have successfully changed your language to **${languageName}**.`, ephemeral: true });
@@ -52,7 +52,7 @@ class GoogleSetMySettingsCommand extends SlashCommand {
   async handleSpeed(interaction) {
     const speed = interaction.options.getString('value');
 
-    await this.client.ttsSettings.set(interaction.member, { extras: { speed } });
+    await this.client.ttsSettings.set(interaction.member, { [GoogleProvider.NAME]: { speed } });
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their google speed to ${speed}.`);
     return interaction.reply({ content: `You have successfully changed your speed to **${speed}**.`, ephemeral: true });

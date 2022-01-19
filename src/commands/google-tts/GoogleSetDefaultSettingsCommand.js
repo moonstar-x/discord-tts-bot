@@ -43,7 +43,7 @@ class GoogleSetDefaultSettingsCommand extends SlashCommand {
     const language = interaction.options.getString('value');
     const languageName = languages[language].name;
 
-    await this.client.ttsSettings.set(interaction.guild, { extras: { language } });
+    await this.client.ttsSettings.set(interaction.guild, { [GoogleProvider.NAME]: { language } });
 
     logger.info(`${interaction.guild.name} has changed its default google language to ${language}.`);
     return interaction.reply({ content: `You have successfully changed the default language to **${languageName}**.` });
@@ -52,7 +52,7 @@ class GoogleSetDefaultSettingsCommand extends SlashCommand {
   async handleSpeed(interaction) {
     const speed = interaction.options.getString('value');
 
-    await this.client.ttsSettings.set(interaction.guild, { extras: { speed } });
+    await this.client.ttsSettings.set(interaction.guild, { [GoogleProvider.NAME]: { speed } });
 
     logger.info(`${interaction.guild.name} has changed its default google google speed to ${speed}.`);
     return interaction.reply({ content: `You have successfully changed the default speed to **${speed}**.` });
