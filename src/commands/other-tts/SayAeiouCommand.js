@@ -2,17 +2,16 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const logger = require('@greencoast/logger');
-const GoogleProvider = require('../../classes/tts/providers/GoogleProvider');
+const AeiouProvider = require('../../classes/tts/providers/AeiouProvider');
 const { getCantConnectToChannelReason } = require('../../utils/channel');
 
-class SayCommand extends SlashCommand {
+class SayAeiouCommand extends SlashCommand {
   constructor(client) {
     super(client, {
-      name: 'say',
-      aliases: ['s'],
-      description: 'Send a TTS message in your voice channel with your own settings or the ones saved for this server.',
-      emoji: ':speaking_head:',
-      group: 'all-tts',
+      name: 'aeiou_say',
+      description: 'Send an aeiou (sounds like Stephen Hawking) TTS message in your voice channel.',
+      emoji: ':robot:',
+      group: 'other-tts',
       guildOnly: true,
       dataBuilder: new SlashCommandBuilder()
         .addStringOption((input) => {
@@ -43,7 +42,7 @@ class SayCommand extends SlashCommand {
       }
 
       await interaction.reply({ content: 'I will say that now.', ephemeral: true });
-      return ttsPlayer.say(message, GoogleProvider.NAME);
+      return ttsPlayer.say(message, AeiouProvider.NAME);
     }
 
     const cantConnectReason = getCantConnectToChannelReason(memberChannel);
@@ -54,8 +53,8 @@ class SayCommand extends SlashCommand {
     await ttsPlayer.voice.connect(memberChannel);
     logger.info(`Joined ${memberChannel.name} in ${guildName}.`);
     await interaction.reply({ content: `Joined ${memberChannel}.` });
-    return ttsPlayer.say(message, GoogleProvider.NAME);
+    return ttsPlayer.say(message, AeiouProvider.NAME);
   }
 }
 
-module.exports = SayCommand;
+module.exports = SayAeiouCommand;
