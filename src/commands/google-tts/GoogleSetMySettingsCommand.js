@@ -40,16 +40,16 @@ class GoogleSetMySettingsCommand extends SlashCommand {
   }
 
   async handleLanguage(interaction) {
-    const lang = interaction.options.getString('value');
-    const languageInfo = languages[lang];
+    const language = interaction.options.getString('value');
+    const languageInfo = languages[language];
 
     if (!languageInfo) {
       return interaction.reply({ content: "That's not a valid language. Type **/google_langs** for a list of available languages.", ephemeral: true });
     }
 
-    await this.client.ttsSettings.set(interaction.member, { [GoogleProvider.NAME]: { lang } });
+    await this.client.ttsSettings.set(interaction.member, { [GoogleProvider.NAME]: { language } });
 
-    logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their google language to ${lang}.`);
+    logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their google language to ${language}.`);
     return interaction.reply({ content: `You have successfully changed your language to **${languageInfo.name}**.`, ephemeral: true });
   }
 
