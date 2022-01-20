@@ -4,6 +4,7 @@ const RedisDataProvider = require('@greencoast/discord.js-extended/dist/provider
 const LevelDataProvider = require('@greencoast/discord.js-extended/dist/providers/LevelDataProvider').default;
 const TTSClient = require('./classes/extensions/TTSClient');
 const { locales } = require('./locales');
+const { DISCONNECT_TIMEOUT } = require('./common/constants');
 
 const SUPPORTED_PROVIDERS = ['level', 'redis'];
 
@@ -15,7 +16,7 @@ const config = new ConfigProvider({
     OWNER_ID: null,
     OWNER_REPORTING: false,
     PRESENCE_REFRESH_INTERVAL: 15 * 60 * 1000, // 15 Minutes
-    DEFAULT_DISCONNECT_TIMEOUT: 5 * 60 * 1000, // 5 Minutes,
+    DEFAULT_DISCONNECT_TIMEOUT: 5, // 5 Minutes,
     TESTING_GUILD_ID: null,
     PROVIDER_TYPE: 'level',
     REDIS_URL: null
@@ -35,6 +36,15 @@ const config = new ConfigProvider({
     PROVIDER_TYPE: (value) => {
       if (!SUPPORTED_PROVIDERS.includes(value)) {
         throw new TypeError(`${value} is not a valid data provider, it must be one of ${SUPPORTED_PROVIDERS.join(', ')}`);
+      }
+    },
+    DEFAULT_DISCONNECT_TIMEOUT: (value) => {
+      if (isNaN(value)) {
+        throw new TypeError('DEFAULT_DISCONNECT_TIMEOUT must be a number!');
+      }
+
+      if (value > DISCONNECT_TIMEOUT.MAX || value < DISCONNECT_TIMEOUT.MIN) {
+        throw new TypeError(`Invalid value for DEFAULT_DISCONNECT_TIMEOUT, it must be between ${DISCONNECT_TIMEOUT.MIN} and ${DISCONNECT_TIMEOUT.MAX}`);
       }
     }
   }
