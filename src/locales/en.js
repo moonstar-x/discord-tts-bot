@@ -16,7 +16,7 @@ const COMMAND = {
   'command.settings.default.current.provider': 'Current provider',
 
   'command.settings.my.no_settings': 'No settings associated to this provider.',
-  'command.settings.my.embed.title': "Here's your current settings for {name}",
+  'command.settings.my.embed.title': "Here's your current settings, {name}",
   'command.settings.my.embed.description': "Keep in mind that if you haven't set a setting yet you will see the default ones here.",
   'command.settings.my.current.provider': 'Current provider',
 
@@ -48,8 +48,7 @@ const COMMAND = {
   'command.google.langs.embed.description': `This is a full list of all the languages that are supported by the Google Translate provider.
     
       To change language for yourself, use **/google_set_my language LANG_CODE**.
-      You may also use **/google_set_default language LANG_CODE** to change the default language in case
-      someone else does not have one set.`,
+      You may also use **/google_set_default language LANG_CODE** to change the default language in case someone else does not have one set.`,
   'command.google.langs.embed.page': 'Page {number}:'
 };
 
