@@ -33,7 +33,7 @@ const COMMAND = {
   'command.stop.different_channel': 'Necesitas estar en mi canal de voz para detenerme.',
   'command.stop.success': 'He salido del canal de voz {channel} con éxito.',
 
-  'command.help.embed.title': 'Mensaje de Ayuda de Text-to-Speech',
+  'command.help.embed.title': 'Mensaje de ayuda de Text-to-Speech',
   'command.help.links.bug': '¿Encontraste un bug? ¡Repórtalo!',
 
   'command.google.settings.default.language.invalid': 'Ese no es un idioma válido. Escribe **/google_langs** para obtener una lista de los idiomas disponibles.',
@@ -49,7 +49,9 @@ const COMMAND = {
     
       Para cambiar tu propio idioma, utiliza **/google_set_my language LANG_CODE**.
       Puedes también utilizar **/google_set_default language LANG_CODE** para cambiar el idioma por defecto que se utilizará en caso de que alguien no tenga uno configurado.`,
-  'command.google.langs.embed.page': 'Página {number}:'
+  'command.google.langs.embed.page': 'Página {number}:',
+
+  'command.locale.success': 'Has cambiado el idioma del bot a **{locale}**.'
 };
 
 module.exports = {

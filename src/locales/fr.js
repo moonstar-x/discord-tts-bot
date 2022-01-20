@@ -50,7 +50,9 @@ const COMMAND = {
     Pour changer votre langue, utilisez **/google_set_my language LANG_CODE**.
     Vous pouvez aussi utiliser **/google_set_default language LANG_CODE** pour changer la langue par défaut au cas où quelqu'un n'a aucune langue configurée.
 `,
-  'command.google.langs.embed.page': 'Page {number}:'
+  'command.google.langs.embed.page': 'Page {number}:',
+
+  'command.locale.success': 'Vous avez changée la langue du bot à **{locale}**.'
 };
 
 module.exports = {
