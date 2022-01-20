@@ -53,7 +53,10 @@ const COMMAND = {
 `,
   'command.google.langs.embed.page': 'Page {number}:',
 
-  'command.locale.success': 'Vous avez changée la langue du bot à **{locale}**.'
+  'command.locale.success': 'Vous avez changée la langue du bot à **{locale}**.',
+
+  'command.timeout.out_of_range': 'Temps invalide, il doit se trouver entre **{min}** et **{max}**.',
+  'command.timeout.success': "Je quitterai le canal vocal après de **{timeout}** minutes d'inactivité."
 };
 
 module.exports = {

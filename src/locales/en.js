@@ -52,7 +52,10 @@ const COMMAND = {
       You may also use **/google_set_default language LANG_CODE** to change the default language in case someone else does not have one set.`,
   'command.google.langs.embed.page': 'Page {number}:',
 
-  'command.locale.success': "You have changed the bot's locale to **{locale}**."
+  'command.locale.success': "You have changed the bot's locale to **{locale}**.",
+
+  'command.timeout.out_of_range': 'Invalid time, it must be between **{min}** and **{max}**.',
+  'command.timeout.success': 'I will now leave from the voice channel after **{timeout}** minutes of inactivity.'
 };
 
 module.exports = {
