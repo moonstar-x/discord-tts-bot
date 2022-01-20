@@ -1,8 +1,5 @@
 const { MessageMentions: { USERS_PATTERN, CHANNELS_PATTERN, ROLES_PATTERN } } = require('discord.js');
 
-// User: <@!191330192868769793> Role: <@&756630021463998597> Channel: <#756628171494916103> Emoji: <:wow:933805137095454810>
-// User: moonstar-x Role: beep Channel: general Emoji: wow
-
 const CUSTOM_EMOJI_PATTERN = /<:.*?:(\d{17,19})>/g;
 
 const cleanMemberMentions = (message, members) => {
