@@ -44,7 +44,12 @@ class HelpCommand extends SlashCommand {
           .setStyle('LINK')
           .setEmoji('🐛')
           .setLabel(localizer.t('command.help.links.bug'))
-          .setURL(MESSAGE_EMBED.helpURL)
+          .setURL(MESSAGE_EMBED.helpURL),
+        new MessageButton()
+          .setStyle('LINK')
+          .setEmoji('☕')
+          .setLabel(localizer.t('command.help.links.kofi'))
+          .setURL(MESSAGE_EMBED.kofiURL)
       );
 
     return interaction.reply({ embeds: [embed], components: [row] });
