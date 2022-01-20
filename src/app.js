@@ -26,7 +26,7 @@ const config = new ConfigProvider({
     OWNER_ID: ['string', 'null'],
     OWNER_REPORTING: 'boolean',
     PRESENCE_REFRESH_INTERVAL: ['number', 'null'],
-    DEFAULT_DISCONNECT_TIMEOUT: ['number', 'null'],
+    DEFAULT_DISCONNECT_TIMEOUT: 'number',
     TESTING_GUILD_ID: ['string', 'null'],
     PROVIDER_TYPE: 'string',
     REDIS_URL: ['string', 'null']

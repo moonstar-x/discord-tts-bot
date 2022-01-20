@@ -29,7 +29,7 @@ class TTSClient extends ExtendedClient {
   async initializeDisconnectSchedulers() {
     return Promise.all(this.guilds.cache.map(async(guild) => {
       const timeout = await this.dataProvider.get(guild, 'disconnectTimeout', this.config.get('DEFAULT_DISCONNECT_TIMEOUT'));
-      const scheduler = timeout ? new Scheduler(this, guild, timeout) : null;
+      const scheduler = new Scheduler(this, guild, timeout);
 
       this.disconnectSchedulers.set(guild.id, scheduler);
     }));
