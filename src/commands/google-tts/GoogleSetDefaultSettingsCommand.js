@@ -12,6 +12,7 @@ class GoogleSetDefaultSettingsCommand extends SlashCommand {
       emoji: ':pencil2:',
       group: 'google-tts',
       guildOnly: true,
+      userPermissions: ['MANAGE_GUILD'],
       dataBuilder: new SlashCommandBuilder()
         .addSubcommand((input) => {
           return input

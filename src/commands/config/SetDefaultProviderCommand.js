@@ -11,6 +11,7 @@ class SetDefaultProviderCommand extends SlashCommand {
       emoji: ':pencil2:',
       group: 'config',
       guildOnly: true,
+      userPermissions: ['MANAGE_GUILD'],
       dataBuilder: new SlashCommandBuilder()
         .addStringOption((input) => {
           return input

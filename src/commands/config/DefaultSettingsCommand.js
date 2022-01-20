@@ -13,6 +13,7 @@ class DefaultSettingsCommand extends SlashCommand {
       emoji: ':wrench:',
       group: 'config',
       guildOnly: true,
+      userPermissions: ['MANAGE_GUILD'],
       dataBuilder: new SlashCommandBuilder()
     });
   }
