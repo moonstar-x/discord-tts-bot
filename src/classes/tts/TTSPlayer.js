@@ -93,6 +93,7 @@ class TTSPlayer {
     this.queue.clear();
     this.speaking = false;
     this.voice.disconnect();
+    this.voice.player.stop(true);
 
     return channel;
   }
