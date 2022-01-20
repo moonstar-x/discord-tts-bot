@@ -1,19 +1,28 @@
 class Scheduler {
-  constructor(client, timeout, fn) {
+  constructor(client, guild, timeout) {
     this.client = client;
+    this.guild = guild;
     this.timeout = timeout;
-    this.fn = fn;
 
+    this.fn = null;
     this.timeoutHandle = null;
   }
 
-  start(...args) {
-    this.timeoutHandle = setTimeout((...args) => {
-      this.fn(...args);
+  set(fn) {
+    this.fn = fn;
+  }
+
+  start() {
+    if (!this.fn) {
+      throw new Error('Attempted to start a Scheduler without a function set.');
+    }
+
+    this.timeoutHandle = setTimeout(() => {
+      this.fn();
       this.timeoutHandle = null;
       this.client.emit('debug', 'Scheduler has been executed.');
-    }, this.timeout, ...args);
-    
+    }, this.timeout);
+
     this.client.emit('debug', `Scheduler has started, next execution will be in: ${this.timeout}ms.`);
   }
 
@@ -30,6 +39,14 @@ class Scheduler {
 
   isAlive() {
     return !!this.timeoutHandle;
+  }
+
+  async updateTimeout(timeout) {
+    this.timeout = timeout;
+    this.stop();
+    this.start();
+
+    await this.client.dataProvider.set(this.guild, 'disconnectTimeout', timeout);
   }
 }
 

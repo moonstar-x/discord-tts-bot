@@ -15,7 +15,7 @@ const config = new ConfigProvider({
     OWNER_ID: null,
     OWNER_REPORTING: false,
     PRESENCE_REFRESH_INTERVAL: 15 * 60 * 1000, // 15 Minutes
-    DISCONNECT_TIMEOUT: 5 * 60 * 1000, // 5 Minutes,
+    DEFAULT_DISCONNECT_TIMEOUT: 5 * 60 * 1000, // 5 Minutes,
     TESTING_GUILD_ID: null,
     PROVIDER_TYPE: 'level',
     REDIS_URL: null
@@ -26,7 +26,7 @@ const config = new ConfigProvider({
     OWNER_ID: ['string', 'null'],
     OWNER_REPORTING: 'boolean',
     PRESENCE_REFRESH_INTERVAL: ['number', 'null'],
-    DISCONNECT_TIMEOUT: ['number', 'null'],
+    DEFAULT_DISCONNECT_TIMEOUT: ['number', 'null'],
     TESTING_GUILD_ID: ['string', 'null'],
     PROVIDER_TYPE: 'string',
     REDIS_URL: ['string', 'null']
@@ -89,9 +89,8 @@ const createProvider = (type) => {
 };
 
 client.on('ready', async() => {
-  client.initializeDependencies();
-
   await client.setDataProvider(createProvider(config.get('PROVIDER_TYPE')));
+  await client.initializeDependencies();
   await client.localizer.init();
 
   if (config.get('TESTING_GUILD_ID')) {

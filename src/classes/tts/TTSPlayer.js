@@ -17,6 +17,7 @@ class TTSPlayer {
     this.voice = new VoiceManager(guild);
 
     this.initializePlayer();
+    this.initializeScheduler();
 
     this.googleProvider = new GoogleProvider();
     this.aeiouProvider = new AeiouProvider();
@@ -34,6 +35,13 @@ class TTSPlayer {
         this.speaking = false;
         this.play();
       }
+    });
+  }
+
+  initializeScheduler() {
+    this.disconnectScheduler.set(() => {
+      const channel = this.stop();
+      logger.warn(`Left ${channel.name} from ${this.guild.name} due to inactivity.`);
     });
   }
 
