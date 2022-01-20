@@ -4,6 +4,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const logger = require('@greencoast/logger');
 const AeiouProvider = require('../../classes/tts/providers/AeiouProvider');
 const { getCantConnectToChannelReason } = require('../../utils/channel');
+const { cleanMessage } = require('../../utils/mentions');
 
 class SayAeiouCommand extends SlashCommand {
   constructor(client) {
@@ -28,10 +29,15 @@ class SayAeiouCommand extends SlashCommand {
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);
     const connection = ttsPlayer.voice.getConnection();
 
-    const { me: { voice: myVoice }, name: guildName } = interaction.guild;
+    const { me: { voice: myVoice }, name: guildName, members, channels, roles, emojis } = interaction.guild;
     const { channel: memberChannel } = interaction.member.voice;
     const myChannel = myVoice?.channel;
-    const message = interaction.options.getString('message');
+    const message = cleanMessage(interaction.options.getString('message'), {
+      members: members.cache,
+      channels: channels.cache,
+      roles: roles.cache,
+      emojis: emojis.cache
+    });
 
     if (!memberChannel) {
       return interaction.reply({ content: localizer.t('command.say.no_channel'), ephemeral: true });

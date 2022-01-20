@@ -3,6 +3,7 @@ const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const logger = require('@greencoast/logger');
 const { getCantConnectToChannelReason } = require('../../utils/channel');
+const { cleanMessage } = require('../../utils/mentions');
 
 class SayCommand extends SlashCommand {
   constructor(client) {
@@ -31,10 +32,15 @@ class SayCommand extends SlashCommand {
     const currentSettings = await this.client.ttsSettings.getCurrent(interaction);
     const extras = currentSettings[currentSettings.provider] || {};
 
-    const { me: { voice: myVoice }, name: guildName } = interaction.guild;
+    const { me: { voice: myVoice }, name: guildName, members, channels, roles, emojis } = interaction.guild;
     const { channel: memberChannel } = interaction.member.voice;
     const myChannel = myVoice?.channel;
-    const message = interaction.options.getString('message');
+    const message = cleanMessage(interaction.options.getString('message'), {
+      members: members.cache,
+      channels: channels.cache,
+      roles: roles.cache,
+      emojis: emojis.cache
+    });
 
     if (!memberChannel) {
       return interaction.reply({ content: localizer.t('command.say.no_channel'), ephemeral: true });
