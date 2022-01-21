@@ -30,7 +30,7 @@ class SetChannelProvider extends SlashCommand {
 
     await this.client.ttsSettings.set(interaction.channel, { provider: providerName });
 
-    logger.info(`${interaction.guild.name} has changed its provider for ${interaction.channel.name} to ${providerName}.`);
+    logger.info(`${interaction.guild.name} has changed the provider for the channel ${interaction.channel.name} to ${providerName}.`);
     return interaction.reply({ content: localizer.t('channel_commands.set.success', { name: providerFriendlyName }) });
   }
 }

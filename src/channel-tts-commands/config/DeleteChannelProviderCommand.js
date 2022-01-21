@@ -1,5 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const logger = require('@greencoast/logger');
 
 class DeleteChannelProviderCommand extends SlashCommand {
   constructor(client) {
@@ -23,6 +24,7 @@ class DeleteChannelProviderCommand extends SlashCommand {
     }
 
     await this.client.ttsSettings.delete(interaction.channel);
+    logger.info(`${interaction.guild.name} has disabled message-only TTS for the channel ${interaction.channel.name}`);
     return interaction.reply({ content: localizer.t('channel_commands.delete.success') });
   }
 }
