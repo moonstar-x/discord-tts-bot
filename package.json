@@ -1,6 +1,6 @@
 {
   "name": "discord-tts-bot",
-  "version": "3.0.3",
+  "version": "4.0.0",
   "description": "A simple Discord TTS Bot that uses the Google Translate TTS API.",
   "main": "./src/app.js",
   "scripts": {
@@ -8,10 +8,12 @@
     "debug": "node ./src/app.js --debug",
     "dev": "nodemon --exec npm start",
     "lint:errors-only": "node_modules/.bin/eslint src --quiet",
-    "lint": "node_modules/.bin/eslint src"
+    "lint": "node_modules/.bin/eslint src",
+    "deploy": "node ./src/command-deployer.js",
+    "start-sharded": "node ./src/sharded-client.js"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=16.6"
   },
   "repository": {
     "type": "git",
@@ -24,16 +26,21 @@
   },
   "homepage": "https://github.com/moonstar-x/discord-tts-bot#readme",
   "dependencies": {
+    "@discordjs/builders": "^0.11.0",
     "@discordjs/opus": "^0.5.3",
-    "@greencoast/discord.js-extended": "^1.2.0",
+    "@discordjs/voice": "^0.7.5",
+    "@greencoast/discord.js-extended": "^2.2.0",
     "@greencoast/logger": "^1.1.0",
-    "axios": "^0.21.2",
-    "discord.js": "^12.5.3",
-    "google-tts-api": "^2.0.2"
+    "axios": "^0.25.0",
+    "deepmerge": "^4.2.2",
+    "discord.js": "^13.6.0",
+    "google-tts-api": "^2.0.2",
+    "redis": "^4.0.2",
+    "tweetnacl": "^1.0.3"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
-    "eslint-config-greencoast": "0.0.2",
-    "nodemon": "^2.0.12"
+    "eslint-config-greencoast": "^0.0.2",
+    "nodemon": "^2.0.15"
   }
 }

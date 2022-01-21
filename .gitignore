@@ -6,6 +6,11 @@ config/settings.json
 
 # Old files
 *.old
+old/
 
 # Env files
 *.env
+
+# Development files
+dev/
+data/

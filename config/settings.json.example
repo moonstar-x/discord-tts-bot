@@ -4,5 +4,9 @@
   "owner_id": "123123123",
   "owner_reporting": false,
   "presence_refresh_interval": 600000,
-  "disconnect_timeout": 300000
+  "default_disconnect_timeout": 5,
+  "testing_guild_id": null,
+  "provider_type": "level",
+  "redis_url": "redis://ip:port",
+  "enable_tts_channels": false
 }

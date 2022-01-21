@@ -4,7 +4,7 @@ on:
   repository_dispatch:
     types: [docker-build]
   workflow_dispatch:
-    
+
 jobs:
   build_push:
     name: Build Docker Image and Push to Docker Hub
@@ -26,7 +26,7 @@ jobs:
             ${{ runner.os }}-buildx-
 
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v1
         with:
           username: moonstarx
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -44,12 +44,12 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: moonstarx/discord-tts-bot:latest
+          tags: moonstarx/discord-tts-bot:latest,moonstarx/discord-tts-bot:${{ steps.package-version.outputs.current-version }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           build-args: |
             DATE_CREATED=${{ steps.date.outputs.date }}
             VERSION=${{ steps.package-version.outputs.current-version }}
-            
+
       - name: Image Digest
         run: echo ${{ steps.docker_build.outputs.digest }}

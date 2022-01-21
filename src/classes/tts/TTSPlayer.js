@@ -1,25 +1,55 @@
 const logger = require('@greencoast/logger');
+const { createAudioResource } = require('@discordjs/voice');
 const GoogleProvider = require('./providers/GoogleProvider');
 const AeiouProvider = require('./providers/AeiouProvider');
 const Queue = require('../Queue');
+const VoiceManager = require('../VoiceManager');
 const { InvalidProviderError } = require('../../errors');
 
 class TTSPlayer {
-  constructor(guild) {
+  constructor(client, guild, disconnectScheduler) {
+    this.client = client;
     this.guild = guild;
+    this.disconnectScheduler = disconnectScheduler;
 
     this.queue = new Queue();
     this.speaking = false;
+    this.voice = new VoiceManager(guild);
+
+    this.initializePlayer();
+    this.initializeScheduler();
 
     this.googleProvider = new GoogleProvider();
     this.aeiouProvider = new AeiouProvider();
+  }
+
+  initializePlayer() {
+    this.voice.player.on('error', (error) => {
+      logger.error(error);
+      this.speaking = false;
+      this.play();
+    });
+
+    this.voice.player.on('idle', () => {
+      if (this.speaking) {
+        this.speaking = false;
+        this.play();
+      }
+    });
+  }
+
+  initializeScheduler() {
+    this.disconnectScheduler.set(() => {
+      const channel = this.stop();
+      logger.warn(`Left ${channel.name} from ${this.guild.name} due to inactivity.`);
+    });
   }
 
   getProvider(providerName) {
     switch (providerName) {
       case GoogleProvider.NAME:
         return this.googleProvider;
-    
+
       case AeiouProvider.NAME:
         return this.aeiouProvider;
 
@@ -28,10 +58,9 @@ class TTSPlayer {
     }
   }
 
-  async say(sentence, providerName) {
+  async say(sentence, providerName, extras = {}) {
     const provider = this.getProvider(providerName);
-
-    const payload = await provider.createPayload(sentence);
+    const payload = await provider.createPayload(sentence, extras);
 
     if (Array.isArray(payload)) {
       payload.forEach((p) => this.queue.enqueue(p));
@@ -57,56 +86,67 @@ class TTSPlayer {
     logger.info(provider.getPlayLogMessage(payload, this.guild));
 
     this.speaking = true;
-    const { connection } = this.guild.voice;
-    const dispatcher = await connection.play(payload.resource);
-
-    dispatcher.on('speaking', (speaking) => {
-      if (!speaking) {
-        this.speaking = false;
-        this.play();
+    this.voice.play(createAudioResource(payload.resource, {
+      metadata: {
+        title: payload.sentence
       }
-    });
-
-    dispatcher.on('error', (error) => {
-      logger.error(error);
-      this.speaking = false;
-      this.play();
-    });
+    }));
   }
 
   stop() {
-    const { channel } = this.guild.voice;
+    const { channel } = this.guild.me.voice;
 
     this.stopDisconnectScheduler();
 
     this.queue.clear();
     this.speaking = false;
-    channel.leave();
+    this.voice.disconnect();
+    this.voice.player.stop(true);
 
     return channel;
   }
 
   startDisconnectScheduler() {
-    if (!this.guild.disconnectScheduler) {
+    if (!this.disconnectScheduler) {
       return;
     }
-    
-    if (this.guild.disconnectScheduler.isAlive()) {
-      this.guild.disconnectScheduler.refresh();
+
+    if (this.disconnectScheduler.isAlive()) {
+      this.disconnectScheduler.refresh();
     } else {
-      this.guild.disconnectScheduler.start(this.guild.voice.channel);
+      this.disconnectScheduler.start(this);
     }
   }
 
   stopDisconnectScheduler() {
-    if (!this.guild.disconnectScheduler) {
+    if (!this.disconnectScheduler) {
       return;
     }
-    
-    if (this.guild.disconnectScheduler.isAlive()) {
-      this.guild.disconnectScheduler.stop();
+
+    if (this.disconnectScheduler.isAlive()) {
+      this.disconnectScheduler.stop();
     }
   }
 }
+
+TTSPlayer.SUPPORTED_PROVIDERS = [GoogleProvider, AeiouProvider];
+TTSPlayer.DEFAULT_PROVIDER = GoogleProvider;
+
+TTSPlayer.PROVIDER_FRIENDLY_NAMES = TTSPlayer.SUPPORTED_PROVIDERS.reduce((obj, Provider) => {
+  return {
+    ...obj,
+    [Provider.NAME]: Provider.FRIENDLY_NAME
+  };
+}, {});
+TTSPlayer.PROVIDER_DEFAULTS = TTSPlayer.SUPPORTED_PROVIDERS.reduce((obj, Provider) => {
+  return {
+    ...obj,
+    [Provider.NAME]: Provider.EXTRA_DEFAULTS
+  };
+}, {});
+TTSPlayer.DEFAULT_SETTINGS = {
+  provider: TTSPlayer.DEFAULT_PROVIDER.NAME,
+  ...TTSPlayer.PROVIDER_DEFAULTS
+};
 
 module.exports = TTSPlayer;

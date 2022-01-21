@@ -1,4 +1,4 @@
-FROM node:12.20.0-alpine3.12
+FROM node:16.6.1-alpine3.14
 
 ARG DATE_CREATED
 ARG VERSION
