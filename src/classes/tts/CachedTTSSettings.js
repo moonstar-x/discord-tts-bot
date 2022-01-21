@@ -10,6 +10,18 @@ class CachedTTSSettings {
     this.guildCache = new Collection();
     this.channelCache = new Collection();
     this.memberCache = new Collection();
+
+    this.initialize();
+  }
+
+  initialize() {
+    this.client.on('channelDelete', async(channel) => {
+      if (!channel.guild) {
+        return;
+      }
+
+      await this.delete(channel);
+    });
   }
 
   async _get(key, cache, guild) {
