@@ -10,7 +10,7 @@ class DeleteChannelProviderCommand extends SlashCommand {
       emoji: ':x:',
       group: 'config',
       guildOnly: true,
-      userPermissions: ['MANAGE_GUILD'],
+      userPermissions: ['MANAGE_CHANNELS'],
       dataBuilder: new SlashCommandBuilder()
     });
   }

@@ -12,7 +12,7 @@ class GoogleSetChannelSettingsCommand extends SlashCommand {
       emoji: ':pencil2:',
       group: 'google-tts',
       guildOnly: true,
-      userPermissions: ['MANAGE_GUILD'],
+      userPermissions: ['MANAGE_CHANNELS'],
       dataBuilder: new SlashCommandBuilder()
         .addSubcommand((input) => {
           return input

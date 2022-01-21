@@ -11,7 +11,7 @@ class SetChannelProvider extends SlashCommand {
       emoji: ':pencil2:',
       group: 'config',
       guildOnly: true,
-      userPermissions: ['MANAGE_GUILD'],
+      userPermissions: ['MANAGE_CHANNELS'],
       dataBuilder: new SlashCommandBuilder()
         .addStringOption((input) => {
           return input
