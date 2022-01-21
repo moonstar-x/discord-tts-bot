@@ -70,7 +70,11 @@ const CHANNEL_COMMANDS = {
   'channel_commands.settings.disabled.embed.description': 'You can enable message-only based TTS here by running **/set_channel_provider** and choosing a provider to be used.',
 
   'channel_commands.delete.already_disabled': 'Message-only based TTS is already disabled on this channel.',
-  'channel_commands.delete.success': 'Message-only based TTS has been disabled on this channel and its settings have been removed.'
+  'channel_commands.delete.success': 'Message-only based TTS has been disabled on this channel and its settings have been removed.',
+
+  'channel_commands.google.settings.language.invalid': "That's not a valid language. Type **/google_langs** for a list of available languages.",
+  'channel_commands.google.settings.language.success': 'You have successfully changed the language for this channel to **{language}**.',
+  'channel_commands.google.settings.speed.success': 'You have successfully changed the speed for this channel to **{speed}**.'
 };
 
 module.exports = {
