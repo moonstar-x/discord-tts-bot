@@ -58,8 +58,28 @@ const COMMAND = {
   'command.timeout.success': 'Me iré del canal de voz después de **{timeout}** minutos de inactividad.'
 };
 
+const CHANNEL_COMMANDS = {
+  'channel_commands.set.success': 'Has cambiado el proveedor de este canal a **{name}** con éxito.',
+
+  'channel_commands.settings.enabled.embed.title': 'Aquí está la configuración actual para el canal **#{channel}**',
+  'channel_commands.settings.enabled.embed.description': 'Toma en cuenta que esta configuración se usa nada más cuando envíes mensajes regulares en este canal.',
+  'channel_commands.settings.enabled.current.provider': 'Proveedor actual',
+  'channel_commands.settings.enabled.no_settings': 'No existe configuración asociada a este proveedor.',
+
+  'channel_commands.settings.disabled.embed.title': 'TTS basado en solo mensajes está desactivado en este canal',
+  'channel_commands.settings.disabled.embed.description': 'Puedes activar el TTS basado en solo mensajes aquí **/set_channel_provider** y escogiendo el proveedor a usar.',
+
+  'channel_commands.delete.already_disabled': 'TTS basado en solo mensajes ya está desactivado en este canal.',
+  'channel_commands.delete.success': 'TTS basado en solo mensajes ha sido desactivado en este canal y su configuración ha sido eliminada.',
+
+  'channel_commands.google.settings.language.invalid': 'Ese no es un idioma válido. Escribe **/google_langs** para obtener una lista de los idiomas disponibles.',
+  'channel_commands.google.settings.language.success': 'Has cambiado el idioma de este canal a **{language}** con éxito.',
+  'channel_commands.google.settings.speed.success': 'Has cambiado la velocidad de este canal a **{speed}** con éxito.'
+};
+
 module.exports = {
   ...APP,
   ...ERROR,
-  ...COMMAND
+  ...COMMAND,
+  ...CHANNEL_COMMANDS
 };
