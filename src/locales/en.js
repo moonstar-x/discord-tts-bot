@@ -59,7 +59,15 @@ const COMMAND = {
 };
 
 const CHANNEL_COMMANDS = {
-  'channel_commands.set.success': 'You have successfully changed the provider for this channel to **{name}**.'
+  'channel_commands.set.success': 'You have successfully changed the provider for this channel to **{name}**.',
+
+  'channel_commands.settings.enabled.embed.title': "Here's the current settings for the channel **#{channel}**",
+  'channel_commands.settings.enabled.embed.description': 'Keep in mind that these settings are the ones used when sending regular messages to this channel.',
+  'channel_commands.settings.enabled.current.provider': 'Current provider',
+  'channel_commands.settings.enabled.no_settings': 'No settings associated to this provider.',
+
+  'channel_commands.settings.disabled.embed.title': 'Message-only based TTS is disabled on this channel.',
+  'channel_commands.settings.disabled.embed.description': 'You can enable message-only based TTS here by running **/set_channel_provider** and choosing a provider to be used.'
 };
 
 module.exports = {
