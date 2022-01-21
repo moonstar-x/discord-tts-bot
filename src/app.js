@@ -89,6 +89,10 @@ client.registry
   ])
   .registerCommandsIn(path.join(__dirname, './commands'));
 
+if (config.get('ENABLE_TTS_CHANNELS')) {
+  client.registry.registerCommandsIn(path.join(__dirname, './channel-tts-commands'));
+}
+
 const createProvider = (type) => {
   switch (type) {
     case 'level':
@@ -110,7 +114,7 @@ client.on('ready', async() => {
     await client.deployer.deployToTestingGuild();
   }
 
-  if (config.get('ENABLED_TTS_CHANNELS')) {
+  if (config.get('ENABLE_TTS_CHANNELS')) {
     client.ttsChannelHandler.initialize();
   }
 });
