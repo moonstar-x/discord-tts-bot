@@ -7,7 +7,7 @@ class SetChannelProvider extends SlashCommand {
   constructor(client) {
     super(client, {
       name: 'set_channel_provider',
-      description: 'Sets the provider to be used by the message only based TTS on specific channels.',
+      description: 'Sets the provider to be used by the message-only based TTS on specific channels.',
       emoji: ':pencil2:',
       group: 'config',
       guildOnly: true,

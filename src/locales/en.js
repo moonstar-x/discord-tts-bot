@@ -67,7 +67,10 @@ const CHANNEL_COMMANDS = {
   'channel_commands.settings.enabled.no_settings': 'No settings associated to this provider.',
 
   'channel_commands.settings.disabled.embed.title': 'Message-only based TTS is disabled on this channel.',
-  'channel_commands.settings.disabled.embed.description': 'You can enable message-only based TTS here by running **/set_channel_provider** and choosing a provider to be used.'
+  'channel_commands.settings.disabled.embed.description': 'You can enable message-only based TTS here by running **/set_channel_provider** and choosing a provider to be used.',
+
+  'channel_commands.delete.already_disabled': 'Message-only based TTS is already disabled on this channel.',
+  'channel_commands.delete.success': 'Message-only based TTS has been disabled on this channel and its settings have been removed.'
 };
 
 module.exports = {
