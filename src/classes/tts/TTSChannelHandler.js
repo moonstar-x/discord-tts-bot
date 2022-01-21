@@ -10,7 +10,7 @@ class TTSChannelHandler {
   }
 
   initialize() {
-    this.client.on('messageCreate', this.handleMessage);
+    this.client.on('messageCreate', this.handleMessage.bind(this));
   }
 
   async handleMessage(message) {
