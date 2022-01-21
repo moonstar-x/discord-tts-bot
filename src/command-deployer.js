@@ -6,7 +6,11 @@ const config = new ConfigProvider({
   env: process.env,
   configPath: path.join(__dirname, '../config/settings.json'),
   types: {
-    TOKEN: 'string'
+    TOKEN: 'string',
+    ENABLE_TTS_CHANNELS: 'boolean'
+  },
+  default: {
+    ENABLE_TTS_CHANNELS: false
   }
 });
 
@@ -24,6 +28,10 @@ client.registry
     ['misc', 'Miscellaneous Commands']
   ])
   .registerCommandsIn(path.join(__dirname, './commands'));
+
+if (config.get('ENABLE_TTS_CHANNELS')) {
+  client.registry.registerCommandsIn(path.join(__dirname, './channel-tts-commands'));
+}
 
 client.on('ready', async() => {
   try {
