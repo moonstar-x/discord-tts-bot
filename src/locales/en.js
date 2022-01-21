@@ -58,8 +58,13 @@ const COMMAND = {
   'command.timeout.success': 'I will now leave from the voice channel after **{timeout}** minutes of inactivity.'
 };
 
+const CHANNEL_COMMANDS = {
+  'channel_commands.set.success': 'You have successfully changed the provider for this channel to **{name}**.'
+};
+
 module.exports = {
   ...APP,
   ...ERROR,
-  ...COMMAND
+  ...COMMAND,
+  ...CHANNEL_COMMANDS
 };
