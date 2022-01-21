@@ -1,8 +1,8 @@
 {
   "name": "Discord Text-to-Speech Bot",
-  "description": "A small Discord bot sends Text-to-Speech messages in various languages.",
+  "description": "A small Discord bot that sends Text-to-Speech messages in various languages.",
   "repository": "https://github.com/moonstar-x/discord-tts-bot",
-  "logo": "https://i.imgur.com/Tqnk48j.png",
+  "logo": "https://i.imgur.com/jYh0jOT.png",
   "buildpacks": [
     {
       "url": "heroku/nodejs"
@@ -14,11 +14,6 @@
   "env": {
     "DISCORD_TOKEN": {
       "description": "Your bot's bot token.",
-      "required": true
-    },
-    "DISCORD_PREFIX": {
-      "description": "Your bot's command prefix.",
-      "value": "$",
       "required": true
     },
     "DISCORD_OWNER_ID": {
@@ -36,9 +31,24 @@
       "value": "900000",
       "required": false
     },
-    "DISCORD_DISCONNECT_TIMEOUT": {
-      "description": "The time it takes for the bot to leave the channel if inactive (in ms). Can be set to null to disable automatic leaving.",
-      "value": "600000",
+    "DISCORD_DEFAULT_DISCONNECT_TIMEOUT": {
+      "description": "The default time the bot waits before leaving a channel when inactive (in minutes). Can be set between 5 and 300.",
+      "value": "5",
+      "required": false
+    },
+    "DISCORD_PROVIDER_TYPE": {
+      "description": "The type of data provider to use. In heroku, you should set this to redis.",
+      "value": "redis",
+      "required": false
+    },
+    "DISCORD_REDIS_URL": {
+      "description": "The URL of the redis service to be used by this bot. In heroku, you need to have this set.",
+      "value": "redis://ip:port",
+      "required": true
+    },
+    "DISCORD_ENABLE_TTS_CHANNELS": {
+      "description": "Whether to enable the message-only based TTS to send TTS messages on a certain channel with a certain setting without the need to execute a command.",
+      "value": "false",
       "required": false
     }
   }
