@@ -72,7 +72,7 @@ const client = new TTSClient({
     defaultLocale: 'en',
     localeStrings: locales
   },
-  intents: ['GUILD_MESSAGES', 'GUILD_MEMBERS', 'GUILDS', 'GUILD_VOICE_STATES']
+  intents: ['GUILD_MESSAGES', 'GUILDS', 'GUILD_VOICE_STATES']
 });
 
 client
