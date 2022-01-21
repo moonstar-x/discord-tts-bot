@@ -19,7 +19,8 @@ const config = new ConfigProvider({
     DEFAULT_DISCONNECT_TIMEOUT: 5, // 5 Minutes,
     TESTING_GUILD_ID: null,
     PROVIDER_TYPE: 'level',
-    REDIS_URL: null
+    REDIS_URL: null,
+    ENABLE_TTS_CHANNELS: false
   },
   types: {
     TOKEN: 'string',
@@ -30,7 +31,8 @@ const config = new ConfigProvider({
     DEFAULT_DISCONNECT_TIMEOUT: 'number',
     TESTING_GUILD_ID: ['string', 'null'],
     PROVIDER_TYPE: 'string',
-    REDIS_URL: ['string', 'null']
+    REDIS_URL: ['string', 'null'],
+    ENABLE_TTS_CHANNELS: 'boolean'
   },
   customValidators: {
     PROVIDER_TYPE: (value) => {
@@ -106,6 +108,10 @@ client.on('ready', async() => {
   if (config.get('TESTING_GUILD_ID')) {
     client.deployer.rest.setToken(config.get('TOKEN'));
     await client.deployer.deployToTestingGuild();
+  }
+
+  if (config.get('ENABLED_TTS_CHANNELS')) {
+    client.ttsChannelHandler.initialize();
   }
 });
 
