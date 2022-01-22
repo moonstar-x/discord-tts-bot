@@ -29,7 +29,7 @@ class SetTimeoutCommand extends SlashCommand {
     const timeout = interaction.options.getNumber('timeout');
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);
 
-    if (timeout > DISCONNECT_TIMEOUT.MIN || timeout < DISCONNECT_TIMEOUT.MAX) {
+    if (timeout < DISCONNECT_TIMEOUT.MIN || timeout > DISCONNECT_TIMEOUT.MAX) {
       return interaction.reply({ content: localizer.t('command.timeout.out_of_range', { min: DISCONNECT_TIMEOUT.MIN, max: DISCONNECT_TIMEOUT.MAX }) });
     }
 
