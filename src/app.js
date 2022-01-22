@@ -106,7 +106,7 @@ const createProvider = (type) => {
   }
 };
 
-client.on('ready', async() => {
+client.once('ready', async() => {
   await client.setDataProvider(createProvider(config.get('PROVIDER_TYPE')));
   await client.initializeDependencies();
   await client.localizer.init();
@@ -119,26 +119,26 @@ client.on('ready', async() => {
   if (config.get('ENABLE_TTS_CHANNELS')) {
     client.ttsChannelHandler.initialize();
   }
-});
 
-client.on('guildDelete', async(guild) => {
-  await client.dataProvider.clear(guild);
-});
+  client.on('guildDelete', async(guild) => {
+    await client.dataProvider.clear(guild);
+  });
 
-// This will be removed in a future update.
-client.on('messageCreate', (message) => {
-  if (message.author.bot || !message.guild || !message.content.startsWith(client.prefix)) {
-    return;
-  }
+  // This will be removed in a future update.
+  client.on('messageCreate', (message) => {
+    if (message.author.bot || !message.guild || !message.content.startsWith(client.prefix)) {
+      return;
+    }
 
-  const args = message.content.slice(client.prefix.length).trim().split(/ +/);
-  const commandName = args.shift()?.toLowerCase();
-  const command = client.registry.resolveCommand(commandName);
+    const args = message.content.slice(client.prefix.length).trim().split(/ +/);
+    const commandName = args.shift()?.toLowerCase();
+    const command = client.registry.resolveCommand(commandName);
 
-  if (command) {
-    const localizer = client.localizer.getLocalizer(message.guild);
-    return message.reply(localizer.t('app.message.deprecated', { commandName }));
-  }
+    if (command) {
+      const localizer = client.localizer.getLocalizer(message.guild);
+      return message.reply(localizer.t('app.message.deprecated', { commandName }));
+    }
+  });
 });
 
 client.login(config.get('TOKEN'));
