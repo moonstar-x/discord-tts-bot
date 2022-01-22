@@ -29,7 +29,7 @@
     "@discordjs/builders": "^0.11.0",
     "@discordjs/opus": "^0.5.3",
     "@discordjs/voice": "^0.7.5",
-    "@greencoast/discord.js-extended": "^2.2.0",
+    "@greencoast/discord.js-extended": "^2.2.1",
     "@greencoast/logger": "^1.1.0",
     "axios": "^0.25.0",
     "deepmerge": "^4.2.2",
