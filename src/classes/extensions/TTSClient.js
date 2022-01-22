@@ -16,25 +16,20 @@ class TTSClient extends ExtendedClient {
   }
 
   async initializeDependencies() {
-    await this.initializeDisconnectSchedulers();
-    this.initializeTTSPlayers();
+    return Promise.all(this.guilds.cache.map((guild) => this.initializeDependenciesForGuild(guild)));
   }
 
-  initializeTTSPlayers() {
-    this.guilds.cache.each((guild) => {
-      const scheduler = this.disconnectSchedulers.get(guild.id);
+  async initializeDependenciesForGuild(guild) {
+    const timeout = await this.dataProvider.get(guild, 'disconnectTimeout', this.config.get('DEFAULT_DISCONNECT_TIMEOUT') * 60 * 1000);
+    const scheduler = new Scheduler(this, guild, timeout);
 
-      this.ttsPlayers.set(guild.id, new TTSPlayer(this, guild, scheduler));
-    });
+    this.disconnectSchedulers.set(guild.id, scheduler);
+    this.ttsPlayers.set(guild.id, new TTSPlayer(this, guild, scheduler));
   }
 
-  async initializeDisconnectSchedulers() {
-    return Promise.all(this.guilds.cache.map(async(guild) => {
-      const timeout = await this.dataProvider.get(guild, 'disconnectTimeout', this.config.get('DEFAULT_DISCONNECT_TIMEOUT') * 60 * 1000);
-      const scheduler = new Scheduler(this, guild, timeout);
-
-      this.disconnectSchedulers.set(guild.id, scheduler);
-    }));
+  deleteDependenciesForGuild(guild) {
+    this.ttsPlayers.delete(guild.id);
+    this.disconnectSchedulers.delete(guild.id);
   }
 
   getTTSPlayer(guild) {

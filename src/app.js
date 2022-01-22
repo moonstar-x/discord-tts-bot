@@ -5,6 +5,7 @@ const LevelDataProvider = require('@greencoast/discord.js-extended/dist/provider
 const TTSClient = require('./classes/extensions/TTSClient');
 const { locales } = require('./locales');
 const { DISCONNECT_TIMEOUT } = require('./common/constants');
+const pkg = require('../package.json');
 
 const SUPPORTED_PROVIDERS = ['level', 'redis'];
 
@@ -62,9 +63,10 @@ const client = new TTSClient({
     refreshInterval: config.get('PRESENCE_REFRESH_INTERVAL'),
     templates: [
       '{num_guilds} servers!',
-      '{prefix}help for help.',
+      '/help for help.',
       '{num_members} users!',
-      'up for {uptime}.'
+      'up for {uptime}.',
+      `Current version: ${pkg.version}`
     ]
   },
   testingGuildID: config.get('TESTING_GUILD_ID'),
@@ -104,7 +106,7 @@ const createProvider = (type) => {
   }
 };
 
-client.on('ready', async() => {
+client.once('ready', async() => {
   await client.setDataProvider(createProvider(config.get('PROVIDER_TYPE')));
   await client.initializeDependencies();
   await client.localizer.init();
@@ -117,26 +119,35 @@ client.on('ready', async() => {
   if (config.get('ENABLE_TTS_CHANNELS')) {
     client.ttsChannelHandler.initialize();
   }
-});
 
-client.on('guildDelete', async(guild) => {
-  await client.dataProvider.clear(guild);
-});
+  client.on('guildCreate', async(guild) => {
+    await client.initializeDependenciesForGuild(guild);
+  });
 
-// This will be removed in a future update.
-client.on('messageCreate', (message) => {
-  if (message.author.bot || !message.guild || !message.content.startsWith(client.prefix)) {
-    return;
-  }
+  client.on('guildDelete', async(guild) => {
+    await client.dataProvider.clear(guild);
+    client.deleteDependenciesForGuild(guild);
+  });
 
-  const args = message.content.slice(client.prefix.length).trim().split(/ +/);
-  const commandName = args.shift()?.toLowerCase();
-  const command = client.registry.resolveCommand(commandName);
+  // This will be removed in a future update.
+  client.on('messageCreate', (message) => {
+    if (message.author.bot || !message.guild || !message.content.startsWith(client.prefix)) {
+      return;
+    }
 
-  if (command) {
-    const localizer = client.localizer.getLocalizer(message.guild);
-    return message.reply(localizer.t('app.message.deprecated', { commandName }));
-  }
+    const args = message.content.slice(client.prefix.length).trim().split(/ +/);
+    const commandName = args.shift()?.toLowerCase();
+    const command = client.registry.resolveCommand(commandName);
+
+    try {
+      if (command) {
+        const localizer = client.localizer.getLocalizer(message.guild);
+        return message.reply(localizer.t('app.message.deprecated', { commandName }));
+      }
+    } catch (error) {
+      client.emit('error', error);
+    }
+  });
 });
 
 client.login(config.get('TOKEN'));
