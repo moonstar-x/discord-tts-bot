@@ -143,7 +143,13 @@ This table contains all the configuration settings you may specify with both env
 
 ## Running on Docker
 
-You can start a container with the bot's image by running:
+Before you run this image, you should deploy your commands, you can do so by running:
+
+```text
+ docker run -it --rm -e DISCORD_TOKEN="your_token" -e DISCORD_ENABLE_TTS_CHANNELS="true/false" moonstarx/discord-tts-bot npm run deploy
+```
+
+After that, you can start a container with the bot's image by running:
 
 ```text
 docker run -it -e DISCORD_TOKEN="YOUR DISCORD TOKEN" moonstarx/discord-tts-bot:latest
