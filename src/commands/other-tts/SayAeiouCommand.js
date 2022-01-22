@@ -25,6 +25,8 @@ class SayAeiouCommand extends SlashCommand {
   }
 
   async run(interaction) {
+    await interaction.deferReply({ ephemeral: true });
+
     const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);
     const connection = ttsPlayer.voice.getConnection();
@@ -40,26 +42,29 @@ class SayAeiouCommand extends SlashCommand {
     });
 
     if (!memberChannel) {
-      return interaction.reply({ content: localizer.t('command.say.no_channel'), ephemeral: true });
+      await interaction.editReply(localizer.t('command.say.no_channel'));
+      return;
     }
 
     if (connection) {
       if (myChannel !== memberChannel) {
-        return interaction.reply({ content: localizer.t('command.say.different_channel'), ephemeral: true });
+        await interaction.editReply(localizer.t('command.say.different_channel'));
+        return;
       }
 
-      await interaction.reply({ content: localizer.t('command.say.success'), ephemeral: true });
+      await interaction.editReply(localizer.t('command.say.success'));
       return ttsPlayer.say(message, AeiouProvider.NAME);
     }
 
     const cantConnectReason = getCantConnectToChannelReason(memberChannel);
     if (cantConnectReason) {
-      return interaction.reply({ content: localizer.t(cantConnectReason), ephemeral: true });
+      await interaction.editReply(localizer.t(cantConnectReason));
+      return;
     }
 
     await ttsPlayer.voice.connect(memberChannel);
     logger.info(`Joined ${memberChannel.name} in ${guildName}.`);
-    await interaction.reply({ content: localizer.t('command.say.joined', { channel: memberChannel.toString() }) });
+    await interaction.editReply(localizer.t('command.say.joined', { channel: memberChannel.toString() }));
     return ttsPlayer.say(message, AeiouProvider.NAME);
   }
 }
