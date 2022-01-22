@@ -120,8 +120,13 @@ client.once('ready', async() => {
     client.ttsChannelHandler.initialize();
   }
 
+  client.on('guildCreate', async(guild) => {
+    await client.initializeDependenciesForGuild(guild);
+  });
+
   client.on('guildDelete', async(guild) => {
     await client.dataProvider.clear(guild);
+    client.deleteDependenciesForGuild(guild);
   });
 
   // This will be removed in a future update.
