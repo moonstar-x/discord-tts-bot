@@ -103,7 +103,7 @@ class TTSPlayer {
     this.voice.disconnect();
     this.voice.player.stop(true);
 
-    return channel;
+    return channel || { name: 'null' };
   }
 
   startDisconnectScheduler() {
