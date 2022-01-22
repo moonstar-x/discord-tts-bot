@@ -1,6 +1,4 @@
-<center>
-    <img src="https://i.imgur.com/HT7Wmv1.jpg">
-</center>
+![banner](https://i.imgur.com/HT7Wmv1.jpg)
 
 [![discord](https://img.shields.io/discord/730998659008823296.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/mhj3Zsv)
 [![ci-build-status](https://img.shields.io/github/workflow/status/moonstar-x/discord-tts-bot/CI?logo=github)](https://github.com/moonstar-x/discord-tts-bot)
@@ -67,6 +65,42 @@ In case your bot is in a lot of servers (more than 2000), you should shard your 
 npm run start-sharded
 ```
 
+## Updating
+
+In order to update this bot, you should pull the latest changes:
+
+```text
+git pull origin master
+```
+
+And re-install the dependencies:
+
+```text
+rm -rf node_modules && npm install
+```
+
+Once this is done, you should re-deploy the commands:
+
+```text
+npm run deploy
+```
+
+And you're ready to go. Make sure you check the README everytime you wish to update in case there are breaking changes
+that may affect your current installation.
+
+## Creating your Bot Token
+
+Head over to [Discord Application Page](https://discord.com/developers/applications/) and create a new bot. Then, you should enable it as a bot
+by going into the `Bot` page and setting up your bot. Then, you should head over to the `OAuth2` page and select `OAuth2 URL Generator`. A box should show up
+with plenty of checkboxes, enable the `bot` and `application.commands` checkboxes. Then, another box should show up with more checkboxes, enable the following ones:
+
+* Send Messages
+* Read Message History
+* Connect
+* Speak
+
+At the bottom a link should show up, access this link to invite your bot. You should send this link to anyone that wishes to add your bot to their Discord server.
+
 ## Configuration
 
 Inside the `config` folder, rename the file *settings.json.example* to *settings.json* and edit the file with your own Discord Token and other settings. If you don't have a discord token yet, you can see a guide on how to create it [here](https://github.com/moonstar-x/discord-downtime-notifier/wiki).
@@ -92,18 +126,18 @@ You may also configure these options with environment variables. The settings se
 
 This table contains all the configuration settings you may specify with both environment variables and the JSON config file.
 
-| Environment Variable               | JSON Property                | Required                    | Type                       | Description                                                                                                                                                                                                                                                                                                              |
-|------------------------------------|------------------------------|-----------------------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| DISCORD_TOKEN                      | `token`                      | Yes.                        | `string`                   | The bot's token.                                                                                                                                                                                                                                                                                                         |
-| DISCORD_PREFIX                     | `prefix`                     | No. (Defaults to: `$`)      | `string`                   | **Deprecated**: The bot's prefix. A prefix is no longer necessary because this bot uses the all new interactions (slash commands).                                                                                                                                                                                       |
-| DISCORD_OWNER_ID                   | `owner_id`                   | No. (Defaults to: `null`)   | `string` or `null`         | The ID of the bot's owner.                                                                                                                                                                                                                                                                                               |
-| DISCORD_OWNER_REPORTING            | `owner_reporting`            | No. (Defaults to: `false`)  | `boolean`                  | Whether the bot should send error reports to the owner via DM when a command errors.                                                                                                                                                                                                                                     |
-| DISCORD_PRESENCE_REFRESH_INTERVAL  | `presence_refresh_interval`  | No. (Defaults to: `900000`) | `number` or `null`         | The time interval in milliseconds in which the bot updates its presence. If set to `null` the presence auto update will be disabled.                                                                                                                                                                                     |
-| DISCORD_DEFAULT_DISCONNECT_TIMEOUT | `default_disconnect_timeout` | No. (Defaults to: `5`)      | `number` or `null`         | The time it takes the bot to leave a voice channel when inactive by default on all servers. This setting can be customised per server and this will be used if a server has not set their own value.                                                                                                                     |
-| DISCORD_TESTING_GUILD_ID           | `testing_guild_id`           | No. (Defaults to: `null`)   | `string` or `null`         | The ID of the testing guild. You do not need to set this to anything if you're not planning on developing the bot.                                                                                                                                                                                                       |
-| DISCORD_PROVIDER_TYPE              | `provider_type`              | No. (Defaults to: `level`)  | Can be: `level` or `redis` | The type of data provider to use. [Level](https://github.com/google/leveldb) is a file based key-value store whereas [Redis](https://redis.io/) is a cache service. If you plan on just hosting the bot for a small server you should choose `level`, if you plan on sharding the client `redis` can be a better choice. |
-| DISCORD_REDIS_URL                  | `redis_url`                  | No. (Defaults to: `null`)   | `string` or `null`         | The URL of the redis service. This is only required if you have set the provider type to `redis`.                                                                                                                                                                                                                        |
-| DISCORD_ENABLE_TTS_CHANNELS        | `enable_tts_channels`        | No. (Defaults to: `false`)  | `boolean`                  | Whether to enable the message-only TTS for specific channels. With this setting, you can send TTS messages by just sending messages to a channel that you have enabled a provider for.                                                                                                                                   |
+| Environment Variable               | JSON Property                | Required                    | Type                       | Description                                                                                                                                                                                                                                                                                                                    |
+|------------------------------------|------------------------------|-----------------------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| DISCORD_TOKEN                      | `token`                      | Yes.                        | `string`                   | The bot's token.                                                                                                                                                                                                                                                                                                               |
+| DISCORD_PREFIX                     | `prefix`                     | No. (Defaults to: `$`)      | `string`                   | **Deprecated**: The bot's prefix. A prefix is no longer necessary because this bot uses the all new interactions (slash commands).                                                                                                                                                                                             |
+| DISCORD_OWNER_ID                   | `owner_id`                   | No. (Defaults to: `null`)   | `string` or `null`         | The ID of the bot's owner.                                                                                                                                                                                                                                                                                                     |
+| DISCORD_OWNER_REPORTING            | `owner_reporting`            | No. (Defaults to: `false`)  | `boolean`                  | Whether the bot should send error reports to the owner via DM when a command errors.                                                                                                                                                                                                                                           |
+| DISCORD_PRESENCE_REFRESH_INTERVAL  | `presence_refresh_interval`  | No. (Defaults to: `900000`) | `number` or `null`         | The time interval in milliseconds in which the bot updates its presence. If set to `null` the presence auto update will be disabled.                                                                                                                                                                                           |
+| DISCORD_DEFAULT_DISCONNECT_TIMEOUT | `default_disconnect_timeout` | No. (Defaults to: `5`)      | `number` or `null`         | The time it takes the bot to leave a voice channel when inactive by default on all servers. This setting can be customised per server and this will be used if a server has not set their own value.                                                                                                                           |
+| DISCORD_TESTING_GUILD_ID           | `testing_guild_id`           | No. (Defaults to: `null`)   | `string` or `null`         | The ID of the testing guild. You do not need to set this to anything if you're not planning on developing the bot.                                                                                                                                                                                                             |
+| DISCORD_PROVIDER_TYPE              | `provider_type`              | No. (Defaults to: `level`)  | Can be: `level` or `redis` | The type of data provider to use. [Level](https://github.com/google/leveldb) is a file based key-value store whereas [Redis](https://redis.io/) is a cache service. If you plan on just hosting the bot for a small server you should choose `level`, if you plan on sharding the client `redis` can be a better choice.       |
+| DISCORD_REDIS_URL                  | `redis_url`                  | No. (Defaults to: `null`)   | `string` or `null`         | The URL of the redis service. This is only required if you have set the provider type to `redis`.                                                                                                                                                                                                                              |
+| DISCORD_ENABLE_TTS_CHANNELS        | `enable_tts_channels`        | No. (Defaults to: `false`)  | `boolean`                  | Whether to enable the message-only TTS for specific channels. With this setting, you can send TTS messages by just sending messages to a channel that you have enabled a provider for. You need the privileged message intent (accessible in the `Bot` page of your bot's application page) for this feature to work properly. |
 
 > If you set `enable_tts_channels` to `true`, you must enable the message content privileged intent in your bot's [application page](https://discord.com/developers/applications/).
 
@@ -121,6 +155,24 @@ The following volumes can be used:
 
 * `/opt/app/config`: The config folder for the bot, here you can use the `settings.json` file to configure the bot if you don't want to use environment variables.
 * `/opt/app/data`: The data folder for the bot. If you use a `level` data provider you should set this volume to keep the bot's data persistent across restarts.
+
+## Running on Repl.it
+
+To run this bot on Repl.it, create a new Repl by importing this repository. Then, run the following commands:
+
+```bash
+chmod +x init-replit.sh
+./init-replit.sh
+```
+
+This will set up the proper node environment for the bot.
+
+Then, after you have [configured](#configuration) your bot, you should deploy your commands and start the bot with:
+
+```text
+npm run deploy
+npm start
+```
 
 ## Deploying to Heroku
 
