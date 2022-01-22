@@ -139,13 +139,12 @@ client.once('ready', async() => {
     const commandName = args.shift()?.toLowerCase();
     const command = client.registry.resolveCommand(commandName);
 
-    try {
-      if (command) {
-        const localizer = client.localizer.getLocalizer(message.guild);
-        return message.reply(localizer.t('app.message.deprecated', { commandName }));
-      }
-    } catch (error) {
-      client.emit('error', error);
+    if (command) {
+      const localizer = client.localizer.getLocalizer(message.guild);
+      return message.reply(localizer.t('app.message.deprecated', { commandName }))
+        .catch((error) => {
+          client.emit('error', error);
+        });
     }
   });
 });
