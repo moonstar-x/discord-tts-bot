@@ -1,6 +1,6 @@
 {
   "name": "discord-tts-bot",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "A simple Discord TTS Bot that uses the Google Translate TTS API.",
   "main": "./src/app.js",
   "scripts": {

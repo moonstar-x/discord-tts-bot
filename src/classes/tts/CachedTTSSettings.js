@@ -20,7 +20,12 @@ class CachedTTSSettings {
         return;
       }
 
-      await this.delete(channel);
+      try {
+        await this.delete(channel);
+      } catch (error) {
+        this.client.emit('warn', `Could not delete settings for channel ${channel.id}. Most likely no settings were saved for this channel in the first place. If this is the case then it is safe to ignore this warning.`);
+        this.client.emit('error', error);
+      }
     });
   }
 
