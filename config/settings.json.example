@@ -8,5 +8,6 @@
   "testing_guild_id": null,
   "provider_type": "level",
   "redis_url": "redis://ip:port",
-  "enable_tts_channels": false
+  "enable_tts_channels": false,
+  "enable_keep_alive": false
 }

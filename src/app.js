@@ -4,6 +4,7 @@ const RedisDataProvider = require('@greencoast/discord.js-extended/dist/provider
 const LevelDataProvider = require('@greencoast/discord.js-extended/dist/providers/LevelDataProvider').default;
 const TTSClient = require('./classes/extensions/TTSClient');
 const { locales } = require('./locales');
+const { keepAlive } = require('./utils/keep-alive');
 const { DISCONNECT_TIMEOUT } = require('./common/constants');
 const pkg = require('../package.json');
 
@@ -21,7 +22,8 @@ const config = new ConfigProvider({
     TESTING_GUILD_ID: null,
     PROVIDER_TYPE: 'level',
     REDIS_URL: null,
-    ENABLE_TTS_CHANNELS: false
+    ENABLE_TTS_CHANNELS: false,
+    ENABLE_KEEP_ALIVE: false
   },
   types: {
     TOKEN: 'string',
@@ -33,7 +35,8 @@ const config = new ConfigProvider({
     TESTING_GUILD_ID: ['string', 'null'],
     PROVIDER_TYPE: 'string',
     REDIS_URL: ['string', 'null'],
-    ENABLE_TTS_CHANNELS: 'boolean'
+    ENABLE_TTS_CHANNELS: 'boolean',
+    ENABLE_KEEP_ALIVE: 'boolean'
   },
   customValidators: {
     PROVIDER_TYPE: (value) => {
@@ -118,6 +121,10 @@ client.once('ready', async() => {
 
   if (config.get('ENABLE_TTS_CHANNELS')) {
     client.ttsChannelHandler.initialize();
+  }
+
+  if (config.get('ENABLE_KEEP_ALIVE')) {
+    keepAlive({ port: process.env.PORT || 3000 });
   }
 
   client.on('guildCreate', async(guild) => {
