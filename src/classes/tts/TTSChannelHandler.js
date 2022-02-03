@@ -33,14 +33,13 @@ class TTSChannelHandler {
 
     const extras = channelSettings[channelSettings.provider] || TTSPlayer.DEFAULT_SETTINGS[channelSettings.provider];
 
-    const { me: { voice: myVoice }, name: guildName, members, channels, roles, emojis } = message.guild;
+    const { me: { voice: myVoice }, name: guildName, members, channels, roles } = message.guild;
     const { channel: memberChannel } = message.member.voice;
     const myChannel = myVoice?.channel;
     const textToSay = cleanMessage(message.content, {
       members: members.cache,
       channels: channels.cache,
-      roles: roles.cache,
-      emojis: emojis.cache
+      roles: roles.cache
     });
 
     if (!memberChannel) {
