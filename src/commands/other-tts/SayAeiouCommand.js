@@ -31,14 +31,13 @@ class SayAeiouCommand extends SlashCommand {
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);
     const connection = ttsPlayer.voice.getConnection();
 
-    const { me: { voice: myVoice }, name: guildName, members, channels, roles, emojis } = interaction.guild;
+    const { me: { voice: myVoice }, name: guildName, members, channels, roles } = interaction.guild;
     const { channel: memberChannel } = interaction.member.voice;
     const myChannel = myVoice?.channel;
     const message = cleanMessage(interaction.options.getString('message'), {
       members: members.cache,
       channels: channels.cache,
-      roles: roles.cache,
-      emojis: emojis.cache
+      roles: roles.cache
     });
 
     if (!memberChannel) {

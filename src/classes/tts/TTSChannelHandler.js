@@ -14,16 +14,21 @@ class TTSChannelHandler {
   }
 
   async handleMessage(message) {
-    if (message.author.bot || !message.guild) {
-      return;
-    }
+    try {
+      if (message.author.bot || !message.guild || message.content?.length < 1) {
+        return;
+      }
 
-    const channelSettings = await this.client.ttsSettings.get(message.channel);
-    if (!channelSettings || !channelSettings.provider) {
-      return;
-    }
+      const channelSettings = await this.client.ttsSettings.get(message.channel);
+      if (!channelSettings || !channelSettings.provider) {
+        return;
+      }
 
-    return this.handleSay(message, channelSettings);
+      return this.handleSay(message, channelSettings);
+    } catch (error) {
+      logger.error(`Something happened when handling the TTS channel ${message.channel.name} with message from ${message.member.displayName}`);
+      logger.error(error);
+    }
   }
 
   async handleSay(message, channelSettings) {
@@ -33,14 +38,13 @@ class TTSChannelHandler {
 
     const extras = channelSettings[channelSettings.provider] || TTSPlayer.DEFAULT_SETTINGS[channelSettings.provider];
 
-    const { me: { voice: myVoice }, name: guildName, members, channels, roles, emojis } = message.guild;
+    const { me: { voice: myVoice }, name: guildName, members, channels, roles } = message.guild;
     const { channel: memberChannel } = message.member.voice;
     const myChannel = myVoice?.channel;
     const textToSay = cleanMessage(message.content, {
       members: members.cache,
       channels: channels.cache,
-      roles: roles.cache,
-      emojis: emojis.cache
+      roles: roles.cache
     });
 
     if (!memberChannel) {
