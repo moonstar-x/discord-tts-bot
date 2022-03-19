@@ -13,8 +13,11 @@ const DISCONNECT_TIMEOUT = {
   MAX: 300
 };
 
+const WEBSITE_URL = 'https://docs.moonstar-x.dev/discord-tts-bot/';
+
 module.exports = {
   MESSAGE_EMBED,
   EMBED_FIELD_MAX_SIZE,
-  DISCONNECT_TIMEOUT
+  DISCONNECT_TIMEOUT,
+  WEBSITE_URL
 };

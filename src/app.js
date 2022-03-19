@@ -5,7 +5,7 @@ const LevelDataProvider = require('@greencoast/discord.js-extended/dist/provider
 const TTSClient = require('./classes/extensions/TTSClient');
 const { locales } = require('./locales');
 const { keepAlive } = require('./utils/keep-alive');
-const { DISCONNECT_TIMEOUT } = require('./common/constants');
+const { DISCONNECT_TIMEOUT, WEBSITE_URL } = require('./common/constants');
 const pkg = require('../package.json');
 
 const SUPPORTED_PROVIDERS = ['level', 'redis'];
@@ -71,7 +71,9 @@ const client = new TTSClient({
       '/help for help.',
       '{num_members} users!',
       'up for {uptime}.',
-      `Current version: ${pkg.version}`
+      `current version: ${pkg.version}`,
+      '{num_commands} commands available.',
+      `visit ${WEBSITE_URL}`
     ]
   },
   testingGuildID: config.get('TESTING_GUILD_ID'),
