@@ -4,13 +4,13 @@ const GoogleProvider = require('./providers/GoogleProvider');
 const AeiouProvider = require('./providers/AeiouProvider');
 const Queue = require('../Queue');
 const VoiceManager = require('../VoiceManager');
-const { InvalidProviderError } = require('../../errors');
 
 class TTSPlayer {
   constructor(client, guild, disconnectScheduler) {
     this.client = client;
     this.guild = guild;
     this.disconnectScheduler = disconnectScheduler;
+    this.providerManager = client.providerManager;
 
     this.queue = new Queue();
     this.speaking = false;
@@ -18,9 +18,6 @@ class TTSPlayer {
 
     this.initializePlayer();
     this.initializeScheduler();
-
-    this.googleProvider = new GoogleProvider();
-    this.aeiouProvider = new AeiouProvider();
   }
 
   initializePlayer() {
@@ -45,21 +42,8 @@ class TTSPlayer {
     });
   }
 
-  getProvider(providerName) {
-    switch (providerName) {
-      case GoogleProvider.NAME:
-        return this.googleProvider;
-
-      case AeiouProvider.NAME:
-        return this.aeiouProvider;
-
-      default:
-        throw new InvalidProviderError(`${providerName} is not a valid provider!`);
-    }
-  }
-
   async say(sentence, providerName, extras = {}) {
-    const provider = this.getProvider(providerName);
+    const provider = this.providerManager.getProvider(providerName);
     const payload = await provider.createPayload(sentence, extras);
 
     if (Array.isArray(payload)) {
@@ -81,7 +65,7 @@ class TTSPlayer {
     }
 
     const payload = this.queue.dequeue();
-    const provider = this.getProvider(payload.providerName);
+    const provider = this.providerManager.getProvider(payload.providerName);
 
     logger.info(provider.getPlayLogMessage(payload, this.guild));
 

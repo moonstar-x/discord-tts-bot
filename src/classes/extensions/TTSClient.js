@@ -1,5 +1,6 @@
 const { Collection } = require('discord.js');
 const { ExtendedClient } = require('@greencoast/discord.js-extended');
+const ProviderManager = require('../tts/providers/ProviderManager');
 const TTSPlayer = require('../tts/TTSPlayer');
 const CachedTTSSettings = require('../tts/CachedTTSSettings');
 const TTSChannelHandler = require('../tts/TTSChannelHandler');
@@ -11,6 +12,8 @@ class TTSClient extends ExtendedClient {
 
     this.ttsPlayers = new Collection();
     this.disconnectSchedulers = new Collection();
+
+    this.providerManager = new ProviderManager(this);
     this.ttsSettings = new CachedTTSSettings(this);
     this.ttsChannelHandler = new TTSChannelHandler(this);
   }

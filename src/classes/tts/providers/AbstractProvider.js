@@ -2,9 +2,10 @@
 
 /**
  * This class represents an abstract TTS provider. Any TTS provider should create a concrete implementation of this class.
+ * @params {TTSClient} client The client that this provider will serve. Get any secrets (if required) from its config.
  */
 class AbstractProvider {
-  constructor() {
+  constructor(client) {
     if (new.target === AbstractProvider) {
       throw new TypeError('Cannot instantiate AbstractProvider!');
     }
