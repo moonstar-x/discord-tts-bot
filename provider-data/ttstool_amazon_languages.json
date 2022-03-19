@@ -5,27 +5,33 @@
     "voices": [
       {
         "name": "Salli",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon US English (Salli)"
       },
       {
         "name": "Joey",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon US English (Joey)"
       },
       {
         "name": "Kendra",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon US English (Kendra)"
       },
       {
         "name": "Kimberly",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon US English (Kimberly)"
       },
       {
         "name": "Ivy",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon US English (Ivy)"
       },
       {
         "name": "Justin",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon US English (Justin)"
       }
     ]
   },
@@ -35,15 +41,18 @@
     "voices": [
       {
         "name": "Amy",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon British English (Amy)"
       },
       {
         "name": "Brian",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon British English (Brian)"
       },
       {
         "name": "Emma",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon British English (Emma)"
       }
     ]
   },
@@ -53,11 +62,13 @@
     "voices": [
       {
         "name": "Nicole",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Australian English (Nicole)"
       },
       {
         "name": "Russell",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon Australian English (Russell)"
       }
     ]
   },
@@ -67,17 +78,8 @@
     "voices": [
       {
         "name": "Raveena",
-        "emoji": ":woman:"
-      }
-    ]
-  },
-  "en-wls": {
-    "name": "Welsh English",
-    "emoji": ":wales:",
-    "voices": [
-      {
-        "name": "Geraint",
-        "emoji": ":man:"
+        "emoji": ":woman:",
+        "id": "Amazon Indian English (Raveena)"
       }
     ]
   },
@@ -87,7 +89,13 @@
     "voices": [
       {
         "name": "Gwyneth",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Welsh (Gwyneth)"
+      },
+      {
+        "name": "Geraint",
+        "emoji": ":man:",
+        "id": "Amazon Welsh (Geraint)"
       }
     ]
   },
@@ -97,11 +105,13 @@
     "voices": [
       {
         "name": "Mads",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon Danish (Mads)"
       },
       {
         "name": "Naja",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Danish (Naja)"
       }
     ]
   },
@@ -111,11 +121,13 @@
     "voices": [
       {
         "name": "Lotte",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Dutch (Lotte)"
       },
       {
         "name": "Ruben",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon Dutch (Ruben)"
       }
     ]
   },
@@ -125,11 +137,13 @@
     "voices": [
       {
         "name": "Celine",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon French (Celine)"
       },
       {
         "name": "Mathieu",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon French (Mathieu)"
       }
     ]
   },
@@ -139,7 +153,8 @@
     "voices": [
       {
         "name": "Chantal",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Canadian French (Chantal)"
       }
     ]
   },
@@ -149,11 +164,13 @@
     "voices": [
       {
         "name": "Marlene",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon German (Marlene)"
       },
       {
         "name": "Hans",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon German (Hans)"
       }
     ]
   },
@@ -163,11 +180,13 @@
     "voices": [
       {
         "name": "Dora",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Icelandic (Dora)"
       },
       {
         "name": "Karl",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon Icelandic (Karl)"
       }
     ]
   },
@@ -177,11 +196,13 @@
     "voices": [
       {
         "name": "Carla",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Italian (Carla)"
       },
       {
         "name": "Giorgio",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon Italian (Giorgio)"
       }
     ]
   },
@@ -191,19 +212,23 @@
     "voices": [
       {
         "name": "Ewa",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Polish (Ewa)"
       },
       {
         "name": "Jacek",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon Polish (Jacek)"
       },
       {
         "name": "Maja",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Polish (Maja)"
       },
       {
         "name": "Jan",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon Polish (Jan)"
       }
     ]
   },
@@ -213,11 +238,13 @@
     "voices": [
       {
         "name": "Cristiano",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon Portuguese (Cristiano)"
       },
       {
         "name": "Ines",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Portuguese (Ines)"
       }
     ]
   },
@@ -227,11 +254,13 @@
     "voices": [
       {
         "name": "Vitoria",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Brazilian Portuguese (Vitoria)"
       },
       {
         "name": "Ricardo",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon Brazilian Portuguese (Ricardo)"
       }
     ]
   },
@@ -241,7 +270,8 @@
     "voices": [
       {
         "name": "Carmen",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Romanian (Carmen)"
       }
     ]
   },
@@ -251,11 +281,13 @@
     "voices": [
       {
         "name": "Tatyana",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Russian (Tatyana)"
       },
       {
         "name": "Maxim",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon Russian (Maxim)"
       }
     ]
   },
@@ -265,11 +297,13 @@
     "voices": [
       {
         "name": "Conchita",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Castilian Spanish (Conchita)"
       },
       {
         "name": "Enrique",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon Castilian Spanish (Enrique)"
       }
     ]
   },
@@ -279,11 +313,13 @@
     "voices": [
       {
         "name": "Penelope",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon US Spanish (Penelope)"
       },
       {
         "name": "Miguel",
-        "emoji": ":man:"
+        "emoji": ":man:",
+        "id": "Amazon US Spanish (Miguel)"
       }
     ]
   },
@@ -293,7 +329,8 @@
     "voices": [
       {
         "name": "Astrid",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Swedish (Astrid)"
       }
     ]
   },
@@ -303,7 +340,8 @@
     "voices": [
       {
         "name": "Filiz",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Turkish (Filiz)"
       }
     ]
   },
@@ -313,7 +351,8 @@
     "voices": [
       {
         "name": "Liv",
-        "emoji": ":woman:"
+        "emoji": ":woman:",
+        "id": "Amazon Norwegian (Liv)"
       }
     ]
   }
