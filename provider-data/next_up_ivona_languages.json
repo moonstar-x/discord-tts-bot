@@ -1,0 +1,320 @@
+{
+  "en-us": {
+    "name": "American English",
+    "emoji": ":flag_us:",
+    "voices": [
+      {
+        "name": "Salli",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Joey",
+        "emoji": ":man:"
+      },
+      {
+        "name": "Kendra",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Kimberly",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Ivy",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Justin",
+        "emoji": ":man:"
+      }
+    ]
+  },
+  "en-uk": {
+    "name": "British English",
+    "emoji": ":flag_gb:",
+    "voices": [
+      {
+        "name": "Amy",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Brian",
+        "emoji": ":man:"
+      },
+      {
+        "name": "Emma",
+        "emoji": ":woman:"
+      }
+    ]
+  },
+  "en-au": {
+    "name": "Australian English",
+    "emoji": ":flag_au:",
+    "voices": [
+      {
+        "name": "Nicole",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Russell",
+        "emoji": ":man:"
+      }
+    ]
+  },
+  "en-in": {
+    "name": "Indian English",
+    "emoji": ":flag_in:",
+    "voices": [
+      {
+        "name": "Raveena",
+        "emoji": ":woman:"
+      }
+    ]
+  },
+  "en-wls": {
+    "name": "Welsh English",
+    "emoji": ":wales:",
+    "voices": [
+      {
+        "name": "Geraint",
+        "emoji": ":man:"
+      }
+    ]
+  },
+  "wls": {
+    "name": "Welsh",
+    "emoji": ":wales:",
+    "voices": [
+      {
+        "name": "Gwyneth",
+        "emoji": ":woman:"
+      }
+    ]
+  },
+  "da": {
+    "name": "Danish",
+    "emoji": ":flag_dk:",
+    "voices": [
+      {
+        "name": "Mads",
+        "emoji": ":man:"
+      },
+      {
+        "name": "Naja",
+        "emoji": ":woman:"
+      }
+    ]
+  },
+  "nl": {
+    "name": "Dutch",
+    "emoji": ":flag_nl:",
+    "voices": [
+      {
+        "name": "Lotte",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Ruben",
+        "emoji": ":man:"
+      }
+    ]
+  },
+  "fr": {
+    "name": "French",
+    "emoji": ":flag_fr:",
+    "voices": [
+      {
+        "name": "Celine",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Mathieu",
+        "emoji": ":man:"
+      }
+    ]
+  },
+  "fr-ca": {
+    "name": "Canadian French",
+    "emoji": ":flag_ca:",
+    "voices": [
+      {
+        "name": "Chantal",
+        "emoji": ":woman:"
+      }
+    ]
+  },
+  "de": {
+    "name": "German",
+    "emoji": ":flag_de:",
+    "voices": [
+      {
+        "name": "Marlene",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Hans",
+        "emoji": ":man:"
+      }
+    ]
+  },
+  "is": {
+    "name": "Icelandic",
+    "emoji": ":flag_is:",
+    "voices": [
+      {
+        "name": "Dora",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Karl",
+        "emoji": ":man:"
+      }
+    ]
+  },
+  "it": {
+    "name": "Italian",
+    "emoji": ":flag_it:",
+    "voices": [
+      {
+        "name": "Carla",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Giorgio",
+        "emoji": ":man:"
+      }
+    ]
+  },
+  "pl": {
+    "name": "Polish",
+    "emoji": ":flag_pl:",
+    "voices": [
+      {
+        "name": "Ewa",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Jacek",
+        "emoji": ":man:"
+      },
+      {
+        "name": "Maja",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Jan",
+        "emoji": ":man:"
+      }
+    ]
+  },
+  "pt": {
+    "name": "Portuguese",
+    "emoji": ":flag_pt:",
+    "voices": [
+      {
+        "name": "Cristiano",
+        "emoji": ":man:"
+      },
+      {
+        "name": "Ines",
+        "emoji": ":woman:"
+      }
+    ]
+  },
+  "pt-br": {
+    "name": "Brazilian Portuguese",
+    "emoji": ":flag_br:",
+    "voices": [
+      {
+        "name": "Vitoria",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Ricardo",
+        "emoji": ":man:"
+      }
+    ]
+  },
+  "ro": {
+    "name": "Romanian",
+    "emoji": ":flag_ro:",
+    "voices": [
+      {
+        "name": "Carmen",
+        "emoji": ":woman:"
+      }
+    ]
+  },
+  "ru": {
+    "name": "Russian",
+    "emoji": ":flag_ru:",
+    "voices": [
+      {
+        "name": "Tatyana",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Maxim",
+        "emoji": ":man:"
+      }
+    ]
+  },
+  "es": {
+    "name": "Castilian Spanish",
+    "emoji": ":flag_es:",
+    "voices": [
+      {
+        "name": "Conchita",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Enrique",
+        "emoji": ":man:"
+      }
+    ]
+  },
+  "es-la": {
+    "name": "American Spanish",
+    "emoji": ":flag_mx:",
+    "voices": [
+      {
+        "name": "Penelope",
+        "emoji": ":woman:"
+      },
+      {
+        "name": "Miguel",
+        "emoji": ":man:"
+      }
+    ]
+  },
+  "sv": {
+    "name": "Swedish",
+    "emoji": ":flag_se:",
+    "voices": [
+      {
+        "name": "Astrid",
+        "emoji": ":woman:"
+      }
+    ]
+  },
+  "tr": {
+    "name": "Turkish",
+    "emoji": ":flag_tr:",
+    "voices": [
+      {
+        "name": "Filiz",
+        "emoji": ":woman:"
+      }
+    ]
+  },
+  "nb": {
+    "name": "Norwegian",
+    "emoji": ":flag_no:",
+    "voices": [
+      {
+        "name": "Liv",
+        "emoji": ":woman:"
+      }
+    ]
+  }
+}
