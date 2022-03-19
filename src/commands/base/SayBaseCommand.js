@@ -41,7 +41,9 @@ class SayBaseCommand extends SlashCommand {
     const { me: { voice: myVoice }, name: guildName, members, channels, roles } = interaction.guild;
     const { channel: memberChannel } = interaction.member.voice;
     const myChannel = myVoice?.channel;
-    const message = cleanMessage(interaction.options.getString('message'), {
+
+    const messageIntro = this.client.config.get('ENABLE_WHO_SAID') ? `${interaction.member.displayName} said ` : '';
+    const message = cleanMessage(`${messageIntro}${interaction.options.getString('message')}`, {
       members: members.cache,
       channels: channels.cache,
       roles: roles.cache

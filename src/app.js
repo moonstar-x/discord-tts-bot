@@ -23,7 +23,8 @@ const config = new ConfigProvider({
     PROVIDER_TYPE: 'level',
     REDIS_URL: null,
     ENABLE_TTS_CHANNELS: false,
-    ENABLE_KEEP_ALIVE: false
+    ENABLE_KEEP_ALIVE: false,
+    ENABLE_WHO_SAID: false
   },
   types: {
     TOKEN: 'string',
@@ -36,7 +37,8 @@ const config = new ConfigProvider({
     PROVIDER_TYPE: 'string',
     REDIS_URL: ['string', 'null'],
     ENABLE_TTS_CHANNELS: 'boolean',
-    ENABLE_KEEP_ALIVE: 'boolean'
+    ENABLE_KEEP_ALIVE: 'boolean',
+    ENABLE_WHO_SAID: 'boolean'
   },
   customValidators: {
     PROVIDER_TYPE: (value) => {
