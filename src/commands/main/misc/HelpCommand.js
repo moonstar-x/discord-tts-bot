@@ -1,7 +1,7 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
-const { MESSAGE_EMBED } = require('../../../common/constants');
+const { MESSAGE_EMBED, WEBSITE_URL } = require('../../../common/constants');
 
 class HelpCommand extends SlashCommand {
   constructor(client) {
@@ -44,7 +44,12 @@ class HelpCommand extends SlashCommand {
           .setStyle('LINK')
           .setEmoji('🐛')
           .setLabel(localizer.t('command.help.links.bug'))
-          .setURL(MESSAGE_EMBED.helpURL)
+          .setURL(MESSAGE_EMBED.helpURL),
+        new MessageButton()
+          .setStyle('LINK')
+          .setEmoji('🌎')
+          .setLabel(localizer.t('command.help.links.website'))
+          .setURL(WEBSITE_URL)
       );
 
     return interaction.reply({ embeds: [embed], components: [row] });

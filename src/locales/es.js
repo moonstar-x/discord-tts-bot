@@ -35,6 +35,7 @@ const COMMAND = {
 
   'command.help.embed.title': 'Mensaje de ayuda de Text-to-Speech',
   'command.help.links.bug': '¿Encontraste un bug? ¡Repórtalo!',
+  'command.help.links.website': 'Visita mi sitio web',
 
   'command.google.settings.default.language.invalid': 'Ese no es un idioma válido. Escribe **/google_langs** para obtener una lista de los idiomas disponibles.',
   'command.google.settings.default.language.success': 'Has cambiado el idioma por defecto a **{language}** con éxito.',
