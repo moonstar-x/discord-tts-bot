@@ -7,9 +7,12 @@ class SayAeiouCommand extends SayBaseCommand {
       name: 'aeiou_say',
       description: 'Send an aeiou (sounds like Stephen Hawking) TTS message in your voice channel.',
       emoji: ':robot:',
-      group: 'other-tts',
-      providerName: AeiouProvider.NAME
+      group: 'other-tts'
     });
+  }
+
+  getProviderName() {
+    return AeiouProvider.NAME;
   }
 }
 

@@ -21,8 +21,10 @@ class SayBaseCommand extends SlashCommand {
             .setRequired(true);
         })
     });
+  }
 
-    this.providerName = options.providerName;
+  getProviderName() {
+    throw new Error('getProviderName() not implemented!');
   }
 
   async run(interaction) {
@@ -33,7 +35,8 @@ class SayBaseCommand extends SlashCommand {
     const connection = ttsPlayer.voice.getConnection();
 
     const currentSettings = await this.client.ttsSettings.getCurrent(interaction);
-    const extras = currentSettings[this.providerName];
+    const providerName = this.getProviderName(currentSettings);
+    const extras = currentSettings[providerName];
 
     const { me: { voice: myVoice }, name: guildName, members, channels, roles } = interaction.guild;
     const { channel: memberChannel } = interaction.member.voice;
@@ -56,7 +59,7 @@ class SayBaseCommand extends SlashCommand {
       }
 
       await interaction.editReply(localizer.t('command.say.success'));
-      return ttsPlayer.say(message, this.providerName, extras);
+      return ttsPlayer.say(message, providerName, extras);
     }
 
     const cantConnectReason = getCantConnectToChannelReason(memberChannel);
@@ -68,7 +71,7 @@ class SayBaseCommand extends SlashCommand {
     await ttsPlayer.voice.connect(memberChannel);
     logger.info(`Joined ${memberChannel.name} in ${guildName}.`);
     await interaction.editReply(localizer.t('command.say.joined', { channel: memberChannel.toString() }));
-    return ttsPlayer.say(message, this.providerName, extras);
+    return ttsPlayer.say(message, providerName, extras);
   }
 }
 

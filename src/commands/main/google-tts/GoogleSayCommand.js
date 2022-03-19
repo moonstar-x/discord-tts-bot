@@ -7,9 +7,12 @@ class GoogleSayCommand extends SayBaseCommand {
       name: 'google_say',
       description: 'Send a Google Translate TTS message with multi-language support in your voice channel.',
       emoji: ':speaking_head:',
-      group: 'google-tts',
-      providerName: GoogleProvider.NAME
+      group: 'google-tts'
     });
+  }
+
+  getProviderName() {
+    return GoogleProvider.NAME;
   }
 }
 
