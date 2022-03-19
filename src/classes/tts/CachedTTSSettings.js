@@ -60,15 +60,15 @@ class CachedTTSSettings {
   }
 
   async getCurrent(interaction) {
-    const memberSettings = await this.client.ttsSettings.get(interaction.member);
-    const guildSettings = await this.client.ttsSettings.get(interaction.guild);
+    const memberSettings = await this.get(interaction.member);
+    const guildSettings = await this.get(interaction.guild);
 
     return merge.all([TTSPlayer.DEFAULT_SETTINGS, guildSettings, memberSettings]);
   }
 
   async _set(key, settings, cache, guild) {
     const stored = await this._get(key, cache, guild);
-    const newSettings = { ...stored, ...settings };
+    const newSettings = merge(stored, settings);
 
     await this.client.dataProvider.set(guild, key, newSettings);
     cache.set(key, newSettings);
