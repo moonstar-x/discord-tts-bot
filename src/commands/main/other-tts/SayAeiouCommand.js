@@ -2,17 +2,17 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const logger = require('@greencoast/logger');
-const GoogleProvider = require('../../classes/tts/providers/GoogleProvider');
-const { getCantConnectToChannelReason } = require('../../utils/channel');
-const { cleanMessage } = require('../../utils/mentions');
+const AeiouProvider = require('../../../classes/tts/providers/AeiouProvider');
+const { getCantConnectToChannelReason } = require('../../../utils/channel');
+const { cleanMessage } = require('../../../utils/mentions');
 
-class GoogleSayCommand extends SlashCommand {
+class SayAeiouCommand extends SlashCommand {
   constructor(client) {
     super(client, {
-      name: 'google_say',
-      description: 'Send a Google Translate TTS message with multi-language support in your voice channel.',
-      emoji: ':speaking_head:',
-      group: 'google-tts',
+      name: 'aeiou_say',
+      description: 'Send an aeiou (sounds like Stephen Hawking) TTS message in your voice channel.',
+      emoji: ':robot:',
+      group: 'other-tts',
       guildOnly: true,
       dataBuilder: new SlashCommandBuilder()
         .addStringOption((input) => {
@@ -30,9 +30,6 @@ class GoogleSayCommand extends SlashCommand {
     const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);
     const connection = ttsPlayer.voice.getConnection();
-
-    const currentSettings = await this.client.ttsSettings.getCurrent(interaction);
-    const extras = currentSettings[GoogleProvider.NAME];
 
     const { me: { voice: myVoice }, name: guildName, members, channels, roles } = interaction.guild;
     const { channel: memberChannel } = interaction.member.voice;
@@ -55,7 +52,7 @@ class GoogleSayCommand extends SlashCommand {
       }
 
       await interaction.editReply(localizer.t('command.say.success'));
-      return ttsPlayer.say(message, GoogleProvider.NAME, extras);
+      return ttsPlayer.say(message, AeiouProvider.NAME);
     }
 
     const cantConnectReason = getCantConnectToChannelReason(memberChannel);
@@ -67,8 +64,8 @@ class GoogleSayCommand extends SlashCommand {
     await ttsPlayer.voice.connect(memberChannel);
     logger.info(`Joined ${memberChannel.name} in ${guildName}.`);
     await interaction.editReply(localizer.t('command.say.joined', { channel: memberChannel.toString() }));
-    return ttsPlayer.say(message, GoogleProvider.NAME, extras);
+    return ttsPlayer.say(message, AeiouProvider.NAME);
   }
 }
 
-module.exports = GoogleSayCommand;
+module.exports = SayAeiouCommand;

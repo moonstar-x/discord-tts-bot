@@ -1,7 +1,7 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const logger = require('@greencoast/logger');
-const { supported } = require('../../locales');
+const { supported } = require('../../../locales');
 
 class SetLocaleCommand extends SlashCommand {
   constructor(client) {

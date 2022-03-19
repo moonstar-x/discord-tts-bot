@@ -1,8 +1,8 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const logger = require('@greencoast/logger');
-const GoogleProvider = require('../../classes/tts/providers/GoogleProvider');
-const languages = require('../../../provider-data/google_languages.json');
+const GoogleProvider = require('../../../classes/tts/providers/GoogleProvider');
+const languages = require('../../../../provider-data/google_languages.json');
 
 class GoogleSetMySettingsCommand extends SlashCommand {
   constructor(client) {

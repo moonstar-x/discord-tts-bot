@@ -1,8 +1,8 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const { MESSAGE_EMBED } = require('../../common/constants');
-const TTSPlayer = require('../../classes/tts/TTSPlayer');
+const { MESSAGE_EMBED } = require('../../../common/constants');
+const TTSPlayer = require('../../../classes/tts/TTSPlayer');
 
 class MySettingsCommand extends SlashCommand {
   constructor(client) {

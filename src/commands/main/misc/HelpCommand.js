@@ -1,7 +1,7 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
-const { MESSAGE_EMBED } = require('../../../src/common/constants');
+const { MESSAGE_EMBED } = require('../../../common/constants');
 
 class HelpCommand extends SlashCommand {
   constructor(client) {

@@ -92,10 +92,10 @@ client.registry
     ['other-tts', 'Other TTS Commands'],
     ['misc', 'Miscellaneous Commands']
   ])
-  .registerCommandsIn(path.join(__dirname, './commands'));
+  .registerCommandsIn(path.join(__dirname, './commands/main'));
 
 if (config.get('ENABLE_TTS_CHANNELS')) {
-  client.registry.registerCommandsIn(path.join(__dirname, './channel-tts-commands'));
+  client.registry.registerCommandsIn(path.join(__dirname, './commands/optional/channel-tts'));
 }
 
 const createProvider = (type) => {

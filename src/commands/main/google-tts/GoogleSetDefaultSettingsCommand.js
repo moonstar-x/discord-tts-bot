@@ -1,18 +1,18 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const logger = require('@greencoast/logger');
-const GoogleProvider = require('../../classes/tts/providers/GoogleProvider');
-const languages = require('../../../provider-data/google_languages.json');
+const GoogleProvider = require('../../../classes/tts/providers/GoogleProvider');
+const languages = require('../../../../provider-data/google_languages.json');
 
-class GoogleSetChannelSettingsCommand extends SlashCommand {
+class GoogleSetDefaultSettingsCommand extends SlashCommand {
   constructor(client) {
     super(client, {
-      name: 'google_set_channel',
-      description: 'Sets the settings to be used with message-only based TTS from Google.',
+      name: 'google_set_default',
+      description: 'Sets the settings to be used by the say and google_say command by default.',
       emoji: ':pencil2:',
       group: 'google-tts',
       guildOnly: true,
-      userPermissions: ['MANAGE_CHANNELS'],
+      userPermissions: ['MANAGE_GUILD'],
       dataBuilder: new SlashCommandBuilder()
         .addSubcommand((input) => {
           return input
@@ -45,22 +45,22 @@ class GoogleSetChannelSettingsCommand extends SlashCommand {
     const languageInfo = languages[language];
 
     if (!languageInfo) {
-      return interaction.reply({ content: localizer.t('channel_commands.google.settings.language.invalid') });
+      return interaction.reply({ content: localizer.t('command.google.settings.default.language.invalid') });
     }
 
-    await this.client.ttsSettings.set(interaction.channel, { [GoogleProvider.NAME]: { language } });
+    await this.client.ttsSettings.set(interaction.guild, { [GoogleProvider.NAME]: { language } });
 
-    logger.info(`${interaction.guild.name} has changed the google language for the channel ${interaction.channel.name} to ${language}.`);
-    return interaction.reply({ content: localizer.t('channel_commands.google.settings.language.success', { language: languageInfo.name }) });
+    logger.info(`${interaction.guild.name} has changed its default google language to ${language}.`);
+    return interaction.reply({ content: localizer.t('command.google.settings.default.language.success', { language: languageInfo.name }) });
   }
 
   async handleSpeed(interaction, localizer) {
     const speed = interaction.options.getString('value');
 
-    await this.client.ttsSettings.set(interaction.channel, { [GoogleProvider.NAME]: { speed } });
+    await this.client.ttsSettings.set(interaction.guild, { [GoogleProvider.NAME]: { speed } });
 
-    logger.info(`${interaction.guild.name} has changed the google speed for the channel ${interaction.channel.name} to ${speed}.`);
-    return interaction.reply({ content: localizer.t('channel_commands.google.settings.speed.success', { speed }) });
+    logger.info(`${interaction.guild.name} has changed its default google google speed to ${speed}.`);
+    return interaction.reply({ content: localizer.t('command.google.settings.default.speed.success', { speed }) });
   }
 
   async run(interaction) {
@@ -73,9 +73,9 @@ class GoogleSetChannelSettingsCommand extends SlashCommand {
       case 'speed':
         return this.handleSpeed(interaction, localizer);
       default:
-        throw new Error(`Invalid subcommand ${subCommand} supplied to GoogleSetChannelSettingsCommand.`);
+        throw new Error(`Invalid subcommand ${subCommand} supplied to GoogleSetDefaultSettingsCommand.`);
     }
   }
 }
 
-module.exports = GoogleSetChannelSettingsCommand;
+module.exports = GoogleSetDefaultSettingsCommand;

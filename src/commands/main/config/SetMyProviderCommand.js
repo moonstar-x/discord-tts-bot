@@ -1,17 +1,16 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const logger = require('@greencoast/logger');
-const TTSPlayer = require('../../classes/tts/TTSPlayer');
+const TTSPlayer = require('../../../classes/tts/TTSPlayer');
 
-class SetChannelProvider extends SlashCommand {
+class SetMyProviderCommand extends SlashCommand {
   constructor(client) {
     super(client, {
-      name: 'set_channel_provider',
-      description: 'Sets the provider to be used by the message-only based TTS on specific channels.',
+      name: 'set_my_provider',
+      description: 'Sets the provider to be used by the say command for yourself.',
       emoji: ':pencil2:',
       group: 'config',
       guildOnly: true,
-      userPermissions: ['MANAGE_CHANNELS'],
       dataBuilder: new SlashCommandBuilder()
         .addStringOption((input) => {
           return input
@@ -28,11 +27,11 @@ class SetChannelProvider extends SlashCommand {
     const providerName = interaction.options.getString('provider');
     const providerFriendlyName = TTSPlayer.PROVIDER_FRIENDLY_NAMES[providerName];
 
-    await this.client.ttsSettings.set(interaction.channel, { provider: providerName });
+    await this.client.ttsSettings.set(interaction.member, { provider: providerName });
 
-    logger.info(`${interaction.guild.name} has changed the provider for the channel ${interaction.channel.name} to ${providerName}.`);
-    return interaction.reply({ content: localizer.t('channel_commands.set.success', { name: providerFriendlyName }) });
+    logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their provider to ${providerName}.`);
+    return interaction.reply({ content: localizer.t('command.set.my.provider.success', { name: providerFriendlyName }), ephemeral: true });
   }
 }
 
-module.exports = SetChannelProvider;
+module.exports = SetMyProviderCommand;

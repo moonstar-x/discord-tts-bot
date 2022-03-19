@@ -1,7 +1,7 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const logger = require('@greencoast/logger');
-const { DISCONNECT_TIMEOUT } = require('../../common/constants');
+const { DISCONNECT_TIMEOUT } = require('../../../common/constants');
 
 class SetTimeoutCommand extends SlashCommand {
   constructor(client) {
