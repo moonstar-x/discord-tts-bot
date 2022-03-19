@@ -35,7 +35,6 @@ const COMMAND = {
 
   'command.help.embed.title': 'Text-to-Speech Help Message',
   'command.help.links.bug': 'Spotted a bug? Report it!',
-  'command.help.links.kofi': 'Buy me a coffee',
 
   'command.google.settings.default.language.invalid': "That's not a valid language. Type **/google_langs** for a list of available languages.",
   'command.google.settings.default.language.success': 'You have successfully changed the default language to **{language}**.',
