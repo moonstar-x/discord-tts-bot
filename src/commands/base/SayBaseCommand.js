@@ -32,6 +32,9 @@ class SayBaseCommand extends SlashCommand {
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);
     const connection = ttsPlayer.voice.getConnection();
 
+    const currentSettings = await this.client.ttsSettings.getCurrent(interaction);
+    const extras = currentSettings[this.providerName];
+
     const { me: { voice: myVoice }, name: guildName, members, channels, roles } = interaction.guild;
     const { channel: memberChannel } = interaction.member.voice;
     const myChannel = myVoice?.channel;
@@ -53,7 +56,7 @@ class SayBaseCommand extends SlashCommand {
       }
 
       await interaction.editReply(localizer.t('command.say.success'));
-      return ttsPlayer.say(message, this.providerName);
+      return ttsPlayer.say(message, this.providerName, extras);
     }
 
     const cantConnectReason = getCantConnectToChannelReason(memberChannel);
@@ -65,7 +68,7 @@ class SayBaseCommand extends SlashCommand {
     await ttsPlayer.voice.connect(memberChannel);
     logger.info(`Joined ${memberChannel.name} in ${guildName}.`);
     await interaction.editReply(localizer.t('command.say.joined', { channel: memberChannel.toString() }));
-    return ttsPlayer.say(message, this.providerName);
+    return ttsPlayer.say(message, this.providerName, extras);
   }
 }
 
