@@ -1,7 +1,8 @@
 {
-  "en-us": {
+  "en": {
     "name": "American English",
     "emoji": ":flag_us:",
+    "id": "en-US",
     "voices": [
       {
         "name": "Salli",
@@ -35,9 +36,10 @@
       }
     ]
   },
-  "en-uk": {
+  "en-gb": {
     "name": "British English",
     "emoji": ":flag_gb:",
+    "id": "en-GB",
     "voices": [
       {
         "name": "Amy",
@@ -59,6 +61,7 @@
   "en-au": {
     "name": "Australian English",
     "emoji": ":flag_au:",
+    "id": "en-AU",
     "voices": [
       {
         "name": "Nicole",
@@ -75,6 +78,7 @@
   "en-in": {
     "name": "Indian English",
     "emoji": ":flag_in:",
+    "id": "en-IN",
     "voices": [
       {
         "name": "Raveena",
@@ -83,9 +87,10 @@
       }
     ]
   },
-  "wls": {
+  "cy": {
     "name": "Welsh",
     "emoji": ":wales:",
+    "id": "cy-GB",
     "voices": [
       {
         "name": "Gwyneth",
@@ -102,6 +107,7 @@
   "da": {
     "name": "Danish",
     "emoji": ":flag_dk:",
+    "id": "da-DK",
     "voices": [
       {
         "name": "Mads",
@@ -118,6 +124,7 @@
   "nl": {
     "name": "Dutch",
     "emoji": ":flag_nl:",
+    "id": "nl-NL",
     "voices": [
       {
         "name": "Lotte",
@@ -134,6 +141,7 @@
   "fr": {
     "name": "French",
     "emoji": ":flag_fr:",
+    "id": "fr-FR",
     "voices": [
       {
         "name": "Celine",
@@ -150,6 +158,7 @@
   "fr-ca": {
     "name": "Canadian French",
     "emoji": ":flag_ca:",
+    "id": "fr-CA",
     "voices": [
       {
         "name": "Chantal",
@@ -161,6 +170,7 @@
   "de": {
     "name": "German",
     "emoji": ":flag_de:",
+    "id": "de-DE",
     "voices": [
       {
         "name": "Marlene",
@@ -177,6 +187,7 @@
   "is": {
     "name": "Icelandic",
     "emoji": ":flag_is:",
+    "id": "is-IS",
     "voices": [
       {
         "name": "Dora",
@@ -193,6 +204,7 @@
   "it": {
     "name": "Italian",
     "emoji": ":flag_it:",
+    "id": "it-IT",
     "voices": [
       {
         "name": "Carla",
@@ -209,6 +221,7 @@
   "pl": {
     "name": "Polish",
     "emoji": ":flag_pl:",
+    "id": "pl-PL",
     "voices": [
       {
         "name": "Ewa",
@@ -235,6 +248,7 @@
   "pt": {
     "name": "Portuguese",
     "emoji": ":flag_pt:",
+    "id": "pt-PT",
     "voices": [
       {
         "name": "Cristiano",
@@ -251,6 +265,7 @@
   "pt-br": {
     "name": "Brazilian Portuguese",
     "emoji": ":flag_br:",
+    "id": "pt-BR",
     "voices": [
       {
         "name": "Vitoria",
@@ -267,6 +282,7 @@
   "ro": {
     "name": "Romanian",
     "emoji": ":flag_ro:",
+    "id": "ro-RO",
     "voices": [
       {
         "name": "Carmen",
@@ -278,6 +294,7 @@
   "ru": {
     "name": "Russian",
     "emoji": ":flag_ru:",
+    "id": "ru-RU",
     "voices": [
       {
         "name": "Tatyana",
@@ -292,8 +309,9 @@
     ]
   },
   "es": {
-    "name": "Castilian Spanish",
+    "name": "Spanish",
     "emoji": ":flag_es:",
+    "id": "es-ES",
     "voices": [
       {
         "name": "Conchita",
@@ -307,9 +325,10 @@
       }
     ]
   },
-  "es-la": {
-    "name": "American Spanish",
+  "es-mx": {
+    "name": "Mexican Spanish",
     "emoji": ":flag_mx:",
+    "id": "es-MX",
     "voices": [
       {
         "name": "Penelope",
@@ -326,6 +345,7 @@
   "sv": {
     "name": "Swedish",
     "emoji": ":flag_se:",
+    "id": "sv-SE",
     "voices": [
       {
         "name": "Astrid",
@@ -337,6 +357,7 @@
   "tr": {
     "name": "Turkish",
     "emoji": ":flag_tr:",
+    "id": "tr-TR",
     "voices": [
       {
         "name": "Filiz",
@@ -348,6 +369,7 @@
   "nb": {
     "name": "Norwegian",
     "emoji": ":flag_no:",
+    "id": "nb-NO",
     "voices": [
       {
         "name": "Liv",
