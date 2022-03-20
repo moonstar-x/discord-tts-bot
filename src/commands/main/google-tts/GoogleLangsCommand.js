@@ -1,6 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, Collection } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../../common/constants');
 const { splitContentForEmbedFields } = require('../../../utils/embed');
 const languages = require('../../../../provider-data/google_languages.json');
@@ -16,7 +16,7 @@ class GoogleLangsCommand extends SlashCommand {
       dataBuilder: new SlashCommandBuilder()
     });
 
-    this.embed = null;
+    this.embeds = new Collection();
   }
 
   createEmbed(localizer) {
@@ -47,11 +47,18 @@ class GoogleLangsCommand extends SlashCommand {
   }
 
   run(interaction) {
-    if (!this.embed) {
-      this.embed = this.createEmbed(this.client.localizer.getLocalizer(interaction.guild));
+    const localizer = this.client.localizer.getLocalizer(interaction.guild);
+
+    let embed;
+
+    if (!this.embeds.has(localizer.locale)) {
+      embed = this.createEmbed(localizer);
+      this.embeds.set(localizer.locale, embed);
+    } else {
+      embed = this.embeds.get(localizer.locale);
     }
 
-    return interaction.reply({ embeds: [this.embed] });
+    return interaction.reply({ embeds: [embed] });
   }
 }
 
