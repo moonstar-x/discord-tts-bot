@@ -95,7 +95,8 @@ client.registry
     ['config', 'Configuration Commands'],
     ['google-tts', 'Google TTS Commands'],
     ['other-tts', 'Other TTS Commands'],
-    ['misc', 'Miscellaneous Commands']
+    ['misc', 'Miscellaneous Commands'],
+    ['ms-tts', 'Microsoft TTS Commands']
   ])
   .registerCommandsIn(path.join(__dirname, './commands/main'));
 

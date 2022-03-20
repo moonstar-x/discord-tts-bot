@@ -2,6 +2,7 @@ const { InvalidProviderError } = require('../../../errors');
 const GoogleProvider = require('./GoogleProvider');
 const AeiouProvider = require('./AeiouProvider');
 const AmazonProvider = require('./AmazonProvider');
+const MicrosoftProvider = require('./MicrosoftProvider');
 
 class ProviderManager {
   constructor(client) {
@@ -22,7 +23,7 @@ class ProviderManager {
   }
 }
 
-ProviderManager.SUPPORTED_PROVIDERS = [GoogleProvider, AeiouProvider, AmazonProvider];
+ProviderManager.SUPPORTED_PROVIDERS = [GoogleProvider, AeiouProvider, AmazonProvider, MicrosoftProvider];
 ProviderManager.DEFAULT_PROVIDER = GoogleProvider;
 
 ProviderManager.PROVIDER_FRIENDLY_NAMES = ProviderManager.SUPPORTED_PROVIDERS.reduce((obj, Provider) => {
