@@ -2,16 +2,16 @@ const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, Collection } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../../common/constants');
-const languageData = require('../../../../provider-data/ttstool_amazon_languages.json');
+const languageData = require('../../../../provider-data/ttstool_microsoft_languages.json');
 const { splitContentForEmbedFields } = require('../../../utils/embed');
 
-class AmazonLangsCommand extends SlashCommand {
+class MicrosoftLangsCommand extends SlashCommand {
   constructor(client) {
     super(client, {
-      name: 'amazon_langs',
-      description: 'Display a list of the languages supported by the Amazon Provider.',
+      name: 'ms_langs',
+      description: 'Display a list of the languages supported by the Microsoft Provider.',
       emoji: ':page_facing_up:',
-      group: 'amazon-tts',
+      group: 'ms-tts',
       guildOnly: true,
       dataBuilder: new SlashCommandBuilder()
     });
@@ -21,20 +21,20 @@ class AmazonLangsCommand extends SlashCommand {
 
   createEmbed(localizer) {
     const embed = new MessageEmbed()
-      .setTitle(localizer.t('command.amazon.langs.embed.title'))
+      .setTitle(localizer.t('command.microsoft.langs.embed.title'))
       .setColor(MESSAGE_EMBED.color)
-      .setDescription(localizer.t('command.amazon.langs.embed.description'))
+      .setDescription(localizer.t('command.microsoft.langs.embed.description'))
       .setThumbnail(MESSAGE_EMBED.langThumbnail)
       .setURL(MESSAGE_EMBED.amazonLangURL);
 
     const content = this.sortedLanguageKeys().map((key) => {
       const cur = languageData[key];
-      return `${cur.emoji} ${cur.name} - '**/amazon_set_my language ${key}**'\n`;
+      return `${cur.emoji} ${cur.name} - '**/ms_set_my language ${key}**'\n`;
     });
     const splitContent = splitContentForEmbedFields(content);
 
     splitContent.forEach((field, index) => {
-      embed.addField(localizer.t('command.amazon.langs.embed.page', { number: index + 1 }), field);
+      embed.addField(localizer.t('command.microsoft.langs.embed.page', { number: index + 1 }), field);
     });
 
     return embed;
@@ -61,4 +61,4 @@ class AmazonLangsCommand extends SlashCommand {
   }
 }
 
-module.exports = AmazonLangsCommand;
+module.exports = MicrosoftLangsCommand;

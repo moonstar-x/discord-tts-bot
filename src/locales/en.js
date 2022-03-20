@@ -59,6 +59,13 @@ const COMMAND = {
       You may also use **/google_set_default language LANG_CODE** to change the default language in case someone else does not have one set.`,
   'command.google.langs.embed.page': 'Page {number}:',
 
+  'command.microsoft.langs.embed.title': 'List of supported languages by the Microsoft provider:',
+  'command.microsoft.langs.embed.description': `This is a full list of all the languages that are supported by the Microsoft provider.
+    
+      To change the language for yourself, use **/ms_set_my language LANG_CODE**.
+      You may also use **/ms_set_default language LANG_CODE** to change the default language in case someone else does not have one set.`,
+  'command.microsoft.langs.embed.page': 'Page {number}:',
+
   'command.locale.success': "You have changed the bot's locale to **{locale}**.",
 
   'command.timeout.out_of_range': 'Invalid time, it must be between **{min}** and **{max}**.',
