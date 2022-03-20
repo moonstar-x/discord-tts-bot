@@ -37,6 +37,13 @@ const COMMAND = {
   'command.help.links.bug': '¿Encontraste un bug? ¡Repórtalo!',
   'command.help.links.website': 'Visita mi sitio web',
 
+  'command.amazon.langs.embed.title': 'Lista de los idiomas disponibles para el proveedor de Amazon:',
+  'command.amazon.langs.embed.description': `Esta es una lista completa de todos los idiomas disponibles para el proveedor de Amazon.
+    
+     Para cambiar tu propio idioma, utiliza **/amazon_set_my language LANG_CODE**.
+     Puedes también utilizar **/amazon_set_default language LANG_CODE** para cambiar el idioma por defecto que se utilizará en caso de que alguien no tenga uno configurado.`,
+  'command.amazon.langs.embed.page': 'Página {number}:',
+
   'command.google.settings.default.language.invalid': 'Ese no es un idioma válido. Escribe **/google_langs** para obtener una lista de los idiomas disponibles.',
   'command.google.settings.default.language.success': 'Has cambiado el idioma por defecto a **{language}** con éxito.',
   'command.google.settings.default.speed.success': 'Has cambiado la velocidad por defecto a **{speed}** con éxito.',

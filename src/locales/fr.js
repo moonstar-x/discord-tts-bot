@@ -37,6 +37,13 @@ const COMMAND = {
   'command.help.links.bug': 'Vous avez repéré un bug ? Signalez-le !',
   'command.help.links.website': 'Visitez mon site Internet',
 
+  'command.amazon.langs.embed.title': "Liste des langues disponibles pour le fournisseur d'Amazon:",
+  'command.amazon.langs.embed.description': `Voici une liste complète de toutes les langues disponibles pour le fournisseur d'Amazon.
+
+    Pour changer votre langue, utilisez **/amazon_set_my language LANG_CODE**.
+    Vous pouvez aussi utiliser **/amazon_set_default language LANG_CODE** pour changer la langue par défaut au cas où quelqu'un n'a aucune langue configurée.`,
+  'command.amazon.langs.embed.page': 'Page {number}:',
+
   'command.google.settings.default.language.invalid': "Cela n'est pas une langue valide. Utilisez **/google_langs** pour obtenir une liste de toutes les langues disponibles.",
   'command.google.settings.default.language.success': 'Vous avez changé la langue par défaut à **{language}** avec succès.',
   'command.google.settings.default.speed.success': 'Vous avez changé la vitesse par défaut à **{speed}** avec succès.',
@@ -49,8 +56,7 @@ const COMMAND = {
   'command.google.langs.embed.description': `Voici une liste complète de toutes les langues disponibles pour le fournisseur de Google Translate.
 
     Pour changer votre langue, utilisez **/google_set_my language LANG_CODE**.
-    Vous pouvez aussi utiliser **/google_set_default language LANG_CODE** pour changer la langue par défaut au cas où quelqu'un n'a aucune langue configurée.
-`,
+    Vous pouvez aussi utiliser **/google_set_default language LANG_CODE** pour changer la langue par défaut au cas où quelqu'un n'a aucune langue configurée.`,
   'command.google.langs.embed.page': 'Page {number}:',
 
   'command.locale.success': 'Vous avez changée la langue du bot à **{locale}**.',
