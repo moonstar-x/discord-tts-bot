@@ -91,6 +91,7 @@ client
 client.registry
   .registerGroups([
     ['all-tts', 'All TTS Commands'],
+    ['amazon-tts', 'Amazon TTS Commands'],
     ['config', 'Configuration Commands'],
     ['google-tts', 'Google TTS Commands'],
     ['other-tts', 'Other TTS Commands'],

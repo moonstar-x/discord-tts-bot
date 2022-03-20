@@ -1,6 +1,7 @@
 const { InvalidProviderError } = require('../../../errors');
 const GoogleProvider = require('./GoogleProvider');
 const AeiouProvider = require('./AeiouProvider');
+const AmazonProvider = require('./AmazonProvider');
 
 class ProviderManager {
   constructor(client) {
@@ -9,6 +10,7 @@ class ProviderManager {
 
     this._providers.set(GoogleProvider.NAME, new GoogleProvider(client));
     this._providers.set(AeiouProvider.NAME, new AeiouProvider(client));
+    this._providers.set(AmazonProvider.NAME, new AmazonProvider(client));
   }
 
   getProvider(providerName) {
