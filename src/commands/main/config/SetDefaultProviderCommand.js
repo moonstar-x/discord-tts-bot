@@ -1,7 +1,7 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const logger = require('@greencoast/logger');
-const TTSPlayer = require('../../../classes/tts/TTSPlayer');
+const ProviderManager = require('../../../classes/tts/providers/ProviderManager');
 
 class SetDefaultProviderCommand extends SlashCommand {
   constructor(client) {
@@ -18,7 +18,7 @@ class SetDefaultProviderCommand extends SlashCommand {
             .setName('provider')
             .setDescription('The provider to use from now on.')
             .setRequired(true)
-            .addChoices(TTSPlayer.SUPPORTED_PROVIDERS.map((p) => [p.FRIENDLY_NAME, p.NAME]));
+            .addChoices(ProviderManager.SUPPORTED_PROVIDERS.map((p) => [p.FRIENDLY_NAME, p.NAME]));
         })
     });
   }
@@ -26,7 +26,7 @@ class SetDefaultProviderCommand extends SlashCommand {
   async run(interaction) {
     const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const providerName = interaction.options.getString('provider');
-    const providerFriendlyName = TTSPlayer.PROVIDER_FRIENDLY_NAMES[providerName];
+    const providerFriendlyName = ProviderManager.PROVIDER_FRIENDLY_NAMES[providerName];
 
     await this.client.ttsSettings.set(interaction.guild, { provider: providerName });
 

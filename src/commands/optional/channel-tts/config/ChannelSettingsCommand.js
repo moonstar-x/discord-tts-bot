@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 const merge = require('deepmerge');
 const { MESSAGE_EMBED } = require('../../../../common/constants');
-const TTSPlayer = require('../../../../classes/tts/TTSPlayer');
+const ProviderManager = require('../../../../classes/tts/providers/ProviderManager');
 
 class ChannelSettingsCommand extends SlashCommand {
   constructor(client) {
@@ -28,14 +28,14 @@ class ChannelSettingsCommand extends SlashCommand {
 
   handleEnabled(interaction, localizer, channelSettings) {
     const providerSettings = channelSettings[channelSettings.provider];
-    const providerFriendlyName = TTSPlayer.PROVIDER_FRIENDLY_NAMES[channelSettings.provider];
+    const providerFriendlyName = ProviderManager.PROVIDER_FRIENDLY_NAMES[channelSettings.provider];
     const settingsField = this.prepareSettingsField(providerSettings, providerFriendlyName, localizer);
 
     const embed = new MessageEmbed()
       .setTitle(localizer.t('channel_commands.settings.enabled.embed.title', { channel: interaction.channel.name }))
       .setColor(MESSAGE_EMBED.color)
       .setDescription(localizer.t('channel_commands.settings.enabled.embed.description'))
-      .addField(localizer.t('channel_commands.settings.enabled.current.provider'), TTSPlayer.PROVIDER_FRIENDLY_NAMES[channelSettings.provider])
+      .addField(localizer.t('channel_commands.settings.enabled.current.provider'), ProviderManager.PROVIDER_FRIENDLY_NAMES[channelSettings.provider])
       .addField(settingsField.title, settingsField.text);
 
     return interaction.reply({ embeds: [embed] });
@@ -64,7 +64,7 @@ class ChannelSettingsCommand extends SlashCommand {
       return this.handleDisabled(interaction, localizer);
     }
 
-    return this.handleEnabled(interaction, localizer, merge(TTSPlayer.DEFAULT_SETTINGS, channelSettings));
+    return this.handleEnabled(interaction, localizer, merge(ProviderManager.DEFAULT_SETTINGS, channelSettings));
   }
 }
 

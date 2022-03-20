@@ -8,9 +8,9 @@ class ProviderManager {
     this.client = client;
     this._providers = new Map();
 
-    this._providers.set(GoogleProvider.NAME, new GoogleProvider(client));
-    this._providers.set(AeiouProvider.NAME, new AeiouProvider(client));
-    this._providers.set(AmazonProvider.NAME, new AmazonProvider(client));
+    for (const Provider of ProviderManager.SUPPORTED_PROVIDERS) {
+      this._providers.set(Provider.NAME, new Provider(client));
+    }
   }
 
   getProvider(providerName) {
@@ -21,5 +21,25 @@ class ProviderManager {
     return this._providers.get(providerName);
   }
 }
+
+ProviderManager.SUPPORTED_PROVIDERS = [GoogleProvider, AeiouProvider, AmazonProvider];
+ProviderManager.DEFAULT_PROVIDER = GoogleProvider;
+
+ProviderManager.PROVIDER_FRIENDLY_NAMES = ProviderManager.SUPPORTED_PROVIDERS.reduce((obj, Provider) => {
+  return {
+    ...obj,
+    [Provider.NAME]: Provider.FRIENDLY_NAME
+  };
+}, {});
+ProviderManager.PROVIDER_DEFAULTS = ProviderManager.SUPPORTED_PROVIDERS.reduce((obj, Provider) => {
+  return {
+    ...obj,
+    [Provider.NAME]: Provider.EXTRA_DEFAULTS
+  };
+}, {});
+ProviderManager.DEFAULT_SETTINGS = {
+  provider: ProviderManager.DEFAULT_PROVIDER.NAME,
+  ...ProviderManager.PROVIDER_DEFAULTS
+};
 
 module.exports = ProviderManager;

@@ -1,7 +1,5 @@
 const logger = require('@greencoast/logger');
 const { createAudioResource } = require('@discordjs/voice');
-const GoogleProvider = require('./providers/GoogleProvider');
-const AeiouProvider = require('./providers/AeiouProvider');
 const Queue = require('../Queue');
 const VoiceManager = require('../VoiceManager');
 
@@ -112,25 +110,5 @@ class TTSPlayer {
     }
   }
 }
-
-TTSPlayer.SUPPORTED_PROVIDERS = [GoogleProvider, AeiouProvider];
-TTSPlayer.DEFAULT_PROVIDER = GoogleProvider;
-
-TTSPlayer.PROVIDER_FRIENDLY_NAMES = TTSPlayer.SUPPORTED_PROVIDERS.reduce((obj, Provider) => {
-  return {
-    ...obj,
-    [Provider.NAME]: Provider.FRIENDLY_NAME
-  };
-}, {});
-TTSPlayer.PROVIDER_DEFAULTS = TTSPlayer.SUPPORTED_PROVIDERS.reduce((obj, Provider) => {
-  return {
-    ...obj,
-    [Provider.NAME]: Provider.EXTRA_DEFAULTS
-  };
-}, {});
-TTSPlayer.DEFAULT_SETTINGS = {
-  provider: TTSPlayer.DEFAULT_PROVIDER.NAME,
-  ...TTSPlayer.PROVIDER_DEFAULTS
-};
 
 module.exports = TTSPlayer;

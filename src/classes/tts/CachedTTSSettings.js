@@ -1,6 +1,6 @@
 /* eslint-disable max-params */
 const { Collection, Guild, GuildMember, Channel } = require('discord.js');
-const TTSPlayer = require('./TTSPlayer');
+const ProviderManager = require('./providers/ProviderManager');
 const merge = require('deepmerge');
 
 class CachedTTSSettings {
@@ -63,7 +63,7 @@ class CachedTTSSettings {
     const memberSettings = await this.get(interaction.member);
     const guildSettings = await this.get(interaction.guild);
 
-    return merge.all([TTSPlayer.DEFAULT_SETTINGS, guildSettings, memberSettings]);
+    return merge.all([ProviderManager.DEFAULT_SETTINGS, guildSettings, memberSettings]);
   }
 
   async _set(key, settings, cache, guild) {

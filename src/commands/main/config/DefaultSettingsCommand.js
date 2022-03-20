@@ -2,7 +2,7 @@ const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../../common/constants');
-const TTSPlayer = require('../../../classes/tts/TTSPlayer');
+const ProviderManager = require('../../../classes/tts/providers/ProviderManager');
 const merge = require('deepmerge');
 
 class DefaultSettingsCommand extends SlashCommand {
@@ -18,8 +18,8 @@ class DefaultSettingsCommand extends SlashCommand {
   }
 
   prepareFields(settings, localizer) {
-    return Object.keys(TTSPlayer.PROVIDER_FRIENDLY_NAMES).map((name) => {
-      const friendlyName = TTSPlayer.PROVIDER_FRIENDLY_NAMES[name];
+    return Object.keys(ProviderManager.PROVIDER_FRIENDLY_NAMES).map((name) => {
+      const friendlyName = ProviderManager.PROVIDER_FRIENDLY_NAMES[name];
       const values = settings[name];
       const valueKeys = Object.keys(values);
 
@@ -39,7 +39,7 @@ class DefaultSettingsCommand extends SlashCommand {
   async run(interaction) {
     const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const guildSettings = await this.client.ttsSettings.get(interaction.guild);
-    const currentSettings = merge(TTSPlayer.DEFAULT_SETTINGS, guildSettings);
+    const currentSettings = merge(ProviderManager.DEFAULT_SETTINGS, guildSettings);
     const { provider, ...restSettings } = currentSettings;
 
     const fields = this.prepareFields(restSettings, localizer);
@@ -47,7 +47,7 @@ class DefaultSettingsCommand extends SlashCommand {
       .setTitle(localizer.t('command.settings.default.embed.title'))
       .setColor(MESSAGE_EMBED.color)
       .setDescription(localizer.t('command.settings.default.embed.description'))
-      .addField(localizer.t('command.settings.default.current.provider'), TTSPlayer.PROVIDER_FRIENDLY_NAMES[provider]);
+      .addField(localizer.t('command.settings.default.current.provider'), ProviderManager.PROVIDER_FRIENDLY_NAMES[provider]);
 
     for (const key in fields) {
       const field = fields[key];
