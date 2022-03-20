@@ -25,7 +25,7 @@ class GoogleLangsCommand extends SlashCommand {
       .setColor(MESSAGE_EMBED.color)
       .setDescription(localizer.t('command.google.langs.embed.description'))
       .setThumbnail(MESSAGE_EMBED.langThumbnail)
-      .setURL(MESSAGE_EMBED.langURL);
+      .setURL(MESSAGE_EMBED.googleLangURL);
 
     const content = this.sortedLanguageKeys().map((key) => {
       const cur = languages[key];
