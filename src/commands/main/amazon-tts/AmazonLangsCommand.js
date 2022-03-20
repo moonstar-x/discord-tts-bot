@@ -1,22 +1,17 @@
-const { SlashCommand } = require('@greencoast/discord.js-extended');
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, Collection } = require('discord.js');
+const LangsBaseCommand = require('../../base/LangsBaseCommand');
+const { MessageEmbed } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../../common/constants');
-const languageData = require('../../../../provider-data/ttstool_amazon_languages.json');
 const { splitContentForEmbedFields } = require('../../../utils/embed');
+const languageData = require('../../../../provider-data/ttstool_amazon_languages.json');
 
-class AmazonLangsCommand extends SlashCommand {
+class AmazonLangsCommand extends LangsBaseCommand {
   constructor(client) {
     super(client, {
       name: 'amazon_langs',
       description: 'Display a list of the languages supported by the Amazon Provider.',
       emoji: ':page_facing_up:',
-      group: 'amazon-tts',
-      guildOnly: true,
-      dataBuilder: new SlashCommandBuilder()
+      group: 'amazon-tts'
     });
-
-    this.embeds = new Collection();
   }
 
   createEmbed(localizer) {
@@ -44,20 +39,6 @@ class AmazonLangsCommand extends SlashCommand {
     return Object.keys(languageData).sort((a, b) => {
       return languageData[a].name.localeCompare(languageData[b].name);
     });
-  }
-
-  run(interaction) {
-    const localizer = this.client.localizer.getLocalizer(interaction.guild);
-    let embed;
-
-    if (!this.embeds.has(localizer.locale)) {
-      embed = this.createEmbed(localizer);
-      this.embeds.set(localizer.locale, embed);
-    } else {
-      embed = this.embeds.get(localizer.locale);
-    }
-
-    return interaction.reply({ embeds: [embed] });
   }
 }
 

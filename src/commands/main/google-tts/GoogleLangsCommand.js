@@ -1,19 +1,16 @@
-const { SlashCommand } = require('@greencoast/discord.js-extended');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const LangsBaseCommand = require('../../base/LangsBaseCommand');
 const { MessageEmbed, Collection } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../../common/constants');
 const { splitContentForEmbedFields } = require('../../../utils/embed');
 const languages = require('../../../../provider-data/google_languages.json');
 
-class GoogleLangsCommand extends SlashCommand {
+class GoogleLangsCommand extends LangsBaseCommand {
   constructor(client) {
     super(client, {
       name: 'google_langs',
       description: 'Display a list of the languages supported by the Google Translate provider.',
       emoji: ':page_facing_up:',
-      group: 'google-tts',
-      guildOnly: true,
-      dataBuilder: new SlashCommandBuilder()
+      group: 'google-tts'
     });
 
     this.embeds = new Collection();
@@ -44,21 +41,6 @@ class GoogleLangsCommand extends SlashCommand {
     return Object.keys(languages).sort((a, b) => {
       return languages[a].name.localeCompare(languages[b].name);
     });
-  }
-
-  run(interaction) {
-    const localizer = this.client.localizer.getLocalizer(interaction.guild);
-
-    let embed;
-
-    if (!this.embeds.has(localizer.locale)) {
-      embed = this.createEmbed(localizer);
-      this.embeds.set(localizer.locale, embed);
-    } else {
-      embed = this.embeds.get(localizer.locale);
-    }
-
-    return interaction.reply({ embeds: [embed] });
   }
 }
 
