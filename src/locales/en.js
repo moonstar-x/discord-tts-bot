@@ -51,6 +51,17 @@ const COMMAND = {
       You may also use **/amazon_set_default voice VOICE_NAME** to change the default voice in case someone else does not have one set.`,
   'command.amazon.voices.error.unsupported': 'Language **{language}** is not supported by the Amazon provider. Use **/amazon_langs** to check the languages available.',
 
+  'command.amazon.settings.my.language.unsupported': 'Language **{language}** is not supported by the Amazon provider. Use **/amazon_langs** to check the languages available.',
+  'command.amazon.settings.my.language.success': "You have successfully changed your language to **{language}** with **{voice}**'s voice.",
+
+  'command.amazon.settings.my.voice.invalidated': 'Your stored language seems to be invalid. Please reset your language with **/amazon_set_my language LANG_CODE**.',
+  'command.amazon.settings.my.voice.unsupported': 'The voice **{voice}** is not supported for your language. Use **/amazon_voices** to check the voices available.',
+  'command.amazon.settings.my.voice.success': 'You have successfully changed your voice to **{voice}**.',
+
+  'command.amazon.settings.my.volume.success': 'You have successfully changed your volume to **{volume}**.',
+  'command.amazon.settings.my.rate.success': 'You have successfully changed your rate to **{rate}**.',
+  'command.amazon.settings.my.pitch.success': 'You have successfully changed your pitch to **{pitch}**.',
+
   'command.google.settings.default.language.invalid': "That's not a valid language. Type **/google_langs** for a list of available languages.",
   'command.google.settings.default.language.success': 'You have successfully changed the default language to **{language}**.',
   'command.google.settings.default.speed.success': 'You have successfully changed the default speed to **{speed}**.',
