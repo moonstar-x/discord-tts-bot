@@ -73,6 +73,13 @@ const COMMAND = {
      Puedes también utilizar **/ms_set_default language LANG_CODE** para cambiar el idioma por defecto que se utilizará en caso de que alguien no tenga uno configurado.`,
   'command.microsoft.langs.embed.page': 'Página {number}:',
 
+  'command.microsoft.voices.embed.title': 'Lista de las voces disponibles para el idioma {language}:',
+  'command.microsoft.voices.embed.description': `Esta es una lista completa de todas las voces disponibles para el idioma {language}.
+      
+      Para cambiar tu propio idioma, utiliza **/ms_set_my voice VOICE_NAME**.
+      Puedes también utilizar **/ms_set_default voice VOICE_NAME** para cambiar la voz por defecto que se utilizará en caso de que alguien no tenga uno configurado.`,
+  'command.microsoft.voices.error.unsupported': 'El idioma **{language}** no está disponible en el proveedor de Microsoft. Utiliza **/ms_langs** para obtener una lista de los idiomas disponibles.',
+
   'command.locale.success': 'Has cambiado el idioma del bot a **{locale}**.',
 
   'command.timeout.out_of_range': 'Tiempo inválido, necesitar estar entre **{min}** y **{max}**.',
