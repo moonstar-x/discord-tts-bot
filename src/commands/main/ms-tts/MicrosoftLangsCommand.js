@@ -8,7 +8,7 @@ class MicrosoftLangsCommand extends LangsBaseCommand {
   constructor(client) {
     super(client, {
       name: 'ms_langs',
-      description: 'Display a list of the languages supported by the Microsoft Provider.',
+      description: 'Display a list of the languages supported by the Microsoft provider.',
       emoji: ':page_facing_up:',
       group: 'ms-tts'
     });

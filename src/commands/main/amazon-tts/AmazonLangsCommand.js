@@ -8,7 +8,7 @@ class AmazonLangsCommand extends LangsBaseCommand {
   constructor(client) {
     super(client, {
       name: 'amazon_langs',
-      description: 'Display a list of the languages supported by the Amazon Provider.',
+      description: 'Display a list of the languages supported by the Amazon provider.',
       emoji: ':page_facing_up:',
       group: 'amazon-tts'
     });
