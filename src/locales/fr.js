@@ -51,7 +51,7 @@ const COMMAND = {
     Vous pouvez aussi utiliser **/amazon_set_default voice VOICE_NAME** pour changer la voix par défaut au cas où quelqu'un n'a aucune voix configurée.`,
   'command.amazon.voices.error.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur d'Amazon. Utilisez **/amazon_langs** pour obtenir une liste des langues disponibles.",
 
-  'command.amazon.settings.my.language.unsupported': 'La langue **{language}** n\'est pas disponible pour le fournisseur d\'Amazon. Utilisez **/amazon_langs** pour obtenir une liste des langues disponibles.',
+  'command.amazon.settings.my.language.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur d'Amazon. Utilisez **/amazon_langs** pour obtenir une liste des langues disponibles.",
   'command.amazon.settings.my.language.success': 'Vous avez changé votre langue à **{language}** avec la voix de **{voice}**.',
 
   'command.amazon.settings.my.voice.invalidated': 'Votre langue sauvegardée parait être invalide. Veuillez réinitializer votre langue avec **/amazon_set_my language LANG_CODE**.',
@@ -90,6 +90,17 @@ const COMMAND = {
     Pour changer votre voix, utilisez **/ms_set_my voice VOICE_NAME**.
     Vous pouvez aussi utiliser **/ms_set_default voice VOICE_NAME** pour changer la voix par défaut au cas où quelqu'un n'a aucune voix configurée.`,
   'command.microsoft.voices.error.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur de Microsoft. Utilisez **/ms_langs** pour obtenir une liste des langues disponibles.",
+
+  'command.microsoft.settings.my.language.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur de Microsoft. Utilisez **/ms_langs** pour obtenir une liste des langues disponibles.",
+  'command.microsoft.settings.my.language.success': 'Vous avez changé votre langue à **{language}** avec la voix de **{voice}**.',
+
+  'command.microsoft.settings.my.voice.invalidated': 'Votre langue sauvegardée parait être invalide. Veuillez réinitializer votre langue avec **/ms_set_my language LANG_CODE**.',
+  'command.microsoft.settings.my.voice.unsupported': "La voix **{voice}** n'est pas disponible pour votre langue. Utilisez **/ms_voices** pour obtenir une liste des voix disponibles.",
+  'command.microsoft.settings.my.voice.success': 'Vous avez changé votre voix à **{voice}** avec succès.',
+
+  'command.microsoft.settings.my.volume.success': 'Vous avez changé votre volume à **{volume}** avec succès.',
+  'command.microsoft.settings.my.rate.success': 'Vous avez changé votre rythme à **{rate}** avec succès.',
+  'command.microsoft.settings.my.pitch.success': 'Vous avez changé votre ton de voix à **{pitch}** avec succès.',
 
   'command.locale.success': 'Vous avez changée la langue du bot à **{locale}**.',
 

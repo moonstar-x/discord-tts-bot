@@ -91,6 +91,17 @@ const COMMAND = {
       Puedes también utilizar **/ms_set_default voice VOICE_NAME** para cambiar la voz por defecto que se utilizará en caso de que alguien no tenga uno configurado.`,
   'command.microsoft.voices.error.unsupported': 'El idioma **{language}** no está disponible en el proveedor de Microsoft. Utiliza **/ms_langs** para obtener una lista de los idiomas disponibles.',
 
+  'command.microsoft.settings.my.language.unsupported': 'El idioma **{language}** no está disponible en el proveedor de Microsoft. Utiliza **/ms_langs** para obtener una lista de los idiomas disponibles.',
+  'command.microsoft.settings.my.language.success': 'Has cambiado con éxito tu idioma a **{language}** con la voz de **{voice}**.',
+
+  'command.microsoft.settings.my.voice.invalidated': 'Tu idioma guardado parece ser inválido. Por favor, reinicia tu idioma con **/ms_set_my language LANG_CODE**.',
+  'command.microsoft.settings.my.voice.unsupported': 'La voz **{voice}** no está disponible para tu idioma. Utiliza **/ms_voices** para obtener una lista de los idiomas disponibles.',
+  'command.microsoft.settings.my.voice.success': 'Has cambiado tu voz a **{voice}** con éxito.',
+
+  'command.microsoft.settings.my.volume.success': 'Has cambiado tu volumen a **{volume}** con éxito.',
+  'command.microsoft.settings.my.rate.success': 'Has cambiado tu ritmo a **{rate}** con éxito.',
+  'command.microsoft.settings.my.pitch.success': 'Has cambiado tu tono a **{pitch}** con éxito.',
+
   'command.locale.success': 'Has cambiado el idioma del bot a **{locale}**.',
 
   'command.timeout.out_of_range': 'Tiempo inválido, necesitar estar entre **{min}** y **{max}**.',

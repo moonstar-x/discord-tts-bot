@@ -91,6 +91,17 @@ const COMMAND = {
       You may also use **/ms_set_default voice VOICE_NAME** to change the default voice in case someone else does not have one set.`,
   'command.microsoft.voices.error.unsupported': 'Language **{language}** is not supported by the Microsoft provider. Use **/ms_langs** to check the languages available.',
 
+  'command.microsoft.settings.my.language.unsupported': 'Language **{language}** is not supported by the Microsoft provider. Use **/ms_langs** to check the languages available.',
+  'command.microsoft.settings.my.language.success': "You have successfully changed your language to **{language}** with **{voice}**'s voice.",
+
+  'command.microsoft.settings.my.voice.invalidated': 'Your stored language seems to be invalid. Please reset your language with **/ms_set_my language LANG_CODE**.',
+  'command.microsoft.settings.my.voice.unsupported': 'The voice **{voice}** is not supported for your language. Use **/ms_voices** to check the voices available.',
+  'command.microsoft.settings.my.voice.success': 'You have successfully changed your voice to **{voice}**.',
+
+  'command.microsoft.settings.my.volume.success': 'You have successfully changed your volume to **{volume}**.',
+  'command.microsoft.settings.my.rate.success': 'You have successfully changed your rate to **{rate}**.',
+  'command.microsoft.settings.my.pitch.success': 'You have successfully changed your pitch to **{pitch}**.',
+
   'command.locale.success': "You have changed the bot's locale to **{locale}**.",
 
   'command.timeout.out_of_range': 'Invalid time, it must be between **{min}** and **{max}**.',
