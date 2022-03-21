@@ -44,6 +44,13 @@ const COMMAND = {
     Vous pouvez aussi utiliser **/amazon_set_default language LANG_CODE** pour changer la langue par défaut au cas où quelqu'un n'a aucune langue configurée.`,
   'command.amazon.langs.embed.page': 'Page {number}:',
 
+  'command.amazon.voices.embed.title': 'Liste des voix disponibles pour la langue {language}:',
+  'command.amazon.voices.embed.description': `Voice une liste complète de toutes les voix disponibles pour la langue {language}.
+    
+    Pour changer votre voix, utilisez **/amazon_set_my voice VOICE_NAME**.
+    Vous pouvez aussi utiliser **/amazon_set_default voice VOICE_NAME** pour changer la voix par défaut au cas où quelqu'un n'a aucune voix configurée.`,
+  'command.amazon.voices.error.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur d'Amazon. Utilisez **/amazon_langs** pour obtenir une liste des langues disponibles.",
+
   'command.google.settings.default.language.invalid': "Cela n'est pas une langue valide. Utilisez **/google_langs** pour obtenir une liste de toutes les langues disponibles.",
   'command.google.settings.default.language.success': 'Vous avez changé la langue par défaut à **{language}** avec succès.',
   'command.google.settings.default.speed.success': 'Vous avez changé la vitesse par défaut à **{speed}** avec succès.',
