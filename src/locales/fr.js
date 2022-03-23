@@ -102,6 +102,17 @@ const COMMAND = {
     Vous pouvez aussi utiliser **/ms_set_default voice VOICE_NAME** pour changer la voix par défaut au cas où quelqu'un n'a aucune voix configurée.`,
   'command.microsoft.voices.error.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur de Microsoft. Utilisez **/ms_langs** pour obtenir une liste des langues disponibles.",
 
+  'command.microsoft.settings.default.language.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur de Microsoft. Utilisez **/ms_langs** pour obtenir une liste des langues disponibles.",
+  'command.microsoft.settings.default.language.success': 'Vous avez changé la langue par défaut à **{language}** avec la voix de **{voice}**.',
+
+  'command.microsoft.settings.default.voice.invalidated': 'La langue par défaut sauvegardée parait être invalide. Veuillez réinitializer la langue par défaut avec **/ms_set_default language LANG_CODE**.',
+  'command.microsoft.settings.default.voice.unsupported': "La voix **{voice}** n'est pas disponible pour la langue par défaut. Utilisez **/ms_voices** pour obtenir une liste des voix disponibles.",
+  'command.microsoft.settings.default.voice.success': 'Vous avez changé la voix par défaut à **{voice}** avec succès.',
+
+  'command.microsoft.settings.default.volume.success': 'Vous avez changé le volume par défaut à **{volume}** avec succès.',
+  'command.microsoft.settings.default.rate.success': 'Vous avez changé le rythme par défaut à **{rate}** avec succès.',
+  'command.microsoft.settings.default.pitch.success': 'Vous avez changé le ton de voix par défaut à **{pitch}** avec succès.',
+
   'command.microsoft.settings.my.language.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur de Microsoft. Utilisez **/ms_langs** pour obtenir une liste des langues disponibles.",
   'command.microsoft.settings.my.language.success': 'Vous avez changé votre langue à **{language}** avec la voix de **{voice}**.',
 
