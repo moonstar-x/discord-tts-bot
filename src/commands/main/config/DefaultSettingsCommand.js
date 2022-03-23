@@ -3,7 +3,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../../common/constants');
 const ProviderManager = require('../../../classes/tts/providers/ProviderManager');
-const merge = require('deepmerge');
 
 class DefaultSettingsCommand extends SlashCommand {
   constructor(client) {
@@ -38,8 +37,7 @@ class DefaultSettingsCommand extends SlashCommand {
 
   async run(interaction) {
     const localizer = this.client.localizer.getLocalizer(interaction.guild);
-    const guildSettings = await this.client.ttsSettings.get(interaction.guild);
-    const currentSettings = merge(ProviderManager.DEFAULT_SETTINGS, guildSettings);
+    const currentSettings = await this.client.ttsSettings.getCurrentForGuild(interaction.guild);
     const { provider, ...restSettings } = currentSettings;
 
     const fields = this.prepareFields(restSettings, localizer);

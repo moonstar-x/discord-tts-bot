@@ -66,6 +66,12 @@ class CachedTTSSettings {
     return merge.all([ProviderManager.DEFAULT_SETTINGS, guildSettings, memberSettings]);
   }
 
+  async getCurrentForGuild(guild) {
+    const guildSettings = await this.get(guild);
+
+    return merge(ProviderManager.DEFAULT_SETTINGS, guildSettings);
+  }
+
   async _set(key, settings, cache, guild) {
     const stored = await this._get(key, cache, guild);
     const newSettings = merge(stored, settings);
