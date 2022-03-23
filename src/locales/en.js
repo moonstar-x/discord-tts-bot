@@ -51,6 +51,17 @@ const COMMAND = {
       You may also use **/amazon_set_default voice VOICE_NAME** to change the default voice in case someone else does not have one set.`,
   'command.amazon.voices.error.unsupported': 'Language **{language}** is not supported by the Amazon provider. Use **/amazon_langs** to check the languages available.',
 
+  'command.amazon.settings.default.language.unsupported': 'Language **{language}** is not supported by the Amazon provider. Use **/amazon_langs** to check the languages available.',
+  'command.amazon.settings.default.language.success': "You have successfully changed the default language to **{language}** with **{voice}**'s voice.",
+
+  'command.amazon.settings.default.voice.invalidated': 'The default stored language seems to be invalid. Please reset the default language with **/amazon_set_default language LANG_CODE**.',
+  'command.amazon.settings.default.voice.unsupported': 'The voice **{voice}** is not supported for the default language. Use **/amazon_voices** to check the voices available.',
+  'command.amazon.settings.default.voice.success': 'You have successfully changed the default voice to **{voice}**.',
+
+  'command.amazon.settings.default.volume.success': 'You have successfully changed the default volume to **{volume}**.',
+  'command.amazon.settings.default.rate.success': 'You have successfully changed the default rate to **{rate}**.',
+  'command.amazon.settings.default.pitch.success': 'You have successfully changed the default pitch to **{pitch}**.',
+
   'command.amazon.settings.my.language.unsupported': 'Language **{language}** is not supported by the Amazon provider. Use **/amazon_langs** to check the languages available.',
   'command.amazon.settings.my.language.success': "You have successfully changed your language to **{language}** with **{voice}**'s voice.",
 

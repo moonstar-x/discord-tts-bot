@@ -51,6 +51,17 @@ const COMMAND = {
       Puedes también utilizar **/amazon_set_default voice VOICE_NAME** para cambiar la voz por defecto que se utilizará en caso de que alguien no tenga uno configurado.`,
   'command.amazon.voices.error.unsupported': 'El idioma **{language}** no está disponible en el proveedor de Amazon. Utiliza **/amazon_langs** para obtener una lista de los idiomas disponibles.',
 
+  'command.amazon.settings.default.language.unsupported': 'El idioma **{language}** no está disponible en el proveedor de Amazon. Utiliza **/amazon_langs** para obtener una lista de los idiomas disponibles.',
+  'command.amazon.settings.default.language.success': 'Has cambiado con éxito el idioma por defecto a **{language}** con la voz de **{voice}**.',
+
+  'command.amazon.settings.default.voice.invalidated': 'El idioma por defecto guardado parece ser inválido. Por favor, reinicia el idioma por defecto con **/amazon_set_default language LANG_CODE**.',
+  'command.amazon.settings.default.voice.unsupported': 'La voz **{voice}** no está disponible para el idioma por defecto. Utiliza **/amazon_voices** para obtener una lista de los idiomas disponibles.',
+  'command.amazon.settings.default.voice.success': 'Has cambiado la voz por defecto a **{voice}** con éxito.',
+
+  'command.amazon.settings.default.volume.success': 'Has cambiado el volumen por defecto a **{volume}** con éxito.',
+  'command.amazon.settings.default.rate.success': 'Has cambiado el ritmo por defecto a **{rate}** con éxito.',
+  'command.amazon.settings.default.pitch.success': 'Has cambiado el tono por defecto a **{pitch}** con éxito.',
+
   'command.amazon.settings.my.language.unsupported': 'El idioma **{language}** no está disponible en el proveedor de Amazon. Utiliza **/amazon_langs** para obtener una lista de los idiomas disponibles.',
   'command.amazon.settings.my.language.success': 'Has cambiado con éxito tu idioma a **{language}** con la voz de **{voice}**.',
 
