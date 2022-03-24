@@ -17,7 +17,7 @@ class GoogleSetChannelSettingsCommand extends SlashCommand {
         .addSubcommand((input) => {
           return input
             .setName('language')
-            .setDescription('Sets the language to be used by the say and google_say command by default.')
+            .setDescription('Sets the language to be used by the message-only based TTS.')
             .addStringOption((input) => {
               return input
                 .setName('value')
@@ -28,7 +28,7 @@ class GoogleSetChannelSettingsCommand extends SlashCommand {
         .addSubcommand((input) => {
           return input
             .setName('speed')
-            .setDescription('Sets the speed to be used by the say and google_say command by default.')
+            .setDescription('Sets the speed to be used by the message-only based TTS.')
             .addStringOption((input) => {
               return input
                 .setName('value')
