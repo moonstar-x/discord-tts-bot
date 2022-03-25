@@ -156,7 +156,17 @@ const CHANNEL_COMMANDS = {
 
   'channel_commands.google.settings.language.invalid': 'Ese no es un idioma válido. Escribe **/google_langs** para obtener una lista de los idiomas disponibles.',
   'channel_commands.google.settings.language.success': 'Has cambiado el idioma de este canal a **{language}** con éxito.',
-  'channel_commands.google.settings.speed.success': 'Has cambiado la velocidad de este canal a **{speed}** con éxito.'
+  'channel_commands.google.settings.speed.success': 'Has cambiado la velocidad de este canal a **{speed}** con éxito.',
+
+  'channel_commands.microsoft.settings.language.unsupported': 'El idioma **{language}** no está disponible en el proveedor de Microsoft. Utiliza **/ms_langs** para obtener una lista de los idiomas disponibles.',
+  'channel_commands.microsoft.settings.language.success': 'Has cambiado con éxito el idioma de este canal a **{language}** con la voz de **{voice}**.',
+
+  'channel_commands.microsoft.settings.voice.unsupported': 'La voz **{voice}** no está disponible para el idioma de este canal. Utiliza **/ms_voices** para obtener una lista de los idiomas disponibles.',
+  'channel_commands.microsoft.settings.voice.success': 'Has cambiado la voz de este canal a **{voice}** con éxito.',
+
+  'channel_commands.microsoft.settings.volume.success': 'Has cambiado el volumen de este canal a **{volume}** con éxito.',
+  'channel_commands.microsoft.settings.rate.success': 'Has cambiado el ritmo de este canal a **{rate}** con éxito.',
+  'channel_commands.microsoft.settings.pitch.success': 'Has cambiado el tono de este canal a **{pitch}** con éxito.'
 };
 
 module.exports = {

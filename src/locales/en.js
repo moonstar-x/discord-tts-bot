@@ -156,7 +156,17 @@ const CHANNEL_COMMANDS = {
 
   'channel_commands.google.settings.language.invalid': "That's not a valid language. Type **/google_langs** for a list of available languages.",
   'channel_commands.google.settings.language.success': 'You have successfully changed the language for this channel to **{language}**.',
-  'channel_commands.google.settings.speed.success': 'You have successfully changed the speed for this channel to **{speed}**.'
+  'channel_commands.google.settings.speed.success': 'You have successfully changed the speed for this channel to **{speed}**.',
+
+  'channel_commands.microsoft.settings.language.unsupported': 'Language **{language}** is not supported by the Microsoft provider. Use **/ms_langs** to check the languages available.',
+  'channel_commands.microsoft.settings.language.success': "You have successfully changed the language for this channel to **{language}** with **{voice}**'s voice.",
+
+  'channel_commands.microsoft.settings.voice.unsupported': 'The voice **{voice}** is not supported for the language of this channel. Use **/ms_voices** to check the voices available.',
+  'channel_commands.microsoft.settings.voice.success': "You have successfully changed this channel's voice to **{voice}**.",
+
+  'channel_commands.microsoft.settings.volume.success': "You have successfully changed this channel's volume to **{volume}**.",
+  'channel_commands.microsoft.settings.rate.success': "You have successfully changed this channel's rate to **{rate}**.",
+  'channel_commands.microsoft.settings.pitch.success': "You have successfully changed this channel's pitch to **{pitch}**."
 };
 
 module.exports = {
