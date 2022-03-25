@@ -8,15 +8,14 @@ const API_URL = 'http://tts.cyzon.us';
  * A concrete TTS provider for the Moonbase Alpha TTS.
  */
 class AeiouProvider extends AbstractProvider {
-  createPayload(sentence, extras) {
-    return axios.get(`${API_URL}/tts`, {
+  async createPayload(sentence, extras) {
+    const response = await axios.get(`${API_URL}/tts`, {
       params: {
         text: sentence
       }
-    })
-      .then((response) => {
-        return new Payload(`${API_URL}${response.request.path}`, sentence, AeiouProvider.NAME, extras);
-      });
+    });
+
+    return new Payload(`${API_URL}${response.request.path}`, sentence, AeiouProvider.NAME, extras);
   }
 
   getPlayLogMessage(payload, guild) {
