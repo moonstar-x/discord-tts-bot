@@ -23,7 +23,7 @@ class TTSChannelHandler {
         return;
       }
 
-      return this.handleSay(message, channelSettings);
+      return await this.handleSay(message, channelSettings);
     } catch (error) {
       logger.error(`Something happened when handling the TTS channel ${message.channel.name} with message from ${message.member.displayName}`);
       logger.error(error);
