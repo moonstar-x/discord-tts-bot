@@ -144,6 +144,16 @@ const CHANNEL_COMMANDS = {
   'channel_commands.delete.already_disabled': 'Message-only based TTS is already disabled on this channel.',
   'channel_commands.delete.success': 'Message-only based TTS has been disabled on this channel and its settings have been removed.',
 
+  'channel_commands.amazon.settings.language.unsupported': 'Language **{language}** is not supported by the Amazon provider. Use **/amazon_langs** to check the languages available.',
+  'channel_commands.amazon.settings.language.success': "You have successfully changed the language for this channel to **{language}** with **{voice}**'s voice.",
+
+  'channel_commands.amazon.settings.voice.unsupported': 'The voice **{voice}** is not supported for the language of this channel. Use **/amazon_voices** to check the voices available.',
+  'channel_commands.amazon.settings.voice.success': "You have successfully changed this channel's voice to **{voice}**.",
+
+  'channel_commands.amazon.settings.volume.success': "You have successfully changed this channel's volume to **{volume}**.",
+  'channel_commands.amazon.settings.rate.success': "You have successfully changed this channel's rate to **{rate}**.",
+  'channel_commands.amazon.settings.pitch.success': "You have successfully changed this channel's pitch to **{pitch}**.",
+
   'channel_commands.google.settings.language.invalid': "That's not a valid language. Type **/google_langs** for a list of available languages.",
   'channel_commands.google.settings.language.success': 'You have successfully changed the language for this channel to **{language}**.',
   'channel_commands.google.settings.speed.success': 'You have successfully changed the speed for this channel to **{speed}**.'

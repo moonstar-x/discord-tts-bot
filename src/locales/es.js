@@ -144,6 +144,16 @@ const CHANNEL_COMMANDS = {
   'channel_commands.delete.already_disabled': 'TTS basado en solo mensajes ya está desactivado en este canal.',
   'channel_commands.delete.success': 'TTS basado en solo mensajes ha sido desactivado en este canal y su configuración ha sido eliminada.',
 
+  'channel_commands.amazon.settings.language.unsupported': 'El idioma **{language}** no está disponible en el proveedor de Amazon. Utiliza **/amazon_langs** para obtener una lista de los idiomas disponibles.',
+  'channel_commands.amazon.settings.language.success': 'Has cambiado con éxito el idioma de este canal a **{language}** con la voz de **{voice}**.',
+
+  'channel_commands.amazon.settings.voice.unsupported': 'La voz **{voice}** no está disponible para el idioma de este canal. Utiliza **/amazon_voices** para obtener una lista de los idiomas disponibles.',
+  'channel_commands.amazon.settings.voice.success': 'Has cambiado la voz de este canal a **{voice}** con éxito.',
+
+  'channel_commands.amazon.settings.volume.success': 'Has cambiado el volumen de este canal a **{volume}** con éxito.',
+  'channel_commands.amazon.settings.rate.success': 'Has cambiado el ritmo de este canal a **{rate}** con éxito.',
+  'channel_commands.amazon.settings.pitch.success': 'Has cambiado el tono de este canal a **{pitch}** con éxito.',
+
   'channel_commands.google.settings.language.invalid': 'Ese no es un idioma válido. Escribe **/google_langs** para obtener una lista de los idiomas disponibles.',
   'channel_commands.google.settings.language.success': 'Has cambiado el idioma de este canal a **{language}** con éxito.',
   'channel_commands.google.settings.speed.success': 'Has cambiado la velocidad de este canal a **{speed}** con éxito.'

@@ -72,6 +72,12 @@ class CachedTTSSettings {
     return merge(ProviderManager.DEFAULT_SETTINGS, guildSettings);
   }
 
+  async getCurrentForChannel(channel) {
+    const channelSettings = await this.get(channel);
+
+    return merge(ProviderManager.DEFAULT_SETTINGS, channelSettings);
+  }
+
   async _set(key, settings, cache, guild) {
     const stored = await this._get(key, cache, guild);
     const newSettings = merge(stored, settings);

@@ -2,7 +2,6 @@
 const logger = require('@greencoast/logger');
 const { cleanMessage } = require('../../utils/mentions');
 const { getCantConnectToChannelReason } = require('../../utils/channel');
-const ProviderManager = require('./providers/ProviderManager');
 
 class TTSChannelHandler {
   constructor(client) {
@@ -36,8 +35,8 @@ class TTSChannelHandler {
     const ttsPlayer = this.client.getTTSPlayer(message.guild);
     const connection = ttsPlayer.voice.getConnection();
 
-    const extras = channelSettings[channelSettings.provider] ||
-      ProviderManager.DEFAULT_SETTINGS[channelSettings.provider];
+    const settings = await this.client.ttsSettings.getCurrentForChannel(message.channel);
+    const extras = settings[channelSettings.provider];
 
     const { me: { voice: myVoice }, name: guildName, members, channels, roles } = message.guild;
     const { channel: memberChannel } = message.member.voice;
