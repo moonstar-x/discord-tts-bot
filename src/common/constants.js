@@ -2,8 +2,8 @@ const MESSAGE_EMBED = {
   color: '#ff8e56',
   langThumbnail: 'https://i.imgur.com/QbNXO4q.jpg',
   googleLangURL: 'https://docs.moonstar-x.dev/discord-tts-bot/text-to-speech-providers/google-translate/#language-support',
-  amazonLangURL: 'https://docs.moonstar-x.dev/discord-tts-bot/text-to-speech-providers/amazon/#language-support',
-  microsoftLangURL: 'https://docs.moonstar-x.dev/discord-tts-bot/text-to-speech-providers/microsoft/#language-support',
+  amazonLangURL: 'https://docs.moonstar-x.dev/discord-tts-bot/text-to-speech-providers/amazon-ttstool/#language-support',
+  microsoftLangURL: 'https://docs.moonstar-x.dev/discord-tts-bot/text-to-speech-providers/microsoft-ttstool/#language-support',
   helpThumbnail: 'https://i.imgur.com/kzy3cTK.png',
   helpURL: 'https://github.com/moonstar-x/discord-tts-bot/issues'
 };
