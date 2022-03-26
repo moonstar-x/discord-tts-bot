@@ -22,15 +22,17 @@ const client = new ExtendedClient({
 client.registry
   .registerGroups([
     ['all-tts', 'All TTS Commands'],
+    ['amazon-tts', 'Amazon TTS Commands'],
     ['config', 'Configuration Commands'],
     ['google-tts', 'Google TTS Commands'],
     ['other-tts', 'Other TTS Commands'],
-    ['misc', 'Miscellaneous Commands']
+    ['misc', 'Miscellaneous Commands'],
+    ['ms-tts', 'Microsoft TTS Commands']
   ])
-  .registerCommandsIn(path.join(__dirname, './commands'));
+  .registerCommandsIn(path.join(__dirname, './commands/main'));
 
 if (config.get('ENABLE_TTS_CHANNELS')) {
-  client.registry.registerCommandsIn(path.join(__dirname, './channel-tts'));
+  client.registry.registerCommandsIn(path.join(__dirname, './commands/optional/channel-tts'));
 }
 
 client.on('ready', async() => {
