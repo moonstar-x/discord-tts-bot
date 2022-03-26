@@ -50,6 +50,16 @@
       "description": "Whether to enable the message-only based TTS to send TTS messages on a certain channel with a certain setting without the need to execute a command.",
       "value": "false",
       "required": false
+    },
+    "DISCORD_ENABLE_KEEP_ALIVE": {
+      "description": "Whether an HTTP server should be started. You should only use this option if you're planning to host the bot on something like Repl.it or Heroku. Additionally, you should use something like UptimeRobot to poll the associated address to keep the bot alive. If you need to specify the port to use you should set the `PORT` environment variable (Heroku uses this by default).",
+      "value": "true",
+      "required": false
+    },
+    "DISCORD_ENABLE_WHO_SAID": {
+      "description": "Whether the bot should prepend each TTS message with a 'User said...'. This makes it so the bot speaks the name of the author of every message.",
+      "value": "false",
+      "required": false
     }
   }
 }

@@ -1,0 +1,696 @@
+{
+  "ar": {
+    "name": "Saudi Arabic",
+    "emoji": ":flag_sa:",
+    "id": "ar-SA",
+    "voices": [
+      {
+        "name": "Naayf",
+        "emoji": ":man:",
+        "id": "Microsoft Saudi Arabic (Naayf)"
+      }
+    ]
+  },
+  "ar-eg": {
+    "name": "Egyptian Arabic",
+    "emoji": ":flag_eg:",
+    "id": "ar-EG",
+    "voices": [
+      {
+        "name": "Hoda",
+        "emoji": ":woman:",
+        "id": "Microsoft Egyptian Arabic (Hoda)"
+      }
+    ]
+  },
+  "bg": {
+    "name": "Bulgarian",
+    "emoji": ":flag_bg:",
+    "id": "bg-BG",
+    "voices": [
+      {
+        "name": "Ivan",
+        "emoji": ":man:",
+        "id": "Microsoft Bulgarian (Ivan)"
+      }
+    ]
+  },
+  "ca": {
+    "name": "Catalan",
+    "emoji": ":flag_es:",
+    "id": "ca-ES",
+    "voices": [
+      {
+        "name": "Herena",
+        "emoji": ":woman:",
+        "id": "Microsoft Catalan (Herena)"
+      }
+    ]
+  },
+  "cn": {
+    "name": "Chinese",
+    "emoji": ":flag_cn:",
+    "id": "zh-CN",
+    "voices": [
+      {
+        "name": "Huihui",
+        "emoji": ":woman:",
+        "id": "Microsoft Chinese (Huihui)"
+      },
+      {
+        "name": "Kangkang",
+        "emoji": ":woman:",
+        "id": "Microsoft Chinese (Kangkang)"
+      },
+      {
+        "name": "Yaoyao",
+        "emoji": ":woman:",
+        "id": "Microsoft Chinese (Yaoyao)"
+      }
+    ]
+  },
+  "cn-hk": {
+    "name": "Hong Kong Chinese",
+    "emoji": ":flag_hk:",
+    "id": "zh-HK",
+    "voices": [
+      {
+        "name": "Danny",
+        "emoji": ":man:",
+        "id": "Microsoft ChineseHK (Danny)"
+      },
+      {
+        "name": "Tracy",
+        "emoji": ":woman:",
+        "id": "Microsoft ChineseHK (Tracy)"
+      }
+    ]
+  },
+  "hr": {
+    "name": "Croatian",
+    "emoji": ":flag_hr:",
+    "id": "hr-HR",
+    "voices": [
+      {
+        "name": "Matej",
+        "emoji": ":man:",
+        "id": "Microsoft Croatian (Matej)"
+      }
+    ]
+  },
+  "cs": {
+    "name": "Czech",
+    "emoji": ":flag_cz:",
+    "id": "cs-CZ",
+    "voices": [
+      {
+        "name": "Jakub",
+        "emoji": ":man:",
+        "id": "Microsoft Czech (Jakub)"
+      }
+    ]
+  },
+  "da": {
+    "name": "Danish",
+    "emoji": ":flag_dk:",
+    "id": "da-DK",
+    "voices": [
+      {
+        "name": "Helle",
+        "emoji": ":woman:",
+        "id": "Microsoft Danish (Helle)"
+      }
+    ]
+  },
+  "nl": {
+    "name": "Dutch",
+    "emoji": ":flag_nl:",
+    "id": "nl-NL",
+    "voices": [
+      {
+        "name": "Frank",
+        "emoji": ":man:",
+        "id": "Microsoft Dutch (Frank)"
+      }
+    ]
+  },
+  "nl-be": {
+    "name": "Belgian Dutch",
+    "emoji": ":flag_be:",
+    "id": "nl-BE",
+    "voices": [
+      {
+        "name": "Bart",
+        "emoji": ":man:",
+        "id": "Microsoft Belgian Dutch (Bart)"
+      }
+    ]
+  },
+  "en": {
+    "name": "American English",
+    "emoji": ":flag_us:",
+    "id": "en-US",
+    "voices": [
+      {
+        "name": "David",
+        "emoji": ":man:",
+        "id": "Microsoft US English (David)"
+      },
+      {
+        "name": "Mark",
+        "emoji": ":man:",
+        "id": "Microsoft US English (Mark)"
+      },
+      {
+        "name": "Zira",
+        "emoji": ":woman:",
+        "id": "Microsoft US English (Zira)"
+      }
+    ]
+  },
+  "en-au": {
+    "name": "Australian English",
+    "emoji": ":flag_au:",
+    "id": "en-AU",
+    "voices": [
+      {
+        "name": "Catherine",
+        "emoji": ":woman:",
+        "id": "Microsoft Australian English (Catherine)"
+      },
+      {
+        "name": "James",
+        "emoji": ":man:",
+        "id": "Microsoft Australian English (James)"
+      }
+    ]
+  },
+  "en-gb": {
+    "name": "British English",
+    "emoji": ":flag_gb:",
+    "id": "en-GB",
+    "voices": [
+      {
+        "name": "George",
+        "emoji": ":man:",
+        "id": "Microsoft British English (George)"
+      },
+      {
+        "name": "Hazel",
+        "emoji": ":woman:",
+        "id": "Microsoft British English (Hazel)"
+      },
+      {
+        "name": "Susan",
+        "emoji": ":woman:",
+        "id": "Microsoft British English (Susan)"
+      }
+    ]
+  },
+  "en-ca": {
+    "name": "Canadian English",
+    "emoji": ":flag_ca:",
+    "id": "en-CA",
+    "voices": [
+      {
+        "name": "Linda",
+        "emoji": ":woman:",
+        "id": "Microsoft Canadian English (Linda)"
+      },
+      {
+        "name": "Richard",
+        "emoji": ":man:",
+        "id": "Microsoft Canadian English (Richard)"
+      }
+    ]
+  },
+  "en-in": {
+    "name": "Indian English",
+    "emoji": ":flag_in:",
+    "id": "en-IN",
+    "voices": [
+      {
+        "name": "Heera",
+        "emoji": ":woman:",
+        "id": "Microsoft Indian English (Heera)"
+      },
+      {
+        "name": "Ravi",
+        "emoji": ":man:",
+        "id": "Microsoft Indian English (Ravi)"
+      }
+    ]
+  },
+  "en-ie": {
+    "name": "Irish English",
+    "emoji": ":flag_ie:",
+    "id": "en-IE",
+    "voices": [
+      {
+        "name": "Sean",
+        "emoji": ":man:",
+        "id": "Microsoft Irish English (Sean)"
+      }
+    ]
+  },
+  "fi": {
+    "name": "Finnish",
+    "emoji": ":flag_fi:",
+    "id": "fi-FI",
+    "voices": [
+      {
+        "name": "Heidi",
+        "emoji": ":woman:",
+        "id": "Microsoft Finnish (Heidi)"
+      }
+    ]
+  },
+  "fr": {
+    "name": "French",
+    "emoji": ":flag_fr:",
+    "id": "fr-FR",
+    "voices": [
+      {
+        "name": "Hortense",
+        "emoji": ":woman:",
+        "id": "Microsoft French (Hortense)"
+      },
+      {
+        "name": "Julie",
+        "emoji": ":woman:",
+        "id": "Microsoft French (Julie)"
+      },
+      {
+        "name": "Paul",
+        "emoji": ":man:",
+        "id": "Microsoft French (Paul)"
+      }
+    ]
+  },
+  "fr-ca": {
+    "name": "Canadian French",
+    "emoji": ":flag_ca:",
+    "id": "fr-CA",
+    "voices": [
+      {
+        "name": "Caroline",
+        "emoji": ":woman:",
+        "id": "Microsoft Canadian French (Caroline)"
+      },
+      {
+        "name": "Claude",
+        "emoji": ":man:",
+        "id": "Microsoft Canadian French (Claude)"
+      },
+      {
+        "name": "Nathalie",
+        "emoji": ":woman:",
+        "id": "Microsoft Canadian French (Nathalie)"
+      }
+    ]
+  },
+  "fr-ch": {
+    "name": "Swiss French",
+    "emoji": ":flag_ch:",
+    "id": "fr-CH",
+    "voices": [
+      {
+        "name": "Guillaume",
+        "emoji": ":man:",
+        "id": "Microsoft Swiss French (Guillaume)"
+      }
+    ]
+  },
+  "de": {
+    "name": "German",
+    "emoji": ":flag_de:",
+    "id": "de-DE",
+    "voices": [
+      {
+        "name": "Hedda",
+        "emoji": ":woman:",
+        "id": "Microsoft German (Hedda)"
+      },
+      {
+        "name": "Katja",
+        "emoji": ":woman:",
+        "id": "Microsoft German (Katja)"
+      },
+      {
+        "name": "Stefan",
+        "emoji": ":man:",
+        "id": "Microsoft German (Stefan)"
+      }
+    ]
+  },
+  "de-at": {
+    "name": "Austrian German",
+    "emoji": ":flag_at:",
+    "id": "de-AT",
+    "voices": [
+      {
+        "name": "Michael",
+        "emoji": ":man:",
+        "id": "Microsoft Austrian German (Michael)"
+      }
+    ]
+  },
+  "de-ch": {
+    "name": "Swiss German",
+    "emoji": ":flag_ch:",
+    "id": "de-CH",
+    "voices": [
+      {
+        "name": "Karsten",
+        "emoji": ":man:",
+        "id": "Microsoft Swiss German (Karsten)"
+      }
+    ]
+  },
+  "el": {
+    "name": "Greek",
+    "emoji": ":flag_gr:",
+    "id": "el-GR",
+    "voices": [
+      {
+        "name": "Stefanos",
+        "emoji": ":man:",
+        "id": "Microsoft Greek (Stefanos)"
+      }
+    ]
+  },
+  "he": {
+    "name": "Hebrew",
+    "emoji": ":flag_il:",
+    "id": "he-IL",
+    "voices": [
+      {
+        "name": "Asaf",
+        "emoji": ":man:",
+        "id": "Microsoft Hebrew (Asaf)"
+      }
+    ]
+  },
+  "hi": {
+    "name": "Hindi",
+    "emoji": ":flag_in:",
+    "id": "hi-IN",
+    "voices": [
+      {
+        "name": "Hermant",
+        "emoji": ":man:",
+        "id": "Microsoft Hindi (Hermant)"
+      },
+      {
+        "name": "Kalpana",
+        "emoji": ":woman:",
+        "id": "Microsoft Hindi (Kalpana)"
+      }
+    ]
+  },
+  "hu": {
+    "name": "Hungarian",
+    "emoji": ":flag_hu:",
+    "id": "hu-HU",
+    "voices": [
+      {
+        "name": "Szabolcs",
+        "emoji": ":man:",
+        "id": "Microsoft Hungarian (Szabolcs)"
+      }
+    ]
+  },
+  "id": {
+    "name": "Indonesian",
+    "emoji": ":flag_id:",
+    "id": "id-ID",
+    "voices": [
+      {
+        "name": "Andika",
+        "emoji": ":man:",
+        "id": "Microsoft Indonesian (Andika)"
+      }
+    ]
+  },
+  "it": {
+    "name": "Italian",
+    "emoji": ":flag_it:",
+    "id": "it-IT",
+    "voices": [
+      {
+        "name": "Cosimo",
+        "emoji": ":man:",
+        "id": "Microsoft Italian (Cosimo)"
+      },
+      {
+        "name": "Elsa",
+        "emoji": ":woman:",
+        "id": "Microsoft Italian (Elsa)"
+      }
+    ]
+  },
+  "ja": {
+    "name": "Japanese",
+    "emoji": ":flag_jp:",
+    "id": "ja-JP",
+    "voices": [
+      {
+        "name": "Ayumi",
+        "emoji": ":woman:",
+        "id": "Microsoft Japanese (Ayumi)"
+      },
+      {
+        "name": "Haruka",
+        "emoji": ":woman:",
+        "id": "Microsoft Japanese (Haruka)"
+      },
+      {
+        "name": "Ichiro",
+        "emoji": ":man:",
+        "id": "Microsoft Japanese (Ichiro)"
+      },
+      {
+        "name": "Sayaka",
+        "emoji": ":woman:",
+        "id": "Microsoft Japanese (Sayaka)"
+      }
+    ]
+  },
+  "ko": {
+    "name": "Korean",
+    "emoji": ":flag_kr:",
+    "id": "ko-KR",
+    "voices": [
+      {
+        "name": "Heami",
+        "emoji": ":woman:",
+        "id": "Microsoft Korean (Heami)"
+      }
+    ]
+  },
+  "ms": {
+    "name": "Malay",
+    "emoji": ":flag_my:",
+    "id": "ms-MY",
+    "voices": [
+      {
+        "name": "Rizwan",
+        "emoji": ":man:",
+        "id": "Microsoft Malay (Rizwan)"
+      }
+    ]
+  },
+  "nb": {
+    "name": "Norwegian",
+    "emoji": ":flag_no:",
+    "id": "nb-NO",
+    "voices": [
+      {
+        "name": "Jon",
+        "emoji": ":man:",
+        "id": "Microsoft Norwegian (Jon)"
+      }
+    ]
+  },
+  "pt": {
+    "name": "Portuguese",
+    "emoji": ":flag_pt:",
+    "id": "pt-PT",
+    "voices": [
+      {
+        "name": "Helia",
+        "emoji": ":woman:",
+        "id": "Microsoft Portuguese (Helia)"
+      }
+    ]
+  },
+  "pt-br": {
+    "name": "Brazilian Portuguese",
+    "emoji": ":flag_br:",
+    "id": "pt-BR",
+    "voices": [
+      {
+        "name": "Daniel",
+        "emoji": ":man:",
+        "id": "Microsoft Brazilian Portuguese (Daniel)"
+      },
+      {
+        "name": "Maria",
+        "emoji": ":woman:",
+        "id": "Microsoft Brazilian Portuguese (Maria)"
+      }
+    ]
+  },
+  "ro": {
+    "name": "Romanian",
+    "emoji": ":flag_ro:",
+    "id": "ro-RO",
+    "voices": [
+      {
+        "name": "Andrei",
+        "emoji": ":man:",
+        "id": "Microsoft Romanian (Andrei)"
+      }
+    ]
+  },
+  "ru": {
+    "name": "Russian",
+    "emoji": ":flag_ru:",
+    "id": "ru-RU",
+    "voices": [
+      {
+        "name": "Irina",
+        "emoji": ":woman:",
+        "id": "Microsoft Russian (Irina)"
+      },
+      {
+        "name": "Pavel",
+        "emoji": ":man:",
+        "id": "Microsoft Russian (Pavel)"
+      }
+    ]
+  },
+  "sk": {
+    "name": "Slovak",
+    "emoji": ":flag_sk:",
+    "id": "sk-SK",
+    "voices": [
+      {
+        "name": "Filip",
+        "emoji": ":man:",
+        "id": "Microsoft Slovak (Filip)"
+      }
+    ]
+  },
+  "sl": {
+    "name": "Slovenian",
+    "emoji": ":flag_si:",
+    "id": "sl-SI",
+    "voices": [
+      {
+        "name": "Lado",
+        "emoji": ":man:",
+        "id": "Microsoft Slovenian (Lado)"
+      }
+    ]
+  },
+  "es": {
+    "name": "Spanish",
+    "emoji": ":flag_es:",
+    "id": "es-ES",
+    "voices": [
+      {
+        "name": "Helena",
+        "emoji": ":woman:",
+        "id": "Microsoft Spanish (Helena)"
+      },
+      {
+        "name": "Laura",
+        "emoji": ":woman:",
+        "id": "Microsoft Spanish (Laura)"
+      },
+      {
+        "name": "Pablo",
+        "emoji": ":man:",
+        "id": "Microsoft Spanish (Pablo)"
+      }
+    ]
+  },
+  "es-mx": {
+    "name": "Mexican Spanish",
+    "emoji": ":flag_mx:",
+    "id": "es-MX",
+    "voices": [
+      {
+        "name": "Raul",
+        "emoji": ":man:",
+        "id": "Microsoft Mexican Spanish (Raul)"
+      },
+      {
+        "name": "Sabina",
+        "emoji": ":woman:",
+        "id": "Microsoft Mexican Spanish (Sabina)"
+      }
+    ]
+  },
+  "sv": {
+    "name": "Swedish",
+    "emoji": ":flag_se:",
+    "id": "sv-SE",
+    "voices": [
+      {
+        "name": "Bengt",
+        "emoji": ":man:",
+        "id": "Microsoft Swedish (Bengt)"
+      }
+    ]
+  },
+  "ta": {
+    "name": "Tamil",
+    "emoji": ":flag_in:",
+    "id": "ta-IN",
+    "voices": [
+      {
+        "name": "Valluvar",
+        "emoji": ":man:",
+        "id": "Microsoft Tamil (Valluvar)"
+      }
+    ]
+  },
+  "th": {
+    "name": "Thai",
+    "emoji": ":flag_th:",
+    "id": "th-TH",
+    "voices": [
+      {
+        "name": "Pattara",
+        "emoji": ":man:",
+        "id": "Microsoft Thai (Pattara)"
+      }
+    ]
+  },
+  "tr": {
+    "name": "Turkish",
+    "emoji": ":flag_tr:",
+    "id": "tr-TR",
+    "voices": [
+      {
+        "name": "Tolga",
+        "emoji": ":man:",
+        "id": "Microsoft Turkish (Tolga)"
+      }
+    ]
+  },
+  "vi": {
+    "name": "Vietnamese",
+    "emoji": ":flag_vn:",
+    "id": "vi-VI",
+    "voices": [
+      {
+        "name": "An",
+        "emoji": ":woman:",
+        "id": "Microsoft Vietnamese (An)"
+      }
+    ]
+  }
+}

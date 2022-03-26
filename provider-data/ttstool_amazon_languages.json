@@ -1,0 +1,381 @@
+{
+  "en": {
+    "name": "American English",
+    "emoji": ":flag_us:",
+    "id": "en-US",
+    "voices": [
+      {
+        "name": "Salli",
+        "emoji": ":woman:",
+        "id": "Amazon US English (Salli)"
+      },
+      {
+        "name": "Joey",
+        "emoji": ":man:",
+        "id": "Amazon US English (Joey)"
+      },
+      {
+        "name": "Kendra",
+        "emoji": ":woman:",
+        "id": "Amazon US English (Kendra)"
+      },
+      {
+        "name": "Kimberly",
+        "emoji": ":woman:",
+        "id": "Amazon US English (Kimberly)"
+      },
+      {
+        "name": "Ivy",
+        "emoji": ":woman:",
+        "id": "Amazon US English (Ivy)"
+      },
+      {
+        "name": "Justin",
+        "emoji": ":man:",
+        "id": "Amazon US English (Justin)"
+      }
+    ]
+  },
+  "en-gb": {
+    "name": "British English",
+    "emoji": ":flag_gb:",
+    "id": "en-GB",
+    "voices": [
+      {
+        "name": "Amy",
+        "emoji": ":woman:",
+        "id": "Amazon British English (Amy)"
+      },
+      {
+        "name": "Brian",
+        "emoji": ":man:",
+        "id": "Amazon British English (Brian)"
+      },
+      {
+        "name": "Emma",
+        "emoji": ":woman:",
+        "id": "Amazon British English (Emma)"
+      }
+    ]
+  },
+  "en-au": {
+    "name": "Australian English",
+    "emoji": ":flag_au:",
+    "id": "en-AU",
+    "voices": [
+      {
+        "name": "Nicole",
+        "emoji": ":woman:",
+        "id": "Amazon Australian English (Nicole)"
+      },
+      {
+        "name": "Russell",
+        "emoji": ":man:",
+        "id": "Amazon Australian English (Russell)"
+      }
+    ]
+  },
+  "en-in": {
+    "name": "Indian English",
+    "emoji": ":flag_in:",
+    "id": "en-IN",
+    "voices": [
+      {
+        "name": "Raveena",
+        "emoji": ":woman:",
+        "id": "Amazon Indian English (Raveena)"
+      }
+    ]
+  },
+  "cy": {
+    "name": "Welsh",
+    "emoji": ":wales:",
+    "id": "cy-GB",
+    "voices": [
+      {
+        "name": "Gwyneth",
+        "emoji": ":woman:",
+        "id": "Amazon Welsh (Gwyneth)"
+      },
+      {
+        "name": "Geraint",
+        "emoji": ":man:",
+        "id": "Amazon Welsh (Geraint)"
+      }
+    ]
+  },
+  "da": {
+    "name": "Danish",
+    "emoji": ":flag_dk:",
+    "id": "da-DK",
+    "voices": [
+      {
+        "name": "Mads",
+        "emoji": ":man:",
+        "id": "Amazon Danish (Mads)"
+      },
+      {
+        "name": "Naja",
+        "emoji": ":woman:",
+        "id": "Amazon Danish (Naja)"
+      }
+    ]
+  },
+  "nl": {
+    "name": "Dutch",
+    "emoji": ":flag_nl:",
+    "id": "nl-NL",
+    "voices": [
+      {
+        "name": "Lotte",
+        "emoji": ":woman:",
+        "id": "Amazon Dutch (Lotte)"
+      },
+      {
+        "name": "Ruben",
+        "emoji": ":man:",
+        "id": "Amazon Dutch (Ruben)"
+      }
+    ]
+  },
+  "fr": {
+    "name": "French",
+    "emoji": ":flag_fr:",
+    "id": "fr-FR",
+    "voices": [
+      {
+        "name": "Celine",
+        "emoji": ":woman:",
+        "id": "Amazon French (Celine)"
+      },
+      {
+        "name": "Mathieu",
+        "emoji": ":man:",
+        "id": "Amazon French (Mathieu)"
+      }
+    ]
+  },
+  "fr-ca": {
+    "name": "Canadian French",
+    "emoji": ":flag_ca:",
+    "id": "fr-CA",
+    "voices": [
+      {
+        "name": "Chantal",
+        "emoji": ":woman:",
+        "id": "Amazon Canadian French (Chantal)"
+      }
+    ]
+  },
+  "de": {
+    "name": "German",
+    "emoji": ":flag_de:",
+    "id": "de-DE",
+    "voices": [
+      {
+        "name": "Marlene",
+        "emoji": ":woman:",
+        "id": "Amazon German (Marlene)"
+      },
+      {
+        "name": "Hans",
+        "emoji": ":man:",
+        "id": "Amazon German (Hans)"
+      }
+    ]
+  },
+  "is": {
+    "name": "Icelandic",
+    "emoji": ":flag_is:",
+    "id": "is-IS",
+    "voices": [
+      {
+        "name": "Dora",
+        "emoji": ":woman:",
+        "id": "Amazon Icelandic (Dora)"
+      },
+      {
+        "name": "Karl",
+        "emoji": ":man:",
+        "id": "Amazon Icelandic (Karl)"
+      }
+    ]
+  },
+  "it": {
+    "name": "Italian",
+    "emoji": ":flag_it:",
+    "id": "it-IT",
+    "voices": [
+      {
+        "name": "Carla",
+        "emoji": ":woman:",
+        "id": "Amazon Italian (Carla)"
+      },
+      {
+        "name": "Giorgio",
+        "emoji": ":man:",
+        "id": "Amazon Italian (Giorgio)"
+      }
+    ]
+  },
+  "pl": {
+    "name": "Polish",
+    "emoji": ":flag_pl:",
+    "id": "pl-PL",
+    "voices": [
+      {
+        "name": "Ewa",
+        "emoji": ":woman:",
+        "id": "Amazon Polish (Ewa)"
+      },
+      {
+        "name": "Jacek",
+        "emoji": ":man:",
+        "id": "Amazon Polish (Jacek)"
+      },
+      {
+        "name": "Maja",
+        "emoji": ":woman:",
+        "id": "Amazon Polish (Maja)"
+      },
+      {
+        "name": "Jan",
+        "emoji": ":man:",
+        "id": "Amazon Polish (Jan)"
+      }
+    ]
+  },
+  "pt": {
+    "name": "Portuguese",
+    "emoji": ":flag_pt:",
+    "id": "pt-PT",
+    "voices": [
+      {
+        "name": "Cristiano",
+        "emoji": ":man:",
+        "id": "Amazon Portuguese (Cristiano)"
+      },
+      {
+        "name": "Ines",
+        "emoji": ":woman:",
+        "id": "Amazon Portuguese (Ines)"
+      }
+    ]
+  },
+  "pt-br": {
+    "name": "Brazilian Portuguese",
+    "emoji": ":flag_br:",
+    "id": "pt-BR",
+    "voices": [
+      {
+        "name": "Vitoria",
+        "emoji": ":woman:",
+        "id": "Amazon Brazilian Portuguese (Vitoria)"
+      },
+      {
+        "name": "Ricardo",
+        "emoji": ":man:",
+        "id": "Amazon Brazilian Portuguese (Ricardo)"
+      }
+    ]
+  },
+  "ro": {
+    "name": "Romanian",
+    "emoji": ":flag_ro:",
+    "id": "ro-RO",
+    "voices": [
+      {
+        "name": "Carmen",
+        "emoji": ":woman:",
+        "id": "Amazon Romanian (Carmen)"
+      }
+    ]
+  },
+  "ru": {
+    "name": "Russian",
+    "emoji": ":flag_ru:",
+    "id": "ru-RU",
+    "voices": [
+      {
+        "name": "Tatyana",
+        "emoji": ":woman:",
+        "id": "Amazon Russian (Tatyana)"
+      },
+      {
+        "name": "Maxim",
+        "emoji": ":man:",
+        "id": "Amazon Russian (Maxim)"
+      }
+    ]
+  },
+  "es": {
+    "name": "Spanish",
+    "emoji": ":flag_es:",
+    "id": "es-ES",
+    "voices": [
+      {
+        "name": "Conchita",
+        "emoji": ":woman:",
+        "id": "Amazon Castilian Spanish (Conchita)"
+      },
+      {
+        "name": "Enrique",
+        "emoji": ":man:",
+        "id": "Amazon Castilian Spanish (Enrique)"
+      }
+    ]
+  },
+  "es-mx": {
+    "name": "Mexican Spanish",
+    "emoji": ":flag_mx:",
+    "id": "es-MX",
+    "voices": [
+      {
+        "name": "Penelope",
+        "emoji": ":woman:",
+        "id": "Amazon US Spanish (Penelope)"
+      },
+      {
+        "name": "Miguel",
+        "emoji": ":man:",
+        "id": "Amazon US Spanish (Miguel)"
+      }
+    ]
+  },
+  "sv": {
+    "name": "Swedish",
+    "emoji": ":flag_se:",
+    "id": "sv-SE",
+    "voices": [
+      {
+        "name": "Astrid",
+        "emoji": ":woman:",
+        "id": "Amazon Swedish (Astrid)"
+      }
+    ]
+  },
+  "tr": {
+    "name": "Turkish",
+    "emoji": ":flag_tr:",
+    "id": "tr-TR",
+    "voices": [
+      {
+        "name": "Filiz",
+        "emoji": ":woman:",
+        "id": "Amazon Turkish (Filiz)"
+      }
+    ]
+  },
+  "nb": {
+    "name": "Norwegian",
+    "emoji": ":flag_no:",
+    "id": "nb-NO",
+    "voices": [
+      {
+        "name": "Liv",
+        "emoji": ":woman:",
+        "id": "Amazon Norwegian (Liv)"
+      }
+    ]
+  }
+}

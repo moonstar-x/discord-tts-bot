@@ -30,7 +30,7 @@ client.registry
   .registerCommandsIn(path.join(__dirname, './commands'));
 
 if (config.get('ENABLE_TTS_CHANNELS')) {
-  client.registry.registerCommandsIn(path.join(__dirname, './channel-tts-commands'));
+  client.registry.registerCommandsIn(path.join(__dirname, './channel-tts'));
 }
 
 client.on('ready', async() => {

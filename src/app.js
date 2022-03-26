@@ -5,7 +5,7 @@ const LevelDataProvider = require('@greencoast/discord.js-extended/dist/provider
 const TTSClient = require('./classes/extensions/TTSClient');
 const { locales } = require('./locales');
 const { keepAlive } = require('./utils/keep-alive');
-const { DISCONNECT_TIMEOUT } = require('./common/constants');
+const { DISCONNECT_TIMEOUT, WEBSITE_URL } = require('./common/constants');
 const pkg = require('../package.json');
 
 const SUPPORTED_PROVIDERS = ['level', 'redis'];
@@ -23,7 +23,8 @@ const config = new ConfigProvider({
     PROVIDER_TYPE: 'level',
     REDIS_URL: null,
     ENABLE_TTS_CHANNELS: false,
-    ENABLE_KEEP_ALIVE: false
+    ENABLE_KEEP_ALIVE: false,
+    ENABLE_WHO_SAID: false
   },
   types: {
     TOKEN: 'string',
@@ -36,7 +37,8 @@ const config = new ConfigProvider({
     PROVIDER_TYPE: 'string',
     REDIS_URL: ['string', 'null'],
     ENABLE_TTS_CHANNELS: 'boolean',
-    ENABLE_KEEP_ALIVE: 'boolean'
+    ENABLE_KEEP_ALIVE: 'boolean',
+    ENABLE_WHO_SAID: 'boolean'
   },
   customValidators: {
     PROVIDER_TYPE: (value) => {
@@ -69,7 +71,9 @@ const client = new TTSClient({
       '/help for help.',
       '{num_members} users!',
       'up for {uptime}.',
-      `Current version: ${pkg.version}`
+      `current version: ${pkg.version}`,
+      '{num_commands} commands available.',
+      `visit ${WEBSITE_URL}`
     ]
   },
   testingGuildID: config.get('TESTING_GUILD_ID'),
@@ -87,15 +91,17 @@ client
 client.registry
   .registerGroups([
     ['all-tts', 'All TTS Commands'],
+    ['amazon-tts', 'Amazon TTS Commands'],
     ['config', 'Configuration Commands'],
     ['google-tts', 'Google TTS Commands'],
     ['other-tts', 'Other TTS Commands'],
-    ['misc', 'Miscellaneous Commands']
+    ['misc', 'Miscellaneous Commands'],
+    ['ms-tts', 'Microsoft TTS Commands']
   ])
-  .registerCommandsIn(path.join(__dirname, './commands'));
+  .registerCommandsIn(path.join(__dirname, './commands/main'));
 
 if (config.get('ENABLE_TTS_CHANNELS')) {
-  client.registry.registerCommandsIn(path.join(__dirname, './channel-tts-commands'));
+  client.registry.registerCommandsIn(path.join(__dirname, './commands/optional/channel-tts'));
 }
 
 const createProvider = (type) => {

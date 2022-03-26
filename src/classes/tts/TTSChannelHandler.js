@@ -2,7 +2,6 @@
 const logger = require('@greencoast/logger');
 const { cleanMessage } = require('../../utils/mentions');
 const { getCantConnectToChannelReason } = require('../../utils/channel');
-const TTSPlayer = require('./TTSPlayer');
 
 class TTSChannelHandler {
   constructor(client) {
@@ -24,7 +23,7 @@ class TTSChannelHandler {
         return;
       }
 
-      return this.handleSay(message, channelSettings);
+      return await this.handleSay(message, channelSettings);
     } catch (error) {
       logger.error(`Something happened when handling the TTS channel ${message.channel.name} with message from ${message.member.displayName}`);
       logger.error(error);
@@ -36,12 +35,15 @@ class TTSChannelHandler {
     const ttsPlayer = this.client.getTTSPlayer(message.guild);
     const connection = ttsPlayer.voice.getConnection();
 
-    const extras = channelSettings[channelSettings.provider] || TTSPlayer.DEFAULT_SETTINGS[channelSettings.provider];
+    const settings = await this.client.ttsSettings.getCurrentForChannel(message.channel);
+    const extras = settings[channelSettings.provider];
 
     const { me: { voice: myVoice }, name: guildName, members, channels, roles } = message.guild;
     const { channel: memberChannel } = message.member.voice;
     const myChannel = myVoice?.channel;
-    const textToSay = cleanMessage(message.content, {
+
+    const messageIntro = this.client.config.get('ENABLE_WHO_SAID') ? `${message.member.displayName} said ` : '';
+    const textToSay = cleanMessage(`${messageIntro}${message.content}`, {
       members: members.cache,
       channels: channels.cache,
       roles: roles.cache

@@ -35,7 +35,43 @@ const COMMAND = {
 
   'command.help.embed.title': "Message d'aide Text-to-Speech",
   'command.help.links.bug': 'Vous avez repéré un bug ? Signalez-le !',
-  'command.help.links.kofi': 'Achète-moi un café',
+  'command.help.links.website': 'Visitez mon site Internet',
+
+  'command.amazon.langs.embed.title': "Liste des langues disponibles pour le fournisseur d'Amazon:",
+  'command.amazon.langs.embed.description': `Voici une liste complète de toutes les langues disponibles pour le fournisseur d'Amazon.
+
+    Pour changer votre langue, utilisez **/amazon_set_my language LANG_CODE**.
+    Vous pouvez aussi utiliser **/amazon_set_default language LANG_CODE** pour changer la langue par défaut au cas où quelqu'un n'a aucune langue configurée.`,
+  'command.amazon.langs.embed.page': 'Page {number}:',
+
+  'command.amazon.voices.embed.title': 'Liste des voix disponibles pour la langue {language}:',
+  'command.amazon.voices.embed.description': `Voice une liste complète de toutes les voix disponibles pour la langue {language}.
+    
+    Pour changer votre voix, utilisez **/amazon_set_my voice VOICE_NAME**.
+    Vous pouvez aussi utiliser **/amazon_set_default voice VOICE_NAME** pour changer la voix par défaut au cas où quelqu'un n'a aucune voix configurée.`,
+  'command.amazon.voices.error.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur d'Amazon. Utilisez **/amazon_langs** pour obtenir une liste des langues disponibles.",
+
+  'command.amazon.settings.default.language.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur d'Amazon. Utilisez **/amazon_langs** pour obtenir une liste des langues disponibles.",
+  'command.amazon.settings.default.language.success': 'Vous avez changé la langue par défaut à **{language}** avec la voix de **{voice}**.',
+
+  'command.amazon.settings.default.voice.invalidated': 'La langue par défaut sauvegardée parait être invalide. Veuillez réinitializer la langue par défaut avec **/amazon_set_default language LANG_CODE**.',
+  'command.amazon.settings.default.voice.unsupported': "La voix **{voice}** n'est pas disponible pour la langue par défaut. Utilisez **/amazon_voices** pour obtenir une liste des voix disponibles.",
+  'command.amazon.settings.default.voice.success': 'Vous avez changé la voix par défaut à **{voice}** avec succès.',
+
+  'command.amazon.settings.default.volume.success': 'Vous avez changé le volume par défaut à **{volume}** avec succès.',
+  'command.amazon.settings.default.rate.success': 'Vous avez changé le rythme par défaut à **{rate}** avec succès.',
+  'command.amazon.settings.default.pitch.success': 'Vous avez changé le ton de voix par défaut à **{pitch}** avec succès.',
+
+  'command.amazon.settings.my.language.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur d'Amazon. Utilisez **/amazon_langs** pour obtenir une liste des langues disponibles.",
+  'command.amazon.settings.my.language.success': 'Vous avez changé votre langue à **{language}** avec la voix de **{voice}**.',
+
+  'command.amazon.settings.my.voice.invalidated': 'Votre langue sauvegardée parait être invalide. Veuillez réinitializer votre langue avec **/amazon_set_my language LANG_CODE**.',
+  'command.amazon.settings.my.voice.unsupported': "La voix **{voice}** n'est pas disponible pour votre langue. Utilisez **/amazon_voices** pour obtenir une liste des voix disponibles.",
+  'command.amazon.settings.my.voice.success': 'Vous avez changé votre voix à **{voice}** avec succès.',
+
+  'command.amazon.settings.my.volume.success': 'Vous avez changé votre volume à **{volume}** avec succès.',
+  'command.amazon.settings.my.rate.success': 'Vous avez changé votre rythme à **{rate}** avec succès.',
+  'command.amazon.settings.my.pitch.success': 'Vous avez changé votre ton de voix à **{pitch}** avec succès.',
 
   'command.google.settings.default.language.invalid': "Cela n'est pas une langue valide. Utilisez **/google_langs** pour obtenir une liste de toutes les langues disponibles.",
   'command.google.settings.default.language.success': 'Vous avez changé la langue par défaut à **{language}** avec succès.',
@@ -49,9 +85,44 @@ const COMMAND = {
   'command.google.langs.embed.description': `Voici une liste complète de toutes les langues disponibles pour le fournisseur de Google Translate.
 
     Pour changer votre langue, utilisez **/google_set_my language LANG_CODE**.
-    Vous pouvez aussi utiliser **/google_set_default language LANG_CODE** pour changer la langue par défaut au cas où quelqu'un n'a aucune langue configurée.
-`,
+    Vous pouvez aussi utiliser **/google_set_default language LANG_CODE** pour changer la langue par défaut au cas où quelqu'un n'a aucune langue configurée.`,
   'command.google.langs.embed.page': 'Page {number}:',
+
+  'command.microsoft.langs.embed.title': 'Liste des langues disponibles pour le fournisseur de Microsoft:',
+  'command.microsoft.langs.embed.description': `Voici une liste complète de toutes les langues disponibles pour le fournisseur de Microsoft.
+
+    Pour changer votre langue, utilisez **/ms_set_my language LANG_CODE**.
+    Vous pouvez aussi utiliser **/ms_set_default language LANG_CODE** pour changer la langue par défaut au cas où quelqu'un n'a aucune langue configurée.`,
+  'command.microsoft.langs.embed.page': 'Page {number}:',
+
+  'command.microsoft.voices.embed.title': 'Liste des voix disponibles pour la langue {language}:',
+  'command.microsoft.voices.embed.description': `Voice une liste complète de toutes les voix disponibles pour la langue {language}.
+    
+    Pour changer votre voix, utilisez **/ms_set_my voice VOICE_NAME**.
+    Vous pouvez aussi utiliser **/ms_set_default voice VOICE_NAME** pour changer la voix par défaut au cas où quelqu'un n'a aucune voix configurée.`,
+  'command.microsoft.voices.error.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur de Microsoft. Utilisez **/ms_langs** pour obtenir une liste des langues disponibles.",
+
+  'command.microsoft.settings.default.language.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur de Microsoft. Utilisez **/ms_langs** pour obtenir une liste des langues disponibles.",
+  'command.microsoft.settings.default.language.success': 'Vous avez changé la langue par défaut à **{language}** avec la voix de **{voice}**.',
+
+  'command.microsoft.settings.default.voice.invalidated': 'La langue par défaut sauvegardée parait être invalide. Veuillez réinitializer la langue par défaut avec **/ms_set_default language LANG_CODE**.',
+  'command.microsoft.settings.default.voice.unsupported': "La voix **{voice}** n'est pas disponible pour la langue par défaut. Utilisez **/ms_voices** pour obtenir une liste des voix disponibles.",
+  'command.microsoft.settings.default.voice.success': 'Vous avez changé la voix par défaut à **{voice}** avec succès.',
+
+  'command.microsoft.settings.default.volume.success': 'Vous avez changé le volume par défaut à **{volume}** avec succès.',
+  'command.microsoft.settings.default.rate.success': 'Vous avez changé le rythme par défaut à **{rate}** avec succès.',
+  'command.microsoft.settings.default.pitch.success': 'Vous avez changé le ton de voix par défaut à **{pitch}** avec succès.',
+
+  'command.microsoft.settings.my.language.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur de Microsoft. Utilisez **/ms_langs** pour obtenir une liste des langues disponibles.",
+  'command.microsoft.settings.my.language.success': 'Vous avez changé votre langue à **{language}** avec la voix de **{voice}**.',
+
+  'command.microsoft.settings.my.voice.invalidated': 'Votre langue sauvegardée parait être invalide. Veuillez réinitializer votre langue avec **/ms_set_my language LANG_CODE**.',
+  'command.microsoft.settings.my.voice.unsupported': "La voix **{voice}** n'est pas disponible pour votre langue. Utilisez **/ms_voices** pour obtenir une liste des voix disponibles.",
+  'command.microsoft.settings.my.voice.success': 'Vous avez changé votre voix à **{voice}** avec succès.',
+
+  'command.microsoft.settings.my.volume.success': 'Vous avez changé votre volume à **{volume}** avec succès.',
+  'command.microsoft.settings.my.rate.success': 'Vous avez changé votre rythme à **{rate}** avec succès.',
+  'command.microsoft.settings.my.pitch.success': 'Vous avez changé votre ton de voix à **{pitch}** avec succès.',
 
   'command.locale.success': 'Vous avez changée la langue du bot à **{locale}**.',
 
@@ -73,9 +144,29 @@ const CHANNEL_COMMANDS = {
   'channel_commands.delete.already_disabled': 'TTS basé uniquement en messages est déjà désactivé dans ce canal.',
   'channel_commands.delete.success': 'TTS basé uniquement en messages est désormais désactivé et ses réglages sont éliminés.',
 
+  'channel_commands.amazon.settings.language.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur d'Amazon. Utilisez **/amazon_langs** pour obtenir une liste des langues disponibles.",
+  'channel_commands.amazon.settings.language.success': 'Vous avez changé la langue de ce canal à **{language}** avec la voix de **{voice}**.',
+
+  'channel_commands.amazon.settings.voice.unsupported': "La voix **{voice}** n'est pas disponible pour la langue de ce canal. Utilisez **/amazon_voices** pour obtenir une liste des voix disponibles.",
+  'channel_commands.amazon.settings.voice.success': 'Vous avez changé la voix de ce canal à **{voice}** avec succès.',
+
+  'channel_commands.amazon.settings.volume.success': 'Vous avez changé le volume de ce canal à **{volume}** avec succès.',
+  'channel_commands.amazon.settings.rate.success': 'Vous avez changé le rythme de ce canal à **{rate}** avec succès.',
+  'channel_commands.amazon.settings.pitch.success': 'Vous avez changé le ton de voix de ce canal à **{pitch}** avec succès.',
+
   'channel_commands.google.settings.language.invalid': "Cela n'est pas une langue valide. Utilisez **/google_langs** pour obtenir une liste de toutes les langues disponibles.",
   'channel_commands.google.settings.language.success': 'Vous avez changé la langue de ce canal à **{language}** avec succès.',
-  'channel_commands.google.settings.speed.success': 'Vous avez changé la vitesse de ce canal à **{speed}** avec succès.'
+  'channel_commands.google.settings.speed.success': 'Vous avez changé la vitesse de ce canal à **{speed}** avec succès.',
+
+  'channel_commands.microsoft.settings.language.unsupported': "La langue **{language}** n'est pas disponible pour le fournisseur de Microsoft. Utilisez **/ms_langs** pour obtenir une liste des langues disponibles.",
+  'channel_commands.microsoft.settings.language.success': 'Vous avez changé la langue de ce canal à **{language}** avec la voix de **{voice}**.',
+
+  'channel_commands.microsoft.settings.voice.unsupported': "La voix **{voice}** n'est pas disponible pour la langue de ce canal. Utilisez **/ms_voices** pour obtenir une liste des voix disponibles.",
+  'channel_commands.microsoft.settings.voice.success': 'Vous avez changé la voix de ce canal à **{voice}** avec succès.',
+
+  'channel_commands.microsoft.settings.volume.success': 'Vous avez changé le volume de ce canal à **{volume}** avec succès.',
+  'channel_commands.microsoft.settings.rate.success': 'Vous avez changé le rythme de ce canal à **{rate}** avec succès.',
+  'channel_commands.microsoft.settings.pitch.success': 'Vous avez changé le ton de voix de ce canal à **{pitch}** avec succès.'
 };
 
 module.exports = {
