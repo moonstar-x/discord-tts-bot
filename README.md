@@ -5,11 +5,12 @@
 [![open-issues-count](https://img.shields.io/github/issues-raw/moonstar-x/discord-tts-bot?logo=github)](https://github.com/moonstar-x/discord-tts-bot)
 [![docker-image-size](https://img.shields.io/docker/image-size/moonstarx/discord-tts-bot?logo=docker)](https://hub.docker.com/repository/docker/moonstarx/discord-tts-bot)
 [![docker-pulls](https://img.shields.io/docker/pulls/moonstarx/discord-tts-bot?logo=docker)](https://hub.docker.com/repository/docker/moonstarx/discord-tts-bot)
-[![ko-fi](https://img.shields.io/badge/buy%20me%20a%20coffee-%E2%98%95%20%20-%23ff5f5f)](https://ko-fi.com/moonstar_x)
 
 # Discord TTS Bot
 
 This is a simple TTS Bot that uses the Google Translate TTS API. With this bot you can send Text-to-Speech messages in multiple languages using Google Translate or other TTS engines.
+
+For more information, visit the bot's [official page](https://docs.moonstar-x.dev/discord-tts-bot/).
 
 ## Requirements
 
