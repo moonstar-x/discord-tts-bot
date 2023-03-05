@@ -28,7 +28,11 @@ class VoiceManager {
         selfDeaf: false,
         selfMute: false
       });
-
+      connection.on('stateChange', (oldState, newState) => {
+        if (oldState.status === VoiceConnectionStatus.Ready && newState.status === VoiceConnectionStatus.Connecting) {
+          connection.configureNetworking();
+        }
+      });
       // Resolve this voice manager once the connection is ready.
       connection.on(VoiceConnectionStatus.Ready, () => {
         connection.subscribe(this.player);
