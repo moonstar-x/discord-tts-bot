@@ -25,7 +25,7 @@ class VoiceManager {
         channelId: channel.id,
         guildId: channel.guild.id,
         adapterCreator: channel.guild.voiceAdapterCreator,
-        selfDeaf: false,
+        selfDeaf: true,
         selfMute: false
       });
       connection.on('stateChange', (oldState, newState) => {
