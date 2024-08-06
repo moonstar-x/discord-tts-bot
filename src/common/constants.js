@@ -11,7 +11,7 @@ const MESSAGE_EMBED = {
 const EMBED_FIELD_MAX_SIZE = 1024;
 
 const DISCONNECT_TIMEOUT = {
-  MIN: 5,
+  MIN: 0,
   MAX: 300
 };
 

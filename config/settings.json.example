@@ -9,5 +9,6 @@
   "provider_type": "level",
   "redis_url": "redis://ip:port",
   "enable_tts_channels": false,
+  "join_on_tts_channel_message_send": true,
   "enable_keep_alive": false
 }

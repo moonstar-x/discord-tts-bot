@@ -27,7 +27,7 @@ class GoogleProvider extends AbstractProvider {
   getPlayLogMessage(payload, guild) {
     const { sentence, extras: { language, speed } } = payload;
 
-    return `(Google): Saying ${sentence} with language ${language} with ${speed} speed in guild ${guild.name}.`;
+    return `(Google): Saying ${sentence} with language ${language} with ${speed} speed in guild ${guild.name} (${guild.id}).`;
   }
 }
 

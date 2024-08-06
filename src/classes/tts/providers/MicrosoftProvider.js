@@ -31,7 +31,7 @@ class MicrosoftProvider extends AbstractProvider {
   getPlayLogMessage(payload, guild) {
     const { sentence, extras: { language, voice, volume, rate, pitch } } = payload;
 
-    return `(Microsoft): Saying ${sentence} with language ${language} - ${voice} with ${volume} volume, ${rate} rate and ${pitch} pitch in guild ${guild.name}.`;
+    return `(Microsoft): Saying ${sentence} with language ${language} - ${voice} with ${volume} volume, ${rate} rate and ${pitch} pitch in guild ${guild.name} (${guild.id}).`;
   }
 }
 

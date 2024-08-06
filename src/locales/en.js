@@ -29,6 +29,10 @@ const COMMAND = {
   'command.say.success': 'I will say that now.',
   'command.say.joined': 'Joined {channel}.',
 
+  'command.join.no_channel': 'You need to be in a voice channel first.',
+  'command.join.joined': 'Joined {channel}.',
+  'command.join.already_connected': 'I am already in a voice channel.',
+
   'command.stop.no_connection': "I'm not in a voice channel.",
   'command.stop.different_channel': 'You need to be in my voice channel to stop me.',
   'command.stop.success': 'Successfully left the voice channel {channel}.',
@@ -127,11 +131,15 @@ const COMMAND = {
   'command.locale.success': "You have changed the bot's locale to **{locale}**.",
 
   'command.timeout.out_of_range': 'Invalid time, it must be between **{min}** and **{max}**.',
+  'command.timeout.never': 'I will now stay in the voice channel indefinitely until you stop me or everyone leaves.',
   'command.timeout.success': 'I will now leave from the voice channel after **{timeout}** minutes of inactivity.'
 };
 
 const CHANNEL_COMMANDS = {
   'channel_commands.set.success': 'You have successfully changed the provider for this channel to **{name}**.',
+
+  'channel_commands.join.enabled': 'The bot will now join the voice channel when a message is sent on this channel.',
+  'channel_commands.join.disabled': 'The bot will no longer join the voice channel when a message is sent on this channel.',
 
   'channel_commands.settings.enabled.embed.title': "Here's the current settings for the channel **#{channel}**",
   'channel_commands.settings.enabled.embed.description': 'Keep in mind that these settings are the ones used when sending regular messages to this channel.',
