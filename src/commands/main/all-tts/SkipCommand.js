@@ -1,7 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const logger = require('@greencoast/logger');
-const { getCantConnectToChannelReason } = require('../../../utils/channel');
 
 class SkipCommand extends SlashCommand {
   constructor(client) {
@@ -19,28 +18,26 @@ class SkipCommand extends SlashCommand {
     return currentSettings.provider;
   }
 
-  async run(interaction) {
-    await interaction.deferReply({ ephemeral: true });
-
+  run(interaction) {
     const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);
     const connection = ttsPlayer.voice.getConnection();
 
-    const { name: guildName } = interaction.guild;
+    const { me: { voice: myVoice }, name: guildName } = interaction.guild;
+    const myChannel = myVoice?.channel;
     const { channel: memberChannel } = interaction.member.voice;
 
-    const cantConnectReason = getCantConnectToChannelReason(memberChannel);
-    if (!memberChannel || cantConnectReason) {
-      await interaction.editReply(cantConnectReason ? localizer.t(cantConnectReason) : localizer.t('command.join.no_channel'));
-      return;
+    if (!connection) {
+      return interaction.reply({ content: localizer.t('command.skip.no_connection') });
     }
 
-    if (connection) {
-      ttsPlayer.skip();
-      logger.info(`Skipped ${memberChannel.name} in ${guildName}.`);
-    } else {
-      await interaction.editReply(localizer.t('command.skip.not_connected'));
+    if (!memberChannel || myChannel !== memberChannel) {
+      return interaction.reply({ content: localizer.t('command.skip.different_channel') });
     }
+
+    ttsPlayer.skip();
+    logger.info(`Skipped ${memberChannel.name} in ${guildName}.`);
+    return interaction.reply({ content: localizer.t('command.skip.skipped', { channel: myChannel.toString() }) });
   }
 }
 

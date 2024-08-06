@@ -25,11 +25,11 @@ class StopCommand extends SlashCommand {
     const { channel: memberChannel } = interaction.member.voice;
 
     if (!connection) {
-      return interaction.reply({ content: localizer.t('command.stop.no_connection'), ephemeral: true });
+      return interaction.reply({ content: localizer.t('command.stop.no_connection') });
     }
 
     if (!memberChannel || myChannel !== memberChannel) {
-      return interaction.reply({ content: localizer.t('command.stop.different_channel'), ephemeral: true });
+      return interaction.reply({ content: localizer.t('command.stop.different_channel') });
     }
 
     ttsPlayer.stop();

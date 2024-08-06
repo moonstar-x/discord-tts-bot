@@ -88,8 +88,6 @@ class TTSPlayer {
     if (this.queue.length > 0) {
       const nextMessage = this.queue[0];
       this.say(nextMessage.text, nextMessage.provider, nextMessage.extras);
-    } else {
-      this.voice.disconnect();
     }
   }
 

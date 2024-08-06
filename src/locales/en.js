@@ -33,6 +33,10 @@ const COMMAND = {
   'command.join.joined': 'Joined {channel}.',
   'command.join.already_connected': 'I am already in a voice channel.',
 
+  'command.skip.no_connection': "I'm not in a voice channel.",
+  'command.skip.different_channel': 'You need to be in my voice channel to skip me.',
+  'command.skip.skipped': 'I have skipped the current message.',
+
   'command.stop.no_connection': "I'm not in a voice channel.",
   'command.stop.different_channel': 'You need to be in my voice channel to stop me.',
   'command.stop.success': 'Successfully left the voice channel {channel}.',
