@@ -75,6 +75,24 @@ class TTSPlayer {
     }));
   }
 
+  skip() {
+    this.stopDisconnectScheduler();
+  
+    if (this.queue.length > 0) {
+      this.queue.shift();
+    }
+  
+    this.speaking = false;
+    this.voice.player.stop(true);
+  
+    if (this.queue.length > 0) {
+      const nextMessage = this.queue[0];
+      this.say(nextMessage.text, nextMessage.provider, nextMessage.extras);
+    } else {
+      this.voice.disconnect();
+    }
+  }
+
   stop() {
     const { channel } = this.guild.me.voice;
 
