@@ -76,19 +76,16 @@ class TTSPlayer {
   }
 
   skip() {
-    this.stopDisconnectScheduler();
-  
-    if (this.queue.length > 0) {
-      this.queue.shift();
+    if (this.queue.isEmpty() && !this.speaking) {
+      return false;
     }
-  
+
+    this.stopDisconnectScheduler();
     this.speaking = false;
     this.voice.player.stop(true);
-  
-    if (this.queue.length > 0) {
-      const nextMessage = this.queue[0];
-      this.say(nextMessage.text, nextMessage.provider, nextMessage.extras);
-    }
+    
+    this.play();
+    return true;
   }
 
   stop() {

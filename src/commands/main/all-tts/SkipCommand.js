@@ -23,7 +23,7 @@ class SkipCommand extends SlashCommand {
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);
     const connection = ttsPlayer.voice.getConnection();
 
-    const { me: { voice: myVoice }, name: guildName } = interaction.guild;
+    const { me: { voice: myVoice }, name: guildName, id: guildId } = interaction.guild;
     const myChannel = myVoice?.channel;
     const { channel: memberChannel } = interaction.member.voice;
 
@@ -35,8 +35,12 @@ class SkipCommand extends SlashCommand {
       return interaction.reply({ content: localizer.t('command.skip.different_channel') });
     }
 
-    ttsPlayer.skip();
-    logger.info(`Skipped ${memberChannel.name} in ${guildName}.`);
+    const hasSkipped = ttsPlayer.skip();
+    if (!hasSkipped) {
+      return interaction.reply({ content: localizer.t('command.skip.nothing_to_skip') });
+    }
+
+    logger.info(`Skipped in ${memberChannel.name} (${memberChannel.id}) in ${guildName} (${guildId}).`);
     return interaction.reply({ content: localizer.t('command.skip.skipped', { channel: myChannel.toString() }) });
   }
 }

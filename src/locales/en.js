@@ -35,6 +35,7 @@ const COMMAND = {
 
   'command.skip.no_connection': "I'm not in a voice channel.",
   'command.skip.different_channel': 'You need to be in my voice channel to skip me.',
+  'command.skip.nothing_to_skip': 'There is nothing to skip.',
   'command.skip.skipped': 'I have skipped the current message.',
 
   'command.stop.no_connection': "I'm not in a voice channel.",
