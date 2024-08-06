@@ -34,38 +34,43 @@ class TTSChannelHandler {
     const localizer = this.client.localizer.getLocalizer(message.guild);
     const ttsPlayer = this.client.getTTSPlayer(message.guild);
     const connection = ttsPlayer.voice.getConnection();
-
+  
     const settings = await this.client.ttsSettings.getCurrentForChannel(message.channel);
     const extras = settings[channelSettings.provider];
-
+  
     const { me: { voice: myVoice }, name: guildName, members, channels, roles } = message.guild;
     const { channel: memberChannel } = message.member.voice;
     const myChannel = myVoice?.channel;
-
+  
     const messageIntro = this.client.config.get('ENABLE_WHO_SAID') ? `${message.member.displayName} said ` : '';
     const textToSay = cleanMessage(`${messageIntro}${message.content}`, {
       members: members.cache,
       channels: channels.cache,
       roles: roles.cache
     });
-
+  
     if (!memberChannel) {
       return message.reply(localizer.t('command.say.no_channel'));
     }
-
+  
     if (connection) {
       if (myChannel !== memberChannel) {
         return message.reply(localizer.t('command.say.different_channel'));
       }
-
+  
       return ttsPlayer.say(textToSay, channelSettings.provider, extras);
     }
-
+  
+    const joinOnTTSChannelMessageSend = this.client.config.get('join_on_tts_channel_message_send');
+    if (!joinOnTTSChannelMessageSend && !myChannel) {
+      return;
+    }
+  
     const cantConnectReason = getCantConnectToChannelReason(memberChannel);
     if (cantConnectReason) {
       return message.reply(localizer.t(cantConnectReason));
     }
-
+  
     await ttsPlayer.voice.connect(memberChannel);
     logger.info(`Joined ${memberChannel.name} in ${guildName}.`);
     await message.reply(localizer.t('command.say.joined', { channel: memberChannel.toString() }));
