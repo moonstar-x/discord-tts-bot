@@ -61,10 +61,12 @@ class TTSChannelHandler {
       return ttsPlayer.say(textToSay, channelSettings.provider, extras);
     }
   
-    const joinOnTTSChannelMessageSend = this.client.config.get('join_on_tts_channel_message_send');
-    if (!joinOnTTSChannelMessageSend && !myChannel) {
+    const { joinOnMessage } = channelSettings;
+    if (!joinOnMessage && !myChannel) {
       return;
     }
+
+    logger.info(`Joining ${memberChannel.name} in ${guildName}.`);
   
     const cantConnectReason = getCantConnectToChannelReason(memberChannel);
     if (cantConnectReason) {

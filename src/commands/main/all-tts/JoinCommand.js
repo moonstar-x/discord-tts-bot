@@ -8,7 +8,7 @@ class JoinCommand extends SlashCommand {
     super(client, {
       name: 'join',
       description: 'Makes the bot join the current user\'s voice channel.',
-      emoji: ':fast_forward:',
+      emoji: ':white_check_mark:',
       group: 'all-tts',
       guildOnly: true,
       dataBuilder: new SlashCommandBuilder()
@@ -20,13 +20,13 @@ class JoinCommand extends SlashCommand {
   }
 
   async run(interaction) {
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply();
 
     const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);
     const connection = ttsPlayer.voice.getConnection();
 
-    const { name: guildName } = interaction.guild;
+    const { name: guildName, id: guildId } = interaction.guild;
     const { channel: memberChannel } = interaction.member.voice;
 
     const cantConnectReason = getCantConnectToChannelReason(memberChannel);
@@ -37,7 +37,7 @@ class JoinCommand extends SlashCommand {
 
     if (!connection) {
       await ttsPlayer.voice.connect(memberChannel);
-      logger.info(`Joined ${memberChannel.name} in ${guildName}.`);
+      logger.info(`Joined ${memberChannel.name} (${memberChannel.id}) in ${guildName} (${guildId}).`);
       await interaction.editReply(localizer.t('command.join.joined', { channel: memberChannel.toString() }));
     } else {
       await interaction.editReply(localizer.t('command.join.already_connected'));

@@ -138,6 +138,9 @@ const COMMAND = {
 const CHANNEL_COMMANDS = {
   'channel_commands.set.success': 'You have successfully changed the provider for this channel to **{name}**.',
 
+  'channel_commands.join.enabled': 'The bot will now join the voice channel when a message is sent on this channel.',
+  'channel_commands.join.disabled': 'The bot will no longer join the voice channel when a message is sent on this channel.',
+
   'channel_commands.settings.enabled.embed.title': "Here's the current settings for the channel **#{channel}**",
   'channel_commands.settings.enabled.embed.description': 'Keep in mind that these settings are the ones used when sending regular messages to this channel.',
   'channel_commands.settings.enabled.current.provider': 'Current provider',
