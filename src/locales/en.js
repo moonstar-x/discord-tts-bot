@@ -29,6 +29,10 @@ const COMMAND = {
   'command.say.success': 'I will say that now.',
   'command.say.joined': 'Joined {channel}.',
 
+  'command.join.no_channel': 'You need to be in a voice channel first.',
+  'command.join.joined': 'Joined {channel}.',
+  'command.join.already_connected': 'I am already in a voice channel.',
+
   'command.stop.no_connection': "I'm not in a voice channel.",
   'command.stop.different_channel': 'You need to be in my voice channel to stop me.',
   'command.stop.success': 'Successfully left the voice channel {channel}.',
