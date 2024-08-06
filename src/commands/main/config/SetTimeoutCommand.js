@@ -28,13 +28,20 @@ class SetTimeoutCommand extends SlashCommand {
     const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const timeout = interaction.options.getNumber('timeout');
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);
-
+  
+    if (timeout === 0) {
+      const MAX_TIMEOUT = 2147483647; // Maximum for 32-bit signed integer
+      await ttsPlayer.disconnectScheduler.updateTimeout(MAX_TIMEOUT);
+      logger.info(`${interaction.guild.name} has set its disconnect timeout to never.`);
+      return interaction.reply({ content: localizer.t('command.timeout.never') });
+    }
+  
     if (timeout < DISCONNECT_TIMEOUT.MIN || timeout > DISCONNECT_TIMEOUT.MAX) {
       return interaction.reply({ content: localizer.t('command.timeout.out_of_range', { min: DISCONNECT_TIMEOUT.MIN, max: DISCONNECT_TIMEOUT.MAX }) });
     }
-
+  
     await ttsPlayer.disconnectScheduler.updateTimeout(timeout * 60 * 1000);
-
+  
     logger.info(`${interaction.guild.name} has changed its disconnect timeout to ${timeout} minutes.`);
     return interaction.reply({ content: localizer.t('command.timeout.success', { timeout }) });
   }

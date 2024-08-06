@@ -127,6 +127,7 @@ const COMMAND = {
   'command.locale.success': "You have changed the bot's locale to **{locale}**.",
 
   'command.timeout.out_of_range': 'Invalid time, it must be between **{min}** and **{max}**.',
+  'command.timeout.never': 'I will now stay in the voice channel indefinitely until you stop me or everyone leaves.',
   'command.timeout.success': 'I will now leave from the voice channel after **{timeout}** minutes of inactivity.'
 };
 
