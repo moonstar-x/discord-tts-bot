@@ -7,6 +7,7 @@ const { locales } = require('./locales');
 const { keepAlive } = require('./utils/keep-alive');
 const { DISCONNECT_TIMEOUT, WEBSITE_URL } = require('./common/constants');
 const pkg = require('../package.json');
+const logger = require('@greencoast/logger');
 
 const SUPPORTED_PROVIDERS = ['level', 'redis'];
 
@@ -160,6 +161,25 @@ client.once('ready', async() => {
         });
     }
   });
+});
+
+client.on('voiceStateUpdate', (_oldState, newState) => {
+  const ttsPlayer = client.getTTSPlayer(newState.guild);
+
+  if (!ttsPlayer) {
+    return;
+  }
+
+  const channel = ttsPlayer.voice.getConnection()?.joinConfig.channelId;
+  if (!channel) {
+    return;
+  }
+
+  const voiceChannel = newState.guild.channels.cache.get(channel);
+  if (voiceChannel.members.size === 1) {
+    ttsPlayer.stop();
+    logger.info(`Left the voice channel ${voiceChannel.name} (${voiceChannel.id}) from guild ${newState.guild.name} (${newState.guild.id}) because all users left.`);
+  }
 });
 
 client.login(config.get('TOKEN'));
