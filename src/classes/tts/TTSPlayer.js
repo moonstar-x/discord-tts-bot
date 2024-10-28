@@ -41,22 +41,27 @@ class TTSPlayer {
   }
 
   async say(sentence, providerName, extras = {}) {
-    const provider = this.providerManager.getProvider(providerName);
-    const payload = await provider.createPayload(sentence, extras);
+  // URL Detector
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
 
-    if (Array.isArray(payload)) {
-      payload.forEach((p) => this.queue.enqueue(p));
-    } else {
-      this.queue.enqueue(payload);
-    }
+  // Replace URL with SUS
+  let sanitizedSentence = sentence.replace(urlRegex, 'ඞ');
 
-    this.startDisconnectScheduler();
+  const provider = this.providerManager.getProvider(providerName);
+  const payload = await provider.createPayload(sanitizedSentence, extras);
 
-    if (!this.speaking) {
-      this.play();
-    }
+  if (Array.isArray(payload)) {
+    payload.forEach((p) => this.queue.enqueue(p));
+  } else {
+    this.queue.enqueue(payload);
   }
 
+  this.startDisconnectScheduler();
+
+  if (!this.speaking) {
+    this.play();
+  }
+}
   async play() {
     if (this.queue.isEmpty()) {
       return;
@@ -75,6 +80,24 @@ class TTSPlayer {
     }));
   }
 
+    skip() {
+    this.stopDisconnectScheduler();
+
+    if (this.queue.length > 0) {
+      this.queue.shift();
+    }
+
+    this.speaking = false;
+    this.voice.player.stop(true);
+
+    if (this.queue.length > 0) {
+      const nextMessage = this.queue[0];
+      this.say(nextMessage.text, nextMessage.provider, nextMessage.extras);
+    } else {
+      this.voice.disconnect();
+    }
+  }
+    
   stop() {
     const { channel } = this.guild.me.voice;
 
