@@ -6,6 +6,8 @@ const TTSClient = require('./classes/extensions/TTSClient');
 const { locales } = require('./locales');
 const { keepAlive } = require('./utils/keep-alive');
 const { DISCONNECT_TIMEOUT, WEBSITE_URL } = require('./common/constants');
+const { Intents } = require('discord.js');
+
 const pkg = require('../package.json');
 
 const SUPPORTED_PROVIDERS = ['level', 'redis'];
@@ -81,7 +83,7 @@ const client = new TTSClient({
     defaultLocale: 'en',
     localeStrings: locales
   },
-  intents: ['GUILD_MESSAGES', 'GUILDS', 'GUILD_VOICE_STATES']
+  intents: [Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_VOICE_STATES]
 });
 
 client
