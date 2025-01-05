@@ -1,5 +1,5 @@
 /* eslint-disable max-params */
-const { Collection, Guild, GuildMember, Channel } = require('discord.js');
+const { Collection, Guild, GuildMember, BaseChannel } = require('discord.js');
 const ProviderManager = require('./providers/ProviderManager');
 const merge = require('deepmerge');
 
@@ -44,7 +44,7 @@ class CachedTTSSettings {
   async get(entity) {
     const key = `${entity.id}:tts_settings`;
 
-    if (entity instanceof Channel) {
+    if (entity instanceof BaseChannel) {
       return this._get(key, this.channelCache, entity.guild);
     }
 
@@ -89,7 +89,7 @@ class CachedTTSSettings {
   async set(entity, settings) {
     const key = `${entity.id}:tts_settings`;
 
-    if (entity instanceof Channel) {
+    if (entity instanceof BaseChannel) {
       return this._set(key, settings, this.channelCache, entity.guild);
     }
 
@@ -112,7 +112,7 @@ class CachedTTSSettings {
   async delete(entity) {
     const key = `${entity.id}:tts_settings`;
 
-    if (entity instanceof Channel) {
+    if (entity instanceof BaseChannel) {
       return this._delete(key, this.channelCache, entity.guild);
     }
 
