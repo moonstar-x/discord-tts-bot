@@ -1,5 +1,5 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { PermissionsBitField, SlashCommandBuilder } = require('discord.js');
 const logger = require('@greencoast/logger');
 const AmazonProvider = require('../../../../classes/tts/providers/AmazonProvider');
 const languageData = require('../../../../../provider-data/ttstool_amazon_languages.json');
@@ -12,7 +12,7 @@ class AmazonSetChannelSettingsCommand extends SlashCommand {
       emoji: ':pencil2:',
       group: 'amazon-tts',
       guildOnly: true,
-      userPermissions: ['MANAGE_CHANNELS'],
+      userPermissions: [PermissionsBitField.Flags.ManageChannels],
       dataBuilder: new SlashCommandBuilder()
         .addSubcommand((input) => {
           return input
@@ -45,7 +45,7 @@ class AmazonSetChannelSettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The volume to be used from now.')
                 .setRequired(true)
-                .setChoices(AmazonProvider.getSupportedVolumeChoices());
+                .setChoices(...AmazonProvider.getSupportedVolumeChoices());
             });
         })
         .addSubcommand((input) => {
@@ -57,7 +57,7 @@ class AmazonSetChannelSettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The rate to be used from now.')
                 .setRequired(true)
-                .setChoices(AmazonProvider.getSupportedRateChoices());
+                .setChoices(...AmazonProvider.getSupportedRateChoices());
             });
         })
         .addSubcommand((input) => {
@@ -69,7 +69,7 @@ class AmazonSetChannelSettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The pitch to be used from now.')
                 .setRequired(true)
-                .setChoices(AmazonProvider.getSupportedPitchChoices());
+                .setChoices(...AmazonProvider.getSupportedPitchChoices());
             });
         })
     });

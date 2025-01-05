@@ -1,7 +1,8 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { PermissionsBitField, SlashCommandBuilder } = require('discord.js');
 const logger = require('@greencoast/logger');
 const ProviderManager = require('../../../../classes/tts/providers/ProviderManager');
+const { oldChoiceListToNew } = require('../../../../utils/upgrade-utils');
 
 class SetChannelProvider extends SlashCommand {
   constructor(client) {
@@ -11,14 +12,14 @@ class SetChannelProvider extends SlashCommand {
       emoji: ':pencil2:',
       group: 'config',
       guildOnly: true,
-      userPermissions: ['MANAGE_CHANNELS'],
+      userPermissions: [PermissionsBitField.Flags.ManageChannels],
       dataBuilder: new SlashCommandBuilder()
         .addStringOption((input) => {
           return input
             .setName('provider')
             .setDescription('The provider to use from now on.')
             .setRequired(true)
-            .addChoices(ProviderManager.SUPPORTED_PROVIDERS.map((p) => [p.FRIENDLY_NAME, p.NAME]));
+            .addChoices(...oldChoiceListToNew(ProviderManager.SUPPORTED_PROVIDERS.map((p) => [p.FRIENDLY_NAME, p.NAME])));
         })
     });
   }

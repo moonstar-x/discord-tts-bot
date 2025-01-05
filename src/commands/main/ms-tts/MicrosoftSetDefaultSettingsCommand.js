@@ -1,5 +1,5 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { PermissionsBitField, SlashCommandBuilder } = require('discord.js');
 const logger = require('@greencoast/logger');
 const MicrosoftProvider = require('../../../classes/tts/providers/MicrosoftProvider');
 const languageData = require('../../../../provider-data/ttstool_microsoft_languages.json');
@@ -12,7 +12,7 @@ class MicrosoftSetDefaultSettingsCommand extends SlashCommand {
       emoji: ':pencil2:',
       group: 'ms-tts',
       guildOnly: true,
-      userPermissions: ['MANAGE_GUILD'],
+      userPermissions: [PermissionsBitField.Flags.ManageGuild],
       dataBuilder: new SlashCommandBuilder()
         .addSubcommand((input) => {
           return input
@@ -45,7 +45,7 @@ class MicrosoftSetDefaultSettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The volume to be used from now.')
                 .setRequired(true)
-                .setChoices(MicrosoftProvider.getSupportedVolumeChoices());
+                .setChoices(...MicrosoftProvider.getSupportedVolumeChoices());
             });
         })
         .addSubcommand((input) => {
@@ -57,7 +57,7 @@ class MicrosoftSetDefaultSettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The rate to be used from now.')
                 .setRequired(true)
-                .setChoices(MicrosoftProvider.getSupportedRateChoices());
+                .setChoices(...MicrosoftProvider.getSupportedRateChoices());
             });
         })
         .addSubcommand((input) => {
@@ -69,7 +69,7 @@ class MicrosoftSetDefaultSettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The pitch to be used from now.')
                 .setRequired(true)
-                .setChoices(MicrosoftProvider.getSupportedPitchChoices());
+                .setChoices(...MicrosoftProvider.getSupportedPitchChoices());
             });
         })
     });

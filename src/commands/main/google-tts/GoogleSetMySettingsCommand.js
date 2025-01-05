@@ -33,7 +33,7 @@ class GoogleSetMySettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The speed to use from now.')
                 .setRequired(true)
-                .setChoices(GoogleProvider.getSupportedSpeedChoices());
+                .setChoices(...GoogleProvider.getSupportedSpeedChoices());
             });
         })
     });

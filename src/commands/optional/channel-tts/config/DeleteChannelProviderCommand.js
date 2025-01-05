@@ -1,5 +1,5 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { PermissionsBitField, SlashCommandBuilder } = require('discord.js');
 const logger = require('@greencoast/logger');
 
 class DeleteChannelProviderCommand extends SlashCommand {
@@ -10,7 +10,7 @@ class DeleteChannelProviderCommand extends SlashCommand {
       emoji: ':x:',
       group: 'config',
       guildOnly: true,
-      userPermissions: ['MANAGE_CHANNELS'],
+      userPermissions: [PermissionsBitField.Flags.ManageChannels],
       dataBuilder: new SlashCommandBuilder()
     });
   }

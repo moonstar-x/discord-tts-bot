@@ -2,6 +2,8 @@ const axios = require('axios');
 const AbstractProvider = require('./AbstractProvider');
 const Payload = require('../Payload');
 const languageData = require('../../../../provider-data/ttstool_amazon_languages.json');
+const { oldChoiceListToNew } = require('../../../utils/upgrade-utils');
+
 
 const POST_URL = 'https://support.readaloud.app/ttstool/createParts';
 const GET_URL = 'https://support.readaloud.app/ttstool/getParts';
@@ -48,7 +50,7 @@ AmazonProvider.EXTRA_DEFAULTS = {
 };
 
 AmazonProvider.getSupportedVolumeChoices = () => {
-  return [
+  return oldChoiceListToNew([
     ['Default Volume', 'default'],
     ['Silent', 'silent'],
     ['Extra Soft', 'x-soft'],
@@ -56,28 +58,28 @@ AmazonProvider.getSupportedVolumeChoices = () => {
     ['Medium', 'medium'],
     ['Loud', 'loud'],
     ['Extra Loud', 'x-loud']
-  ];
+  ]);
 };
 
 AmazonProvider.getSupportedRateChoices = () => {
-  return [
+  return oldChoiceListToNew([
     ['Extra Slow', 'x-slow'],
     ['Slow', 'slow'],
     ['Medium', 'medium'],
     ['Fast', 'fast'],
     ['Extra Fast', 'x-fast']
-  ];
+  ]);
 };
 
 AmazonProvider.getSupportedPitchChoices = () => {
-  return [
+  return oldChoiceListToNew([
     ['Default Pitch', 'default'],
     ['Extra Low', 'x-low'],
     ['Low', 'low'],
     ['Medium', 'medium'],
     ['High', 'high'],
     ['Extra High', 'x-high']
-  ];
+  ]);
 };
 
 module.exports = AmazonProvider;

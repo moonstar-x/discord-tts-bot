@@ -44,7 +44,7 @@ class AmazonSetMySettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The volume to be used from now.')
                 .setRequired(true)
-                .setChoices(AmazonProvider.getSupportedVolumeChoices());
+                .setChoices(...AmazonProvider.getSupportedVolumeChoices());
             });
         })
         .addSubcommand((input) => {
@@ -56,7 +56,7 @@ class AmazonSetMySettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The rate to be used from now.')
                 .setRequired(true)
-                .setChoices(AmazonProvider.getSupportedRateChoices());
+                .setChoices(...AmazonProvider.getSupportedRateChoices());
             });
         })
         .addSubcommand((input) => {
@@ -68,7 +68,7 @@ class AmazonSetMySettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The pitch to be used from now.')
                 .setRequired(true)
-                .setChoices(AmazonProvider.getSupportedPitchChoices());
+                .setChoices(...AmazonProvider.getSupportedPitchChoices());
             });
         })
     });

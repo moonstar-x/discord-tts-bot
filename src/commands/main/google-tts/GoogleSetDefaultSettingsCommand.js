@@ -1,5 +1,5 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { PermissionsBitField, SlashCommandBuilder } = require('discord.js');
 const logger = require('@greencoast/logger');
 const GoogleProvider = require('../../../classes/tts/providers/GoogleProvider');
 const languages = require('../../../../provider-data/google_languages.json');
@@ -12,7 +12,7 @@ class GoogleSetDefaultSettingsCommand extends SlashCommand {
       emoji: ':pencil2:',
       group: 'google-tts',
       guildOnly: true,
-      userPermissions: ['MANAGE_GUILD'],
+      userPermissions: [PermissionsBitField.Flags.ManageGuild],
       dataBuilder: new SlashCommandBuilder()
         .addSubcommand((input) => {
           return input
@@ -34,7 +34,7 @@ class GoogleSetDefaultSettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The speed to use from now.')
                 .setRequired(true)
-                .setChoices(GoogleProvider.getSupportedSpeedChoices());
+                .setChoices(...GoogleProvider.getSupportedSpeedChoices());
             });
         })
     });

@@ -44,7 +44,7 @@ class MicrosoftSetMySettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The volume to be used from now.')
                 .setRequired(true)
-                .setChoices(MicrosoftProvider.getSupportedVolumeChoices());
+                .setChoices(...MicrosoftProvider.getSupportedVolumeChoices());
             });
         })
         .addSubcommand((input) => {
@@ -56,7 +56,7 @@ class MicrosoftSetMySettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The rate to be used from now.')
                 .setRequired(true)
-                .setChoices(MicrosoftProvider.getSupportedRateChoices());
+                .setChoices(...MicrosoftProvider.getSupportedRateChoices());
             });
         })
         .addSubcommand((input) => {
@@ -68,7 +68,7 @@ class MicrosoftSetMySettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The pitch to be used from now.')
                 .setRequired(true)
-                .setChoices(MicrosoftProvider.getSupportedPitchChoices());
+                .setChoices(...MicrosoftProvider.getSupportedPitchChoices());
             });
         })
     });
