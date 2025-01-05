@@ -43,7 +43,9 @@ class SayBaseCommand extends SlashCommand {
     const myChannel = myVoice?.channel;
 
     const messageIntro = this.client.config.get('ENABLE_WHO_SAID') ? `${interaction.member.displayName} said ` : '';
-    const message = cleanMessage(`${messageIntro}${interaction.options.getString('message')}`, {
+    const userMessage = interaction.options.getString('message');
+
+    const message = cleanMessage(`${messageIntro}${userMessage}`, {
       members: members.cache,
       channels: channels.cache,
       roles: roles.cache
@@ -60,7 +62,7 @@ class SayBaseCommand extends SlashCommand {
         return;
       }
 
-      await interaction.editReply(localizer.t('command.say.success'));
+      await interaction.editReply(localizer.t('command.say.success', { request: userMessage }));
       return ttsPlayer.say(message, providerName, extras);
     }
 
@@ -72,7 +74,7 @@ class SayBaseCommand extends SlashCommand {
 
     await ttsPlayer.voice.connect(memberChannel);
     logger.info(`Joined ${memberChannel.name} in ${guildName}.`);
-    await interaction.editReply(localizer.t('command.say.joined', { channel: memberChannel.toString() }));
+    await interaction.editReply(localizer.t('command.say.joined', { channel: memberChannel.toString(), request: userMessage }));
     return ttsPlayer.say(message, providerName, extras);
   }
 }
