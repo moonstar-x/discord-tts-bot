@@ -26,22 +26,24 @@
   },
   "homepage": "https://github.com/moonstar-x/discord-tts-bot#readme",
   "dependencies": {
-    "@discordjs/builders": "^0.11.0",
-    "@discordjs/opus": "^0.5.3",
-    "@discordjs/voice": "^0.7.5",
-    "@greencoast/discord.js-extended": "^2.2.3",
-    "@greencoast/logger": "^1.1.0",
-    "axios": "^0.25.0",
-    "deepmerge": "^4.2.2",
-    "discord.js": "^13.6.0",
+    "@discordjs/builders": "^1.10.0",
+    "@discordjs/opus": "^0.9.0",
+    "@discordjs/voice": "^0.18.0",
+    "@greencoast/discord.js-extended": "^3.0.1",
+    "@greencoast/djs-extended-data-provider-level": "^1.0.1",
+    "@greencoast/djs-extended-data-provider-redis": "^1.0.0",
+    "@greencoast/logger": "^1.1.1",
+    "axios": "^1.7.9",
+    "deepmerge": "^4.3.1",
+    "discord.js": "^14.17.2",
     "google-tts-api": "^2.0.2",
-    "level": "^7.0.1",
-    "redis": "^4.0.2",
+    "level": "^9.0.0",
+    "redis": "^4.7.0",
     "tweetnacl": "^1.0.3"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-greencoast": "^0.0.2",
-    "nodemon": "^2.0.15"
+    "eslint": "^8.57.1",
+    "eslint-config-greencoast": "^0.0.5",
+    "nodemon": "^3.1.9"
   }
 }

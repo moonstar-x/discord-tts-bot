@@ -1,12 +1,12 @@
 const path = require('path');
 const { ConfigProvider } = require('@greencoast/discord.js-extended');
-const RedisDataProvider = require('@greencoast/discord.js-extended/dist/providers/RedisDataProvider').default;
-const LevelDataProvider = require('@greencoast/discord.js-extended/dist/providers/LevelDataProvider').default;
+const { RedisDataProvider } = require('@greencoast/djs-extended-data-provider-redis');
+const { LevelDataProvider } = require('@greencoast/djs-extended-data-provider-level');
 const TTSClient = require('./classes/extensions/TTSClient');
 const { locales } = require('./locales');
 const { keepAlive } = require('./utils/keep-alive');
 const { DISCONNECT_TIMEOUT, WEBSITE_URL } = require('./common/constants');
-const { Intents } = require('discord.js');
+const { GatewayIntentBits } = require('discord.js');
 
 const pkg = require('../package.json');
 
@@ -83,7 +83,7 @@ const client = new TTSClient({
     defaultLocale: 'en',
     localeStrings: locales
   },
-  intents: [Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_VOICE_STATES]
+  intents: [GatewayIntentBits.GuildMessages, GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.MessageContent]
 });
 
 client
