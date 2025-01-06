@@ -15,7 +15,7 @@ class CachedTTSSettings {
   }
 
   initialize() {
-    this.client.on('channelDelete', async(channel) => {
+    this.client.on('channelDelete', async (channel) => {
       if (!channel.guild) {
         return;
       }

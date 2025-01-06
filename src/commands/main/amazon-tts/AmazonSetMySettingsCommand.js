@@ -81,7 +81,7 @@ class AmazonSetMySettingsCommand extends SlashCommand {
 
     if (!languageInfo) {
       return interaction.reply({ content: localizer.t('command.amazon.settings.my.language.unsupported', { language }), flags: MessageFlags.Ephemeral }
-);
+      );
     }
 
     const [defaultVoice] = languageInfo.voices;
@@ -95,7 +95,7 @@ class AmazonSetMySettingsCommand extends SlashCommand {
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their amazon language to ${language} with voice ${defaultVoice.name}.`);
     return interaction.reply({ content: localizer.t('command.amazon.settings.my.language.success', { language, voice: defaultVoice.name }), flags: MessageFlags.Ephemeral }
-);
+    );
   }
 
   async handleVoice(interaction, localizer) {
@@ -107,14 +107,14 @@ class AmazonSetMySettingsCommand extends SlashCommand {
 
     if (!languageInfo) {
       return interaction.reply({ content: localizer.t('command.amazon.settings.my.voice.invalidated'), flags: MessageFlags.Ephemeral }
-);
+      );
     }
 
     const voiceInfo = languageInfo.voices.find((v) => v.name.toLowerCase() === voice);
 
     if (!voiceInfo) {
       return interaction.reply({ content: localizer.t('command.amazon.settings.my.voice.unsupported', { voice }), flags: MessageFlags.Ephemeral }
-);
+      );
     }
 
     await this.client.ttsSettings.set(interaction.member, {
@@ -126,7 +126,7 @@ class AmazonSetMySettingsCommand extends SlashCommand {
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their amazon voice to ${voiceInfo.name}.`);
     return interaction.reply({ content: localizer.t('command.amazon.settings.my.voice.success', { voice: voiceInfo.name }), flags: MessageFlags.Ephemeral }
-);
+    );
   }
 
   async handleVolume(interaction, localizer) {
@@ -136,7 +136,7 @@ class AmazonSetMySettingsCommand extends SlashCommand {
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their amazon volume to ${volume}.`);
     return interaction.reply({ content: localizer.t('command.amazon.settings.my.volume.success', { volume }), flags: MessageFlags.Ephemeral }
-);
+    );
   }
 
   async handleRate(interaction, localizer) {
@@ -146,7 +146,7 @@ class AmazonSetMySettingsCommand extends SlashCommand {
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their amazon rate to ${rate}.`);
     return interaction.reply({ content: localizer.t('command.amazon.settings.my.rate.success', { rate }), flags: MessageFlags.Ephemeral }
-);
+    );
   }
 
   async handlePitch(interaction, localizer) {
@@ -156,7 +156,7 @@ class AmazonSetMySettingsCommand extends SlashCommand {
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their amazon pitch to ${pitch}.`);
     return interaction.reply({ content: localizer.t('command.amazon.settings.my.pitch.success', { pitch }), flags: MessageFlags.Ephemeral }
-);
+    );
   }
 
   async run(interaction) {

@@ -51,7 +51,7 @@ class DefaultSettingsCommand extends SlashCommand {
           value: ProviderManager.PROVIDER_FRIENDLY_NAMES[provider]
         },
         // Adding the fields in bulk
-        ...fields.map(field => ({
+        ...fields.map((field) => ({
           name: field.title,
           value: field.text,
           inline: true

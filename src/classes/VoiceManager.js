@@ -40,7 +40,7 @@ class VoiceManager {
       });
 
       // Automatically handle potential recoverable disconnects.
-      connection.on(VoiceConnectionStatus.Disconnected, async() => {
+      connection.on(VoiceConnectionStatus.Disconnected, async () => {
         try {
           await Promise.race([
             entersState(connection, VoiceConnectionStatus.Signalling, 5000),

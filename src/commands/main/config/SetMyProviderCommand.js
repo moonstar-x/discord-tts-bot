@@ -33,7 +33,7 @@ class SetMyProviderCommand extends SlashCommand {
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their provider to ${providerName}.`);
     return interaction.reply({ content: localizer.t('command.set.my.provider.success', { name: providerFriendlyName }), flags: MessageFlags.Ephemeral }
-);
+    );
   }
 }
 

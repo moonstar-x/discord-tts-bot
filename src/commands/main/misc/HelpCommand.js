@@ -33,7 +33,7 @@ class HelpCommand extends SlashCommand {
       .setColor(MESSAGE_EMBED.color)
       .setThumbnail(MESSAGE_EMBED.helpThumbnail);
 
-    const embedFields = fields.map(field => ({
+    const embedFields = fields.map((field) => ({
       name: field.title,
       value: field.text
     }));

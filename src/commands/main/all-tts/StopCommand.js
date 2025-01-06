@@ -27,12 +27,12 @@ class StopCommand extends SlashCommand {
 
     if (!connection) {
       return interaction.reply({ content: localizer.t('command.stop.no_connection'), flags: MessageFlags.Ephemeral }
-);
+      );
     }
 
     if (!memberChannel || myChannel !== memberChannel) {
       return interaction.reply({ content: localizer.t('command.stop.different_channel'), flags: MessageFlags.Ephemeral }
-);
+      );
     }
 
     ttsPlayer.stop();

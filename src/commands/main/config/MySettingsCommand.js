@@ -49,7 +49,7 @@ class MySettingsCommand extends SlashCommand {
           name: localizer.t('command.settings.my.current.provider'),
           value: ProviderManager.PROVIDER_FRIENDLY_NAMES[provider]
         },
-        ...fields.map(field => ({
+        ...fields.map((field) => ({
           name: field.title,
           value: field.text,
           inline: true
@@ -57,7 +57,7 @@ class MySettingsCommand extends SlashCommand {
       ]);
 
     return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral }
-);
+    );
   }
 }
 

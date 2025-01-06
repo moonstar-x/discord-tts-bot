@@ -46,14 +46,14 @@ class GoogleSetMySettingsCommand extends SlashCommand {
 
     if (!languageInfo) {
       return interaction.reply({ content: localizer.t('command.google.settings.my.language.invalid'), flags: MessageFlags.Ephemeral }
-);
+      );
     }
 
     await this.client.ttsSettings.set(interaction.member, { [GoogleProvider.NAME]: { language } });
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their google language to ${language}.`);
     return interaction.reply({ content: localizer.t('command.google.settings.my.language.success', { language: languageInfo.name }), flags: MessageFlags.Ephemeral }
-);
+    );
   }
 
   async handleSpeed(interaction, localizer) {
@@ -63,7 +63,7 @@ class GoogleSetMySettingsCommand extends SlashCommand {
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their google speed to ${speed}.`);
     return interaction.reply({ content: localizer.t('command.google.settings.my.speed.success', { speed }), flags: MessageFlags.Ephemeral }
-);
+    );
   }
 
   async run(interaction) {

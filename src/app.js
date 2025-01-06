@@ -117,7 +117,7 @@ const createProvider = (type) => {
   }
 };
 
-client.once('ready', async() => {
+client.once('ready', async () => {
   await client.setDataProvider(createProvider(config.get('PROVIDER_TYPE')));
   await client.initializeDependencies();
   await client.localizer.init();
@@ -135,11 +135,11 @@ client.once('ready', async() => {
     keepAlive({ port: process.env.PORT || 3000 });
   }
 
-  client.on('guildCreate', async(guild) => {
+  client.on('guildCreate', async (guild) => {
     await client.initializeDependenciesForGuild(guild);
   });
 
-  client.on('guildDelete', async(guild) => {
+  client.on('guildDelete', async (guild) => {
     await client.dataProvider.clear(guild);
     client.deleteDependenciesForGuild(guild);
   });

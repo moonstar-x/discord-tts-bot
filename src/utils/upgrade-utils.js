@@ -4,12 +4,12 @@ const arrayToChoice = (oldInput) => {
 
 const oldChoiceListToNew = (oldChoiceArray) => {
   const n = [];
-  for(var i = 0; i < oldChoiceArray.length; i++){
+  for (let i = 0; i < oldChoiceArray.length; i++) {
     n.push(arrayToChoice(oldChoiceArray[i]));
   }
   return n;
-}
+};
 
 module.exports = {
-    oldChoiceListToNew
+  oldChoiceListToNew
 };

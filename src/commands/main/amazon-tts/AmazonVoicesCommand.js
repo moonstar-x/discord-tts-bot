@@ -37,7 +37,7 @@ class AmazonVoicesCommand extends SlashCommand {
       return text.concat(`${voice.emoji} ${voice.name} - **/amazon_set_my voice ${voice.name}**\n`);
     }, '');
 
-    embed.addFields({ name:`${languageInfo.emoji} ${languageInfo.name}`, value: content});
+    embed.addFields({ name: `${languageInfo.emoji} ${languageInfo.name}`, value: content });
 
     return embed;
   }
