@@ -1,6 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { EmbedBuilder, MessageActionRow, MessageButton } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
 const { MESSAGE_EMBED, WEBSITE_URL } = require('../../../common/constants');
 
 class HelpCommand extends SlashCommand {
@@ -37,18 +37,18 @@ class HelpCommand extends SlashCommand {
       name: field.title,
       value: field.text
     }));
-    
+
     embed.addFields(embedFields);
 
-    const row = new MessageActionRow()
+    const row = new ActionRowBuilder()
       .addComponents(
-        new MessageButton()
-          .setStyle('LINK')
+        new ButtonBuilder()
+          .setStyle('Link')
           .setEmoji('🐛')
           .setLabel(localizer.t('command.help.links.bug'))
           .setURL(MESSAGE_EMBED.helpURL),
-        new MessageButton()
-          .setStyle('LINK')
+        new ButtonBuilder()
+          .setStyle('Link')
           .setEmoji('🌎')
           .setLabel(localizer.t('command.help.links.website'))
           .setURL(WEBSITE_URL)
