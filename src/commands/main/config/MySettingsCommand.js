@@ -1,6 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, MessageFlags } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../../common/constants');
 const ProviderManager = require('../../../classes/tts/providers/ProviderManager');
 
@@ -56,7 +56,8 @@ class MySettingsCommand extends SlashCommand {
         }))
       ]);
 
-    return interaction.reply({ embeds: [embed], ephemeral: true });
+    return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral }
+);
   }
 }
 

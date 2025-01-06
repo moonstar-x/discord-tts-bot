@@ -1,6 +1,8 @@
 /* eslint-disable max-statements */
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageFlags } = require('discord.js');
+
 const logger = require('@greencoast/logger');
 const { getCantConnectToChannelReason } = require('../../utils/channel');
 const { cleanMessage } = require('../../utils/mentions');
@@ -28,7 +30,7 @@ class SayBaseCommand extends SlashCommand {
   }
 
   async run(interaction) {
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
     const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);

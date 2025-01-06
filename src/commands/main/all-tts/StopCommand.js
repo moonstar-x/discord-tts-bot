@@ -1,5 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageFlags } = require('discord.js');
 const logger = require('@greencoast/logger');
 
 class StopCommand extends SlashCommand {
@@ -25,11 +26,13 @@ class StopCommand extends SlashCommand {
     const { channel: memberChannel } = interaction.member.voice;
 
     if (!connection) {
-      return interaction.reply({ content: localizer.t('command.stop.no_connection'), ephemeral: true });
+      return interaction.reply({ content: localizer.t('command.stop.no_connection'), flags: MessageFlags.Ephemeral }
+);
     }
 
     if (!memberChannel || myChannel !== memberChannel) {
-      return interaction.reply({ content: localizer.t('command.stop.different_channel'), ephemeral: true });
+      return interaction.reply({ content: localizer.t('command.stop.different_channel'), flags: MessageFlags.Ephemeral }
+);
     }
 
     ttsPlayer.stop();
