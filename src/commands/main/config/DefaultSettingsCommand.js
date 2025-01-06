@@ -1,6 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../../common/constants');
 const ProviderManager = require('../../../classes/tts/providers/ProviderManager');
 
@@ -41,16 +41,22 @@ class DefaultSettingsCommand extends SlashCommand {
     const { provider, ...restSettings } = currentSettings;
 
     const fields = this.prepareFields(restSettings, localizer);
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(localizer.t('command.settings.default.embed.title'))
       .setColor(MESSAGE_EMBED.color)
       .setDescription(localizer.t('command.settings.default.embed.description'))
-      .addField(localizer.t('command.settings.default.current.provider'), ProviderManager.PROVIDER_FRIENDLY_NAMES[provider]);
-
-    for (const key in fields) {
-      const field = fields[key];
-      embed.addField(field.title, field.text, true);
-    }
+      .addFields([
+        {
+          name: localizer.t('command.settings.default.current.provider'),
+          value: ProviderManager.PROVIDER_FRIENDLY_NAMES[provider]
+        },
+        // Adding the fields in bulk
+        ...fields.map(field => ({
+          name: field.title,
+          value: field.text,
+          inline: true
+        }))
+      ]);
 
     return interaction.reply({ embeds: [embed] });
   }

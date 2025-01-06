@@ -11,6 +11,5 @@ const oldChoiceListToNew = (oldChoiceArray) => {
 }
 
 module.exports = {
-    arrayToChoice,
     oldChoiceListToNew
 };

@@ -1,5 +1,5 @@
 const LangsBaseCommand = require('../../base/LangsBaseCommand');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../../common/constants');
 const { splitContentForEmbedFields } = require('../../../utils/embed');
 const languageData = require('../../../../provider-data/ttstool_microsoft_languages.json');
@@ -15,7 +15,7 @@ class MicrosoftLangsCommand extends LangsBaseCommand {
   }
 
   createEmbed(localizer) {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(localizer.t('command.microsoft.langs.embed.title'))
       .setColor(MESSAGE_EMBED.color)
       .setDescription(localizer.t('command.microsoft.langs.embed.description'))
@@ -27,11 +27,14 @@ class MicrosoftLangsCommand extends LangsBaseCommand {
       return `${cur.emoji} ${cur.name} - '**/ms_set_my language ${key}**'\n`;
     });
     const splitContent = splitContentForEmbedFields(content);
-
-    splitContent.forEach((field, index) => {
-      embed.addField(localizer.t('command.microsoft.langs.embed.page', { number: index + 1 }), field);
-    });
-
+    
+    const fields = splitContent.map((field, index) => ({
+      name: localizer.t('command.microsoft.langs.embed.page', { number: index + 1 }),
+      value: field
+    }));
+    
+    embed.addFields(fields);
+    
     return embed;
   }
 

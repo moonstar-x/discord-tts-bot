@@ -1,6 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { EmbedBuilder, MessageActionRow, MessageButton } = require('discord.js');
 const { MESSAGE_EMBED, WEBSITE_URL } = require('../../../common/constants');
 
 class HelpCommand extends SlashCommand {
@@ -28,15 +28,17 @@ class HelpCommand extends SlashCommand {
   run(interaction) {
     const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const fields = this.prepareFields();
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(localizer.t('command.help.embed.title'))
       .setColor(MESSAGE_EMBED.color)
       .setThumbnail(MESSAGE_EMBED.helpThumbnail);
 
-    for (const key in fields) {
-      const field = fields[key];
-      embed.addField(field.title, field.text);
-    }
+    const embedFields = fields.map(field => ({
+      name: field.title,
+      value: field.text
+    }));
+    
+    embed.addFields(embedFields);
 
     const row = new MessageActionRow()
       .addComponents(

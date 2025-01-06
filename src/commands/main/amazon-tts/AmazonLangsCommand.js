@@ -1,5 +1,5 @@
 const LangsBaseCommand = require('../../base/LangsBaseCommand');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../../common/constants');
 const { splitContentForEmbedFields } = require('../../../utils/embed');
 const languageData = require('../../../../provider-data/ttstool_amazon_languages.json');
@@ -15,7 +15,7 @@ class AmazonLangsCommand extends LangsBaseCommand {
   }
 
   createEmbed(localizer) {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(localizer.t('command.amazon.langs.embed.title'))
       .setColor(MESSAGE_EMBED.color)
       .setDescription(localizer.t('command.amazon.langs.embed.description'))
@@ -28,9 +28,14 @@ class AmazonLangsCommand extends LangsBaseCommand {
     });
     const splitContent = splitContentForEmbedFields(content);
 
-    splitContent.forEach((field, index) => {
-      embed.addField(localizer.t('command.amazon.langs.embed.page', { number: index + 1 }), field);
-    });
+    // Prepare fields for addFields in one go
+    const fields = splitContent.map((field, index) => ({
+      name: localizer.t('command.amazon.langs.embed.page', { number: index + 1 }),
+      value: field
+    }));
+
+    // Add all fields at once
+    embed.addFields(fields);
 
     return embed;
   }
