@@ -76,7 +76,7 @@ class SayBaseCommand extends SlashCommand {
 
     await ttsPlayer.voice.connect(memberChannel);
     logger.info(`Joined ${memberChannel.name} in ${guildName}.`);
-    await interaction.editReply(localizer.t('command.say.joined', { channel: memberChannel.toString(), request: userMessage }));
+    await interaction.editReply(localizer.t('command.say.joined.withrequest', { channel: memberChannel.toString(), request: userMessage }));
     return ttsPlayer.say(message, providerName, extras);
   }
 }

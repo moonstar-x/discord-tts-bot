@@ -27,7 +27,8 @@ const COMMAND = {
   'command.say.no_channel': 'You need to be in a voice channel first.',
   'command.say.different_channel': 'You need to be in my same voice channel to say something.',
   'command.say.success': 'Saying "{request}".',
-  'command.say.joined': 'Joined {channel} - Saying "{request}".',
+  'command.say.joined.withrequest': 'Joined {channel} - Saying "{request}".',
+  'command.say.joined': 'Joined {channel}',
 
   'command.stop.no_connection': "I'm not in a voice channel.",
   'command.stop.different_channel': 'You need to be in my voice channel to stop me.',
