@@ -1,7 +1,6 @@
 /* eslint-disable max-statements */
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageFlags } = require('discord.js');
 
 const logger = require('@greencoast/logger');
 const { getCantConnectToChannelReason } = require('../../utils/channel');
