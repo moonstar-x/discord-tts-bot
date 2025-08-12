@@ -12,13 +12,13 @@ jobs:
 
     steps:
       - name: Checkout the Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v3
 
       - name: Cache Docker Layers
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
@@ -26,7 +26,7 @@ jobs:
             ${{ runner.os }}-buildx-
 
       - name: Login to DockerHub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           username: moonstarx
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -41,7 +41,7 @@ jobs:
 
       - name: Push to DockerHub
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v6
         with:
           push: true
           tags: moonstarx/discord-tts-bot:latest,moonstarx/discord-tts-bot:${{ steps.package-version.outputs.current-version }}
