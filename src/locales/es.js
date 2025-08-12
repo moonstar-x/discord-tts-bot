@@ -27,6 +27,7 @@ const COMMAND = {
   'command.say.no_channel': 'Necesitas estar en un canal de voz.',
   'command.say.different_channel': 'Necesitas estar en mi canal de voz para decir algo.',
   'command.say.success': 'Diré eso ahora.',
+  'command.say.joined.withrequest': 'Entré a {channel}.',
   'command.say.joined': 'Entré a {channel}.',
 
   'command.stop.no_connection': 'No estoy en un canal de voz.',

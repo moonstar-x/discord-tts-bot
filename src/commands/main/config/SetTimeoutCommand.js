@@ -1,5 +1,5 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { PermissionsBitField, SlashCommandBuilder } = require('discord.js');
 const logger = require('@greencoast/logger');
 const { DISCONNECT_TIMEOUT } = require('../../../common/constants');
 
@@ -11,7 +11,7 @@ class SetTimeoutCommand extends SlashCommand {
       emoji: ':alarm_clock:',
       group: 'config',
       guildOnly: true,
-      userPermissions: ['MANAGE_GUILD'],
+      userPermissions: [PermissionsBitField.Flags.ManageGuild],
       dataBuilder: new SlashCommandBuilder()
         .addNumberOption((input) => {
           return input

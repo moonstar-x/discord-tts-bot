@@ -35,7 +35,7 @@ if (config.get('ENABLE_TTS_CHANNELS')) {
   client.registry.registerCommandsIn(path.join(__dirname, './commands/optional/channel-tts'));
 }
 
-client.on('ready', async() => {
+client.on('ready', async () => {
   try {
     client.deployer.rest.setToken(config.get('TOKEN'));
     await client.deployer.deployGlobally();

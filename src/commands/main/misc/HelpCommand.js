@@ -1,6 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
 const { MESSAGE_EMBED, WEBSITE_URL } = require('../../../common/constants');
 
 class HelpCommand extends SlashCommand {
@@ -28,25 +28,27 @@ class HelpCommand extends SlashCommand {
   run(interaction) {
     const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const fields = this.prepareFields();
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(localizer.t('command.help.embed.title'))
       .setColor(MESSAGE_EMBED.color)
       .setThumbnail(MESSAGE_EMBED.helpThumbnail);
 
-    for (const key in fields) {
-      const field = fields[key];
-      embed.addField(field.title, field.text);
-    }
+    const embedFields = fields.map((field) => ({
+      name: field.title,
+      value: field.text
+    }));
 
-    const row = new MessageActionRow()
+    embed.addFields(embedFields);
+
+    const row = new ActionRowBuilder()
       .addComponents(
-        new MessageButton()
-          .setStyle('LINK')
+        new ButtonBuilder()
+          .setStyle('Link')
           .setEmoji('🐛')
           .setLabel(localizer.t('command.help.links.bug'))
           .setURL(MESSAGE_EMBED.helpURL),
-        new MessageButton()
-          .setStyle('LINK')
+        new ButtonBuilder()
+          .setStyle('Link')
           .setEmoji('🌎')
           .setLabel(localizer.t('command.help.links.website'))
           .setURL(WEBSITE_URL)

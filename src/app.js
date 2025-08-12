@@ -1,11 +1,13 @@
 const path = require('path');
 const { ConfigProvider } = require('@greencoast/discord.js-extended');
-const RedisDataProvider = require('@greencoast/discord.js-extended/dist/providers/RedisDataProvider').default;
-const LevelDataProvider = require('@greencoast/discord.js-extended/dist/providers/LevelDataProvider').default;
+const { RedisDataProvider } = require('@greencoast/djs-extended-data-provider-redis');
+const { LevelDataProvider } = require('@greencoast/djs-extended-data-provider-level');
 const TTSClient = require('./classes/extensions/TTSClient');
 const { locales } = require('./locales');
 const { keepAlive } = require('./utils/keep-alive');
 const { DISCONNECT_TIMEOUT, WEBSITE_URL } = require('./common/constants');
+const { GatewayIntentBits } = require('discord.js');
+
 const pkg = require('../package.json');
 
 const SUPPORTED_PROVIDERS = ['level', 'redis'];
@@ -81,7 +83,7 @@ const client = new TTSClient({
     defaultLocale: 'en',
     localeStrings: locales
   },
-  intents: ['GUILD_MESSAGES', 'GUILDS', 'GUILD_VOICE_STATES']
+  intents: [GatewayIntentBits.GuildMessages, GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.MessageContent]
 });
 
 client
@@ -115,7 +117,7 @@ const createProvider = (type) => {
   }
 };
 
-client.once('ready', async() => {
+client.once('ready', async () => {
   await client.setDataProvider(createProvider(config.get('PROVIDER_TYPE')));
   await client.initializeDependencies();
   await client.localizer.init();
@@ -133,11 +135,11 @@ client.once('ready', async() => {
     keepAlive({ port: process.env.PORT || 3000 });
   }
 
-  client.on('guildCreate', async(guild) => {
+  client.on('guildCreate', async (guild) => {
     await client.initializeDependenciesForGuild(guild);
   });
 
-  client.on('guildDelete', async(guild) => {
+  client.on('guildDelete', async (guild) => {
     await client.dataProvider.clear(guild);
     client.deleteDependenciesForGuild(guild);
   });

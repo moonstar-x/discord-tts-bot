@@ -1,7 +1,9 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageFlags } = require('discord.js');
 const logger = require('@greencoast/logger');
 const ProviderManager = require('../../../classes/tts/providers/ProviderManager');
+const { oldChoiceListToNew } = require('../../../utils/upgrade-utils');
 
 class SetMyProviderCommand extends SlashCommand {
   constructor(client) {
@@ -17,7 +19,7 @@ class SetMyProviderCommand extends SlashCommand {
             .setName('provider')
             .setDescription('The provider to use from now on.')
             .setRequired(true)
-            .addChoices(ProviderManager.SUPPORTED_PROVIDERS.map((p) => [p.FRIENDLY_NAME, p.NAME]));
+            .addChoices(...oldChoiceListToNew(ProviderManager.SUPPORTED_PROVIDERS.map((p) => [p.FRIENDLY_NAME, p.NAME])));
         })
     });
   }
@@ -30,7 +32,8 @@ class SetMyProviderCommand extends SlashCommand {
     await this.client.ttsSettings.set(interaction.member, { provider: providerName });
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their provider to ${providerName}.`);
-    return interaction.reply({ content: localizer.t('command.set.my.provider.success', { name: providerFriendlyName }), ephemeral: true });
+    return interaction.reply({ content: localizer.t('command.set.my.provider.success', { name: providerFriendlyName }), flags: MessageFlags.Ephemeral }
+    );
   }
 }
 

@@ -1,6 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const merge = require('deepmerge');
 const { MESSAGE_EMBED } = require('../../../../common/constants');
 const ProviderManager = require('../../../../classes/tts/providers/ProviderManager');
@@ -18,7 +18,7 @@ class ChannelSettingsCommand extends SlashCommand {
   }
 
   handleDisabled(interaction, localizer) {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(localizer.t('channel_commands.settings.disabled.embed.title'))
       .setColor(MESSAGE_EMBED.color)
       .setDescription(localizer.t('channel_commands.settings.disabled.embed.description'));
@@ -31,13 +31,21 @@ class ChannelSettingsCommand extends SlashCommand {
     const providerFriendlyName = ProviderManager.PROVIDER_FRIENDLY_NAMES[channelSettings.provider];
     const settingsField = this.prepareSettingsField(providerSettings, providerFriendlyName, localizer);
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(localizer.t('channel_commands.settings.enabled.embed.title', { channel: interaction.channel.name }))
       .setColor(MESSAGE_EMBED.color)
       .setDescription(localizer.t('channel_commands.settings.enabled.embed.description'))
-      .addField(localizer.t('channel_commands.settings.enabled.current.provider'), ProviderManager.PROVIDER_FRIENDLY_NAMES[channelSettings.provider])
-      .addField(settingsField.title, settingsField.text);
-
+      .addFields([
+        {
+          name: localizer.t('channel_commands.settings.enabled.current.provider'),
+          value: ProviderManager.PROVIDER_FRIENDLY_NAMES[channelSettings.provider]
+        },
+        {
+          name: settingsField.title,
+          value: settingsField.text
+        }
+      ]);
+      
     return interaction.reply({ embeds: [embed] });
   }
 

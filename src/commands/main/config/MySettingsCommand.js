@@ -1,6 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder, MessageFlags } = require('discord.js');
 const { MESSAGE_EMBED } = require('../../../common/constants');
 const ProviderManager = require('../../../classes/tts/providers/ProviderManager');
 
@@ -40,18 +40,24 @@ class MySettingsCommand extends SlashCommand {
     const { provider, ...restSettings } = await this.client.ttsSettings.getCurrent(interaction);
 
     const fields = this.prepareFields(restSettings, localizer);
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(localizer.t('command.settings.my.embed.title', { name: interaction.member.displayName }))
       .setColor(MESSAGE_EMBED.color)
       .setDescription(localizer.t('command.settings.my.embed.description'))
-      .addField(localizer.t('command.settings.my.current.provider'), ProviderManager.PROVIDER_FRIENDLY_NAMES[provider]);
+      .addFields([
+        {
+          name: localizer.t('command.settings.my.current.provider'),
+          value: ProviderManager.PROVIDER_FRIENDLY_NAMES[provider]
+        },
+        ...fields.map((field) => ({
+          name: field.title,
+          value: field.text,
+          inline: true
+        }))
+      ]);
 
-    for (const key in fields) {
-      const field = fields[key];
-      embed.addField(field.title, field.text, true);
-    }
-
-    return interaction.reply({ embeds: [embed], ephemeral: true });
+    return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral }
+    );
   }
 }
 

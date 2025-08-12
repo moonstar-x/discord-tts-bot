@@ -1,4 +1,4 @@
-FROM node:16.6.1-alpine3.14
+FROM node:20.16.0-alpine3.20
 
 ARG DATE_CREATED
 ARG VERSION
@@ -11,7 +11,7 @@ LABEL org.opencontainers.image.title="Discord TTS Bot"
 LABEL org.opencontainers.image.description="A Text-to-Speech bot for Discord."
 LABEL org.opencontainers.image.source="https://github.com/moonstar-x/discord-tts-bot"
 
-RUN apk add --no-cache ffmpeg
+RUN apk add --no-cache ffmpeg python3 make gcc g++ zlib zlib-dev
 
 WORKDIR /opt/app
 

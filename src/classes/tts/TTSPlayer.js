@@ -100,7 +100,7 @@ class TTSPlayer {
   }
 
   stop() {
-    const { channel } = this.guild.me.voice;
+    const { channel } = this.guild.members.me.voice;
 
     this.stopDisconnectScheduler();
 

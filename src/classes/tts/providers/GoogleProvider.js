@@ -1,6 +1,7 @@
 const googleTTS = require('google-tts-api');
 const AbstractProvider = require('./AbstractProvider');
 const Payload = require('../Payload');
+const { oldChoiceListToNew } = require('../../../utils/upgrade-utils');
 
 /**
  * A concrete TTS provider for the Google Translate API TTS.
@@ -41,10 +42,10 @@ GoogleProvider.EXTRA_DEFAULTS = {
 };
 
 GoogleProvider.getSupportedSpeedChoices = () => {
-  return [
+  return oldChoiceListToNew([
     ['Slow Speed', 'slow'],
     ['Normal Speed', 'normal']
-  ];
+  ]);
 };
 
 module.exports = GoogleProvider;

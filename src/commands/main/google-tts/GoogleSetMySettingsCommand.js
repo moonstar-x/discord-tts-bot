@@ -1,5 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageFlags } = require('discord.js');
 const logger = require('@greencoast/logger');
 const GoogleProvider = require('../../../classes/tts/providers/GoogleProvider');
 const languages = require('../../../../provider-data/google_languages.json');
@@ -33,7 +34,7 @@ class GoogleSetMySettingsCommand extends SlashCommand {
                 .setName('value')
                 .setDescription('The speed to use from now.')
                 .setRequired(true)
-                .setChoices(GoogleProvider.getSupportedSpeedChoices());
+                .setChoices(...GoogleProvider.getSupportedSpeedChoices());
             });
         })
     });
@@ -44,13 +45,15 @@ class GoogleSetMySettingsCommand extends SlashCommand {
     const languageInfo = languages[language];
 
     if (!languageInfo) {
-      return interaction.reply({ content: localizer.t('command.google.settings.my.language.invalid'), ephemeral: true });
+      return interaction.reply({ content: localizer.t('command.google.settings.my.language.invalid'), flags: MessageFlags.Ephemeral }
+      );
     }
 
     await this.client.ttsSettings.set(interaction.member, { [GoogleProvider.NAME]: { language } });
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their google language to ${language}.`);
-    return interaction.reply({ content: localizer.t('command.google.settings.my.language.success', { language: languageInfo.name }), ephemeral: true });
+    return interaction.reply({ content: localizer.t('command.google.settings.my.language.success', { language: languageInfo.name }), flags: MessageFlags.Ephemeral }
+    );
   }
 
   async handleSpeed(interaction, localizer) {
@@ -59,7 +62,8 @@ class GoogleSetMySettingsCommand extends SlashCommand {
     await this.client.ttsSettings.set(interaction.member, { [GoogleProvider.NAME]: { speed } });
 
     logger.info(`User ${interaction.member.displayName} in ${interaction.guild.name} has changed their google speed to ${speed}.`);
-    return interaction.reply({ content: localizer.t('command.google.settings.my.speed.success', { speed }), ephemeral: true });
+    return interaction.reply({ content: localizer.t('command.google.settings.my.speed.success', { speed }), flags: MessageFlags.Ephemeral }
+    );
   }
 
   async run(interaction) {

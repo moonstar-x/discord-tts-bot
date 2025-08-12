@@ -38,7 +38,7 @@ class TTSChannelHandler {
     const settings = await this.client.ttsSettings.getCurrentForChannel(message.channel);
     const extras = settings[channelSettings.provider];
 
-    const { me: { voice: myVoice }, name: guildName, members, channels, roles } = message.guild;
+    const { members: { me: { voice: myVoice } }, name: guildName, members, channels, roles } = message.guild;
     const { channel: memberChannel } = message.member.voice;
     const myChannel = myVoice?.channel;
 

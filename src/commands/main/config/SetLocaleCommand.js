@@ -1,7 +1,8 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { PermissionsBitField, SlashCommandBuilder } = require('discord.js');
 const logger = require('@greencoast/logger');
 const { supported } = require('../../../locales');
+const { oldChoiceListToNew } = require('../../../utils/upgrade-utils');
 
 class SetLocaleCommand extends SlashCommand {
   constructor(client) {
@@ -11,14 +12,14 @@ class SetLocaleCommand extends SlashCommand {
       emoji: ':earth_americas:',
       group: 'config',
       guildOnly: true,
-      userPermissions: ['MANAGE_GUILD'],
+      userPermissions: [PermissionsBitField.Flags.ManageGuild],
       dataBuilder: new SlashCommandBuilder()
         .addStringOption((input) => {
           return input
             .setName('locale')
             .setDescription('The locale to be used by the bot in this guild.')
             .setRequired(true)
-            .addChoices(Object.keys(supported).map((key) => [supported[key], key]));
+            .addChoices(...oldChoiceListToNew(Object.keys(supported).map((key) => [supported[key], key])));
         })
     });
   }

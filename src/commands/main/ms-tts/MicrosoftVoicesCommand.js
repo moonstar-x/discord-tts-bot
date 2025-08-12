@@ -1,6 +1,6 @@
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const MicrosoftProvider = require('../../../classes/tts/providers/MicrosoftProvider');
 const { MESSAGE_EMBED } = require('../../../common/constants');
 const languageData = require('../../../../provider-data/ttstool_microsoft_languages.json');
@@ -26,7 +26,7 @@ class MicrosoftVoicesCommand extends SlashCommand {
   createEmbed(localizer, language) {
     const languageInfo = languageData[language];
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(localizer.t('command.microsoft.voices.embed.title', { language: languageInfo.name }))
       .setColor(MESSAGE_EMBED.color)
       .setDescription(localizer.t('command.microsoft.voices.embed.description', { language: languageInfo.name }))
@@ -37,8 +37,13 @@ class MicrosoftVoicesCommand extends SlashCommand {
       return text.concat(`${voice.emoji} ${voice.name} - **/ms_set_my voice ${voice.name}**\n`);
     }, '');
 
-    embed.addField(`${languageInfo.emoji} ${languageInfo.name}`, content);
-
+    embed.addFields([
+      {
+        name: `${languageInfo.emoji} ${languageInfo.name}`,
+        value: content
+      }
+    ]);
+    
     return embed;
   }
 

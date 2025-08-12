@@ -1,6 +1,8 @@
 /* eslint-disable max-statements */
 const { SlashCommand } = require('@greencoast/discord.js-extended');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageFlags } = require('discord.js');
+
 const logger = require('@greencoast/logger');
 const { getCantConnectToChannelReason } = require('../../utils/channel');
 const { cleanMessage } = require('../../utils/mentions');
@@ -28,7 +30,7 @@ class SayBaseCommand extends SlashCommand {
   }
 
   async run(interaction) {
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply();
 
     const localizer = this.client.localizer.getLocalizer(interaction.guild);
     const ttsPlayer = this.client.getTTSPlayer(interaction.guild);
@@ -38,12 +40,14 @@ class SayBaseCommand extends SlashCommand {
     const providerName = this.getProviderName(currentSettings);
     const extras = currentSettings[providerName];
 
-    const { me: { voice: myVoice }, name: guildName, members, channels, roles } = interaction.guild;
+    const { members: { me: { voice: myVoice } }, name: guildName, members, channels, roles } = interaction.guild;
     const { channel: memberChannel } = interaction.member.voice;
     const myChannel = myVoice?.channel;
 
     const messageIntro = this.client.config.get('ENABLE_WHO_SAID') ? `${interaction.member.displayName} said ` : '';
-    const message = cleanMessage(`${messageIntro}${interaction.options.getString('message')}`, {
+    const userMessage = interaction.options.getString('message');
+
+    const message = cleanMessage(`${messageIntro}${userMessage}`, {
       members: members.cache,
       channels: channels.cache,
       roles: roles.cache
@@ -60,7 +64,7 @@ class SayBaseCommand extends SlashCommand {
         return;
       }
 
-      await interaction.editReply(localizer.t('command.say.success'));
+      await interaction.editReply(localizer.t('command.say.success', { request: userMessage }));
       return ttsPlayer.say(message, providerName, extras);
     }
 
@@ -72,7 +76,7 @@ class SayBaseCommand extends SlashCommand {
 
     await ttsPlayer.voice.connect(memberChannel);
     logger.info(`Joined ${memberChannel.name} in ${guildName}.`);
-    await interaction.editReply(localizer.t('command.say.joined', { channel: memberChannel.toString() }));
+    await interaction.editReply(localizer.t('command.say.joined.withrequest', { channel: memberChannel.toString(), request: userMessage }));
     return ttsPlayer.say(message, providerName, extras);
   }
 }
