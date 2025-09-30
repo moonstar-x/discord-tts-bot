@@ -35,7 +35,7 @@
     "@greencoast/logger": "^1.1.1",
     "axios": "^1.7.9",
     "deepmerge": "^4.3.1",
-    "discord.js": "^14.17.2",
+    "discord.js": "^14.22.1",
     "google-tts-api": "^2.0.2",
     "level": "^9.0.0",
     "redis": "^4.7.0",
