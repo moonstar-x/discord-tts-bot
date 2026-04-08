@@ -48,7 +48,14 @@ class TTSPlayer {
     const sanitizedSentence = sentence.replace(urlRegex, 'ඞ');
 
     const provider = this.providerManager.getProvider(providerName);
-    const payload = await provider.createPayload(sanitizedSentence, extras);
+
+    let payload;
+    try {
+      payload = await provider.createPayload(sanitizedSentence, extras);
+    } catch (error) {
+      logger.error(`Failed to create TTS payload for provider ${providerName} in guild ${this.guild.name}: ${error.message}`);
+      return;
+    }
 
     if (Array.isArray(payload)) {
       payload.forEach((p) => this.queue.enqueue(p));

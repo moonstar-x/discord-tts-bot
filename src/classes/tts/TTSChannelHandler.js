@@ -43,11 +43,19 @@ class TTSChannelHandler {
     const myChannel = myVoice?.channel;
 
     const messageIntro = this.client.config.get('ENABLE_WHO_SAID') ? `${message.member.displayName} said ` : '';
-    const textToSay = cleanMessage(`${messageIntro}${message.content}`, {
+    const maxLength = this.client.config.get('MAX_MESSAGE_LENGTH');
+    const rawContent = maxLength > 0 && message.content.length > maxLength ?
+      message.content.slice(0, maxLength) :
+      message.content;
+    const textToSay = cleanMessage(`${messageIntro}${rawContent}`, {
       members: members.cache,
       channels: channels.cache,
       roles: roles.cache
     });
+
+    if (textToSay.trim().length === 0) {
+      return;
+    }
 
     if (!memberChannel) {
       return message.reply(localizer.t('command.say.no_channel'));

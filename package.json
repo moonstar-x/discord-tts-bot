@@ -1,6 +1,6 @@
 {
   "name": "discord-tts-bot",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "A simple Discord TTS Bot that uses the Google Translate TTS API.",
   "main": "./src/app.js",
   "scripts": {
@@ -28,17 +28,19 @@
   "dependencies": {
     "@discordjs/builders": "^1.10.0",
     "@discordjs/opus": "^0.9.0",
-    "@discordjs/voice": "^0.18.0",
+    "@discordjs/voice": "^0.19.2",
     "@greencoast/discord.js-extended": "^3.0.1",
     "@greencoast/djs-extended-data-provider-level": "^1.0.1",
     "@greencoast/djs-extended-data-provider-redis": "^1.0.0",
     "@greencoast/logger": "^1.1.1",
+    "@snazzah/davey": "^0.1.11",
     "axios": "^1.7.9",
     "deepmerge": "^4.3.1",
-    "discord.js": "^14.17.2",
+    "discord.js": "^14.26.2",
     "google-tts-api": "^2.0.2",
     "level": "^9.0.0",
     "redis": "^4.7.0",
+    "sodium-native": "^5.1.0",
     "tweetnacl": "^1.0.3"
   },
   "devDependencies": {

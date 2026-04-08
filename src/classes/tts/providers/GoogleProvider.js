@@ -12,7 +12,7 @@ class GoogleProvider extends AbstractProvider {
       try {
         const data = googleTTS.getAllAudioUrls(sentence, {
           lang: extras.language,
-          slow: extras.speed === 'normal',
+          slow: extras.speed === 'slow',
           splitPunct: ',.?!'
         });
 

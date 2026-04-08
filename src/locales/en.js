@@ -25,6 +25,7 @@ const COMMAND = {
   'command.set.my.provider.success': 'You have successfully changed your provider to **{name}**.',
 
   'command.say.no_channel': 'You need to be in a voice channel first.',
+  'command.say.too_long': 'Your message is too long. The limit is **{max}** characters.',
   'command.say.different_channel': 'You need to be in my same voice channel to say something.',
   'command.say.success': 'Saying "{request}".',
   'command.say.joined.withrequest': 'Joined {channel} - Saying "{request}".',

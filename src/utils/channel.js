@@ -11,7 +11,7 @@ const getCantConnectToChannelReason = (channel) => {
     return 'error.channel.not_joinable';
   }
 
-  if (channel.type === 'GUILD_VOICE' && !channel.speakable) {
+  if (channel.isVoiceBased() && !channel.speakable) {
     return 'error.channel.not_speakable';
   }
 };

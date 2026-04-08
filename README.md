@@ -121,7 +121,8 @@ Your file should look like this.
   "redis_url": "redis://ip:port",
   "enable_tts_channels": false,
   "enable_keep_alive": false,
-  "enable_who_said": false
+  "enable_who_said": false,
+  "max_message_length": 0
 }
 ```
 
@@ -143,6 +144,7 @@ This table contains all the configuration settings you may specify with both env
 | DISCORD_ENABLE_TTS_CHANNELS        | `enable_tts_channels`        | No. (Defaults to: `false`)  | `boolean`                  | Whether to enable the message-only TTS for specific channels. With this setting, you can send TTS messages by just sending messages to a channel that you have enabled a provider for. You need the privileged message intent (accessible in the `Bot` page of your bot's application page) for this feature to work properly.                                                       |
 | DISCORD_ENABLE_KEEP_ALIVE          | `enable_keep_alive`          | No. (Defaults to: `false`)  | `boolean`                  | Whether an HTTP server should be started. You should only use this option if you're planning to host the bot on something like Repl.it or Heroku. Additionally, you should use something like UptimeRobot to poll the associated address to keep the bot alive. If you need to specify the port to use you should set the `PORT` environment variable (Heroku uses this by default). |
 | DISCORD_ENABLE_WHO_SAID            | `enable_who_said`            | No. (Defaults to: `false`)  | `boolean`                  | Whether the bot should prepend each TTS message with a 'User said...'. This makes it so the bot speaks the name of the author of every message.                                                                                                                                                                                                                                      |
+| DISCORD_MAX_MESSAGE_LENGTH         | `max_message_length`         | No. (Defaults to: `0`)      | `number`                   | The maximum number of characters allowed per TTS message. If set to `0` the limit is disabled. In TTS channels the message will be truncated; in slash commands the bot will reject the message with an error.                                                                                                                                                                       |
 
 > If you set `enable_tts_channels` to `true`, you must enable the message content privileged intent in your bot's [application page](https://discord.com/developers/applications/).
 

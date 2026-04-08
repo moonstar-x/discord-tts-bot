@@ -1,21 +1,35 @@
-const { MessageMentions: { USERS_PATTERN, CHANNELS_PATTERN, ROLES_PATTERN } } = require('discord.js');
+const UNICODE_EMOJI_PATTERN = /[\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu;
+const CUSTOM_EMOJI_PATTERN = /<a?:(.*?):(\d{17,19})>/g;
+const URL_PATTERN = /https?:\/\/[^\s]+/g;
+const MARKDOWN_LINK_PATTERN = /\[([^\]]*)\]\([^)]*\)?/g;
+const USERS_PATTERN = /<@!?(\d+)>/g;
+const CHANNELS_PATTERN = /<#(\d+)>/g;
+const ROLES_PATTERN = /<@&(\d+)>/g;
 
-const CUSTOM_EMOJI_PATTERN = /<:(.*?):(\d{17,19})>/g;
-
-const cleanMemberMentions = (message, members) => {
-  return message.replace(USERS_PATTERN, (_, id) => members.get(id).displayName);
+const cleanMemberMentions = (message) => {
+  return message.replace(USERS_PATTERN, '');
 };
 
-const cleanChannelMentions = (message, channels) => {
-  return message.replace(CHANNELS_PATTERN, (_, id) => channels.get(id).name);
+const cleanChannelMentions = (message) => {
+  return message.replace(CHANNELS_PATTERN, '');
 };
 
-const cleanRoleMentions = (message, roles) => {
-  return message.replace(ROLES_PATTERN, (_, id) => roles.get(id).name);
+const cleanRoleMentions = (message) => {
+  return message.replace(ROLES_PATTERN, '');
 };
 
 const cleanEmojis = (message) => {
-  return message.replace(CUSTOM_EMOJI_PATTERN, (_, name) => name);
+  return message
+    .replace(CUSTOM_EMOJI_PATTERN, '')
+    .replace(UNICODE_EMOJI_PATTERN, '');
+};
+
+const cleanLinks = (message) => {
+  // Remove markdown links like [sticker name](url) first, then remaining bare URLs
+  return message
+    .replace(/<https?:\/\/[^\s]+>/g, '')
+    .replace(MARKDOWN_LINK_PATTERN, '')
+    .replace(URL_PATTERN, '');
 };
 
 const cleanMessage = (message, { members, channels, roles }) => {
@@ -25,6 +39,7 @@ const cleanMessage = (message, { members, channels, roles }) => {
   clean = cleanChannelMentions(clean, channels);
   clean = cleanRoleMentions(clean, roles);
   clean = cleanEmojis(clean);
+  clean = cleanLinks(clean);
 
   return clean;
 };
@@ -34,5 +49,6 @@ module.exports = {
   cleanMemberMentions,
   cleanChannelMentions,
   cleanRoleMentions,
-  cleanEmojis
+  cleanEmojis,
+  cleanLinks
 };

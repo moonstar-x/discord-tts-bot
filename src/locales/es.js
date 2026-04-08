@@ -25,6 +25,7 @@ const COMMAND = {
   'command.set.my.provider.success': 'Has cambiado el proveedor por defecto a **{name}** con éxito.',
 
   'command.say.no_channel': 'Necesitas estar en un canal de voz.',
+  'command.say.too_long': 'Tu mensaje es demasiado largo. El límite es de **{max}** caracteres.',
   'command.say.different_channel': 'Necesitas estar en mi canal de voz para decir algo.',
   'command.say.success': 'Diré eso ahora.',
   'command.say.joined.withrequest': 'Entré a {channel}.',

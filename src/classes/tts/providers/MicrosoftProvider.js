@@ -6,6 +6,14 @@ const { oldChoiceListToNew } = require('../../../utils/upgrade-utils');
 
 const POST_URL = 'https://support.readaloud.app/ttstool/createParts';
 const GET_URL = 'https://support.readaloud.app/ttstool/getParts';
+const REQUEST_TIMEOUT = 10000;
+
+const escapeXml = (str) => str
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&apos;');
 
 /**
  * A concrete TTS provider for TTS Tool Microsoft.
@@ -16,8 +24,12 @@ class MicrosoftProvider extends AbstractProvider {
 
     const response = await axios.post(POST_URL, [{
       voiceId: voice,
-      ssml: `<speak version="1.0" xml:lang="${languageData[language].id}"><prosody volume="${volume}" rate="${rate}" pitch="${pitch}">${sentence}</prosody></speak>`
-    }]);
+      ssml: `<speak version="1.0" xml:lang="${languageData[language].id}"><prosody volume="${volume}" rate="${rate}" pitch="${pitch}">${escapeXml(sentence)}</prosody></speak>`
+    }], { timeout: REQUEST_TIMEOUT });
+
+    if (!response.data || !response.data[0]) {
+      throw new Error('Microsoft TTS API returned an empty response.');
+    }
 
     return response.data[0];
   }

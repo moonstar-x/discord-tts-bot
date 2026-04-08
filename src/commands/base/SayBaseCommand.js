@@ -46,11 +46,22 @@ class SayBaseCommand extends SlashCommand {
     const messageIntro = this.client.config.get('ENABLE_WHO_SAID') ? `${interaction.member.displayName} said ` : '';
     const userMessage = interaction.options.getString('message');
 
+    const maxLength = this.client.config.get('MAX_MESSAGE_LENGTH');
+    if (maxLength > 0 && userMessage.length > maxLength) {
+      await interaction.editReply(localizer.t('command.say.too_long', { max: maxLength }));
+      return;
+    }
+
     const message = cleanMessage(`${messageIntro}${userMessage}`, {
       members: members.cache,
       channels: channels.cache,
       roles: roles.cache
     });
+
+    if (message.trim().length === 0) {
+      await interaction.editReply('The message is empty after cleaning mentions and links.');
+      return;
+    }
 
     if (!memberChannel) {
       await interaction.editReply(localizer.t('command.say.no_channel'));
